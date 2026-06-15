@@ -304,7 +304,7 @@ export default function GameRound({ pairs, sequenceNumber, totalSequences, onCom
                     transition={{ duration: 0.3 }}
                   >
                     <span className="card-placeholder-arrow">←</span>
-                    <span className="card-placeholder-text">Sélectionner une carte</span>
+                    <span className="card-placeholder-text">Sélectionner une carte <br/> Inspiration </span>
                   </motion.div>
                 )}
               </AnimatePresence>
@@ -396,7 +396,7 @@ export default function GameRound({ pairs, sequenceNumber, totalSequences, onCom
                     transition={{ duration: 0.3 }}
                   >
                     <span className="card-placeholder-arrow">→</span>
-                    <span className="card-placeholder-text">Sélectionner une carte</span>
+                    <span className="card-placeholder-text">Sélectionner une carte<br/> innovation </span>
                   </motion.div>
                 )}
               </AnimatePresence>

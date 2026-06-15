@@ -1,4 +1,5 @@
 .container {
+    margin: auto;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -281,6 +282,7 @@
 }
 
 .card-placeholder-text {
+    text-align: center;
     font-family: inherit;
     font-size: 13px;
     font-weight: 400;
