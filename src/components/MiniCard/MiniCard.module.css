@@ -1,0 +1,42 @@
+.miniCard {
+  width: 48px;
+  height: 68px;
+  border-radius: var(--radius-mini);
+  border: 2px solid transparent;
+  background-color: var(--color-mini-base);
+  padding: 0;
+  transition:
+    background-color var(--transition-fast),
+    border-color var(--transition-fast),
+    opacity var(--transition-fast),
+    transform var(--transition-fast);
+}
+
+.miniCard:hover:not(:disabled) {
+  transform: translateY(-2px);
+}
+
+.tone-base {
+  background-color: var(--color-mini-base);
+}
+
+.tone-alt {
+  background-color: var(--color-mini-alt);
+}
+
+.tone-dark {
+  background-color: var(--color-mini-dark);
+}
+
+.variant-idle {
+  cursor: pointer;
+}
+
+.variant-selected {
+  border-color: var(--color-mini-selected);
+}
+
+.variant-matched {
+  opacity: 0.35;
+  cursor: not-allowed;
+}

@@ -1,0 +1,72 @@
+.page {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    background-color: var(--color-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* 1. Le wrapper qui couvre TOUT l'écran et applique le dégradé */
+.maskWrapper {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    -webkit-mask-image: linear-gradient(to bottom, black 15%, transparent 65%);
+    mask-image: linear-gradient(to bottom, black 15%, transparent 65%);
+}
+
+/* 2. La grille invisible qui sert juste de repère pour placer les cartes */
+.cardsLayer {
+    position: absolute;
+    width: 1280px;
+    height: 800px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /* ATTENTION : Plus de masque ici, plus de pointer-events, plus de z-index */
+}
+
+.card {
+    position: absolute;
+    /* border-radius: var(--radius-card); */
+    border-radius: 10px;
+    object-fit: cover;
+    display: block;
+    user-select: none;
+    -webkit-user-drag: none;
+}
+
+.content {
+
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 16px;
+    margin-top: 200px;
+}
+
+.logo {
+    width: 240px;
+    height: auto;
+}
+
+.subtitle {
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    color: var(--color-text-muted);
+    line-height: 1.7;
+    max-width: 360px;
+    margin: 0;
+}
+
+.cta {
+    margin-top: 28px;
+}

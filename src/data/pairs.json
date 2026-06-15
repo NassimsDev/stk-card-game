@@ -1,0 +1,496 @@
+{
+  "metadata": {
+    "version": "1.0.0",
+    "totalPairs": 21,
+    "sequences": [
+      { "id": 1, "name": "Séquence 1", "pairIds": [1, 2, 3, 4, 5, 6, 7, 8] },
+      { "id": 2, "name": "Séquence 2", "pairIds": [9, 10, 11, 12, 13, 14, 15, 16] },
+      { "id": 3, "name": "Séquence 3", "pairIds": [17, 18, 19, 20, 21] }
+    ]
+  },
+  "pairs": [
+    {
+      "id": 1,
+      "theme": "Thermorégulation",
+      "inspiration": {
+        "title": "Aile de papillon",
+        "subtitle": "Inspiration",
+        "image": "/assets/cards/inspiration/card-inspiration-01.webp",
+        "shortDescription": "À sang froid, il doit réguler sa température interne pour pouvoir prendre son envol.",
+        "alt": "Aile de papillon bleu Morpho"
+      },
+      "innovation": {
+        "title": "les panneaux solaires",
+        "subtitle": "Innovation",
+        "image": "/assets/cards/innovation/card-innovation-01.webp",
+        "shortDescription": "Un récepteur d'énergie extérieure qui s'auto-refroidit pour rester performant.",
+        "alt": "Panneaux solaires"
+      },
+      "explanation": {
+        "title": "Le lien biomimétique",
+        "body": "Les ailes de ce papillon rejettent la chaleur sous forme d'ondes pour éviter de surchauffer. En imitant cette régulation thermique, ces panneaux solaires restent frais et gardent un rendement maximal.",
+        "source": ""
+      }
+    },
+    {
+      "id": 2,
+      "theme": "Aérodynamisme",
+      "inspiration": {
+        "title": "Les nageoires de baleines à bosses",
+        "subtitle": "Inspiration",
+        "image": "/assets/cards/inspiration/card-inspiration-02.webp",
+        "shortDescription": "Sa morphologie brise la résistance du courant pour glisser avec un effort minimal.",
+        "alt": "Nageoires d'une baleine à bosse"
+      },
+      "innovation": {
+        "title": "les éoliennes",
+        "subtitle": "Innovation",
+        "image": "/assets/cards/innovation/card-innovation-02.webp",
+        "shortDescription": "Ces pales géantes tournent même par vent très faible grâce à leur profil unique.",
+        "alt": "Pales d'éolienne"
+      },
+      "explanation": {
+        "title": "Le lien biomimétique",
+        "body": "Les bosses sur les nageoires de la baleine créent des micro-vortex qui améliorent sa portance. Sculptées de la même façon, ces pales d'éoliennes captent le vent avec beaucoup moins de frottement.",
+        "source": ""
+      }
+    },
+    {
+      "id": 3,
+      "theme": "Aérodynamisme",
+      "inspiration": {
+        "title": "Le martin-pêcheur",
+        "subtitle": "Inspiration",
+        "image": "/assets/cards/inspiration/card-inspiration-03.webp",
+        "shortDescription": "Son bec effilé fend l'air et l'eau en silence pour surprendre ses proies.",
+        "alt": "Martin-pêcheur en plongée"
+      },
+      "innovation": {
+        "title": "le TGV Japonais",
+        "subtitle": "Innovation",
+        "image": "/assets/cards/innovation/card-innovation-03.webp",
+        "shortDescription": "Une forme aérodynamique pour réduire le bruit à haute vitesse en ville.",
+        "alt": "Nez profilé du TGV Shinkansen"
+      },
+      "explanation": {
+        "title": "Le lien biomimétique",
+        "body": "Le bec du martin-pêcheur pénètre l'eau sans créer d'onde de choc. En imitant sa forme fuselée, le nez du TGV fend l'air en silence et supprime le dérangeant \"bang\" à la sortie des tunnels.",
+        "source": ""
+      }
+    },
+    {
+      "id": 4,
+      "theme": "Adhésion",
+      "inspiration": {
+        "title": "Le gekko",
+        "subtitle": "Inspiration",
+        "image": "/assets/cards/inspiration/card-inspiration-04.webp",
+        "shortDescription": "Capable de courir au plafond la tête en bas sans jamais craindre la chute.",
+        "alt": "Gekko accroché à une surface"
+      },
+      "innovation": {
+        "title": "la geckskin",
+        "subtitle": "Innovation",
+        "image": "/assets/cards/innovation/card-innovation-04.webp",
+        "shortDescription": "Un simple morceau de ce tissu peut suspendre un écran plat sur un mur.",
+        "alt": "Adhésif sec geckskin"
+      },
+      "explanation": {
+        "title": "Le lien biomimétique",
+        "body": "Les pattes du gekko possèdent des millions de micro-poils qui s'aimantent à la matière à l'échelle moléculaire. Cet adhésif imite cette friction sèche pour fixer des charges lourdes sans colle.",
+        "source": ""
+      }
+    },
+    {
+      "id": 5,
+      "theme": "Fixation",
+      "inspiration": {
+        "title": "Les fruits de bardane",
+        "subtitle": "Inspiration",
+        "image": "/assets/cards/inspiration/card-inspiration-05.webp",
+        "shortDescription": "Cette plante sauvage utilise les chiens et les promeneurs pour semer ses graines.",
+        "alt": "Fruit de bardane couvert de crochets"
+      },
+      "innovation": {
+        "title": "le velcro",
+        "subtitle": "Innovation",
+        "image": "/assets/cards/innovation/card-innovation-05.webp",
+        "shortDescription": "Cette invention lie deux objets par simple pression mécanique, sans aucun adhésif.",
+        "alt": "Bande Velcro"
+      },
+      "explanation": {
+        "title": "Le lien biomimétique",
+        "body": "Les crochets souples de ce fruit s'agrippent naturellement aux boucles formées par les poils d'animaux. Le velcro reproduit ce duo mécanique pour fermer et ouvrir des tissus à l'infini.",
+        "source": ""
+      }
+    },
+    {
+      "id": 6,
+      "theme": "Aérodynamisme",
+      "inspiration": {
+        "title": "Le Nautile",
+        "subtitle": "Inspiration",
+        "image": "/assets/cards/inspiration/card-inspiration-06.webp",
+        "shortDescription": "Il glisse sans effort dans l'océan grâce à une forme hydrodynamique millénaire.",
+        "alt": "Coquille en spirale d'un nautile"
+      },
+      "innovation": {
+        "title": "les turboréacteurs",
+        "subtitle": "Innovation",
+        "image": "/assets/cards/innovation/card-innovation-06.webp",
+        "shortDescription": "Un système conçu pour fendre l'atmosphère à haute altitude et à grande vitesse.",
+        "alt": "Turboréacteur d'avion"
+      },
+      "explanation": {
+        "title": "Le lien biomimétique",
+        "body": "La coquille en spirale du nautile canalise l'eau pour le propulser par réaction. Les turboréacteurs copient cette géométrie courbe pour comprimer et guider les flux d'air avec un rendement maximal.",
+        "source": ""
+      }
+    },
+    {
+      "id": 7,
+      "theme": "Hydrodynamique",
+      "inspiration": {
+        "title": "La peau du requin",
+        "subtitle": "Inspiration",
+        "image": "/assets/cards/inspiration/card-inspiration-07.webp",
+        "shortDescription": "Son corps est recouvert de millions de micro-dents alignées face au courant.",
+        "alt": "Détail de la peau d'un requin"
+      },
+      "innovation": {
+        "title": "les combinaisons de natation",
+        "subtitle": "Innovation",
+        "image": "/assets/cards/innovation/card-innovation-07.webp",
+        "shortDescription": "Une innovation textile qui a bousculé tous les records du monde de vitesse.",
+        "alt": "Combinaison de natation haute performance"
+      },
+      "explanation": {
+        "title": "Le lien biomimétique",
+        "body": "La peau de ce prédateur est couverte de micro-dentelures qui canalisent l'eau et éliminent les turbulences. Cette combinaison imite ce relief rugueux pour aider le nageur à glisser bien plus vite.",
+        "source": ""
+      }
+    },
+    {
+      "id": 8,
+      "theme": "Optique",
+      "inspiration": {
+        "title": "Le papillon Greta oto",
+        "subtitle": "Inspiration",
+        "image": "/assets/cards/inspiration/card-inspiration-08.webp",
+        "shortDescription": "Ses membranes ne créent aucun éclat brillant qui pourrait trahir sa présence.",
+        "alt": "Papillon Greta oto aux ailes transparentes"
+      },
+      "innovation": {
+        "title": "les verres anti-reflet",
+        "subtitle": "Innovation",
+        "image": "/assets/cards/innovation/card-innovation-08.webp",
+        "shortDescription": "Permet de lire son smartphone en plein soleil sans être gêné par son propre visage.",
+        "alt": "Verre anti-reflet"
+      },
+      "explanation": {
+        "title": "Le lien biomimétique",
+        "body": "Les ailes de ce papillon possèdent un relief invisible qui empêche la lumière de rebondir. En copiant cette surface texturée sur les écrans et les lunettes, on élimine enfin l'effet miroir.",
+        "source": ""
+      }
+    },
+    {
+      "id": 9,
+      "theme": "Hydrologie",
+      "inspiration": {
+        "title": "Le coléoptère de Namibie",
+        "subtitle": "Inspiration",
+        "image": "/assets/cards/inspiration/card-inspiration-09.webp",
+        "shortDescription": "Ce scarabée du désert extrait l'eau de l'air du matin grâce à la forme de son dos.",
+        "alt": "Coléoptère du désert de Namibie"
+      },
+      "innovation": {
+        "title": "les filets capteurs de rosée",
+        "subtitle": "Innovation",
+        "image": "/assets/cards/innovation/card-innovation-09.webp",
+        "shortDescription": "Des filets récoltent l'humidité atmosphérique dans des régions où l'eau est rare.",
+        "alt": "Filet capteur de rosée"
+      },
+      "explanation": {
+        "title": "Le lien biomimétique",
+        "body": "Le dos du scarabée alterne des zones qui attirent l'eau et d'autres qui la repoussent. Les gouttelettes grossissent sur les premières, puis glissent vers sa bouche via les secondes. Les filets reprennent ce principe pour collecter l'eau sans consommer d'énergie.",
+        "source": ""
+      }
+    },
+    {
+      "id": 10,
+      "theme": "Matériaux",
+      "inspiration": {
+        "title": "La cicatrice",
+        "subtitle": "Inspiration",
+        "image": "/assets/cards/inspiration/card-inspiration-10.webp",
+        "shortDescription": "La peau referme ses plaies en mobilisant ses propres ressources internes.",
+        "alt": "Cicatrisation de la peau"
+      },
+      "innovation": {
+        "title": "le béton cicatrisant",
+        "subtitle": "Innovation",
+        "image": "/assets/cards/innovation/card-innovation-10.webp",
+        "shortDescription": "Un matériau de construction qui colmate ses fissures sans intervention humaine.",
+        "alt": "Béton auto-réparant"
+      },
+      "explanation": {
+        "title": "Le lien biomimétique",
+        "body": "Quand de l'eau s'infiltre dans une fissure, des bactéries encapsulées dans le béton se réactivent. Elles consomment des nutriments stockés à leur côté et produisent un minéral qui rebouche naturellement la fissure.",
+        "source": ""
+      }
+    },
+    {
+      "id": 11,
+      "theme": "Structure",
+      "inspiration": {
+        "title": "La corbeille de Vénus",
+        "subtitle": "Inspiration",
+        "image": "/assets/cards/inspiration/card-inspiration-11.webp",
+        "shortDescription": "Cette éponge des fonds marins fabrique une armature fine et pourtant indéformable.",
+        "alt": "Éponge corbeille de Vénus"
+      },
+      "innovation": {
+        "title": "le 30 St Mary Axe",
+        "subtitle": "Innovation",
+        "image": "/assets/cards/innovation/card-innovation-11.webp",
+        "shortDescription": "Ce gratte-ciel londonien tire sa solidité d'une géométrie en spirale venue du vivant.",
+        "alt": "Gratte-ciel 30 St Mary Axe à Londres"
+      },
+      "explanation": {
+        "title": "Le lien biomimétique",
+        "body": "L'éponge Euplectella tisse des fibres de verre biologiques en treillis diagonal, ce qui lui donne une rigidité remarquable pour un poids minimal. Les architectes du Gherkin ont transposé cette logique pour concevoir une tour économe en acier et capable d'encaisser les vents urbains.",
+        "source": ""
+      }
+    },
+    {
+      "id": 12,
+      "theme": "Surfaces",
+      "inspiration": {
+        "title": "L'effet lotus",
+        "subtitle": "Inspiration",
+        "image": "/assets/cards/inspiration/card-inspiration-12.webp",
+        "shortDescription": "La feuille de cette plante reste impeccable par tous les temps sans aucun entretien.",
+        "alt": "Goutte d'eau sur une feuille de lotus"
+      },
+      "innovation": {
+        "title": "les surfaces hydrophobes",
+        "subtitle": "Innovation",
+        "image": "/assets/cards/innovation/card-innovation-12.webp",
+        "shortDescription": "Des revêtements architecturaux qui repoussent les salissures sans produit chimique.",
+        "alt": "Surface hydrophobe"
+      },
+      "explanation": {
+        "title": "Le lien biomimétique",
+        "body": "La surface de la feuille de lotus est couverte de reliefs invisibles à l'œil nu qui empêchent l'eau d'adhérer. Les gouttes roulent en emportant poussières et dépôts. En reproduisant cette texture sur des peintures ou des tuiles, on obtient des façades qui se nettoient sous la pluie.",
+        "source": ""
+      }
+    },
+    {
+      "id": 13,
+      "theme": "Matériaux",
+      "inspiration": {
+        "title": "Le corail",
+        "subtitle": "Inspiration",
+        "image": "/assets/cards/inspiration/card-inspiration-13.webp",
+        "shortDescription": "Ces organismes marins bâtissent leur squelette en transformant le CO₂ dissous.",
+        "alt": "Récif corallien"
+      },
+      "innovation": {
+        "title": "le ciment neutre en carbone",
+        "subtitle": "Innovation",
+        "image": "/assets/cards/innovation/card-innovation-13.webp",
+        "shortDescription": "Un liant minéral dont la production absorbe autant de CO₂ qu'elle n'en rejette.",
+        "alt": "Ciment neutre en carbone"
+      },
+      "explanation": {
+        "title": "Le lien biomimétique",
+        "body": "Les polypes de corail puisent le carbone présent dans l'eau pour sécréter leur structure solide. En reproduisant ce mécanisme à échelle industrielle, on dissout du CO₂ dans l'eau de mer pour fabriquer un matériau de construction qui capte plus qu'il n'en émet.",
+        "source": ""
+      }
+    },
+    {
+      "id": 14,
+      "theme": "Optique",
+      "inspiration": {
+        "title": "Les lucioles",
+        "subtitle": "Inspiration",
+        "image": "/assets/cards/inspiration/card-inspiration-14.webp",
+        "shortDescription": "Son signal d'amour doit percer la nuit noire pour attirer un partenaire lointain.",
+        "alt": "Luciole émettant sa bioluminescence"
+      },
+      "innovation": {
+        "title": "les lampes LED",
+        "subtitle": "Innovation",
+        "image": "/assets/cards/innovation/card-innovation-14.webp",
+        "shortDescription": "Une technologie idéale pour concevoir des écrans et des balises ultra-lumineux.",
+        "alt": "Lampe LED"
+      },
+      "explanation": {
+        "title": "Le lien biomimétique",
+        "body": "Les écailles en dents de scie de la luciole empêchent sa lumière de refléter vers l'intérieur. En copiant ces micro-pentes sur les puces LED, on libère les rayons piégés pour briller 55% plus fort.",
+        "source": ""
+      }
+    },
+    {
+      "id": 15,
+      "theme": "Médecine",
+      "inspiration": {
+        "title": "La trompe du moustique",
+        "subtitle": "Inspiration",
+        "image": "/assets/cards/inspiration/card-inspiration-15.webp",
+        "shortDescription": "Cet insecte pénètre la barrière cutanée sans que sa cible ne s'en rende compte.",
+        "alt": "Trompe d'un moustique"
+      },
+      "innovation": {
+        "title": "l'aiguille médicale indolore",
+        "subtitle": "Innovation",
+        "image": "/assets/cards/innovation/card-innovation-15.webp",
+        "shortDescription": "Un dispositif de soin si fin que le système nerveux ne détecte pas sa présence.",
+        "alt": "Aiguille médicale indolore"
+      },
+      "explanation": {
+        "title": "Le lien biomimétique",
+        "body": "La trompe du moustique est conique et dentelée, réduisant au minimum le contact avec les nerfs. Cette aiguille médicale copie ce relief microscopique pour glisser dans la peau sans douleur.",
+        "source": ""
+      }
+    },
+    {
+      "id": 16,
+      "theme": "Thermorégulation",
+      "inspiration": {
+        "title": "Le manchot",
+        "subtitle": "Inspiration",
+        "image": "/assets/cards/inspiration/card-inspiration-16.webp",
+        "shortDescription": "Face au froid polaire, ces oiseaux se serrent pour garder la chaleur collective.",
+        "alt": "Colonie de manchots empereurs"
+      },
+      "innovation": {
+        "title": "le District 11",
+        "subtitle": "Innovation",
+        "image": "/assets/cards/innovation/card-innovation-16.webp",
+        "shortDescription": "Un quartier russe dont la disposition compacte réduit les pertes de chaleur.",
+        "alt": "Quartier compact District 11 à Skolkovo"
+      },
+      "explanation": {
+        "title": "Le lien biomimétique",
+        "body": "Les manchots empereurs se serrent en colonie dense, exposant le minimum de surface au vent. Le projet District 11 à Skolkovo reprend cette logique : des villas regroupées par blocs de dix forment un ensemble compact qui maintient des températures intérieures supérieures de 5°C.",
+        "source": ""
+      }
+    },
+    {
+      "id": 17,
+      "theme": "Thermorégulation",
+      "inspiration": {
+        "title": "La termitière",
+        "subtitle": "Inspiration",
+        "image": "/assets/cards/inspiration/card-inspiration-17.webp",
+        "shortDescription": "Ce monticule survit aux journées brûlantes et aux nuits glaciales du désert.",
+        "alt": "Termitière africaine"
+      },
+      "innovation": {
+        "title": "le Eastgate Building",
+        "subtitle": "Innovation",
+        "image": "/assets/cards/innovation/card-innovation-17.webp",
+        "shortDescription": "Une solution constructive idéale pour les pays chauds qui manquent d'électricité.",
+        "alt": "Eastgate Building à Harare"
+      },
+      "explanation": {
+        "title": "Le lien biomimétique",
+        "body": "La termitière aspire l'air frais par le bas et évacue le chaud par ses cheminées. Ce bâtiment imite ce poumon de terre pour s'auto-ventiler naturellement, réduisant sa climatisation de 90 %.",
+        "source": ""
+      }
+    },
+    {
+      "id": 18,
+      "theme": "Adhésion",
+      "inspiration": {
+        "title": "La moule",
+        "subtitle": "Inspiration",
+        "image": "/assets/cards/inspiration/card-inspiration-18.webp",
+        "shortDescription": "Ce mollusque s'accroche à n'importe quelle surface immergée grâce à ses filaments.",
+        "alt": "Moule accrochée à un rocher"
+      },
+      "innovation": {
+        "title": "la colle forte",
+        "subtitle": "Innovation",
+        "image": "/assets/cards/innovation/card-innovation-18.webp",
+        "shortDescription": "Un adhésif capable de lier des molécules actives sur du métal, même en présence d'eau.",
+        "alt": "Colle forte adhésive"
+      },
+      "explanation": {
+        "title": "Le lien biomimétique",
+        "body": "La moule sécrète une protéine contenant une molécule qui se fixe à presque tout, même sous l'eau. Des chercheurs ont reproduit cette chimie pour créer une colle permettant de fixer des enzymes sur des surfaces métalliques, ouvrant des applications en médecine et en capteurs biologiques.",
+        "source": ""
+      }
+    },
+    {
+      "id": 19,
+      "theme": "Camouflage",
+      "inspiration": {
+        "title": "Le zèbre",
+        "subtitle": "Inspiration",
+        "image": "/assets/cards/inspiration/card-inspiration-19.webp",
+        "shortDescription": "Ses rayures brouillent la perception du mouvement chez celui qui l'observe.",
+        "alt": "Zèbre aux rayures contrastées"
+      },
+      "innovation": {
+        "title": "le camouflage dazzle",
+        "subtitle": "Innovation",
+        "image": "/assets/cards/innovation/card-innovation-19.webp",
+        "shortDescription": "En 1917, des motifs géométriques sur des coques rendaient leur cap illisible.",
+        "alt": "Navire au camouflage dazzle"
+      },
+      "explanation": {
+        "title": "Le lien biomimétique",
+        "body": "Le contraste fort des rayures du zèbre perturbe la lecture du déplacement par les prédateurs. Le peintre Norman Wilkinson s'en est inspiré pour couvrir les navires britanniques de formes angulaires, rendant leur cap et leur vitesse difficiles à évaluer pour les torpilleurs ennemis.",
+        "source": ""
+      }
+    },
+    {
+      "id": 20,
+      "theme": "Architecture",
+      "inspiration": {
+        "title": "L'orchidée",
+        "subtitle": "Inspiration",
+        "image": "/assets/cards/inspiration/card-inspiration-20.webp",
+        "shortDescription": "Cette fleur unit une forme aérienne complexe à une gestion efficace de ses ressources.",
+        "alt": "Orchidée en fleur"
+      },
+      "innovation": {
+        "title": "les Gardens by the Bay",
+        "subtitle": "Innovation",
+        "image": "/assets/cards/innovation/card-innovation-20.webp",
+        "shortDescription": "Ce parc de Singapour intègre dans ses arbres géants des fonctions énergétiques.",
+        "alt": "Supertrees des Gardens by the Bay à Singapour"
+      },
+      "explanation": {
+        "title": "Le lien biomimétique",
+        "body": "Les Supertrees de Gardens by the Bay s'inspirent de la forme de l'orchidée pour créer des tours végétales qui captent l'eau de pluie, accueillent des panneaux solaires et ventilent les serres environnantes. Comme la fleur, chaque structure unit esthétique et efficacité dans un seul organisme.",
+        "source": ""
+      }
+    },
+    {
+      "id": 21,
+      "theme": "Structure",
+      "inspiration": {
+        "title": "L'os humain",
+        "subtitle": "Inspiration",
+        "image": "/assets/cards/inspiration/card-inspiration-21.webp",
+        "shortDescription": "Notre squelette densifie la matière là où les efforts sont forts, sans superflu.",
+        "alt": "Os humain (fémur)"
+      },
+      "innovation": {
+        "title": "la Tour Eiffel",
+        "subtitle": "Innovation",
+        "image": "/assets/cards/innovation/card-innovation-21.webp",
+        "shortDescription": "Cette structure parisienne place son fer là où les forces l'exigent exactement.",
+        "alt": "La Tour Eiffel à Paris"
+      },
+      "explanation": {
+        "title": "Le lien biomimétique",
+        "body": "L'intérieur d'un os n'est pas homogène : la matière se densifie là où les contraintes mécaniques sont fortes. Eiffel a suivi cette même logique en ne plaçant le métal qu'aux endroits soumis à compression ou traction, ce qui rend sa tour plus légère que le volume d'air qu'elle occupe.",
+        "source": ""
+      }
+    }
+  ]
+}

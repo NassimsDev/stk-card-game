@@ -1,0 +1,662 @@
+.container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    padding: 16px 60px;
+    box-sizing: border-box;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 20px;
+}
+
+.header-logo {
+    height: 38px;
+    width: auto;
+}
+
+.logo-link {
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    transition:
+        transform 0.2s cubic-bezier(0.25, 1, 0.5, 1),
+        opacity 0.2s ease;
+}
+
+.logo-link:hover {
+    transform: scale(1.04);
+    opacity: 0.85;
+}
+
+.logo-link:active {
+    transform: scale(0.96);
+}
+
+.logo-link:focus-visible {
+    outline: 2px solid #1a1a1a;
+    outline-offset: 4px;
+    border-radius: 4px;
+}
+
+.end-screen-logo {
+    margin-bottom: 40px;
+    height: 48px;
+}
+
+.header-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 4px;
+}
+
+.sequence {
+    font-size: 20px;
+    font-weight: 400;
+}
+
+.pairs-counter {
+    font-size: 13px;
+    font-weight: 500;
+    color: #5c5c5c;
+    letter-spacing: 0.01em;
+}
+
+.main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 0;
+    width: 100%;
+}
+
+.cards-row {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 36px;
+    width: 100%;
+}
+
+/* Grilles */
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(2, 158px);
+    grid-auto-rows: 222px;
+    gap: 12px;
+    margin-top: 24px;
+}
+
+.grid-square {
+    background-color: transparent;
+    border-radius: 6px;
+    cursor: pointer;
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        border-color 0.2s ease;
+    box-sizing: border-box;
+    border: 3px solid transparent;
+    overflow: hidden;
+    position: relative;
+}
+
+.grid-square:hover {
+    transform: translateY(-3px) scale(1.03);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+.grid-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition:
+        transform 0.35s ease,
+        filter 0.25s ease;
+    transform-origin: center center;
+}
+
+.grid-square:hover .grid-img {
+    transform: scale(1.08);
+    filter: brightness(1.05);
+}
+
+/* Grilles désactivées pendant et après l'animation Lier */
+.grid-square.locked {
+    cursor: default;
+    pointer-events: none;
+    opacity: 0.7;
+}
+
+.grid-square.matched {
+    cursor: default;
+    pointer-events: none;
+    background-color: rgba(1, 160, 145, 0.08);
+}
+
+.grid-square.matched .grid-img {
+    filter: grayscale(100%) brightness(1.05);
+    opacity: 0.45;
+}
+
+.grid-square.matched::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background-color: #01a091;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'><polyline points='20 6 9 17 4 12'/></svg>");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 18px 18px;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+    pointer-events: none;
+}
+
+/* Effet Selected (Contour vert) */
+.grid-square.selected {
+    border: 3px solid #01a091;
+}
+
+/* Drag & drop : curseur sur les minicards draggables */
+.grid-square[draggable="true"] {
+    cursor: grab;
+}
+
+.grid-square[draggable="true"]:active {
+    cursor: grabbing;
+}
+
+/* Feedback visuel sur la grande carte centrale survolée pendant un drag */
+.card.drop-target-active {
+    outline: 2px dashed #01a091;
+    outline-offset: 4px;
+}
+
+/* Texte d'encouragement entre deux paires */
+.continue-hint p {
+    font-size: 15px;
+    font-style: italic;
+    color: #5c5c5c;
+    text-align: center;
+}
+
+/* Cartes principales */
+.card-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 340px;
+    position: relative;
+    will-change: transform;
+    min-height: 600px;
+    /* Réserve l'espace pour le texte pour éviter le saut */
+    perspective: 1000px;
+}
+
+/* La carte gauche passe au-dessus quand les cartes se rapprochent (pour overlap propre) */
+.card-wrapper-left {
+    z-index: 2;
+}
+
+.card-wrapper-right {
+    z-index: 1;
+}
+
+.card {
+    width: 100%;
+    height: 480px;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 24px;
+}
+
+.placeholder-card-left {
+    background-color: #f4efeb;
+}
+
+.placeholder-card-right {
+    background-color: #f4efeb;
+}
+
+.card-img {
+    width: 101%;
+    height: 101%;
+    object-fit: cover;
+    position: absolute;
+    top: -0.5%;
+    left: -0.5%;
+    z-index: 0;
+    backface-visibility: hidden;
+}
+
+/* État vide des cartes centrales avant sélection */
+.card-placeholder-state {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    border: 2px dashed rgba(168, 157, 145, 0.45);
+    border-radius: 10px;
+    animation: placeholder-pulse 2.4s ease-in-out infinite;
+}
+
+@keyframes placeholder-pulse {
+    0%,
+    100% {
+        border-color: rgba(168, 157, 145, 0.25);
+    }
+
+    50% {
+        border-color: rgba(1, 160, 145, 0.45);
+    }
+}
+
+.card-placeholder-arrow {
+    font-size: 22px;
+    color: rgba(138, 126, 114, 0.55);
+    line-height: 1;
+    letter-spacing: 0;
+}
+
+.card-placeholder-text {
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    color: rgba(138, 126, 114, 0.65);
+    text-transform: uppercase;
+}
+
+.card-text {
+    padding: 30px;
+    text-align: center;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    /* Le gradient est ajouté en dessous pour fondre le texte avec l'image */
+}
+
+.placeholder-card-left .card-text {
+    background: linear-gradient(to top, #eae1d6 70%, transparent);
+    color: #1a1a1a;
+}
+
+.placeholder-card-right .card-text {
+    background: linear-gradient(to top, #6398c8 70%, transparent);
+    color: #ffffff;
+}
+
+.card-text h2 {
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 8px;
+}
+
+.card-text p {
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.placeholder-card-right .card-text p {
+    color: rgba(255, 255, 255, 0.85);
+}
+
+/* Textes de description sous la carte */
+.description {
+    text-align: center;
+    max-width: 320px;
+}
+
+.description h3 {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    color: #1a1a1a;
+}
+
+.description p {
+    font-size: 14px;
+    line-height: 1.5;
+    font-weight: 400;
+    color: #333333;
+}
+
+/* Bouton pour afficher/masquer l'indice sous une carte sélectionnée */
+.hint-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0 auto 12px;
+    padding: 8px 16px;
+    background: transparent;
+    border: 1px solid rgba(1, 160, 145, 0.4);
+    border-radius: 999px;
+    color: #01a091;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    cursor: pointer;
+    transition:
+        background-color 0.2s ease,
+        border-color 0.2s ease,
+        color 0.2s ease;
+}
+
+.hint-toggle:hover {
+    background-color: rgba(1, 160, 145, 0.08);
+    border-color: #01a091;
+    color: #007c70;
+}
+
+.hint-toggle-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background-color: #01a091;
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1;
+}
+
+/* Explication du lien biomimétique */
+.bottom-action-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 12px;
+    min-height: 160px;
+    width: 100%;
+}
+
+.explanation-text {
+    text-align: center;
+    max-width: 650px;
+    margin-bottom: 24px;
+}
+
+.explanation-text h2 {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    color: #1a1a1a;
+}
+
+.explanation-text p {
+    font-size: 15px;
+    line-height: 1.6;
+    color: #333333;
+}
+
+/* Bouton Central */
+.center-action {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 20px;
+    min-width: 90px;
+}
+
+.btn-lier {
+    background: transparent;
+    border: 1px solid #1a1a1a;
+    border-radius: 30px;
+    padding: 12px 32px;
+    font-size: 20px;
+    font-family: inherit;
+    font-weight: 400;
+    cursor: pointer;
+    transition: all 0.2s;
+    color: #1a1a1a;
+}
+
+.btn-lier:hover {
+    background: #1a1a1a;
+    color: #f4efeb;
+}
+
+/* Wrapper de séquence de jeu */
+.game-round {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    flex: 1;
+}
+
+/* Transition View */
+.transition-view {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    min-height: 60vh;
+}
+
+.transition-title {
+    text-align: center;
+    font-family: "Playfair Display", serif;
+    font-size: 120px;
+    line-height: 0.85;
+    font-weight: 700;
+    color: #000;
+    margin-bottom: 24px;
+    letter-spacing: -0.02em;
+}
+
+.btn-commencer {
+    background-color: #000;
+    color: #fff;
+    border: none;
+    border-radius: 40px;
+    padding: 14px 42px;
+    font-size: 18px;
+    font-family: "Geist Sans", sans-serif;
+    cursor: pointer;
+    transition:
+        transform 0.2s,
+        background-color 0.2s;
+}
+
+.btn-commencer:hover {
+    transform: scale(1.05);
+    background-color: #222;
+}
+
+/* Écran de fin */
+.end-description {
+    text-align: center;
+    font-family: "Geist Sans", sans-serif;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 1.6;
+    color: #333333;
+    margin-bottom: 8px;
+}
+
+.end-accroche {
+    text-align: center;
+    font-family: "Geist Sans", sans-serif;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 1.6;
+    color: #1a1a1a;
+    margin-bottom: 40px;
+}
+
+.end-replay {
+    background: transparent;
+    border: none;
+    font-family: "Geist Sans", sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    color: #5c5c5c;
+    cursor: pointer;
+    margin-top: 24px;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    transition: color 0.2s ease;
+}
+
+.end-replay:hover {
+    color: #000000;
+}
+
+/* Optimisation pour les petits écrans (14 pouces, ordinateurs portables) ----------------------------------------------------------------------------- */
+@media (max-height: 950px) {
+    .container {
+        padding: 25px 40px;
+    }
+
+    .header {
+        margin-bottom: 40px;
+    }
+
+    .main-content {
+        padding-top: 3vh;
+        /* Espacement fixe pour descendre le bloc sans centrage auto */
+    }
+
+    .card-wrapper {
+        min-height: 520px;
+        /* Réserve l'espace pour le texte (420px carte + 100px texte) */
+        width: 298px;
+        /* Maintient le ratio 340/480 pour éviter le rognage */
+    }
+
+    .card {
+        height: 420px;
+        margin-bottom: 16px;
+    }
+
+    .grid-container {
+        margin-top: 30px;
+        grid-template-columns: repeat(2, 132px);
+        grid-auto-rows: 186px;
+    }
+
+    .grid-square {
+        border-radius: 4px;
+    }
+
+    .bottom-action-section {
+        margin-top: 20px;
+        min-height: 150px;
+    }
+
+    .explanation-text {
+        margin-bottom: 24px;
+    }
+
+    .explanation-text h2 {
+        font-size: 22px;
+        margin-bottom: 12px;
+    }
+
+    .explanation-text p {
+        font-size: 14px;
+    }
+}
+
+/* ----------------------------------------- Media query pour les très petits écrans (ordinateurs portables 13 pouces, tablettes) --------------------------------- */ 
+@media (max-height: 800px) {
+    .card-wrapper {
+        min-height: 480px;
+        /* Réserve l'espace (380px carte + 100px texte) */
+        width: 269px;
+        /* Maintient le ratio 340/480 */
+    }
+
+    .card {
+        height: 380px;
+    }
+
+    .grid-container {
+        grid-template-columns: repeat(2, 111px);
+        grid-auto-rows: 158px;
+    }
+
+    .bottom-action-section {
+        margin-top: 10px;
+        min-height: 130px;
+    }
+}
+
+/* Bouton pour couper le son */
+.sound-toggle-btn {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    color: #1a1a1a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 1000;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+    transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.sound-toggle-btn:hover {
+    transform: translateY(-2px) scale(1.05);
+    background: #ffffff;
+    border-color: rgba(0, 0, 0, 0.15);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+}
+
+.sound-toggle-btn:active {
+    transform: translateY(0) scale(0.95);
+}
+
+.sound-toggle-btn:focus-visible {
+    outline: 2px solid #1a1a1a;
+    outline-offset: 3px;
+}
+
+/* --------------------------------- media query pour les téléphones ----------------------------------- */
+
+@media (max-width: 768px) {
+    .sound-toggle-btn {
+        bottom: 16px;
+        right: 16px;
+        width: 40px;
+        height: 40px;
+    }
+}

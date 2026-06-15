@@ -1,0 +1,29 @@
+:root {
+  --color-bg: #f1eee7;
+  --color-text: #1a1a1a;
+  --color-text-muted: #5c5c5c;
+  --color-card-bg: #ece7dc;
+  --color-mini-base: #c5d1c0;
+  --color-mini-alt: #a8b8a3;
+  --color-mini-dark: #6f8470;
+  --color-mini-selected: #4f6750;
+  --color-border: #1a1a1a;
+
+  --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-serif: "Fraunces", Georgia, "Times New Roman", serif;
+
+  --radius-pill: 999px;
+  --radius-card: 14px;
+  --radius-mini: 6px;
+
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 32px;
+  --space-xl: 64px;
+
+  --transition-fast: 150ms ease-out;
+  --transition-default: 250ms ease-out;
+
+  --card-link-offset: 56px;
+}

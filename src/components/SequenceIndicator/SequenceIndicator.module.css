@@ -1,0 +1,6 @@
+.indicator {
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  color: var(--color-text);
+  letter-spacing: 0.02em;
+}
