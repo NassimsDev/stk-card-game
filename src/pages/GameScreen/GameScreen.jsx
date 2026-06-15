@@ -1,8 +1,8 @@
-import Logo from '../../components/Logo'
-import SequenceIndicator from '../../components/SequenceIndicator'
-import CardGrid from '../../components/CardGrid'
-import CardPreview from '../../components/CardPreview'
-import Button from '../../components/Button'
+import Logo from '../../components/Logo/Logo.jsx'
+import SequenceIndicator from '../../components/SequenceIndicator/SequenceIndicator.jsx'
+import CardGrid from '../../components/CardGrid/CardGrid.jsx'
+import CardPreview from '../../components/CardPreview/CardPreview.jsx'
+import Button from '../../components/Button/Button.jsx'
 import { useGame } from '../../hooks/useGame'
 import styles from './GameScreen.module.css'
 

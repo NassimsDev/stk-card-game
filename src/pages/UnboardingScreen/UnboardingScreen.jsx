@@ -1,6 +1,6 @@
 import { useState, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import Button from "../../components/Button";
+import Button from "../../components/Button/Button.jsx";
 import styles from "./UnboardingScreen.module.css";
 
 const SLIDES = [

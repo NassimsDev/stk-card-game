@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { soundManager } from '../utils/soundManager';
+import styles from './GameRound.module.css';
 
 const LINK_OFFSET = 18;
 
@@ -186,7 +187,7 @@ export default function GameRound({ pairs, sequenceNumber, totalSequences, onCom
     return (
       <div
         key={`left-${pair.id}`}
-        className={`grid-square ${isSelected ? 'selected' : ''} ${isAnimating || isMatched ? 'locked' : ''} ${isMatched ? 'matched' : ''}`}
+        className={`${styles['grid-square']}${isSelected ? ` ${styles.selected}` : ''}${(isAnimating || isMatched) ? ` ${styles.locked}` : ''}${isMatched ? ` ${styles.matched}` : ''}`}
         onClick={() => handleSelectLeft(pair.id)}
         draggable={!isAnimating && !isMatched}
         onDragStart={(e) => {
@@ -203,7 +204,7 @@ export default function GameRound({ pairs, sequenceNumber, totalSequences, onCom
           }
         }}
       >
-        <img src={pair.inspiration.image} alt={pair.inspiration.alt} className="grid-img" />
+        <img src={pair.inspiration.image} alt={pair.inspiration.alt} className={styles['grid-img']} />
       </div>
     );
   });
@@ -214,7 +215,7 @@ export default function GameRound({ pairs, sequenceNumber, totalSequences, onCom
     return (
       <div
         key={`right-${pair.id}`}
-        className={`grid-square ${isSelected ? 'selected' : ''} ${isAnimating || isMatched ? 'locked' : ''} ${isMatched ? 'matched' : ''}`}
+        className={`${styles['grid-square']}${isSelected ? ` ${styles.selected}` : ''}${(isAnimating || isMatched) ? ` ${styles.locked}` : ''}${isMatched ? ` ${styles.matched}` : ''}`}
         onClick={() => handleSelectRight(pair.id)}
         draggable={!isAnimating && !isMatched}
         onDragStart={(e) => {
@@ -231,55 +232,55 @@ export default function GameRound({ pairs, sequenceNumber, totalSequences, onCom
           }
         }}
       >
-        <img src={pair.innovation.image} alt={pair.innovation.alt} className="grid-img" />
+        <img src={pair.innovation.image} alt={pair.innovation.alt} className={styles['grid-img']} />
       </div>
     );
   });
 
   return (
     <motion.div
-      className="game-round"
+      className={styles['game-round']}
       key="game-round"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.5 }}
     >
-      <header className="header">
+      <header className={styles.header}>
         <div className="logo-placeholder">
           <button
             onClick={onHome}
-            className="logo-link"
+            className={styles['logo-link']}
             aria-label="Retourner à la page d'accueil"
           >
-            <img src="/assets/images/STK-logo.svg" alt="STK Architecture" className="header-logo" />
+            <img src="/assets/images/STK-logo.svg" alt="STK Architecture" className={styles['header-logo']} />
           </button>
         </div>
-        <div className="header-right">
-          <div className="sequence">
+        <div className={styles['header-right']}>
+          <div className={styles.sequence}>
             Séquence {sequenceNumber}/{totalSequences}
           </div>
-          <div className="pairs-counter">
+          <div className={styles['pairs-counter']}>
             {matchedPairIds.length}/{pairs.length} paires trouvées
           </div>
         </div>
       </header>
 
-      <main className="main-content">
-        <div className="cards-row">
+      <main className={styles['main-content']}>
+        <div className={styles['cards-row']}>
           {/* Grille gauche */}
-          <div className="grid-container">{renderLeftGrid()}</div>
+          <div className={styles['grid-container']}>{renderLeftGrid()}</div>
 
           {/* Carte Inspiration */}
           <motion.div
-            className="card-wrapper card-wrapper-left"
+            className={`${styles['card-wrapper']} ${styles['card-wrapper-left']}`}
             variants={inspirationVariants}
             animate={linkStatus}
             transition={getTransition(linkStatus)}
             onAnimationComplete={handleAnimationComplete}
           >
             <div
-              className={`card placeholder-card-left ${dragOverSide === 'left' ? 'drop-target-active' : ''}`}
+              className={`${styles.card} ${styles['placeholder-card-left']}${dragOverSide === 'left' ? ` ${styles['drop-target-active']}` : ''}`}
               {...makeDropHandlers('left')}
             >
               <AnimatePresence mode="wait">
@@ -288,7 +289,7 @@ export default function GameRound({ pairs, sequenceNumber, totalSequences, onCom
                     key={selectedLeftPair.id}
                     src={selectedLeftPair.inspiration.image}
                     alt={selectedLeftPair.inspiration.alt}
-                    className="card-img"
+                    className={styles['card-img']}
                     initial={{ rotateY: 90 }}
                     animate={{ rotateY: 0 }}
                     exit={{ rotateY: -90 }}
@@ -297,14 +298,14 @@ export default function GameRound({ pairs, sequenceNumber, totalSequences, onCom
                 ) : (
                   <motion.div
                     key="placeholder-left"
-                    className="card-placeholder-state"
+                    className={styles['card-placeholder-state']}
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
                     transition={{ duration: 0.3 }}
                   >
-                    <span className="card-placeholder-arrow">←</span>
-                    <span className="card-placeholder-text">Sélectionner une carte <br/> Inspiration </span>
+                    <span className={styles['card-placeholder-arrow']}>←</span>
+                    <span className={styles['card-placeholder-text']}>Sélectionner une carte <br/> Inspiration </span>
                   </motion.div>
                 )}
               </AnimatePresence>
@@ -314,7 +315,7 @@ export default function GameRound({ pairs, sequenceNumber, totalSequences, onCom
                 <motion.img
                   src={getGlowPath('inspiration', selectedLeftPair.id)}
                   alt=""
-                  className="card-img"
+                  className={styles['card-img']}
                   style={{ zIndex: 1 }}
                   initial={{ opacity: 0, scale: 1 }}
                   animate={
@@ -335,14 +336,14 @@ export default function GameRound({ pairs, sequenceNumber, totalSequences, onCom
                 <motion.button
                   key="hint-toggle-left"
                   type="button"
-                  className="hint-toggle"
+                  className={styles['hint-toggle']}
                   onClick={() => setHintLeftOpen(v => !v)}
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0, transition: { duration: 0 } }}
                   transition={{ duration: 0.25 }}
                 >
-                  <span className="hint-toggle-icon" aria-hidden="true">?</span>
+                  <span className={styles['hint-toggle-icon']} aria-hidden="true">?</span>
                   {hintLeftOpen ? "Masquer l'indice" : "Voir l'indice"}
                 </motion.button>
               )}
@@ -350,7 +351,7 @@ export default function GameRound({ pairs, sequenceNumber, totalSequences, onCom
             <AnimatePresence>
               {canShowHintToggle && selectedLeftPair && hintLeftOpen && (
                 <motion.div
-                  className="description"
+                  className={styles.description}
                   initial={{ opacity: 0, y: -4 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, transition: { duration: 0 } }}
@@ -365,13 +366,13 @@ export default function GameRound({ pairs, sequenceNumber, totalSequences, onCom
 
           {/* Carte Innovation */}
           <motion.div
-            className="card-wrapper card-wrapper-right"
+            className={`${styles['card-wrapper']} ${styles['card-wrapper-right']}`}
             variants={innovationVariants}
             animate={linkStatus}
             transition={getTransition(linkStatus)}
           >
             <div
-              className={`card placeholder-card-right ${dragOverSide === 'right' ? 'drop-target-active' : ''}`}
+              className={`${styles.card} ${styles['placeholder-card-right']}${dragOverSide === 'right' ? ` ${styles['drop-target-active']}` : ''}`}
               {...makeDropHandlers('right')}
             >
               <AnimatePresence mode="wait">
@@ -380,7 +381,7 @@ export default function GameRound({ pairs, sequenceNumber, totalSequences, onCom
                     key={selectedRightPair.id}
                     src={selectedRightPair.innovation.image}
                     alt={selectedRightPair.innovation.alt}
-                    className="card-img"
+                    className={styles['card-img']}
                     initial={{ rotateY: 90 }}
                     animate={{ rotateY: 0 }}
                     exit={{ rotateY: -90 }}
@@ -389,14 +390,14 @@ export default function GameRound({ pairs, sequenceNumber, totalSequences, onCom
                 ) : (
                   <motion.div
                     key="placeholder-right"
-                    className="card-placeholder-state"
+                    className={styles['card-placeholder-state']}
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
                     transition={{ duration: 0.3 }}
                   >
-                    <span className="card-placeholder-arrow">→</span>
-                    <span className="card-placeholder-text">Sélectionner une carte<br/> innovation </span>
+                    <span className={styles['card-placeholder-arrow']}>→</span>
+                    <span className={styles['card-placeholder-text']}>Sélectionner une carte<br/> innovation </span>
                   </motion.div>
                 )}
               </AnimatePresence>
@@ -406,7 +407,7 @@ export default function GameRound({ pairs, sequenceNumber, totalSequences, onCom
                 <motion.img
                   src={getGlowPath('innovation', selectedRightPair.id)}
                   alt=""
-                  className="card-img"
+                  className={styles['card-img']}
                   style={{ zIndex: 1 }}
                   initial={{ opacity: 0, scale: 1 }}
                   animate={
@@ -427,14 +428,14 @@ export default function GameRound({ pairs, sequenceNumber, totalSequences, onCom
                 <motion.button
                   key="hint-toggle-right"
                   type="button"
-                  className="hint-toggle"
+                  className={styles['hint-toggle']}
                   onClick={() => setHintRightOpen(v => !v)}
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0, transition: { duration: 0 } }}
                   transition={{ duration: 0.25 }}
                 >
-                  <span className="hint-toggle-icon" aria-hidden="true">?</span>
+                  <span className={styles['hint-toggle-icon']} aria-hidden="true">?</span>
                   {hintRightOpen ? "Masquer l'indice" : "Voir l'indice"}
                 </motion.button>
               )}
@@ -442,7 +443,7 @@ export default function GameRound({ pairs, sequenceNumber, totalSequences, onCom
             <AnimatePresence>
               {canShowHintToggle && selectedRightPair && hintRightOpen && (
                 <motion.div
-                  className="description"
+                  className={styles.description}
                   initial={{ opacity: 0, y: -4 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, transition: { duration: 0 } }}
@@ -456,16 +457,16 @@ export default function GameRound({ pairs, sequenceNumber, totalSequences, onCom
           </motion.div>
 
           {/* Grille droite */}
-          <div className="grid-container">{renderRightGrid()}</div>
+          <div className={styles['grid-container']}>{renderRightGrid()}</div>
         </div>
 
         {/* Section bas */}
-        <div className="bottom-action-section">
+        <div className={styles['bottom-action-section']}>
           {/* Succès : Le lien biomimétique */}
           <AnimatePresence>
             {linkStatus === 'linked' && linkedPair && (
               <motion.div
-                className="explanation-text"
+                className={styles['explanation-text']}
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: 10 }}
@@ -481,7 +482,7 @@ export default function GameRound({ pairs, sequenceNumber, totalSequences, onCom
           <AnimatePresence>
             {linkStatus === 'idle' && wrongAttempt && (
               <motion.div
-                className="explanation-text"
+                className={styles['explanation-text']}
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0 }}
@@ -499,7 +500,7 @@ export default function GameRound({ pairs, sequenceNumber, totalSequences, onCom
               && matchedPairIds.length > 0
               && matchedPairIds.length < pairs.length && (
               <motion.div
-                className="explanation-text continue-hint"
+                className={`${styles['explanation-text']} ${styles['continue-hint']}`}
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0 }}
@@ -511,12 +512,12 @@ export default function GameRound({ pairs, sequenceNumber, totalSequences, onCom
           </AnimatePresence>
 
           {/* Bouton contextuel */}
-          <div className="center-action">
+          <div className={styles['center-action']}>
             <AnimatePresence mode="wait">
               {allFound && linkStatus === 'idle' && (
                 <motion.button
                   key="sequence-suivante"
-                  className="btn-lier"
+                  className={styles['btn-lier']}
                   onClick={() => {
                     soundManager.play('button');
                     onComplete();
@@ -535,7 +536,7 @@ export default function GameRound({ pairs, sequenceNumber, totalSequences, onCom
                 && !matchedPairIds.includes(selectedRight) && (
                   <motion.button
                     key="lier"
-                    className="btn-lier"
+                    className={styles['btn-lier']}
                     onClick={handleLier}
                     initial={{ opacity: 0, scale: 0.9 }}
                     animate={{ opacity: 1, scale: 1 }}
@@ -548,7 +549,7 @@ export default function GameRound({ pairs, sequenceNumber, totalSequences, onCom
               {linkStatus === 'linked' && (
                 <motion.button
                   key="suivant"
-                  className="btn-lier"
+                  className={styles['btn-lier']}
                   onClick={handleSuivant}
                   initial={{ opacity: 0, y: 8 }}
                   animate={{ opacity: 1, y: 0 }}
