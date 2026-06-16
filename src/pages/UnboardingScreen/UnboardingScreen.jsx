@@ -9,18 +9,21 @@ const SLIDES = [
         showLogo: true,
         body: "Decouvrez le biomimétisme avec une expérience ludique et interactive.",
         video: "/assets/videos/video-intro-1.mp4",
+        videoBottomCrop: "112%",
     },
     {
         eyebrow: "Comment faire le lien",
         showLogo: false,
         body: "Associez chaque carte de la nature à son innovation pour découvrir le lien qui les unit.",
         video: "/assets/videos/video_reussite.mp4",
+        videoBottomCrop: "112%",
     },
     {
         eyebrow: "Besoin d'aide ?",
         showLogo: false,
         body: "Des indices sont disponibles à tout moment pour vous guider si vous êtes bloqué.",
         video: "/assets/videos/video_echec.mp4",
+        videoBottomCrop: "112%",
     },
 ];
 
@@ -50,14 +53,17 @@ function UnboardingScreen({ onComplete }) {
                         exit={{ opacity: 0, x: -32 }}
                         transition={{ duration: 0.3, ease: "easeOut" }}
                     >
-                        <video
-                            className={styles.videoPlaceholder}
-                            src={slide.video}
-                            autoPlay
-                            muted
-                            loop
-                            playsInline
-                        />
+                        <div className={styles.videoWrap}>
+                            <video
+                                className={styles.videoPlaceholder}
+                                style={{ "--video-bottom-crop": slide.videoBottomCrop ?? "112%" }}
+                                src={slide.video}
+                                autoPlay
+                                muted
+                                loop
+                                playsInline
+                            />
+                        </div>
 
                         <div className={styles.textBlock}>
                             {slide.eyebrow && (

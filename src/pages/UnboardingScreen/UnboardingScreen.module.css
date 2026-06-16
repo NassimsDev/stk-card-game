@@ -28,13 +28,24 @@
     background-color: var(--color-bg);
 }
 
-.videoPlaceholder {
+.videoWrap {
+    position: relative;
     width: 100%;
     aspect-ratio: 16 / 9;
-    display: block;
-    background-color: var(--color-bg);
+    overflow: hidden;
     border-radius: 20px;
+    background-color: var(--color-bg);
+}
+
+.videoPlaceholder {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: var(--video-bottom-crop, 112%);
+    display: block;
     object-fit: cover;
+    object-position: top;
 }
 
 .textBlock {
