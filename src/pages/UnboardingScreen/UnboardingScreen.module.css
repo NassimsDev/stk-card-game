@@ -25,6 +25,7 @@
     align-items: center;
     gap: 36px;
     width: 100%;
+    background-color: var(--color-bg);
 }
 
 .videoPlaceholder {
