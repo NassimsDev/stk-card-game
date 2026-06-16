@@ -113,6 +113,7 @@ function App() {
               <button
                 className="btn-commencer"
                 onClick={() => {
+                  soundManager.stop('levelTransition');
                   soundManager.play('button');
                   handleStart();
                 }}
