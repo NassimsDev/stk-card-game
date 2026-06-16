@@ -30,9 +30,11 @@
 
 .videoPlaceholder {
     width: 100%;
-    height: auto;
+    aspect-ratio: 16 / 9;
     display: block;
+    background-color: var(--color-bg);
     border-radius: 20px;
+    object-fit: cover;
 }
 
 .textBlock {

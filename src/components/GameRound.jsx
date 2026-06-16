@@ -506,7 +506,7 @@ export default function GameRound({ pairs, sequenceNumber, totalSequences, onCom
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.4 }}
               >
-                <p>Continue à découvrir les autres liens entre le vivant et l'innovation.</p>
+                <p>Continuez à découvrir les autres liens entre le vivant et l'innovation.</p>
               </motion.div>
             )}
           </AnimatePresence>
