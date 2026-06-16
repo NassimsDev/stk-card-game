@@ -35,10 +35,20 @@ function App() {
     }
   }, [started, appView]);
 
-  // 🚧 DEV ONLY — Shift+F pour sauter à l'écran de fin. Supprimer avant livraison.
+  // 🚧 DEV ONLY — Shift+F : écran de fin. Shift+D : round 2. Shift+T : round 3. Supprimer avant livraison.
   useEffect(() => {
+    const jumpToRound = (index) => {
+      setStarted(true);
+      setOnboarded(true);
+      setSeqIndex(Math.min(index, TOTAL_SEQUENCES - 1));
+      setAppView('game');
+    };
+
     const handler = (e) => {
-      if (e.key === 'F' && e.shiftKey) setAppView('end');
+      if (!e.shiftKey) return;
+      if (e.key === 'F') setAppView('end');
+      if (e.key === 'D') jumpToRound(1);
+      if (e.key === 'T') jumpToRound(2);
     };
     window.addEventListener('keydown', handler);
     return () => window.removeEventListener('keydown', handler);
