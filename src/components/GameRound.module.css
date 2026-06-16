@@ -403,6 +403,11 @@
     margin-bottom: 24px;
 }
 
+/* Remonte uniquement le bloc de succès "Le lien biomimétique" */
+.explanation-text.link-success {
+    margin-top: -70px;
+}
+
 .explanation-text h2 {
     font-size: 24px;
     font-weight: 700;

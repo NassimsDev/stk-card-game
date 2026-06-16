@@ -71,6 +71,8 @@ export default function GameRound({ pairs, sequenceNumber, totalSequences, onCom
   const [matchedPairIds, setMatchedPairIds] = useState([]);
   const [hintLeftOpen, setHintLeftOpen] = useState(false);
   const [hintRightOpen, setHintRightOpen] = useState(false);
+  const [hintLeftUsed, setHintLeftUsed] = useState(false);
+  const [hintRightUsed, setHintRightUsed] = useState(false);
   const [shuffledInspiration] = useState(() => shuffleArray(pairs));
   const [shuffledInnovation] = useState(() => shuffleArray(pairs));
   const [dragOverSide, setDragOverSide] = useState(null);
@@ -127,6 +129,8 @@ export default function GameRound({ pairs, sequenceNumber, totalSequences, onCom
     setWrongAttempt(false);
     setHintLeftOpen(false);
     setHintRightOpen(false);
+    setHintLeftUsed(false);
+    setHintRightUsed(false);
   };
 
   const commitMatchIfLinked = () => {
@@ -135,6 +139,8 @@ export default function GameRound({ pairs, sequenceNumber, totalSequences, onCom
       setLinkStatus('idle');
       setHintLeftOpen(false);
       setHintRightOpen(false);
+      setHintLeftUsed(false);
+      setHintRightUsed(false);
     }
   };
 
@@ -144,6 +150,7 @@ export default function GameRound({ pairs, sequenceNumber, totalSequences, onCom
     if (id !== selectedLeft) {
       soundManager.play('cardFlip');
       setHintLeftOpen(false);
+      setHintLeftUsed(false);
     }
     setSelectedLeft(id);
     if (wrongAttempt) setWrongAttempt(false);
@@ -155,6 +162,7 @@ export default function GameRound({ pairs, sequenceNumber, totalSequences, onCom
     if (id !== selectedRight) {
       soundManager.play('cardFlip');
       setHintRightOpen(false);
+      setHintRightUsed(false);
     }
     setSelectedRight(id);
     if (wrongAttempt) setWrongAttempt(false);
@@ -337,7 +345,7 @@ export default function GameRound({ pairs, sequenceNumber, totalSequences, onCom
                   key="hint-toggle-left"
                   type="button"
                   className={styles['hint-toggle']}
-                  onClick={() => setHintLeftOpen(v => !v)}
+                  onClick={() => { setHintLeftOpen(v => !v); setHintLeftUsed(true); }}
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0, transition: { duration: 0 } }}
@@ -429,7 +437,7 @@ export default function GameRound({ pairs, sequenceNumber, totalSequences, onCom
                   key="hint-toggle-right"
                   type="button"
                   className={styles['hint-toggle']}
-                  onClick={() => setHintRightOpen(v => !v)}
+                  onClick={() => { setHintRightOpen(v => !v); setHintRightUsed(true); }}
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0, transition: { duration: 0 } }}
@@ -466,7 +474,7 @@ export default function GameRound({ pairs, sequenceNumber, totalSequences, onCom
           <AnimatePresence>
             {linkStatus === 'linked' && linkedPair && (
               <motion.div
-                className={styles['explanation-text']}
+                className={`${styles['explanation-text']} ${styles['link-success']}`}
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: 10 }}
@@ -497,6 +505,7 @@ export default function GameRound({ pairs, sequenceNumber, totalSequences, onCom
           {/* Encouragement entre deux paires */}
           <AnimatePresence>
             {linkStatus === 'idle' && !wrongAttempt
+              && !hintLeftUsed && !hintRightUsed
               && matchedPairIds.length > 0
               && matchedPairIds.length < pairs.length && (
               <motion.div

@@ -29,7 +29,6 @@
 }
 
 .videoWrap {
-    position: relative;
     width: 100%;
     aspect-ratio: 16 / 9;
     overflow: hidden;
@@ -38,14 +37,10 @@
 }
 
 .videoPlaceholder {
-    position: absolute;
-    top: 0;
-    left: 0;
     width: 100%;
-    height: var(--video-bottom-crop, 112%);
+    height: 100%;
     display: block;
     object-fit: cover;
-    object-position: top;
 }
 
 .textBlock {
