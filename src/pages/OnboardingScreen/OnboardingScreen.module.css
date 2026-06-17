@@ -1,0 +1,127 @@
+.pageUnboarding {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--color-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 48px;
+    width: 100%;
+    max-width: 720px;
+    padding: 0 32px;
+}
+
+.slide {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 36px;
+    width: 100%;
+    background-color: var(--color-bg);
+}
+
+.videoWrap {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    border-radius: 20px;
+    background-color: var(--color-bg);
+}
+
+.videoPlaceholder {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+}
+
+.textBlock {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    text-align: center;
+}
+
+.eyebrow {
+    font-family: "Playfair Display", Georgia, serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-text);
+    margin: 0;
+}
+
+.logo {
+    width: 200px;
+    height: auto;
+}
+
+.body {
+    font-family: var(--font-sans);
+    font-size: 1.1rem;
+    color: var(--color-text);
+    line-height: 1.7;
+    max-width: 500px;
+    margin: 0;
+}
+
+.footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 48px;
+}
+
+.controls {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.controls button {
+    padding: 14px 36px;
+    font-size: 1rem;
+}
+
+.dots {
+    display: flex;
+    gap: 30px;
+    align-items: center;
+    margin-bottom: 70px;
+}
+
+.dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: var(--color-text);
+    opacity: 0.2;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    transition: opacity var(--transition-default), transform var(--transition-default);
+}
+
+.dotDone {
+    opacity: 0.4;
+}
+
+.dotActive {
+    opacity: 1;
+    transform: scale(1.25);
+}
+
+.fadeOverlay {
+    position: absolute;
+    inset: 0;
+    background-color: var(--color-bg);
+    pointer-events: none;
+}
