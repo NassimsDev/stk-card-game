@@ -1,4 +1,4 @@
-.page {
+.pageUnboarding {
     position: relative;
     width: 100vw;
     height: 100vh;
@@ -25,13 +25,22 @@
     align-items: center;
     gap: 36px;
     width: 100%;
+    background-color: var(--color-bg);
+}
+
+.videoWrap {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    border-radius: 20px;
+    background-color: var(--color-bg);
 }
 
 .videoPlaceholder {
     width: 100%;
-    height: auto;
+    height: 100%;
     display: block;
-    border-radius: 20px;
+    object-fit: cover;
 }
 
 .textBlock {

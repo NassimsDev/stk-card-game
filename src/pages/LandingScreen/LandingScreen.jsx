@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import Button from "../../components/Button";
+import Button from "../../components/Button/Button.jsx";
 import { soundManager } from "../../utils/soundManager";
 import styles from "./LandingScreen.module.css";
 function shuffle(arr) {

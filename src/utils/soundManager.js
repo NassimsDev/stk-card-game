@@ -1,6 +1,7 @@
 class SoundManager {
   constructor() {
     this.sounds = {};
+    this.activeClones = {};
     this.isInitialized = false;
     this.isMuted = false;
   }
@@ -51,6 +52,8 @@ class SoundManager {
         clone.play().catch(error => {
           console.warn(`Impossible de jouer le son ${soundName}:`, error);
         });
+        // On garde une référence au clone actif pour pouvoir le couper via stop()
+        this.activeClones[soundName] = clone;
       }
     } else {
       console.warn(`Son introuvable : ${soundName}`);
@@ -71,6 +74,14 @@ class SoundManager {
     if (sound) {
       sound.pause();
       sound.currentTime = 0;
+    }
+    // play() joue en réalité un clone de l'audio de base : il faut aussi
+    // l'arrêter, sinon le son continue malgré l'appel à stop().
+    const clone = this.activeClones[soundName];
+    if (clone) {
+      clone.pause();
+      clone.currentTime = 0;
+      delete this.activeClones[soundName];
     }
   }
 

@@ -1,6 +1,6 @@
 import { useState, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import Button from "../../components/Button";
+import Button from "../../components/Button/Button.jsx";
 import styles from "./UnboardingScreen.module.css";
 
 const SLIDES = [
@@ -39,7 +39,7 @@ function UnboardingScreen({ onComplete }) {
     }, [isLast]);
 
     return (
-        <div className={styles.page}>
+        <div className={styles.pageUnboarding}>
             <div className={styles.inner}>
                 <AnimatePresence mode="wait">
                     <motion.div
@@ -50,14 +50,16 @@ function UnboardingScreen({ onComplete }) {
                         exit={{ opacity: 0, x: -32 }}
                         transition={{ duration: 0.3, ease: "easeOut" }}
                     >
-                        <video
-                            className={styles.videoPlaceholder}
-                            src={slide.video}
-                            autoPlay
-                            muted
-                            loop
-                            playsInline
-                        />
+                        <div className={styles.videoWrap}>
+                            <video
+                                className={styles.videoPlaceholder}
+                                src={slide.video}
+                                autoPlay
+                                muted
+                                loop
+                                playsInline
+                            />
+                        </div>
 
                         <div className={styles.textBlock}>
                             {slide.eyebrow && (
