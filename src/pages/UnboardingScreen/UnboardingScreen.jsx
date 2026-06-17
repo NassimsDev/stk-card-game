@@ -39,7 +39,7 @@ function UnboardingScreen({ onComplete }) {
     }, [isLast]);
 
     return (
-        <div className={styles.page}>
+        <div className={styles.pageUnboarding}>
             <div className={styles.inner}>
                 <AnimatePresence mode="wait">
                     <motion.div

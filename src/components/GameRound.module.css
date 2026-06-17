@@ -69,6 +69,12 @@
 /* Main content */
 .main-content {
     flex: 1;
+    /* min-height: 0 permet à ce conteneur flex de réellement rétrécir et
+       de défiler (filet de sécurité) au lieu de laisser ses enfants se
+       chevaucher quand un indice plus long que prévu déborde de l'espace
+       réservé sur les petits écrans. */
+    min-height: 0;
+    overflow-y: auto;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -234,7 +240,9 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 340px;
+    width: 100%;
+    max-width: 340px;
+    min-width: 0;
     position: relative;
     will-change: transform;
     min-height: 600px;
@@ -253,7 +261,9 @@
 
 .card {
     width: 100%;
-    height: 480px;
+    /* Ratio fixe (340/480) : la carte rétrécit avec son wrapper sans jamais
+       se déformer, à toutes les tailles d'écran. */
+    aspect-ratio: 340 / 480;
     border-radius: 12px;
     display: flex;
     flex-direction: column;
@@ -424,7 +434,6 @@
 
 /* Explication du lien biomimétique */
 .bottom-action-section {
-    margin-top: -80px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -490,6 +499,14 @@
         margin-bottom: 40px;
     }
 
+    .sequence {
+        font-size: 18px;
+    }
+
+    .pairs-counter {
+        font-size: 12px;
+    }
+
     .main-content {
         padding-top: 3vh;
         /* Espacement fixe pour descendre le bloc sans centrage auto */
@@ -498,13 +515,28 @@
     .card-wrapper {
         min-height: 520px;
         /* Réserve l'espace pour le texte (420px carte + 100px texte) */
-        width: 298px;
-        /* Maintient le ratio 340/480 pour éviter le rognage */
+        max-width: 298px;
+        /* aspect-ratio sur .card maintient le ratio 340/480 automatiquement */
     }
 
     .card {
-        height: 420px;
         margin-bottom: 16px;
+    }
+
+    .card-placeholder-arrow {
+        font-size: 20px;
+    }
+
+    .card-placeholder-text {
+        font-size: 12px;
+    }
+
+    .card-text h2 {
+        font-size: 21px;
+    }
+
+    .card-text p {
+        font-size: 13px;
     }
 
     .grid-container {
@@ -517,8 +549,30 @@
         border-radius: 10px;
     }
 
+    .description h3 {
+        font-size: 18px;
+    }
+
+    .description p {
+        font-size: 13px;
+    }
+
+    .hint-toggle {
+        font-size: 12px;
+        padding: 7px 14px;
+    }
+
+    .hint-toggle-icon {
+        width: 16px;
+        height: 16px;
+        font-size: 11px;
+    }
+
     .bottom-action-section {
-        margin-top: -220px;
+        /* Réduit par rapport à avant (-220px) : une remontée trop forte
+           faisait chevaucher ce bloc avec les indices sous les cartes
+           quand leur texte est un peu plus long que prévu. */
+        margin-top: -40px;
         min-height: 150px;
     }
 
@@ -534,19 +588,48 @@
     .explanation-text p {
         font-size: 14px;
     }
+
+    .continue-hint p {
+        font-size: 14px;
+    }
+
+    .btn-lier {
+        font-size: 18px;
+        padding: 10px 28px;
+    }
 }
 
 /* Media query pour les très petits écrans (ordinateurs portables 13 pouces, tablettes) */
 @media (max-height: 800px) {
+    .sequence {
+        font-size: 16px;
+    }
+
+    .pairs-counter {
+        font-size: 11px;
+    }
+
     .card-wrapper {
         min-height: 480px;
         /* Réserve l'espace (380px carte + 100px texte) */
-        width: 269px;
-        /* Maintient le ratio 340/480 */
+        max-width: 269px;
+        /* aspect-ratio sur .card maintient le ratio 340/480 automatiquement */
     }
 
-    .card {
-        height: 380px;
+    .card-placeholder-arrow {
+        font-size: 18px;
+    }
+
+    .card-placeholder-text {
+        font-size: 11px;
+    }
+
+    .card-text h2 {
+        font-size: 19px;
+    }
+
+    .card-text p {
+        font-size: 12px;
     }
 
     .grid-container {
@@ -555,8 +638,45 @@
         max-height: 570px;
     }
 
+    .description h3 {
+        font-size: 16px;
+    }
+
+    .description p {
+        font-size: 12px;
+    }
+
+    .hint-toggle {
+        font-size: 11px;
+        padding: 6px 12px;
+    }
+
+    .hint-toggle-icon {
+        width: 15px;
+        height: 15px;
+        font-size: 10px;
+    }
+
     .bottom-action-section {
-        margin-top: -80px;
+        margin-top: -10px;
         min-height: 130px;
+    }
+
+    .explanation-text h2 {
+        font-size: 20px;
+        margin-bottom: 10px;
+    }
+
+    .explanation-text p {
+        font-size: 13px;
+    }
+
+    .continue-hint p {
+        font-size: 13px;
+    }
+
+    .btn-lier {
+        font-size: 16px;
+        padding: 9px 24px;
     }
 }
