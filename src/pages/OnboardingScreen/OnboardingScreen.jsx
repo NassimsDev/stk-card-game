@@ -1,7 +1,7 @@
 import { useState, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Button from "../../components/Button/Button.jsx";
-import styles from "./UnboardingScreen.module.css";
+import styles from "./OnboardingScreen.module.css";
 
 const SLIDES = [
     {
@@ -24,7 +24,7 @@ const SLIDES = [
     },
 ];
 
-function UnboardingScreen({ onComplete }) {
+function OnboardingScreen({ onComplete }) {
     const [index, setIndex] = useState(0);
     const [exiting, setExiting] = useState(false);
     const isLast = index === SLIDES.length - 1;
@@ -39,7 +39,7 @@ function UnboardingScreen({ onComplete }) {
     }, [isLast]);
 
     return (
-        <div className={styles.pageUnboarding}>
+        <div className={styles.pageOnboarding}>
             <div className={styles.inner}>
                 <AnimatePresence mode="wait">
                     <motion.div
@@ -107,4 +107,4 @@ function UnboardingScreen({ onComplete }) {
     );
 }
 
-export default UnboardingScreen;
+export default OnboardingScreen;

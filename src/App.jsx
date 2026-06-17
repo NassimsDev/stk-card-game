@@ -6,9 +6,9 @@ import { motion, AnimatePresence } from 'framer-motion';
 import './App.css';
 import pairsData from './data/pairs.json';
 import { soundManager } from './utils/soundManager';
-import GameRound from './components/GameRound';
+import GameRound from './pages/GameRound/GameRound';
 import LandingScreen from './pages/LandingScreen/LandingScreen';
-import UnboardingScreen from './pages/UnboardingScreen/UnboardingScreen';
+import OnboardingScreen from './pages/OnboardingScreen/OnboardingScreen';
 
 const SEQUENCES = pairsData.metadata.sequences.map(seq =>
   seq.pairIds.map(id => pairsData.pairs.find(p => p.id === id))
@@ -91,7 +91,7 @@ function App() {
       {!started ? (
         <LandingScreen onStart={() => setStarted(true)} />
       ) : !onboarded ? (
-        <UnboardingScreen onComplete={() => setOnboarded(true)} />
+        <OnboardingScreen onComplete={() => setOnboarded(true)} />
       ) : (
         <div className="container">
           <AnimatePresence mode="wait">

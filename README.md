@@ -113,7 +113,6 @@ stk-card-game/
 │   │   ├── Button/
 │   │   ├── CardGrid/
 │   │   ├── CardPreview/
-│   │   ├── GameRound.jsx        # Composant central du jeu
 │   │   ├── Logo/
 │   │   ├── MiniCard/
 │   │   └── SequenceIndicator/
@@ -125,8 +124,8 @@ stk-card-game/
 │   │   └── useGame.js           # Hook custom (défini, non utilisé)
 │   ├── pages/
 │   │   ├── LandingScreen/       # Écran d'accueil
-│   │   ├── UnboardingScreen/    # Onboarding 3 slides
-│   │   └── GameScreen/          # Page non branchée
+│   │   ├── OnboardingScreen/    # Onboarding 3 slides
+│   │   └── GameRound/           # Écran de jeu principal
 │   ├── utils/
 │   │   └── soundManager.js      # Singleton audio
 │   ├── styles/

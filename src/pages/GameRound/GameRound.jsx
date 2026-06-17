@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { soundManager } from '../utils/soundManager';
+import { soundManager } from '../../utils/soundManager';
 import styles from './GameRound.module.css';
 
 const LINK_OFFSET = 18;
