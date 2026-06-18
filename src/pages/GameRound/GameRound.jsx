@@ -279,6 +279,10 @@ export default function GameRound({ pairs, sequenceNumber, totalSequences, onCom
           {/* Grille gauche */}
           <div className={styles['grid-container']}>{renderLeftGrid()}</div>
 
+          {/* Colonne centrale : cartes + actions */}
+          <div className={styles['center-column']}>
+            <div className={styles['cards-pair']}>
+
           {/* Carte Inspiration */}
           <motion.div
             className={`${styles['card-wrapper']} ${styles['card-wrapper-left']}`}
@@ -464,112 +468,115 @@ export default function GameRound({ pairs, sequenceNumber, totalSequences, onCom
             </AnimatePresence>
           </motion.div>
 
+            </div>
+
+            {/* Section bas */}
+            <div className={styles['bottom-action-section']}>
+              {/* Succès : Le lien biomimétique */}
+              <AnimatePresence>
+                {linkStatus === 'linked' && linkedPair && (
+                  <motion.div
+                    className={`${styles['explanation-text']} ${styles['link-success']}`}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 10 }}
+                    transition={{ duration: 0.4, delay: 0.2 }}
+                  >
+                    <h2>{linkedPair.explanation.title}</h2>
+                    <p>{linkedPair.explanation.body}</p>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+
+              {/* Erreur : Piste d'observation */}
+              <AnimatePresence>
+                {linkStatus === 'idle' && wrongAttempt && (
+                  <motion.div
+                    className={styles['explanation-text']}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.4 }}
+                  >
+                    <h2>Piste d'observation</h2>
+                    <p>Observez comment une forme peut réduire l'effort d'un mouvement.</p>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+
+              {/* Encouragement entre deux paires */}
+              <AnimatePresence>
+                {linkStatus === 'idle' && !wrongAttempt
+                  && !hintLeftUsed && !hintRightUsed
+                  && matchedPairIds.length > 0
+                  && matchedPairIds.length < pairs.length && (
+                  <motion.div
+                    className={`${styles['explanation-text']} ${styles['continue-hint']}`}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.4 }}
+                  >
+                    <p>Continuez à découvrir les autres liens entre le vivant et l'innovation.</p>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+
+              {/* Bouton contextuel */}
+              <div className={styles['center-action']}>
+                <AnimatePresence mode="wait">
+                  {allFound && linkStatus === 'idle' && (
+                    <motion.button
+                      key="sequence-suivante"
+                      className={styles['btn-lier']}
+                      onClick={() => {
+                        soundManager.play('button');
+                        onComplete();
+                      }}
+                      initial={{ opacity: 0, y: 8 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -8 }}
+                      transition={{ duration: 0.35, ease: 'easeOut' }}
+                    >
+                      {sequenceNumber < totalSequences ? 'Séquence suivante' : 'Terminer'}
+                    </motion.button>
+                  )}
+                  {!allFound && linkStatus === 'idle' && !wrongAttempt
+                    && selectedLeft !== null && selectedRight !== null
+                    && !matchedPairIds.includes(selectedLeft)
+                    && !matchedPairIds.includes(selectedRight) && (
+                      <motion.button
+                        key="lier"
+                        className={styles['btn-lier']}
+                        onClick={handleLier}
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        exit={{ opacity: 0, scale: 0.9 }}
+                        transition={{ duration: 0.2 }}
+                      >
+                        Lier
+                      </motion.button>
+                    )}
+                  {linkStatus === 'linked' && (
+                    <motion.button
+                      key="suivant"
+                      className={styles['btn-lier']}
+                      onClick={handleSuivant}
+                      initial={{ opacity: 0, y: 8 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -8 }}
+                      transition={{ duration: 0.35, ease: 'easeOut' }}
+                    >
+                      Suivant
+                    </motion.button>
+                  )}
+                </AnimatePresence>
+              </div>
+            </div>
+          </div>
+
           {/* Grille droite */}
           <div className={styles['grid-container']}>{renderRightGrid()}</div>
-        </div>
-
-        {/* Section bas */}
-        <div className={styles['bottom-action-section']}>
-          {/* Succès : Le lien biomimétique */}
-          <AnimatePresence>
-            {linkStatus === 'linked' && linkedPair && (
-              <motion.div
-                className={`${styles['explanation-text']} ${styles['link-success']}`}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: 10 }}
-                transition={{ duration: 0.4, delay: 0.2 }}
-              >
-                <h2>{linkedPair.explanation.title}</h2>
-                <p>{linkedPair.explanation.body}</p>
-              </motion.div>
-            )}
-          </AnimatePresence>
-
-          {/* Erreur : Piste d'observation */}
-          <AnimatePresence>
-            {linkStatus === 'idle' && wrongAttempt && (
-              <motion.div
-                className={styles['explanation-text']}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.4 }}
-              >
-                <h2>Piste d'observation</h2>
-                <p>Observez comment une forme peut réduire l'effort d'un mouvement.</p>
-              </motion.div>
-            )}
-          </AnimatePresence>
-
-          {/* Encouragement entre deux paires */}
-          <AnimatePresence>
-            {linkStatus === 'idle' && !wrongAttempt
-              && !hintLeftUsed && !hintRightUsed
-              && matchedPairIds.length > 0
-              && matchedPairIds.length < pairs.length && (
-              <motion.div
-                className={`${styles['explanation-text']} ${styles['continue-hint']}`}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.4 }}
-              >
-                <p>Continuez à découvrir les autres liens entre le vivant et l'innovation.</p>
-              </motion.div>
-            )}
-          </AnimatePresence>
-
-          {/* Bouton contextuel */}
-          <div className={styles['center-action']}>
-            <AnimatePresence mode="wait">
-              {allFound && linkStatus === 'idle' && (
-                <motion.button
-                  key="sequence-suivante"
-                  className={styles['btn-lier']}
-                  onClick={() => {
-                    soundManager.play('button');
-                    onComplete();
-                  }}
-                  initial={{ opacity: 0, y: 8 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -8 }}
-                  transition={{ duration: 0.35, ease: 'easeOut' }}
-                >
-                  {sequenceNumber < totalSequences ? 'Séquence suivante' : 'Terminer'}
-                </motion.button>
-              )}
-              {!allFound && linkStatus === 'idle' && !wrongAttempt
-                && selectedLeft !== null && selectedRight !== null
-                && !matchedPairIds.includes(selectedLeft)
-                && !matchedPairIds.includes(selectedRight) && (
-                  <motion.button
-                    key="lier"
-                    className={styles['btn-lier']}
-                    onClick={handleLier}
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.9 }}
-                    transition={{ duration: 0.2 }}
-                  >
-                    Lier
-                  </motion.button>
-                )}
-              {linkStatus === 'linked' && (
-                <motion.button
-                  key="suivant"
-                  className={styles['btn-lier']}
-                  onClick={handleSuivant}
-                  initial={{ opacity: 0, y: 8 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -8 }}
-                  transition={{ duration: 0.35, ease: 'easeOut' }}
-                >
-                  Suivant
-                </motion.button>
-              )}
-            </AnimatePresence>
-          </div>
         </div>
       </main>
     </motion.div>
