@@ -105,7 +105,7 @@
     /* Zone et cartes agrandies x1.5 (158x222 -> 237x333), ratio conservé.
        max-height suit (480 -> 720) et permet de défiler verticalement s'il
        y a plus de cartes que de place visible */
-    max-height: 720px;
+    max-height: calc(100vh - 320px);
     overflow-y: auto;
     overflow-x: hidden;
     padding-right: 6px;
@@ -513,8 +513,8 @@
     }
 
     .card-wrapper {
-        min-height: 520px;
-        /* Réserve l'espace pour le texte (420px carte + 100px texte) */
+        min-height: 460px;
+        /* Réserve l'espace pour le texte */
         max-width: 298px;
         /* aspect-ratio sur .card maintient le ratio 340/480 automatiquement */
     }
@@ -542,7 +542,7 @@
     .grid-container {
         margin-top: -20px;
         max-width: 468px;
-        max-height: 630px;
+        max-height: calc(100vh - 280px);
     }
 
     .grid-square {
@@ -610,8 +610,8 @@
     }
 
     .card-wrapper {
-        min-height: 480px;
-        /* Réserve l'espace (380px carte + 100px texte) */
+        min-height: 400px;
+        /* Réserve l'espace (300px carte + 100px texte) */
         max-width: 269px;
         /* aspect-ratio sur .card maintient le ratio 340/480 automatiquement */
     }
@@ -635,7 +635,7 @@
     .grid-container {
         margin-top: 20px;
         max-width: 372px;
-        max-height: 570px;
+        max-height: calc(100vh - 240px);
     }
 
     .description h3 {
@@ -678,6 +678,55 @@
     .btn-lier {
         font-size: 16px;
         padding: 9px 24px;
+    }
+}
+
+/* Media query pour les très petits écrans en hauteur (hauteurs <= 650px) */
+@media (max-height: 650px) and (min-width: 769px) {
+    .header {
+        margin-bottom: 15px;
+    }
+
+    .main-content {
+        padding-top: 1vh;
+    }
+
+    .card-wrapper {
+        min-height: 310px;
+        max-width: 190px;
+    }
+
+    .card {
+        margin-bottom: 8px;
+    }
+
+    .grid-container {
+        margin-top: 10px;
+        max-width: 300px;
+        max-height: calc(100vh - 190px);
+    }
+
+    .bottom-action-section {
+        margin-top: -10px;
+        min-height: 90px;
+    }
+
+    .explanation-text {
+        margin-bottom: 12px;
+    }
+
+    .explanation-text h2 {
+        font-size: 16px;
+        margin-bottom: 6px;
+    }
+
+    .explanation-text p {
+        font-size: 11px;
+    }
+
+    .btn-lier {
+        font-size: 14px;
+        padding: 6px 18px;
     }
 }
 
