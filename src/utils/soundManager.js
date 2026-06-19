@@ -3,7 +3,11 @@ class SoundManager {
     this.sounds = {};
     this.activeClones = {};
     this.isInitialized = false;
-    this.isMuted = false;
+    // ↓ PERSISTANCE MUTE — commenter ce bloc pour désactiver en prod
+    const saved = typeof window !== 'undefined' && localStorage.getItem('stk-muted');
+    this.isMuted = saved === 'true';
+    // ↑ PERSISTANCE MUTE
+    // this.isMuted = false; // ← décommenter si le bloc ci-dessus est commenté
   }
 
   // Initialisation paresseuse pour éviter les erreurs d'instanciation Audio côté serveur si on passait en SSR
@@ -87,6 +91,9 @@ class SoundManager {
 
   toggleMute() {
     this.isMuted = !this.isMuted;
+    // ↓ PERSISTANCE MUTE — commenter cette ligne pour désactiver en prod
+    if (typeof window !== 'undefined') localStorage.setItem('stk-muted', this.isMuted);
+    // ↑ PERSISTANCE MUTE
     if (this.isInitialized) {
       Object.values(this.sounds).forEach(sound => {
         sound.muted = this.isMuted;
