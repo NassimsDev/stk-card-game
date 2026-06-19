@@ -42,7 +42,6 @@
 }
 
 .content {
-
     position: relative;
     z-index: 1;
     display: flex;
@@ -51,7 +50,8 @@
     justify-content: center;
     text-align: center;
     gap: 16px;
-    margin-top: 200px;
+    /* min() remplace le 200px fixe : se réduit automatiquement sur les écrans courts */
+    margin-top: min(200px, 20vh);
 }
 
 .logo {
@@ -70,4 +70,82 @@
 
 .cta {
     margin-top: 28px;
+}
+
+/* ---- Responsivité ---- */
+
+/* Hauteur courte : déclarées EN PREMIER pour que les queries de largeur ci-dessous
+   les écrasent quand les deux contraintes s'appliquent en même temps. */
+@media (max-height: 700px) {
+    .cardsLayer {
+        transform: translate(-50%, -50%) scale(0.82);
+    }
+}
+
+@media (max-height: 550px) {
+    .cardsLayer {
+        transform: translate(-50%, -50%) scale(0.65);
+    }
+    .logo {
+        width: 200px;
+    }
+}
+
+/* Largeur : réduction progressive du scale des cartes + contenu */
+@media (max-width: 1280px) {
+    .cardsLayer {
+        transform: translate(-50%, -50%) scale(0.85);
+    }
+}
+
+@media (max-width: 1024px) {
+    .cardsLayer {
+        transform: translate(-50%, -50%) scale(0.7);
+    }
+    .content {
+        margin-top: min(140px, 18vh);
+    }
+    .logo {
+        width: 200px;
+    }
+}
+
+@media (max-width: 768px) {
+    .cardsLayer {
+        transform: translate(-50%, -50%) scale(0.55);
+    }
+    .content {
+        margin-top: min(110px, 16vh);
+        gap: 12px;
+    }
+    .logo {
+        width: 180px;
+    }
+    .subtitle {
+        font-size: 0.9rem;
+        max-width: 300px;
+    }
+    .cta {
+        margin-top: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .cardsLayer {
+        transform: translate(-50%, -50%) scale(0.4);
+    }
+    .content {
+        margin-top: min(80px, 14vh);
+        gap: 10px;
+    }
+    .logo {
+        width: 160px;
+    }
+    .subtitle {
+        font-size: 0.875rem;
+        max-width: 260px;
+    }
+    .cta {
+        margin-top: 16px;
+    }
 }
