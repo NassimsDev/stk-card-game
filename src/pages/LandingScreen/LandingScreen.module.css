@@ -16,10 +16,8 @@
     inset: 0;
     pointer-events: none;
     z-index: 0;
-    /* Base (grands écrans paysage) : cartes haut proches du top → masque tôt.
-       transparent à 78% = 22% du bas masqué. */
-    -webkit-mask-image: linear-gradient(to bottom, black 5%, transparent 78%);
-    mask-image: linear-gradient(to bottom, black 5%, transparent 78%);
+    -webkit-mask-image: linear-gradient(to bottom, black 5%, transparent 62%);
+    mask-image: linear-gradient(to bottom, black 5%, transparent 62%);
 }
 
 /* 2. Conteneur plein-écran — les positions des cartes sont calculées en JS
@@ -93,19 +91,19 @@
    Le JS centre le layout scalé dans le viewport — les cartes du haut se retrouvent
    vers 20-30% depuis le haut selon le scale, donc le masque doit commencer plus bas. */
 
-/* Portables 13 pouces (1280px) — bas masqué : ~25% */
+/* Portables 13 pouces (1280px) */
 @media (max-width: 1280px) {
     .maskWrapper {
-        -webkit-mask-image: linear-gradient(to bottom, black 8%, transparent 75%);
-        mask-image: linear-gradient(to bottom, black 8%, transparent 75%);
+        -webkit-mask-image: linear-gradient(to bottom, black 8%, transparent 60%);
+        mask-image: linear-gradient(to bottom, black 8%, transparent 60%);
     }
 }
 
-/* Portables 13 pouces étroits / tablettes paysage (1024px) — bas masqué : ~28% */
+/* Portables 13 pouces étroits / tablettes paysage (1024px) */
 @media (max-width: 1024px) {
     .maskWrapper {
-        -webkit-mask-image: linear-gradient(to bottom, black 10%, transparent 72%);
-        mask-image: linear-gradient(to bottom, black 10%, transparent 72%);
+        -webkit-mask-image: linear-gradient(to bottom, black 10%, transparent 57%);
+        mask-image: linear-gradient(to bottom, black 10%, transparent 57%);
     }
     .content {
         margin-top: min(140px, 18vh);
@@ -115,11 +113,11 @@
     }
 }
 
-/* Tablettes portrait (768px) — bas masqué : ~32% */
+/* Tablettes portrait (768px) */
 @media (max-width: 768px) {
     .maskWrapper {
-        -webkit-mask-image: linear-gradient(to bottom, black 25%, transparent 68%);
-        mask-image: linear-gradient(to bottom, black 25%, transparent 68%);
+        -webkit-mask-image: linear-gradient(to bottom, black 25%, transparent 54%);
+        mask-image: linear-gradient(to bottom, black 25%, transparent 54%);
     }
     .content {
         margin-top: min(90px, 14vh);
@@ -137,11 +135,11 @@
     }
 }
 
-/* Grands téléphones / petites tablettes portrait (600px) — bas masqué : ~35% */
+/* Grands téléphones / petites tablettes portrait (600px) */
 @media (max-width: 600px) {
     .maskWrapper {
-        -webkit-mask-image: linear-gradient(to bottom, black 27%, transparent 65%);
-        mask-image: linear-gradient(to bottom, black 27%, transparent 65%);
+        -webkit-mask-image: linear-gradient(to bottom, black 27%, transparent 51%);
+        mask-image: linear-gradient(to bottom, black 27%, transparent 51%);
     }
     .content {
         margin-top: min(70px, 12vh);
@@ -159,11 +157,11 @@
     }
 }
 
-/* Téléphones standard (480px) — bas masqué : ~38% */
+/* Téléphones standard (480px) */
 @media (max-width: 480px) {
     .maskWrapper {
-        -webkit-mask-image: linear-gradient(to bottom, black 28%, transparent 62%);
-        mask-image: linear-gradient(to bottom, black 28%, transparent 62%);
+        -webkit-mask-image: linear-gradient(to bottom, black 28%, transparent 48%);
+        mask-image: linear-gradient(to bottom, black 28%, transparent 48%);
     }
     .content {
         margin-top: min(55px, 10vh);
@@ -176,11 +174,11 @@
     }
 }
 
-/* Petits téléphones (375px — iPhone SE, etc.) — bas masqué : 40% */
+/* Petits téléphones (375px — iPhone SE, etc.) */
 @media (max-width: 375px) {
     .maskWrapper {
-        -webkit-mask-image: linear-gradient(to bottom, black 32%, transparent 60%);
-        mask-image: linear-gradient(to bottom, black 32%, transparent 60%);
+        -webkit-mask-image: linear-gradient(to bottom, black 32%, transparent 46%);
+        mask-image: linear-gradient(to bottom, black 32%, transparent 46%);
     }
     .content {
         margin-top: min(40px, 8vh);
