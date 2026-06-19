@@ -15,6 +15,10 @@ const _inspirations = shuffle(Array.from({ length: 21 }, (_, i) => `/assets/card
 const _innovations = shuffle(Array.from({ length: 21 }, (_, i) => `/assets/cards/innovation/card-innovation-${String(i + 1).padStart(2, "0")}.webp`));
 const CARD_IMAGES = _inspirations.flatMap((insp, i) => [insp, _innovations[i]]);
 
+// Dimensions du canvas de référence sur lequel les positions ont été dessinées
+const CANVAS_W = 1280;
+const CANVAS_H = 800;
+
 // Format : [left, top, width, height, tone, opacity] — ratio 7:10 (images 350×500)
 const W = 63;
 const H = 90;
@@ -77,6 +81,15 @@ const CARDS = [
 ];
 
 function LandingScreen({ onStart }) {
+    // Scale calculé une fois au montage pour adapter la courbe à la taille du viewport.
+    // Les coordonnées de chaque carte sont exprimées en "pixels canvas" (1280×800),
+    // on les convertit en pixels viewport en centrant + réduisant proportionnellement.
+    const vpW = typeof window !== 'undefined' ? window.innerWidth : CANVAS_W;
+    const vpH = typeof window !== 'undefined' ? window.innerHeight : CANVAS_H;
+    const scale = Math.min(1, vpW / CANVAS_W, vpH / CANVAS_H);
+    const cx = vpW / 2;
+    const cy = vpH / 2;
+
     return (
         <div className={styles.page}>
             <div className={styles.maskWrapper}>
@@ -89,10 +102,11 @@ function LandingScreen({ onStart }) {
                             aria-hidden="true"
                             className={styles.card}
                             style={{
-                                left: `${left}px`,
-                                top: `${top}px`,
-                                width: `${width}px`,
-                                height: `${height}px`,
+                                left: `${(left - CANVAS_W / 2) * scale + cx}px`,
+                                top:  `${(top  - CANVAS_H / 2) * scale + cy}px`,
+                                width:  `${width  * scale}px`,
+                                height: `${height * scale}px`,
+                                borderRadius: `${Math.round(8 * scale)}px`,
                             }}
                             initial={{ opacity: 0, scale: 0.85 }}
                             animate={{ opacity: opacity ?? 1, scale: 1 }}

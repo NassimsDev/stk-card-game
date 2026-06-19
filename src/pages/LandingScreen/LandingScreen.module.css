@@ -16,25 +16,22 @@
     inset: 0;
     pointer-events: none;
     z-index: 0;
-    -webkit-mask-image: linear-gradient(to bottom, black 15%, transparent 65%);
-    mask-image: linear-gradient(to bottom, black 15%, transparent 65%);
+    /* Base (grands écrans paysage) : cartes haut proches du top → masque tôt.
+       transparent à 78% = 22% du bas masqué. */
+    -webkit-mask-image: linear-gradient(to bottom, black 5%, transparent 78%);
+    mask-image: linear-gradient(to bottom, black 5%, transparent 78%);
 }
 
-/* 2. La grille invisible qui sert juste de repère pour placer les cartes */
+/* 2. Conteneur plein-écran — les positions des cartes sont calculées en JS
+   (scale + centrage par rapport au canvas 1280×800) */
 .cardsLayer {
     position: absolute;
-    width: 1280px;
-    height: 800px;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    /* ATTENTION : Plus de masque ici, plus de pointer-events, plus de z-index */
+    inset: 0;
 }
 
 .card {
     position: absolute;
-    /* border-radius: var(--radius-card); */
-    border-radius: 10px;
+    /* border-radius géré en JS : Math.round(8 * scale) pour rester proportionnel */
     object-fit: cover;
     display: block;
     user-select: none;
@@ -75,32 +72,40 @@
 /* ---- Responsivité ---- */
 
 /* Hauteur courte : déclarées EN PREMIER pour que les queries de largeur ci-dessous
-   les écrasent quand les deux contraintes s'appliquent en même temps. */
+   les écrasent quand les deux contraintes s'appliquent en même temps.
+   Le scale des cartes est géré en JS, seules les tailles de contenu changent ici. */
 @media (max-height: 700px) {
-    .cardsLayer {
-        transform: translate(-50%, -50%) scale(0.82);
-    }
-}
-
-@media (max-height: 550px) {
-    .cardsLayer {
-        transform: translate(-50%, -50%) scale(0.65);
-    }
     .logo {
         width: 200px;
     }
 }
 
-/* Largeur : réduction progressive du scale des cartes + contenu */
-@media (max-width: 1280px) {
-    .cardsLayer {
-        transform: translate(-50%, -50%) scale(0.85);
+@media (max-height: 550px) {
+    .logo {
+        width: 180px;
+    }
+    .content {
+        gap: 10px;
     }
 }
 
+/* Largeur : sur écrans en portrait (tablette, téléphone), la contrainte est la largeur.
+   Le JS centre le layout scalé dans le viewport — les cartes du haut se retrouvent
+   vers 20-30% depuis le haut selon le scale, donc le masque doit commencer plus bas. */
+
+/* Portables 13 pouces (1280px) — bas masqué : ~25% */
+@media (max-width: 1280px) {
+    .maskWrapper {
+        -webkit-mask-image: linear-gradient(to bottom, black 8%, transparent 75%);
+        mask-image: linear-gradient(to bottom, black 8%, transparent 75%);
+    }
+}
+
+/* Portables 13 pouces étroits / tablettes paysage (1024px) — bas masqué : ~28% */
 @media (max-width: 1024px) {
-    .cardsLayer {
-        transform: translate(-50%, -50%) scale(0.7);
+    .maskWrapper {
+        -webkit-mask-image: linear-gradient(to bottom, black 10%, transparent 72%);
+        mask-image: linear-gradient(to bottom, black 10%, transparent 72%);
     }
     .content {
         margin-top: min(140px, 18vh);
@@ -110,16 +115,18 @@
     }
 }
 
+/* Tablettes portrait (768px) — bas masqué : ~32% */
 @media (max-width: 768px) {
-    .cardsLayer {
-        transform: translate(-50%, -50%) scale(0.55);
+    .maskWrapper {
+        -webkit-mask-image: linear-gradient(to bottom, black 25%, transparent 68%);
+        mask-image: linear-gradient(to bottom, black 25%, transparent 68%);
     }
     .content {
-        margin-top: min(110px, 16vh);
+        margin-top: min(90px, 14vh);
         gap: 12px;
     }
     .logo {
-        width: 180px;
+        width: 170px;
     }
     .subtitle {
         font-size: 0.9rem;
@@ -130,22 +137,59 @@
     }
 }
 
-@media (max-width: 480px) {
-    .cardsLayer {
-        transform: translate(-50%, -50%) scale(0.4);
+/* Grands téléphones / petites tablettes portrait (600px) — bas masqué : ~35% */
+@media (max-width: 600px) {
+    .maskWrapper {
+        -webkit-mask-image: linear-gradient(to bottom, black 27%, transparent 65%);
+        mask-image: linear-gradient(to bottom, black 27%, transparent 65%);
     }
     .content {
-        margin-top: min(80px, 14vh);
+        margin-top: min(70px, 12vh);
         gap: 10px;
     }
     .logo {
-        width: 160px;
+        width: 150px;
     }
     .subtitle {
         font-size: 0.875rem;
-        max-width: 260px;
+        max-width: 280px;
     }
     .cta {
         margin-top: 16px;
+    }
+}
+
+/* Téléphones standard (480px) — bas masqué : ~38% */
+@media (max-width: 480px) {
+    .maskWrapper {
+        -webkit-mask-image: linear-gradient(to bottom, black 28%, transparent 62%);
+        mask-image: linear-gradient(to bottom, black 28%, transparent 62%);
+    }
+    .content {
+        margin-top: min(55px, 10vh);
+    }
+    .logo {
+        width: 140px;
+    }
+    .subtitle {
+        max-width: 260px;
+    }
+}
+
+/* Petits téléphones (375px — iPhone SE, etc.) — bas masqué : 40% */
+@media (max-width: 375px) {
+    .maskWrapper {
+        -webkit-mask-image: linear-gradient(to bottom, black 32%, transparent 60%);
+        mask-image: linear-gradient(to bottom, black 32%, transparent 60%);
+    }
+    .content {
+        margin-top: min(40px, 8vh);
+    }
+    .logo {
+        width: 120px;
+    }
+    .subtitle {
+        font-size: 0.8rem;
+        max-width: 240px;
     }
 }
