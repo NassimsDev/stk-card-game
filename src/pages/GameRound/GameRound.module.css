@@ -404,9 +404,11 @@
 .hint-toggle {
     display: inline-flex;
     align-items: center;
+    justify-content: center;
     gap: 8px;
     margin: 0 auto 12px;
     padding: 8px 16px;
+    min-width: 172px; /* calé sur "Masquer l'indice" (le texte le plus long) */
     background: transparent;
     border: 1px solid rgba(1, 160, 145, 0.4);
     border-radius: 999px;

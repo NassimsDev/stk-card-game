@@ -363,14 +363,16 @@ export default function GameRound({ pairs, sequenceNumber, totalSequences, onCom
             <AnimatePresence>
               {canShowHintToggle && selectedLeftPair && hintLeftOpen && (
                 <motion.div
-                  className={styles.description}
-                  initial={{ opacity: 0, y: -4 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -4, transition: { duration: 0.3 } }}
-                  transition={{ duration: 0.3, delay: 0.2 }}
+                  initial={{ opacity: 0, height: 0 }}
+                  animate={{ opacity: 1, height: 'auto' }}
+                  exit={{ opacity: 0, height: 0, transition: { duration: 0.4, ease: [0.4, 0, 0.2, 1] } }}
+                  transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1], delay: 0.2 }}
+                  style={{ overflow: 'hidden' }}
                 >
-                  <h3>{selectedLeftPair.inspiration.title}</h3>
-                  <p>{selectedLeftPair.inspiration.shortDescription}</p>
+                  <div className={styles.description}>
+                    <h3>{selectedLeftPair.inspiration.title}</h3>
+                    <p>{selectedLeftPair.inspiration.shortDescription}</p>
+                  </div>
                 </motion.div>
               )}
             </AnimatePresence>
@@ -455,14 +457,16 @@ export default function GameRound({ pairs, sequenceNumber, totalSequences, onCom
             <AnimatePresence>
               {canShowHintToggle && selectedRightPair && hintRightOpen && (
                 <motion.div
-                  className={styles.description}
-                  initial={{ opacity: 0, y: -4 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -4, transition: { duration: 0.3 } }}
-                  transition={{ duration: 0.3, delay: 0.2 }}
+                  initial={{ opacity: 0, height: 0 }}
+                  animate={{ opacity: 1, height: 'auto' }}
+                  exit={{ opacity: 0, height: 0, transition: { duration: 0.4, ease: [0.4, 0, 0.2, 1] } }}
+                  transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1], delay: 0.2 }}
+                  style={{ overflow: 'hidden' }}
                 >
-                  <h3>{selectedRightPair.innovation.title}</h3>
-                  <p>{selectedRightPair.innovation.shortDescription}</p>
+                  <div className={styles.description}>
+                    <h3>{selectedRightPair.innovation.title}</h3>
+                    <p>{selectedRightPair.innovation.shortDescription}</p>
+                  </div>
                 </motion.div>
               )}
             </AnimatePresence>
@@ -473,7 +477,7 @@ export default function GameRound({ pairs, sequenceNumber, totalSequences, onCom
             {/* Section bas */}
             <motion.div
               layout
-              transition={{ layout: { duration: 0.35, ease: [0.22, 1, 0.36, 1] } }}
+              transition={{ layout: { duration: 0.4, ease: [0.4, 0, 0.2, 1] } }}
               className={styles['bottom-action-section']}
             >
               {/* Succès : Le lien biomimétique */}
@@ -484,7 +488,7 @@ export default function GameRound({ pairs, sequenceNumber, totalSequences, onCom
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: 10 }}
-                    transition={{ duration: 0.4, delay: 0.2 }}
+                    transition={{ duration: 0.4, delay: 0.6 }}
                   >
                     <h2>{linkedPair.explanation.title}</h2>
                     <p>{linkedPair.explanation.body}</p>
@@ -529,7 +533,7 @@ export default function GameRound({ pairs, sequenceNumber, totalSequences, onCom
               {/* Bouton contextuel */}
               <motion.div
                 layout
-                transition={{ layout: { duration: 0.35, ease: [0.22, 1, 0.36, 1] } }}
+                transition={{ layout: { duration: 0.4, ease: [0.4, 0, 0.2, 1] } }}
                 className={styles['center-action']}
               >
                 <AnimatePresence mode="wait">
