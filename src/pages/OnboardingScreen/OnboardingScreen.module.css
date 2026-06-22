@@ -75,6 +75,7 @@
     line-height: 1.7;
     max-width: 500px;
     margin: 0;
+    min-height: calc(1.1rem * 1.7 * 3);
 }
 
 .footer {
