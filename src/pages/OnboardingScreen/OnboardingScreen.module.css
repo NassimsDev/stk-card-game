@@ -13,23 +13,27 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 48px;
+    gap: clamp(20px, 4vh, 48px);
     width: 100%;
     max-width: 720px;
-    padding: 0 32px;
+    padding: clamp(8px, 2vh, 24px) 32px;
+    box-sizing: border-box;
 }
 
 .slide {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 36px;
+    gap: clamp(16px, 3vh, 36px);
     width: 100%;
     background-color: var(--color-bg);
 }
 
 .videoWrap {
-    width: 100%;
+    /* Sur les écrans courts, la hauteur naturelle (width * 9/16) dépasse l'espace
+       disponible. min() restreint la largeur pour que la hauteur ne soit jamais
+       supérieure à (100vh - 320px), les 320px couvrant texte + footer + gaps. */
+    width: min(100%, calc((100vh - 320px) * 16 / 9));
     aspect-ratio: 16 / 9;
     overflow: hidden;
     border-radius: 20px;
@@ -71,13 +75,14 @@
     line-height: 1.7;
     max-width: 500px;
     margin: 0;
+    min-height: calc(1.1rem * 1.7 * 3);
 }
 
 .footer {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 48px;
+    gap: clamp(12px, 3vh, 48px);
 }
 
 .controls {
@@ -89,13 +94,14 @@
 .controls button {
     padding: 14px 36px;
     font-size: 1rem;
+    min-width: 180px; /* calé sur "Commencer" (le texte le plus long) */
 }
 
 .dots {
     display: flex;
     gap: 30px;
     align-items: center;
-    margin-bottom: 70px;
+    margin-bottom: clamp(12px, 5vh, 70px);
 }
 
 .dot {

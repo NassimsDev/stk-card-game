@@ -75,6 +75,7 @@
        réservé sur les petits écrans. */
     min-height: 0;
     overflow-y: auto;
+    overflow-x: hidden;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -384,11 +385,14 @@
 .description {
     text-align: center;
     max-width: 320px;
+    width: 100%;
 }
 
 .description h3 {
     font-size: 20px;
     font-weight: 700;
+    line-height: 1.3;
+    min-height: calc(2 * 1.3em); /* 2 lignes fixes quelle que soit la longueur */
     margin-bottom: 12px;
     color: #1a1a1a;
 }
@@ -404,9 +408,11 @@
 .hint-toggle {
     display: inline-flex;
     align-items: center;
+    justify-content: center;
     gap: 8px;
     margin: 0 auto 12px;
     padding: 8px 16px;
+    min-width: 172px; /* calé sur "Masquer l'indice" (le texte le plus long) */
     background: transparent;
     border: 1px solid rgba(1, 160, 145, 0.4);
     border-radius: 999px;
@@ -761,10 +767,18 @@
             "center center"
             "leftgrid rightgrid";
         grid-template-columns: 1fr 1fr;
+        /* 1fr pour le centre, auto pour les grilles :
+           les grilles restent ancrées en bas quelle que soit
+           la hauteur du centre (indices, bouton Lier). */
+        grid-template-rows: 1fr auto;
         justify-items: center;
         align-items: start;
         gap: 24px;
         width: 100%;
+        height: 100%; /* remplit main-content pour que 1fr soit calculable */
+        overflow: hidden;
+        padding-bottom: 24px; /* espace entre les grilles et le bas de l'écran */
+        box-sizing: border-box;
     }
 
     /* Attribution des zones de grille : centre en haut, grilles en bas */
@@ -774,6 +788,9 @@
 
     .center-column {
         width: 100%;
+        min-height: 0;       /* autorise le shrink dans le 1fr */
+        overflow-y: auto;    /* le centre défile en interne si les indices grandissent */
+        overflow-x: hidden;
     }
 
     .cards-pair {
@@ -795,7 +812,53 @@
     .grid-container {
         margin-top: 0;
         max-width: 100%;
-        max-height: 380px;
+        /* Hauteur adaptée au viewport : 180px min (iPhone SE), 260px max.
+           calc(100vh - 500px) réserve la place pour header + paire centrale + actions. */
+        max-height: clamp(200px, calc(100vh - 440px), 340px);
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+
+    /* Sur mobile, la card-wrapper est ~169px de large.
+       Le hint-toggle (min-width: 172px) et la description (max-width: 320px)
+       débordent car align-items: center leur permet de prendre leur taille max-content.
+       On les contraint à 100% de leur conteneur. */
+    .hint-toggle {
+        width: 100%;
+        min-width: 0;
+    }
+
+    .description h3 {
+        font-size: 14px;
+        margin-bottom: 6px;
+    }
+
+    .description p {
+        font-size: 12px;
+    }
+
+    .explanation-text h2 {
+        font-size: 16px;
+        margin-bottom: 8px;
+    }
+
+    .explanation-text p {
+        font-size: 13px;
+    }
+
+    .header {
+        margin-bottom: 8px;
+    }
+
+    .main-content {
+        overflow-y: hidden; /* le scroll vertical est géré par les sous-éléments (centre, grilles) */
+        padding-top: 20px;
+    }
+
+    /* Masquer "Piste d'observation" et "Continuez..." sur mobile,
+       garder le lien biomimétique (.link-success) visible */
+    .explanation-text:not(.link-success) {
+        display: none;
     }
 
     .bottom-action-section {

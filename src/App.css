@@ -149,6 +149,10 @@
 }
 
 @media (max-width: 768px) {
+    .container {
+        padding: 16px 20px;
+    }
+
     .sound-toggle-btn {
         bottom: 16px;
         right: 16px;

@@ -1,4 +1,4 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Button from "../../components/Button/Button.jsx";
 import styles from "./OnboardingScreen.module.css";
@@ -26,28 +26,56 @@ const SLIDES = [
 
 function OnboardingScreen({ onComplete }) {
     const [index, setIndex] = useState(0);
+    const [direction, setDirection] = useState(1); // 1 = avant, -1 = arrière
     const [exiting, setExiting] = useState(false);
     const isLast = index === SLIDES.length - 1;
     const slide = SLIDES[index];
+    const touchStartX = useRef(null);
 
     const goNext = useCallback(() => {
+        if (exiting) return;
+        setDirection(1);
         if (!isLast) {
             setIndex((i) => i + 1);
         } else {
             setExiting(true);
         }
-    }, [isLast]);
+    }, [isLast, exiting]);
+
+    const goBack = useCallback(() => {
+        if (exiting || index === 0) return;
+        setDirection(-1);
+        setIndex((i) => i - 1);
+    }, [index, exiting]);
+
+    const handleTouchStart = useCallback((e) => {
+        touchStartX.current = e.touches[0].clientX;
+    }, []);
+
+    const handleTouchEnd = useCallback((e) => {
+        if (touchStartX.current === null) return;
+        const delta = e.changedTouches[0].clientX - touchStartX.current;
+        if (Math.abs(delta) > 50) {
+            if (delta < 0) goNext();
+            else goBack();
+        }
+        touchStartX.current = null;
+    }, [goNext, goBack]);
 
     return (
-        <div className={styles.pageOnboarding}>
+        <div
+            className={styles.pageOnboarding}
+            onTouchStart={handleTouchStart}
+            onTouchEnd={handleTouchEnd}
+        >
             <div className={styles.inner}>
                 <AnimatePresence mode="wait">
                     <motion.div
                         key={index}
                         className={styles.slide}
-                        initial={{ opacity: 0, x: 32 }}
+                        initial={{ opacity: 0, x: direction * 32 }}
                         animate={{ opacity: 1, x: 0 }}
-                        exit={{ opacity: 0, x: -32 }}
+                        exit={{ opacity: 0, x: direction * -32 }}
                         transition={{ duration: 0.3, ease: "easeOut" }}
                     >
                         <div className={styles.videoWrap}>
@@ -84,7 +112,11 @@ function OnboardingScreen({ onComplete }) {
                             <button
                                 key={i}
                                 className={`${styles.dot} ${i === index ? styles.dotActive : i < index ? styles.dotDone : ""}`}
-                                onClick={() => !exiting && setIndex(i)}
+                                onClick={() => {
+                                    if (exiting || i === index) return;
+                                    setDirection(i > index ? 1 : -1);
+                                    setIndex(i);
+                                }}
                                 aria-label={`Slide ${i + 1}`}
                             />
                         ))}
