@@ -366,8 +366,8 @@ export default function GameRound({ pairs, sequenceNumber, totalSequences, onCom
                   className={styles.description}
                   initial={{ opacity: 0, y: -4 }}
                   animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, transition: { duration: 0 } }}
-                  transition={{ duration: 0.3 }}
+                  exit={{ opacity: 0, y: -4, transition: { duration: 0.3 } }}
+                  transition={{ duration: 0.3, delay: 0.2 }}
                 >
                   <h3>{selectedLeftPair.inspiration.title}</h3>
                   <p>{selectedLeftPair.inspiration.shortDescription}</p>
@@ -458,8 +458,8 @@ export default function GameRound({ pairs, sequenceNumber, totalSequences, onCom
                   className={styles.description}
                   initial={{ opacity: 0, y: -4 }}
                   animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, transition: { duration: 0 } }}
-                  transition={{ duration: 0.3 }}
+                  exit={{ opacity: 0, y: -4, transition: { duration: 0.3 } }}
+                  transition={{ duration: 0.3, delay: 0.2 }}
                 >
                   <h3>{selectedRightPair.innovation.title}</h3>
                   <p>{selectedRightPair.innovation.shortDescription}</p>
@@ -471,7 +471,11 @@ export default function GameRound({ pairs, sequenceNumber, totalSequences, onCom
             </div>
 
             {/* Section bas */}
-            <div className={styles['bottom-action-section']}>
+            <motion.div
+              layout
+              transition={{ layout: { duration: 0.35, ease: [0.22, 1, 0.36, 1] } }}
+              className={styles['bottom-action-section']}
+            >
               {/* Succès : Le lien biomimétique */}
               <AnimatePresence>
                 {linkStatus === 'linked' && linkedPair && (
@@ -523,7 +527,11 @@ export default function GameRound({ pairs, sequenceNumber, totalSequences, onCom
               </AnimatePresence>
 
               {/* Bouton contextuel */}
-              <div className={styles['center-action']}>
+              <motion.div
+                layout
+                transition={{ layout: { duration: 0.35, ease: [0.22, 1, 0.36, 1] } }}
+                className={styles['center-action']}
+              >
                 <AnimatePresence mode="wait">
                   {allFound && linkStatus === 'idle' && (
                     <motion.button
@@ -571,8 +579,8 @@ export default function GameRound({ pairs, sequenceNumber, totalSequences, onCom
                     </motion.button>
                   )}
                 </AnimatePresence>
-              </div>
-            </div>
+              </motion.div>
+            </motion.div>
           </div>
 
           {/* Grille droite */}
