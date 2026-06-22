@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { soundManager } from '../../utils/soundManager';
 import styles from './GameRound.module.css';
@@ -76,6 +76,7 @@ export default function GameRound({ pairs, sequenceNumber, totalSequences, onCom
   const [shuffledInspiration] = useState(() => shuffleArray(pairs));
   const [shuffledInnovation] = useState(() => shuffleArray(pairs));
   const [dragOverSide, setDragOverSide] = useState(null);
+  const [lierFading, setLierFading] = useState(false);
 
   // Bloqué uniquement pendant les animations (pas pendant 'linked' où on peut re-sélectionner)
   const isAnimating = ['linking', 'linking-wrong', 'shaking', 'separating'].includes(linkStatus);
@@ -85,6 +86,16 @@ export default function GameRound({ pairs, sequenceNumber, totalSequences, onCom
   const selectedRightPair = pairs.find(p => p.id === selectedRight) ?? null;
   const linkedPair = pairs.find(p => p.id === selectedLeft) ?? null;
 
+  const showLierButton = !allFound && linkStatus === 'idle' && !wrongAttempt
+    && selectedLeft !== null && selectedRight !== null
+    && !matchedPairIds.includes(selectedLeft)
+    && !matchedPairIds.includes(selectedRight);
+
+  // Réinitialise l'état de fondu quand le bouton redevient visible
+  useEffect(() => {
+    if (showLierButton) setLierFading(false);
+  }, [showLierButton]);
+
   const handleLier = () => {
     soundManager.play('button');
     if (isAnimating || linkStatus !== 'idle') return;
@@ -93,6 +104,16 @@ export default function GameRound({ pairs, sequenceNumber, totalSequences, onCom
     } else {
       setLinkStatus('linking-wrong');
     }
+  };
+
+  const handleLierClick = () => {
+    if (isAnimating || linkStatus !== 'idle' || lierFading) return;
+    soundManager.play('button');
+    const isMatch = selectedLeft === selectedRight;
+    setLierFading(true);
+    setTimeout(() => {
+      setLinkStatus(isMatch ? 'linking' : 'linking-wrong');
+    }, 220);
   };
 
   const handleAnimationComplete = (definition) => {
@@ -553,22 +574,19 @@ export default function GameRound({ pairs, sequenceNumber, totalSequences, onCom
                       {sequenceNumber < totalSequences ? 'Séquence suivante' : 'Terminer'}
                     </motion.button>
                   )}
-                  {!allFound && linkStatus === 'idle' && !wrongAttempt
-                    && selectedLeft !== null && selectedRight !== null
-                    && !matchedPairIds.includes(selectedLeft)
-                    && !matchedPairIds.includes(selectedRight) && (
-                      <motion.button
-                        key="lier"
-                        className={styles['btn-lier']}
-                        onClick={handleLier}
-                        initial={{ opacity: 0, scale: 0.9 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        exit={{ opacity: 0, scale: 0.9 }}
-                        transition={{ duration: 0.2 }}
-                      >
-                        Lier
-                      </motion.button>
-                    )}
+                  {showLierButton && (
+                    <motion.button
+                      key="lier"
+                      className={styles['btn-lier']}
+                      onClick={handleLierClick}
+                      initial={{ opacity: 0, scale: 0.9 }}
+                      animate={lierFading ? { opacity: 0, scale: 0.85 } : { opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 0.9 }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      Lier
+                    </motion.button>
+                  )}
                   {linkStatus === 'linked' && (
                     <motion.button
                       key="suivant"

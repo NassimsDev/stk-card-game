@@ -75,6 +75,7 @@
        réservé sur les petits écrans. */
     min-height: 0;
     overflow-y: auto;
+    overflow-x: hidden;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -384,6 +385,7 @@
 .description {
     text-align: center;
     max-width: 320px;
+    width: 100%;
 }
 
 .description h3 {
@@ -797,7 +799,38 @@
     .grid-container {
         margin-top: 0;
         max-width: 100%;
-        max-height: 380px;
+        /* Hauteur adaptée au viewport : 180px min (iPhone SE), 260px max.
+           calc(100vh - 500px) réserve la place pour header + paire centrale + actions. */
+        max-height: clamp(180px, calc(100vh - 500px), 260px);
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+
+    /* Sur mobile, la card-wrapper est ~169px de large.
+       Le hint-toggle (min-width: 172px) et la description (max-width: 320px)
+       débordent car align-items: center leur permet de prendre leur taille max-content.
+       On les contraint à 100% de leur conteneur. */
+    .hint-toggle {
+        width: 100%;
+        min-width: 0;
+    }
+
+    .description h3 {
+        font-size: 14px;
+        margin-bottom: 6px;
+    }
+
+    .description p {
+        font-size: 12px;
+    }
+
+    .explanation-text h2 {
+        font-size: 16px;
+        margin-bottom: 8px;
+    }
+
+    .explanation-text p {
+        font-size: 13px;
     }
 
     .bottom-action-section {
