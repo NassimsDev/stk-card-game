@@ -38,13 +38,27 @@
     overflow: hidden;
     border-radius: 20px;
     background-color: var(--color-bg);
+    position: relative;
 }
 
 .videoPlaceholder {
+    position: absolute;
+    inset: 0;
     width: 100%;
     height: 100%;
     display: block;
     object-fit: cover;
+}
+
+.videoImg {
+    z-index: 1;
+    opacity: 1;
+    transition: opacity 0.5s ease;
+}
+
+.videoImgHidden {
+    opacity: 0;
+    pointer-events: none;
 }
 
 .textBlock {

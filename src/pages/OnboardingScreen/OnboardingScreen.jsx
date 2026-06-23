@@ -1,4 +1,4 @@
-import { useState, useCallback, useRef } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Button from "../../components/Button/Button.jsx";
 import styles from "./OnboardingScreen.module.css";
@@ -28,7 +28,38 @@ function OnboardingScreen({ onComplete }) {
     const [index, setIndex] = useState(0);
     const [direction, setDirection] = useState(1); // 1 = avant, -1 = arrière
     const [exiting, setExiting] = useState(false);
+    const [videoReady, setVideoReady] = useState(false);
+    const [placeholderUrl, setPlaceholderUrl] = useState(null);
     const isLast = index === SLIDES.length - 1;
+
+    useEffect(() => {
+        setVideoReady(false);
+        setPlaceholderUrl(null);
+
+        const vid = document.createElement('video');
+        vid.src = slide.video;
+        vid.muted = true;
+        vid.preload = 'metadata';
+
+        const handleSeeked = () => {
+            try {
+                const canvas = document.createElement('canvas');
+                canvas.width = vid.videoWidth;
+                canvas.height = vid.videoHeight;
+                canvas.getContext('2d').drawImage(vid, 0, 0);
+                setPlaceholderUrl(canvas.toDataURL('image/jpeg', 0.85));
+            } catch (_) {}
+        };
+
+        vid.addEventListener('loadedmetadata', () => { vid.currentTime = 0.001; });
+        vid.addEventListener('seeked', handleSeeked);
+        vid.load();
+
+        return () => {
+            vid.removeEventListener('seeked', handleSeeked);
+            vid.src = '';
+        };
+    }, [slide.video]);
     const slide = SLIDES[index];
     const touchStartX = useRef(null);
 
@@ -79,6 +110,14 @@ function OnboardingScreen({ onComplete }) {
                         transition={{ duration: 0.3, ease: "easeOut" }}
                     >
                         <div className={styles.videoWrap}>
+                            {placeholderUrl && (
+                                <img
+                                    className={`${styles.videoPlaceholder} ${styles.videoImg} ${videoReady ? styles.videoImgHidden : ''}`}
+                                    src={placeholderUrl}
+                                    alt=""
+                                    aria-hidden="true"
+                                />
+                            )}
                             <video
                                 className={styles.videoPlaceholder}
                                 src={slide.video}
@@ -86,6 +125,7 @@ function OnboardingScreen({ onComplete }) {
                                 muted
                                 loop
                                 playsInline
+                                onCanPlay={() => setVideoReady(true)}
                             />
                         </div>
 
