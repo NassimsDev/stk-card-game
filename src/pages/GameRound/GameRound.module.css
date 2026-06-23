@@ -807,7 +807,7 @@
         width: 100%;
         height: 100%; /* remplit main-content pour que 1fr soit calculable */
         overflow: hidden;
-        padding-bottom: 24px; /* espace entre les grilles et le bas de l'écran */
+        padding-bottom: calc(16px + env(safe-area-inset-bottom, 24px)); /* espace + safe area iPhone */
         box-sizing: border-box;
     }
 
@@ -842,9 +842,9 @@
     .grid-container {
         margin-top: 0;
         max-width: 100%;
-        /* Hauteur adaptée au viewport : 180px min (iPhone SE), 260px max.
-           calc(100vh - 500px) réserve la place pour header + paire centrale + actions. */
-        max-height: clamp(200px, calc(100vh - 440px), 340px);
+        /* 100dvh = hauteur visible réelle (exclut barre adresse + nav Safari).
+           On soustrait la place occupée par header + paire centrale + actions. */
+        max-height: clamp(140px, calc(100dvh - 500px), 210px);
         overflow-y: auto;
         overflow-x: hidden;
     }
