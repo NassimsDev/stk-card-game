@@ -47,6 +47,12 @@
     border-radius: 4px;
 }
 
+.ambient-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
 .ambient-btn {
     display: inline-flex;
     align-items: center;
@@ -57,7 +63,7 @@
     border-radius: 999px;
     color: #01a091;
     font-family: inherit;
-    font-size: 13px;
+    font-size: 16px;
     font-weight: 500;
     cursor: pointer;
     transition:
@@ -71,8 +77,53 @@
 }
 
 .ambient-icon {
-    font-size: 12px;
+    font-size: 18px;
     line-height: 1;
+}
+
+.ambient-dropdown {
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 0;
+    background: #faf7f4;
+    border: 1px solid rgba(1, 160, 145, 0.2);
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    z-index: 100;
+    min-width: 140px;
+    display: flex;
+    flex-direction: column;
+}
+
+.ambient-option {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 16px;
+    background: transparent;
+    border: none;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 400;
+    color: #1a1a1a;
+    cursor: pointer;
+    text-align: left;
+    transition: background-color 0.15s ease;
+}
+
+.ambient-option:hover {
+    background-color: rgba(1, 160, 145, 0.08);
+}
+
+.ambient-option-active {
+    font-weight: 600;
+    color: #01a091;
+}
+
+.ambient-check {
+    font-size: 11px;
+    color: #01a091;
 }
 
 .header-right {
@@ -903,6 +954,9 @@
 
     .description p {
         font-size: 11px;
+        /* petit test à voir si c'est pertinent */
+        /* text-align: justify; */
+        /* text-align: left; */
     }
 
     .explanation-text h2 {
@@ -912,10 +966,23 @@
 
     .explanation-text p {
         font-size: 11px;
+        text-align: justify;
     }
 
     .header {
         margin-bottom: 8px;
+    }
+
+    .sequence {
+        font-size: 14px;
+    }
+
+    .pairs-counter {
+        font-size: 10px;
+    }
+
+    .ambient-btn {
+        font-size: 14px;
     }
 
     .main-content {

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { soundManager } from '../../utils/soundManager';
 import styles from './GameRound.module.css';
@@ -84,12 +84,24 @@ export default function GameRound({ pairs, sequenceNumber, totalSequences, onCom
   const [dragOverSide, setDragOverSide] = useState(null);
   const [lierFading, setLierFading] = useState(false);
   const [ambientTrack, setAmbientTrack] = useState('oiseaux');
+  const [isAmbientOpen, setIsAmbientOpen] = useState(false);
+  const ambientRef = useRef(null);
 
-  const handleAmbientSwitch = () => {
-    const currentIndex = AMBIENT_TRACKS.findIndex(t => t.id === ambientTrack);
-    const next = AMBIENT_TRACKS[(currentIndex + 1) % AMBIENT_TRACKS.length];
-    setAmbientTrack(next.id);
-    soundManager.switchBgMusic(next.id);
+  useEffect(() => {
+    if (!isAmbientOpen) return;
+    const handleClickOutside = (e) => {
+      if (ambientRef.current && !ambientRef.current.contains(e.target)) {
+        setIsAmbientOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, [isAmbientOpen]);
+
+  const handleAmbientSelect = (trackId) => {
+    setAmbientTrack(trackId);
+    soundManager.switchBgMusic(trackId);
+    setIsAmbientOpen(false);
   };
 
   // Bloqué uniquement pendant les animations (pas pendant 'linked' où on peut re-sélectionner)
@@ -299,14 +311,42 @@ export default function GameRound({ pairs, sequenceNumber, totalSequences, onCom
             <img src="/assets/images/STK-logo.svg" alt="STK Architecture" className={styles['header-logo']} />
           </button>
         </div>
-        <button
-          className={styles['ambient-btn']}
-          onClick={handleAmbientSwitch}
-          aria-label={`Ambiance sonore : ${ambientTrack}. Cliquer pour changer.`}
-        >
-          <span className={styles['ambient-icon']} aria-hidden="true">♪</span>
-          {AMBIENT_TRACKS.find(t => t.id === ambientTrack)?.label}
-        </button>
+        <div className={styles['ambient-wrapper']} ref={ambientRef}>
+          <button
+            className={styles['ambient-btn']}
+            onClick={() => setIsAmbientOpen(v => !v)}
+            aria-haspopup="listbox"
+            aria-expanded={isAmbientOpen}
+          >
+            <span className={styles['ambient-icon']} aria-hidden="true">♪</span>
+            Ambiance
+          </button>
+          <AnimatePresence>
+            {isAmbientOpen && (
+              <motion.div
+                className={styles['ambient-dropdown']}
+                role="listbox"
+                initial={{ opacity: 0, y: -6, scale: 0.97 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                exit={{ opacity: 0, y: -6, scale: 0.97 }}
+                transition={{ duration: 0.15, ease: 'easeOut' }}
+              >
+                {AMBIENT_TRACKS.map(track => (
+                  <button
+                    key={track.id}
+                    role="option"
+                    aria-selected={ambientTrack === track.id}
+                    className={`${styles['ambient-option']}${ambientTrack === track.id ? ` ${styles['ambient-option-active']}` : ''}`}
+                    onClick={() => handleAmbientSelect(track.id)}
+                  >
+                    {ambientTrack === track.id && <span className={styles['ambient-check']} aria-hidden="true">✓</span>}
+                    {track.label}
+                  </button>
+                ))}
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
 
         <div className={styles['header-right']}>
           <div className={styles.sequence}>
