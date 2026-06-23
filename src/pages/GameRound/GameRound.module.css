@@ -849,6 +849,16 @@
         overflow-x: hidden;
     }
 
+    .card-placeholder-arrow {
+        font-size: 0;
+    }
+
+    .card-placeholder-arrow::after {
+        content: "↓";
+        font-size: 22px;
+        color: rgba(138, 126, 114, 0.55);
+    }
+
     /* Sur mobile, la card-wrapper est ~169px de large.
        Le hint-toggle (min-width: 172px) et la description (max-width: 320px)
        débordent car align-items: center leur permet de prendre leur taille max-content.
@@ -905,6 +915,10 @@
 
     .bottom-action-section {
         margin-top: 12px;
-        min-height: 90px;
+        min-height: 20px;
+    }
+
+        .continue-hint p {
+        text-align: left;
     }
 }
