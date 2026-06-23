@@ -364,39 +364,41 @@ export default function GameRound({ pairs, sequenceNumber, totalSequences, onCom
               )}
             </div>
 
-            <AnimatePresence mode="wait">
-              {canShowHintToggle && selectedLeftPair && (
-                <motion.button
-                  key="hint-toggle-left"
-                  type="button"
-                  className={styles['hint-toggle']}
-                  onClick={() => { setHintLeftOpen(v => !v); setHintLeftUsed(true); }}
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0, transition: { duration: 0 } }}
-                  transition={{ duration: 0.25 }}
-                >
-                  <span className={styles['hint-toggle-icon']} aria-hidden="true">?</span>
-                  {hintLeftOpen ? "Masquer l'indice" : "Voir l'indice"}
-                </motion.button>
-              )}
-            </AnimatePresence>
-            <AnimatePresence>
-              {canShowHintToggle && selectedLeftPair && hintLeftOpen && (
-                <motion.div
-                  initial={{ opacity: 0, height: 0 }}
-                  animate={{ opacity: 1, height: 'auto' }}
-                  exit={{ opacity: 0, height: 0, transition: { duration: 0.4, ease: [0.4, 0, 0.2, 1] } }}
-                  transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1], delay: 0.2 }}
-                  style={{ overflow: 'hidden' }}
-                >
-                  <div className={styles.description}>
-                    <h3>{selectedLeftPair.inspiration.title}</h3>
-                    <p>{selectedLeftPair.inspiration.shortDescription}</p>
-                  </div>
-                </motion.div>
-              )}
-            </AnimatePresence>
+            <div className={`${styles['hint-container-fixed']}${!canShowHintToggle ? ` ${styles['hint-container-collapsed']}` : ''}${linkStatus === 'linked' ? ` ${styles['hint-container-linked']}` : ''}`}>
+              <AnimatePresence mode="wait">
+                {canShowHintToggle && selectedLeftPair && (
+                  <motion.button
+                    key="hint-toggle-left"
+                    type="button"
+                    className={styles['hint-toggle']}
+                    onClick={() => { setHintLeftOpen(v => !v); setHintLeftUsed(true); }}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0, transition: { duration: 0 } }}
+                    transition={{ duration: 0.25 }}
+                  >
+                    <span className={styles['hint-toggle-icon']} aria-hidden="true">?</span>
+                    {hintLeftOpen ? "Masquer l'indice" : "Voir l'indice"}
+                  </motion.button>
+                )}
+              </AnimatePresence>
+              <AnimatePresence>
+                {canShowHintToggle && selectedLeftPair && hintLeftOpen && (
+                  <motion.div
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: 'auto' }}
+                    exit={{ opacity: 0, height: 0, transition: { duration: 0.4, ease: [0.4, 0, 0.2, 1] } }}
+                    transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1], delay: 0.2 }}
+                    style={{ overflow: 'hidden' }}
+                  >
+                    <div className={styles.description}>
+                      <h3>{selectedLeftPair.inspiration.title}</h3>
+                      <p>{selectedLeftPair.inspiration.shortDescription}</p>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
           </motion.div>
 
           {/* Carte Innovation */}
@@ -458,39 +460,41 @@ export default function GameRound({ pairs, sequenceNumber, totalSequences, onCom
               )}
             </div>
 
-            <AnimatePresence mode="wait">
-              {canShowHintToggle && selectedRightPair && (
-                <motion.button
-                  key="hint-toggle-right"
-                  type="button"
-                  className={styles['hint-toggle']}
-                  onClick={() => { setHintRightOpen(v => !v); setHintRightUsed(true); }}
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0, transition: { duration: 0 } }}
-                  transition={{ duration: 0.25 }}
-                >
-                  <span className={styles['hint-toggle-icon']} aria-hidden="true">?</span>
-                  {hintRightOpen ? "Masquer l'indice" : "Voir l'indice"}
-                </motion.button>
-              )}
-            </AnimatePresence>
-            <AnimatePresence>
-              {canShowHintToggle && selectedRightPair && hintRightOpen && (
-                <motion.div
-                  initial={{ opacity: 0, height: 0 }}
-                  animate={{ opacity: 1, height: 'auto' }}
-                  exit={{ opacity: 0, height: 0, transition: { duration: 0.4, ease: [0.4, 0, 0.2, 1] } }}
-                  transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1], delay: 0.2 }}
-                  style={{ overflow: 'hidden' }}
-                >
-                  <div className={styles.description}>
-                    <h3>{selectedRightPair.innovation.title}</h3>
-                    <p>{selectedRightPair.innovation.shortDescription}</p>
-                  </div>
-                </motion.div>
-              )}
-            </AnimatePresence>
+            <div className={`${styles['hint-container-fixed']}${!canShowHintToggle ? ` ${styles['hint-container-collapsed']}` : ''}${linkStatus === 'linked' ? ` ${styles['hint-container-linked']}` : ''}`}>
+              <AnimatePresence mode="wait">
+                {canShowHintToggle && selectedRightPair && (
+                  <motion.button
+                    key="hint-toggle-right"
+                    type="button"
+                    className={styles['hint-toggle']}
+                    onClick={() => { setHintRightOpen(v => !v); setHintRightUsed(true); }}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0, transition: { duration: 0 } }}
+                    transition={{ duration: 0.25 }}
+                  >
+                    <span className={styles['hint-toggle-icon']} aria-hidden="true">?</span>
+                    {hintRightOpen ? "Masquer l'indice" : "Voir l'indice"}
+                  </motion.button>
+                )}
+              </AnimatePresence>
+              <AnimatePresence>
+                {canShowHintToggle && selectedRightPair && hintRightOpen && (
+                  <motion.div
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: 'auto' }}
+                    exit={{ opacity: 0, height: 0, transition: { duration: 0.4, ease: [0.4, 0, 0.2, 1] } }}
+                    transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1], delay: 0.2 }}
+                    style={{ overflow: 'hidden' }}
+                  >
+                    <div className={styles.description}>
+                      <h3>{selectedRightPair.innovation.title}</h3>
+                      <p>{selectedRightPair.innovation.shortDescription}</p>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
           </motion.div>
 
             </div>
@@ -508,7 +512,7 @@ export default function GameRound({ pairs, sequenceNumber, totalSequences, onCom
                     className={`${styles['explanation-text']} ${styles['link-success']}`}
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: 10 }}
+                    exit={{ opacity: 0, y: -20 }}
                     transition={{ duration: 0.4, delay: 0.6 }}
                   >
                     <h2>{linkedPair.explanation.title}</h2>
@@ -594,8 +598,8 @@ export default function GameRound({ pairs, sequenceNumber, totalSequences, onCom
                       onClick={handleSuivant}
                       initial={{ opacity: 0, y: 8 }}
                       animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: -8 }}
-                      transition={{ duration: 0.35, ease: 'easeOut' }}
+                      exit={{ opacity: 0, y: -20 }}
+                      transition={{ duration: 0.4, ease: 'easeIn' }}
                     >
                       Suivant
                     </motion.button>

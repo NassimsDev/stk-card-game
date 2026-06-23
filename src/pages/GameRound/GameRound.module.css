@@ -381,6 +381,16 @@
     color: rgba(255, 255, 255, 0.85);
 }
 
+/* Espace réservé fixe pour le bouton "Voir l'indice" + description animée */
+.hint-container-fixed {
+    min-height: 160px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
 /* Textes de description sous la carte */
 .description {
     text-align: center;
@@ -398,7 +408,7 @@
 }
 
 .description p {
-    font-size: 14px;
+    font-size: 12px;
     line-height: 1.5;
     font-weight: 400;
     color: #333333;
@@ -453,8 +463,10 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: flex-start;
     margin-top: 16px;
     width: 100%;
+    min-height: 140px;
 }
 
 .explanation-text {
@@ -472,7 +484,7 @@
 }
 
 .explanation-text p {
-    font-size: 15px;
+    font-size: 13px;
     line-height: 1.6;
     color: #333333;
 }
@@ -562,7 +574,7 @@
     }
 
     .description p {
-        font-size: 13px;
+        font-size: 11px;
     }
 
     .hint-toggle {
@@ -574,6 +586,10 @@
         width: 16px;
         height: 16px;
         font-size: 11px;
+    }
+
+    .hint-container-fixed {
+        min-height: 145px;
     }
 
     .bottom-action-section {
@@ -590,7 +606,7 @@
     }
 
     .explanation-text p {
-        font-size: 14px;
+        font-size: 12px;
     }
 
     .continue-hint p {
@@ -644,7 +660,7 @@
     }
 
     .description p {
-        font-size: 12px;
+        font-size: 11px;
     }
 
     .hint-toggle {
@@ -658,6 +674,10 @@
         font-size: 10px;
     }
 
+    .hint-container-fixed {
+        min-height: 130px;
+    }
+
     .bottom-action-section {
         margin-top: 8px;
     }
@@ -668,7 +688,7 @@
     }
 
     .explanation-text p {
-        font-size: 13px;
+        font-size: 11px;
     }
 
     .continue-hint p {
@@ -705,6 +725,10 @@
         max-height: calc(100vh - 190px);
     }
 
+    .hint-container-fixed {
+        min-height: 115px;
+    }
+
     .bottom-action-section {
         margin-top: 4px;
     }
@@ -719,13 +743,19 @@
     }
 
     .explanation-text p {
-        font-size: 11px;
+        font-size: 10px;
     }
 
     .btn-lier {
         font-size: 14px;
         padding: 6px 18px;
     }
+}
+
+/* Collapse du hint-container quand les indices ne sont pas affichables (hors état idle).
+   Placé après les media queries de hauteur pour gagner en spécificité à source order égal. */
+.hint-container-collapsed {
+    min-height: 0;
 }
 
 /* Réduction progressive des cartes centrales selon la largeur du viewport */
@@ -834,7 +864,7 @@
     }
 
     .description p {
-        font-size: 12px;
+        font-size: 11px;
     }
 
     .explanation-text h2 {
@@ -843,7 +873,7 @@
     }
 
     .explanation-text p {
-        font-size: 13px;
+        font-size: 11px;
     }
 
     .header {
@@ -861,7 +891,20 @@
         display: none;
     }
 
+    .hint-container-fixed {
+        min-height: 130px;
+    }
+
+    .hint-container-collapsed {
+        min-height: 130px; /* pendant les animations courtes, stabilise les grilles */
+    }
+
+    .hint-container-linked {
+        min-height: 0; /* en état succès, on collapse pour laisser la place au texte */
+    }
+
     .bottom-action-section {
         margin-top: 12px;
+        min-height: 90px;
     }
 }
