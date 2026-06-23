@@ -5,6 +5,12 @@ import styles from './GameRound.module.css';
 
 const LINK_OFFSET = 18;
 
+const AMBIENT_TRACKS = [
+  { id: 'oiseaux', label: 'Oiseaux' },
+  { id: 'pluie',   label: 'Pluie'   },
+  { id: 'fleuve',  label: 'Fleuve'  },
+];
+
 function getGlowPath(type, id) {
   const num = String(id).padStart(2, '0');
   return `/assets/cards/glow/card-${type}-glow-${num}.webp`;
@@ -77,6 +83,14 @@ export default function GameRound({ pairs, sequenceNumber, totalSequences, onCom
   const [shuffledInnovation] = useState(() => shuffleArray(pairs));
   const [dragOverSide, setDragOverSide] = useState(null);
   const [lierFading, setLierFading] = useState(false);
+  const [ambientTrack, setAmbientTrack] = useState('oiseaux');
+
+  const handleAmbientSwitch = () => {
+    const currentIndex = AMBIENT_TRACKS.findIndex(t => t.id === ambientTrack);
+    const next = AMBIENT_TRACKS[(currentIndex + 1) % AMBIENT_TRACKS.length];
+    setAmbientTrack(next.id);
+    soundManager.switchBgMusic(next.id);
+  };
 
   // Bloqué uniquement pendant les animations (pas pendant 'linked' où on peut re-sélectionner)
   const isAnimating = ['linking', 'linking-wrong', 'shaking', 'separating'].includes(linkStatus);
@@ -285,6 +299,15 @@ export default function GameRound({ pairs, sequenceNumber, totalSequences, onCom
             <img src="/assets/images/STK-logo.svg" alt="STK Architecture" className={styles['header-logo']} />
           </button>
         </div>
+        <button
+          className={styles['ambient-btn']}
+          onClick={handleAmbientSwitch}
+          aria-label={`Ambiance sonore : ${ambientTrack}. Cliquer pour changer.`}
+        >
+          <span className={styles['ambient-icon']} aria-hidden="true">♪</span>
+          {AMBIENT_TRACKS.find(t => t.id === ambientTrack)?.label}
+        </button>
+
         <div className={styles['header-right']}>
           <div className={styles.sequence}>
             Séquence {sequenceNumber}/{totalSequences}

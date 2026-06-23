@@ -47,6 +47,34 @@
     border-radius: 4px;
 }
 
+.ambient-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px;
+    background: transparent;
+    border: 1px solid rgba(1, 160, 145, 0.35);
+    border-radius: 999px;
+    color: #01a091;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition:
+        background-color 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.ambient-btn:hover {
+    background-color: rgba(1, 160, 145, 0.08);
+    border-color: #01a091;
+}
+
+.ambient-icon {
+    font-size: 12px;
+    line-height: 1;
+}
+
 .header-right {
     display: flex;
     flex-direction: column;
