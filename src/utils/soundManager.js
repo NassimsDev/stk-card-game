@@ -3,6 +3,7 @@ class SoundManager {
     this.sounds = {};
     this.activeClones = {};
     this.isInitialized = false;
+    this.currentBgKey = 'bgMusic';
     // ↓ PERSISTANCE MUTE — commenter ce bloc pour désactiver en prod
     const saved = typeof window !== 'undefined' && localStorage.getItem('stk-muted');
     this.isMuted = saved === 'true';
@@ -21,12 +22,16 @@ class SoundManager {
       button: new Audio('/assets/sounds/son_bouton_1.wav'),
       cardFlip: new Audio('/assets/sounds/son_carte.wav'),
       correct: new Audio('/assets/sounds/son_reponse_valide.wav'),
-      bgMusic: new Audio('/assets/sounds/son_total.mp3')
+      bgMusic: new Audio('/assets/sounds/son_total.mp3'),
+      bgRain: new Audio('/assets/sounds/rain-loop.mp3'),
+      bgFleuve: new Audio('/assets/sounds/fleuve-loop.mp3'),
     };
 
-    // Configuration de la musique de fond
-    this.sounds.bgMusic.loop = true;
-    this.sounds.bgMusic.volume = 0.12; // Volume modéré (non agressif)
+    // Configuration des pistes de fond
+    ['bgMusic', 'bgRain', 'bgFleuve'].forEach(key => {
+      this.sounds[key].loop = true;
+      this.sounds[key].volume = 0.30;
+    });
 
     // Appliquer l'état initial du mute
     Object.values(this.sounds).forEach(sound => {
@@ -104,6 +109,23 @@ class SoundManager {
 
   getMuteState() {
     return this.isMuted;
+  }
+
+  switchBgMusic(trackName) {
+    if (!this.isInitialized) this.init();
+    const trackMap = { oiseaux: 'bgMusic', pluie: 'bgRain', fleuve: 'bgFleuve' };
+    const newKey = trackMap[trackName];
+    if (!newKey) return;
+
+    const current = this.sounds[this.currentBgKey];
+    if (current) { current.pause(); current.currentTime = 0; }
+
+    this.currentBgKey = newKey;
+    const next = this.sounds[newKey];
+    if (next) {
+      next.muted = this.isMuted;
+      next.play().catch(err => console.warn('Impossible de changer la piste de fond :', err));
+    }
   }
 }
 
