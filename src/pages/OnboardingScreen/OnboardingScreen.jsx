@@ -30,7 +30,9 @@ function OnboardingScreen({ onComplete }) {
     const [exiting, setExiting] = useState(false);
     const [videoReady, setVideoReady] = useState(false);
     const [placeholderUrl, setPlaceholderUrl] = useState(null);
+    const slide = SLIDES[index];
     const isLast = index === SLIDES.length - 1;
+    const touchStartX = useRef(null);
 
     useEffect(() => {
         setVideoReady(false);
@@ -60,8 +62,6 @@ function OnboardingScreen({ onComplete }) {
             vid.src = '';
         };
     }, [slide.video]);
-    const slide = SLIDES[index];
-    const touchStartX = useRef(null);
 
     const goNext = useCallback(() => {
         if (exiting) return;

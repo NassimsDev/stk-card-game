@@ -868,38 +868,103 @@
     }
 }
 
-/* Media query pour adapter la disposition sur les mobiles (2x2 grid layout) */
+/* ── Mobile Swiper carousel ─────────────────────────────────────────────────
+   Masqué sur desktop, affiché en remplacement des grilles gauche/droite sur mobile */
+.mobile-carousel {
+    display: none;
+    width: 100%;
+    flex-shrink: 0;
+}
+
+/* L'arc déborde des deux côtés — overflow: hidden masquerait les cartes extrêmes */
+.carousel-swiper {
+    width: 100%;
+    overflow: visible !important;
+    padding: 20px 0 14px !important;
+}
+
+.carousel-slide {
+    width: 108px !important;
+    height: 152px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    will-change: transform, opacity;
+    transition-property: transform;
+    transition-timing-function: cubic-bezier(0.08, 0.82, 0.17, 1);
+    transition-duration: 0ms;
+}
+
+.carousel-card {
+    width: 108px;
+    height: 152px;
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+    border: 2.5px solid transparent;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.22);
+    background: #ece7dc;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+}
+
+.carousel-card-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    pointer-events: none;
+    user-select: none;
+    -webkit-user-drag: none;
+}
+
+.carousel-card-selected {
+    border-color: #01a091;
+    box-shadow: 0 0 0 2px #01a091, 0 6px 18px rgba(0, 0, 0, 0.3);
+}
+
+.carousel-card-locked {
+    pointer-events: none;
+    opacity: 0.75;
+}
+
+
+/* Media query pour adapter la disposition sur les mobiles */
 @media (max-width: 768px) {
+    /* Passer cards-row en colonne simple : le centre occupe toute la largeur */
     .cards-row {
-        display: grid;
-        grid-template-areas:
-            "center center"
-            "leftgrid rightgrid";
-        grid-template-columns: 1fr 1fr;
-        /* 1fr pour le centre, auto pour les grilles :
-           les grilles restent ancrées en bas quelle que soit
-           la hauteur du centre (indices, bouton Lier). */
-        grid-template-rows: 1fr auto;
-        justify-items: center;
-        align-items: start;
-        gap: 24px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 0;
         width: 100%;
-        height: 100%; /* remplit main-content pour que 1fr soit calculable */
-        overflow: hidden;
-        padding-bottom: calc(16px + env(safe-area-inset-bottom, 24px)); /* espace + safe area iPhone */
-        box-sizing: border-box;
+        height: auto;
+        overflow: visible;
+        padding-bottom: 0;
     }
 
-    /* Attribution des zones de grille : centre en haut, grilles en bas */
-    .cards-row > :nth-child(1) { grid-area: leftgrid; }
-    .cards-row > :nth-child(2) { grid-area: center; }
-    .cards-row > :nth-child(3) { grid-area: rightgrid; }
+    /* Grilles gauche/droite cachées — remplacées par le carousel */
+    .grid-container {
+        display: none;
+    }
+
+    /* main-content devient colonne : center-column en haut, carousel en bas */
+    /* overflow: visible permet au carousel de dépasser sur les côtés ;
+       le container parent (overflow: hidden) empêche tout scroll. */
+    .main-content {
+        flex-direction: column;
+        overflow: visible;
+        padding-top: 12px;
+        gap: 0;
+    }
 
     .center-column {
         width: 100%;
-        min-height: 0;       /* autorise le shrink dans le 1fr */
-        overflow-y: auto;    /* le centre défile en interne si les indices grandissent */
-        overflow-x: hidden;
+        flex: 1;
+        min-height: 0;
+        overflow: visible;
     }
 
     .cards-pair {
@@ -918,16 +983,6 @@
         width: 100%;
     }
 
-    .grid-container {
-        margin-top: 0;
-        max-width: 100%;
-        /* 100dvh = hauteur visible réelle (exclut barre adresse + nav Safari).
-           On soustrait la place occupée par header + paire centrale + actions. */
-        max-height: clamp(140px, calc(100dvh - 500px), 210px);
-        overflow-y: auto;
-        overflow-x: hidden;
-    }
-
     .card-placeholder-arrow {
         font-size: 0;
     }
@@ -938,10 +993,6 @@
         color: rgba(138, 126, 114, 0.55);
     }
 
-    /* Sur mobile, la card-wrapper est ~169px de large.
-       Le hint-toggle (min-width: 172px) et la description (max-width: 320px)
-       débordent car align-items: center leur permet de prendre leur taille max-content.
-       On les contraint à 100% de leur conteneur. */
     .hint-toggle {
         width: 100%;
         min-width: 0;
@@ -954,9 +1005,6 @@
 
     .description p {
         font-size: 11px;
-        /* petit test à voir si c'est pertinent */
-        /* text-align: justify; */
-        /* text-align: left; */
     }
 
     .explanation-text h2 {
@@ -985,13 +1033,7 @@
         font-size: 14px;
     }
 
-    .main-content {
-        overflow-y: hidden; /* le scroll vertical est géré par les sous-éléments (centre, grilles) */
-        padding-top: 20px;
-    }
-
-    /* Masquer "Piste d'observation" et "Continuez..." sur mobile,
-       garder le lien biomimétique (.link-success) visible */
+    /* Masquer "Piste d'observation" et "Continuez..." sur mobile */
     .explanation-text:not(.link-success) {
         display: none;
     }
@@ -1001,11 +1043,11 @@
     }
 
     .hint-container-collapsed {
-        min-height: 130px; /* pendant les animations courtes, stabilise les grilles */
+        min-height: 130px;
     }
 
     .hint-container-linked {
-        min-height: 0; /* en état succès, on collapse pour laisser la place au texte */
+        min-height: 0;
     }
 
     .bottom-action-section {
@@ -1013,7 +1055,31 @@
         min-height: 20px;
     }
 
-        .continue-hint p {
+    .continue-hint p {
         text-align: left;
+    }
+
+    /* Afficher le carousel mobile — étendu à la largeur totale de l'écran
+       pour que les cartes en arc restent dans les limites du container parent
+       (qui a overflow: hidden) et ne soient pas rognées. */
+    .mobile-carousel {
+        display: block;
+        width: calc(100% + 40px);
+        margin-left: -20px;
+        overflow: visible;
+        padding-bottom: calc(12px + env(safe-area-inset-bottom, 16px));
+    }
+}
+
+/* Petits téléphones : réduire légèrement les cartes du carousel */
+@media (max-width: 375px) {
+    .carousel-slide {
+        width: 92px !important;
+        height: 130px;
+    }
+
+    .carousel-card {
+        width: 92px;
+        height: 130px;
     }
 }

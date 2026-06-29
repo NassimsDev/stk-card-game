@@ -161,7 +161,7 @@
 @media (max-width: 480px) {
     .maskWrapper {
         -webkit-mask-image: linear-gradient(to bottom, black 28%, transparent 48%);
-        mask-image: linear-gradient(to bottom, black 28%, transparent 48%);
+        mask-image: linear-gradient(to bottom, black 28%, transparent 53%);
     }
     .content {
         margin-top: min(55px, 10vh);

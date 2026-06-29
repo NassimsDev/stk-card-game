@@ -1,7 +1,38 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Swiper, SwiperSlide } from 'swiper/react';
 import { soundManager } from '../../utils/soundManager';
 import styles from './GameRound.module.css';
+import 'swiper/css';
+
+// ── Radial arc carousel ───────────────────────────────────────────────────────
+const ARC_RADIUS  = 700;   // px — pivot above each card (bigger = flatter arc)
+const ARC_ANGLE   = 6;     // degrees between adjacent cards (small = readable)
+const SLIDE_W     = 108;   // must match .carousel-slide width in CSS
+
+function applyArcTransforms(swiper) {
+    if (!swiper?.slides?.length || !swiper.width) return;
+    swiper.slides.forEach((slide) => {
+        // Negate progress so swiping left brings the left-side card to center
+        const progress = -(parseFloat(slide.progress) || 0);
+        const rad = (progress * ARC_ANGLE * Math.PI) / 180;
+        const arcX = ARC_RADIUS * Math.sin(rad);
+        const arcY = ARC_RADIUS * (1 - Math.cos(rad));
+        const naturalCenter = slide.offsetLeft + SLIDE_W / 2;
+        const tx = swiper.width / 2 + arcX - naturalCenter;
+        const rotate = progress * ARC_ANGLE;
+        slide.style.transform = `translateX(${tx}px) translateY(${arcY}px) rotate(${rotate}deg)`;
+        slide.style.opacity   = '1';
+        slide.style.zIndex    = String(100 - Math.abs(Math.round(progress)));
+    });
+}
+
+// Helpers pour gérer la durée de transition CSS sur chaque slide
+function setArcTransition(swiper, ms) {
+    swiper?.slides?.forEach((slide) => {
+        slide.style.transitionDuration = `${ms}ms`;
+    });
+}
 
 const LINK_OFFSET = 18;
 
@@ -87,6 +118,43 @@ export default function GameRound({ pairs, sequenceNumber, totalSequences, onCom
   const [isAmbientOpen, setIsAmbientOpen] = useState(false);
   const ambientRef = useRef(null);
 
+  // ── Mobile Swiper carousel ──────────────────────────────────────────────────
+  const swiperInstanceRef = useRef(null);
+
+  // Interleave inspiration + innovation cards for the carousel (computed once)
+  const [carouselCards] = useState(() => {
+    const cards = [];
+    const maxLen = Math.max(shuffledInspiration.length, shuffledInnovation.length);
+    for (let i = 0; i < maxLen; i++) {
+      if (i < shuffledInspiration.length) {
+        cards.push({
+          pairId: shuffledInspiration[i].id,
+          type: 'inspiration',
+          image: shuffledInspiration[i].inspiration.image,
+          alt: shuffledInspiration[i].inspiration.alt,
+        });
+      }
+      if (i < shuffledInnovation.length) {
+        cards.push({
+          pairId: shuffledInnovation[i].id,
+          type: 'innovation',
+          image: shuffledInnovation[i].innovation.image,
+          alt: shuffledInnovation[i].innovation.alt,
+        });
+      }
+    }
+    return cards;
+  });
+
+  // Refresh Swiper layout after matched cards are filtered out
+  useEffect(() => {
+    const t = setTimeout(() => {
+      swiperInstanceRef.current?.update();
+    }, 80);
+    return () => clearTimeout(t);
+  }, [matchedPairIds.length]);
+
+  // ── Ambient ────────────────────────────────────────────────────────────────
   useEffect(() => {
     if (!isAmbientOpen) return;
     const handleClickOutside = (e) => {
@@ -104,7 +172,7 @@ export default function GameRound({ pairs, sequenceNumber, totalSequences, onCom
     setIsAmbientOpen(false);
   };
 
-  // Bloqué uniquement pendant les animations (pas pendant 'linked' où on peut re-sélectionner)
+  // ── Game logic ─────────────────────────────────────────────────────────────
   const isAnimating = ['linking', 'linking-wrong', 'shaking', 'separating'].includes(linkStatus);
   const allFound = matchedPairIds.length === pairs.length;
 
@@ -117,20 +185,9 @@ export default function GameRound({ pairs, sequenceNumber, totalSequences, onCom
     && !matchedPairIds.includes(selectedLeft)
     && !matchedPairIds.includes(selectedRight);
 
-  // Réinitialise l'état de fondu quand le bouton redevient visible
   useEffect(() => {
     if (showLierButton) setLierFading(false);
   }, [showLierButton]);
-
-  const handleLier = () => {
-    soundManager.play('button');
-    if (isAnimating || linkStatus !== 'idle') return;
-    if (selectedLeft === selectedRight) {
-      setLinkStatus('linking');
-    } else {
-      setLinkStatus('linking-wrong');
-    }
-  };
 
   const handleLierClick = () => {
     if (isAnimating || linkStatus !== 'idle' || lierFading) return;
@@ -236,6 +293,7 @@ export default function GameRound({ pairs, sequenceNumber, totalSequences, onCom
     },
   });
 
+  // ── Renderers ──────────────────────────────────────────────────────────────
   const renderLeftGrid = () => shuffledInspiration.map((pair) => {
     const isSelected = selectedLeft === pair.id;
     const isMatched = matchedPairIds.includes(pair.id);
@@ -291,6 +349,20 @@ export default function GameRound({ pairs, sequenceNumber, totalSequences, onCom
       </div>
     );
   });
+
+  // ── Mobile carousel visible cards (exclude matched pairs) ─────────────────
+  const visibleCarouselCards = carouselCards.filter(c => !matchedPairIds.includes(c.pairId));
+
+  // Repeat the deck 5× so the carousel feels infinite without Swiper's loop
+  // (loop + virtualTranslate don't work together — the wrapper never moves in DOM)
+  const CAROUSEL_REPEAT = 5;
+  const repeatedCarouselCards = useMemo(() => {
+    if (visibleCarouselCards.length === 0) return [];
+    const out = [];
+    for (let i = 0; i < CAROUSEL_REPEAT; i++) out.push(...visibleCarouselCards);
+    return out;
+  }, [visibleCarouselCards]);
+  const carouselInitialSlide = Math.floor(CAROUSEL_REPEAT / 2) * visibleCarouselCards.length;
 
   return (
     <motion.div
@@ -360,7 +432,7 @@ export default function GameRound({ pairs, sequenceNumber, totalSequences, onCom
 
       <main className={styles['main-content']}>
         <div className={styles['cards-row']}>
-          {/* Grille gauche */}
+          {/* Grille gauche — masquée sur mobile, remplacée par le carousel */}
           <div className={styles['grid-container']}>{renderLeftGrid()}</div>
 
           {/* Colonne centrale : cartes + actions */}
@@ -406,7 +478,6 @@ export default function GameRound({ pairs, sequenceNumber, totalSequences, onCom
                 )}
               </AnimatePresence>
 
-              {/* Glow inspiration lors d'un lien réussi */}
               {selectedLeftPair && (
                 <motion.img
                   src={getGlowPath('inspiration', selectedLeftPair.id)}
@@ -502,7 +573,6 @@ export default function GameRound({ pairs, sequenceNumber, totalSequences, onCom
                 )}
               </AnimatePresence>
 
-              {/* Glow innovation lors d'un lien réussi */}
               {selectedRightPair && (
                 <motion.img
                   src={getGlowPath('innovation', selectedRightPair.id)}
@@ -568,7 +638,6 @@ export default function GameRound({ pairs, sequenceNumber, totalSequences, onCom
               transition={{ layout: { duration: 0.4, ease: [0.4, 0, 0.2, 1] } }}
               className={styles['bottom-action-section']}
             >
-              {/* Succès : Le lien biomimétique */}
               <AnimatePresence>
                 {linkStatus === 'linked' && linkedPair && (
                   <motion.div
@@ -584,7 +653,6 @@ export default function GameRound({ pairs, sequenceNumber, totalSequences, onCom
                 )}
               </AnimatePresence>
 
-              {/* Erreur : Piste d'observation */}
               <AnimatePresence>
                 {linkStatus === 'idle' && wrongAttempt && (
                   <motion.div
@@ -600,7 +668,6 @@ export default function GameRound({ pairs, sequenceNumber, totalSequences, onCom
                 )}
               </AnimatePresence>
 
-              {/* Encouragement entre deux paires */}
               <AnimatePresence>
                 {linkStatus === 'idle' && !wrongAttempt
                   && !hintLeftUsed && !hintRightUsed
@@ -618,7 +685,6 @@ export default function GameRound({ pairs, sequenceNumber, totalSequences, onCom
                 )}
               </AnimatePresence>
 
-              {/* Bouton contextuel */}
               <motion.div
                 layout
                 transition={{ layout: { duration: 0.4, ease: [0.4, 0, 0.2, 1] } }}
@@ -672,8 +738,75 @@ export default function GameRound({ pairs, sequenceNumber, totalSequences, onCom
             </motion.div>
           </div>
 
-          {/* Grille droite */}
+          {/* Grille droite — masquée sur mobile, remplacée par le carousel */}
           <div className={styles['grid-container']}>{renderRightGrid()}</div>
+        </div>
+
+        {/* ── Mobile Swiper carousel ── hidden on desktop via CSS ─────────────── */}
+        <div className={styles['mobile-carousel']}>
+          <Swiper
+            onSwiper={(s) => { swiperInstanceRef.current = s; }}
+            virtualTranslate
+            watchSlidesProgress
+            centeredSlides
+            slidesPerView="auto"
+            speed={550}
+            shortSwipes
+            longSwipesRatio={0.2}
+            resistance
+            resistanceRatio={0.55}
+            initialSlide={carouselInitialSlide}
+            onSwiper={(s) => {
+              swiperInstanceRef.current = s;
+              requestAnimationFrame(() => applyArcTransforms(s));
+            }}
+            onSetTranslate={applyArcTransforms}
+            onResize={applyArcTransforms}
+            onSetTransition={(s, duration) => {
+              setArcTransition(s, duration);
+            }}
+            onTouchStart={(s) => {
+              setArcTransition(s, 0);
+            }}
+            modules={[]}
+            key={`carousel-${visibleCarouselCards.length}`}
+            className={styles['carousel-swiper']}
+          >
+            {repeatedCarouselCards.map((card, idx) => {
+              const isSelectedInsp = card.type === 'inspiration' && selectedLeft === card.pairId;
+              const isSelectedInnov = card.type === 'innovation' && selectedRight === card.pairId;
+              const isSelected = isSelectedInsp || isSelectedInnov;
+
+              return (
+                <SwiperSlide
+                  key={`${card.type}-${card.pairId}-${idx}`}
+                  className={styles['carousel-slide']}
+                >
+                  <motion.div
+                    className={[
+                      styles['carousel-card'],
+                      isSelected ? styles['carousel-card-selected'] : '',
+                      isAnimating ? styles['carousel-card-locked'] : '',
+                    ].filter(Boolean).join(' ')}
+                    onClick={() => {
+                      if (isAnimating) return;
+                      if (card.type === 'inspiration') handleSelectLeft(card.pairId);
+                      else handleSelectRight(card.pairId);
+                    }}
+                    animate={isSelected ? { y: -6 } : { y: 0 }}
+                    transition={{ duration: 0.18 }}
+                  >
+                    <img
+                      src={card.image}
+                      alt={card.alt}
+                      className={styles['carousel-card-img']}
+                      draggable={false}
+                    />
+                  </motion.div>
+                </SwiperSlide>
+              );
+            })}
+          </Swiper>
         </div>
       </main>
     </motion.div>
