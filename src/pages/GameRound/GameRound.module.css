@@ -999,12 +999,13 @@
     }
 
     .description h3 {
-        font-size: 14px;
-        margin-bottom: 6px;
+        /* font-size: 14px; */
+        font-size: 13px;
+        margin-bottom: 4px;
     }
 
     .description p {
-        font-size: 11px;
+        font-size: 10px;
     }
 
     .explanation-text h2 {
