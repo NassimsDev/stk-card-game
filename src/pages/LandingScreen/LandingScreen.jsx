@@ -84,13 +84,15 @@ function LandingScreen({ onStart }) {
     const vpW = typeof window !== 'undefined' ? window.innerWidth  : CANVAS_W;
     const vpH = typeof window !== 'undefined' ? window.innerHeight : CANVAS_H;
 
-    const canvasW    = CANVAS_W;
-    const canvasH    = CANVAS_H;
-    const activeCards = CARDS;
+    const canvasW = CANVAS_W;
+    const canvasH = CANVAS_H;
+    const scale   = Math.min(1, vpW / canvasW, vpH / canvasH);
+    const cx      = vpW / 2;
+    const cy      = vpH / 2;
 
-    const scale = Math.min(1, vpW / canvasW, vpH / canvasH);
-    const cx = vpW / 2;
-    const cy = vpH / 2;
+    // Only render cards that are above the gradient-mask cutoff (62% viewport height).
+    // Cards below this threshold are 100% transparent — no reason to load their images.
+    const activeCards = CARDS.filter(([, top]) => (top - canvasH / 2) * scale + cy < vpH * 0.62);
 
     return (
         <div className={styles.page}>
@@ -115,7 +117,6 @@ function LandingScreen({ onStart }) {
                                 delay:    i * 0.1,
                                 duration: 0.95,
                                 ease:     "easeOut",
-                                offset:   0.5,
                             }}
                         />
                     ))}

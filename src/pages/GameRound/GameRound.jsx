@@ -359,9 +359,11 @@ export default function GameRound({ pairs, sequenceNumber, totalSequences, onCom
   // ── Mobile carousel visible cards (exclude matched pairs) ─────────────────
   const visibleCarouselCards = carouselCards.filter(c => !matchedPairIds.includes(c.pairId));
 
-  // Repeat the deck 5× so the carousel feels infinite without Swiper's loop
-  // (loop + virtualTranslate don't work together — the wrapper never moves in DOM)
-  const CAROUSEL_REPEAT = 5;
+  // Repeat the deck 3× so the carousel feels infinite without Swiper's loop
+  // (loop + virtualTranslate don't work together — the wrapper never moves in DOM).
+  // When the user reaches the outer copy, onSlideChange silently re-centers to
+  // the middle copy — same illusion of infinite scroll with 40% fewer DOM nodes.
+  const CAROUSEL_REPEAT = 3;
   const repeatedCarouselCards = useMemo(() => {
     if (visibleCarouselCards.length === 0) return [];
     const out = [];
@@ -765,6 +767,15 @@ export default function GameRound({ pairs, sequenceNumber, totalSequences, onCom
               swiperInstanceRef.current = s;
               requestAnimationFrame(() => applyArcTransforms(s));
             }}
+            onSlideChange={(s) => {
+              // Re-center silently when the user reaches the first or last copy,
+              // so the middle copy is always reachable in both directions.
+              const len = visibleCarouselCards.length;
+              if (len === 0) return;
+              const idx = s.activeIndex;
+              if (idx < len)         s.slideTo(idx + len, 0, false);
+              else if (idx >= len * 2) s.slideTo(idx - len, 0, false);
+            }}
             onSetTranslate={applyArcTransforms}
             onResize={applyArcTransforms}
             onSetTransition={(s, duration) => {
@@ -779,7 +790,7 @@ export default function GameRound({ pairs, sequenceNumber, totalSequences, onCom
           >
             {repeatedCarouselCards.map((card, idx) => {
               // Compare by absolute idx (not pairId) so only the tapped copy
-              // gets the green border — not all 5 duplicates in the repeated deck.
+              // gets the green border — not all 3 duplicates in the repeated deck.
               const isSelected =
                 (card.type === 'inspiration' && idx === selectedCarouselLeftIdx) ||
                 (card.type === 'innovation'  && idx === selectedCarouselRightIdx);
