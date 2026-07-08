@@ -29,39 +29,13 @@ function OnboardingScreen({ onComplete }) {
     const [direction, setDirection] = useState(1); // 1 = avant, -1 = arrière
     const [exiting, setExiting] = useState(false);
     const [videoReady, setVideoReady] = useState(false);
-    const [placeholderUrl, setPlaceholderUrl] = useState(null);
     const slide = SLIDES[index];
     const isLast = index === SLIDES.length - 1;
     const touchStartX = useRef(null);
 
     useEffect(() => {
         setVideoReady(false);
-        setPlaceholderUrl(null);
-
-        const vid = document.createElement('video');
-        vid.src = slide.video;
-        vid.muted = true;
-        vid.preload = 'metadata';
-
-        const handleSeeked = () => {
-            try {
-                const canvas = document.createElement('canvas');
-                canvas.width = vid.videoWidth;
-                canvas.height = vid.videoHeight;
-                canvas.getContext('2d').drawImage(vid, 0, 0);
-                setPlaceholderUrl(canvas.toDataURL('image/jpeg', 0.85));
-            } catch (_) {}
-        };
-
-        vid.addEventListener('loadedmetadata', () => { vid.currentTime = 0.001; });
-        vid.addEventListener('seeked', handleSeeked);
-        vid.load();
-
-        return () => {
-            vid.removeEventListener('seeked', handleSeeked);
-            vid.src = '';
-        };
-    }, [slide.video]);
+    }, [index]);
 
     const goNext = useCallback(() => {
         if (exiting) return;
@@ -110,13 +84,8 @@ function OnboardingScreen({ onComplete }) {
                         transition={{ duration: 0.3, ease: "easeOut" }}
                     >
                         <div className={styles.videoWrap}>
-                            {placeholderUrl && (
-                                <img
-                                    className={`${styles.videoPlaceholder} ${styles.videoImg} ${videoReady ? styles.videoImgHidden : ''}`}
-                                    src={placeholderUrl}
-                                    alt=""
-                                    aria-hidden="true"
-                                />
+                            {!videoReady && (
+                                <div className={styles.spinner} aria-hidden="true" />
                             )}
                             <video
                                 className={styles.videoPlaceholder}
