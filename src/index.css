@@ -6,6 +6,10 @@
 @import '@fontsource/playfair-display/700.css';
 @import '@fontsource/playfair-display/700-italic.css';
 
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
 body {
   margin: 0;
   padding: 0;
