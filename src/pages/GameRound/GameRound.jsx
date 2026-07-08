@@ -120,6 +120,10 @@ export default function GameRound({ pairs, sequenceNumber, totalSequences, onCom
 
   // ── Mobile Swiper carousel ──────────────────────────────────────────────────
   const swiperInstanceRef = useRef(null);
+  // Track which absolute slide index was tapped, so only that copy shows the
+  // green border — not all 5 duplicates in the repeated deck.
+  const [selectedCarouselLeftIdx, setSelectedCarouselLeftIdx] = useState(null);
+  const [selectedCarouselRightIdx, setSelectedCarouselRightIdx] = useState(null);
 
   // Interleave inspiration + innovation cards for the carousel (computed once)
   const [carouselCards] = useState(() => {
@@ -235,6 +239,8 @@ export default function GameRound({ pairs, sequenceNumber, totalSequences, onCom
     setHintRightOpen(false);
     setHintLeftUsed(false);
     setHintRightUsed(false);
+    setSelectedCarouselLeftIdx(null);
+    setSelectedCarouselRightIdx(null);
   };
 
   const commitMatchIfLinked = () => {
@@ -773,9 +779,11 @@ export default function GameRound({ pairs, sequenceNumber, totalSequences, onCom
             className={styles['carousel-swiper']}
           >
             {repeatedCarouselCards.map((card, idx) => {
-              const isSelectedInsp = card.type === 'inspiration' && selectedLeft === card.pairId;
-              const isSelectedInnov = card.type === 'innovation' && selectedRight === card.pairId;
-              const isSelected = isSelectedInsp || isSelectedInnov;
+              // Compare by absolute idx (not pairId) so only the tapped copy
+              // gets the green border — not all 5 duplicates in the repeated deck.
+              const isSelected =
+                (card.type === 'inspiration' && idx === selectedCarouselLeftIdx) ||
+                (card.type === 'innovation'  && idx === selectedCarouselRightIdx);
 
               return (
                 <SwiperSlide
@@ -790,8 +798,13 @@ export default function GameRound({ pairs, sequenceNumber, totalSequences, onCom
                     ].filter(Boolean).join(' ')}
                     onClick={() => {
                       if (isAnimating) return;
-                      if (card.type === 'inspiration') handleSelectLeft(card.pairId);
-                      else handleSelectRight(card.pairId);
+                      if (card.type === 'inspiration') {
+                        handleSelectLeft(card.pairId);
+                        setSelectedCarouselLeftIdx(idx);
+                      } else {
+                        handleSelectRight(card.pairId);
+                        setSelectedCarouselRightIdx(idx);
+                      }
                     }}
                     animate={isSelected ? { y: -6 } : { y: 0 }}
                     transition={{ duration: 0.18 }}

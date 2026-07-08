@@ -80,54 +80,56 @@ const CARDS = [
 ];
 
 // ─── Canvas mobile (portrait 480×900) ─────────────────────────────────────────
-// Tracé plus courbé, moins large (~65 % de la largeur d'écran pour les rangées).
-// Les virages débordent volontairement vers les bords pour accentuer la courbure.
 const CANVAS_MOBILE_W = 480;
 const CANVAS_MOBILE_H = 900;
 
-// 4 cartes/rangée (100px gap horizontal), 3 cartes/virage (92px gap vertical → sans chevauchement)
+// Cartes plus petites sur mobile pour en voir davantage
+const WM = 50;
+const HM = 71;
+
+// 5 cartes/rangée (dont 1 rogné à gauche), 3 cartes/virage
 const CARDS_MOBILE = [
     // === RANGÉE 1 : gauche → droite ===
-    [30,  106, W, H, "base", 1],
-    [120, 80, W, H, "dark", 1],
-    [200, 104, W, H, "alt",  1],
-    [300, 82, W, H, "base", 1],
+    [-20,  90, WM, HM, "dark", 1],  // déborde légèrement hors écran à gauche
+    [30,  106, WM, HM, "base", 1],
+    [120,  80, WM, HM, "dark", 1],
+    [200, 104, WM, HM, "alt",  1],
+    [300,  82, WM, HM, "base", 1],
 
     // === VIRAGE DROIT ===
-    [386, 116, W, H, "dark", 1],
-    [422, 228, W, H, "alt",  1],
-    [400, 330, W, H, "base", 1],
+    [386, 116, WM, HM, "dark", 1],
+    [422, 228, WM, HM, "alt",  1],
+    [400, 330, WM, HM, "base", 1],
 
     // === RANGÉE 2 : droite → gauche ===
-    [330, 368, W, H, "dark", 1],
-    [240, 382, W, H, "alt",  1],
-    [140, 368, W, H, "base", 1],
-    [40,  380, W, H, "dark", 1],
+    [330, 368, WM, HM, "dark", 1],
+    [240, 382, WM, HM, "alt",  1],
+    [140, 368, WM, HM, "base", 1],
+    [40,  380, WM, HM, "dark", 1],
 
     // === VIRAGE GAUCHE ===
-    [28,  480, W, H, "alt",  1],
-    [8,   572, W, H, "base", 1],
-    [26,  664, W, H, "dark", 1],
+    [28,  480, WM, HM, "alt",  1],
+    [8,   572, WM, HM, "base", 1],
+    [26,  664, WM, HM, "dark", 1],
 
     // === RANGÉE 3 : gauche → droite (s'estompe avec le masque) ===
-    [60,  762, W, H, "alt",  1],
-    [160, 746, W, H, "base", 1],
-    [260, 768, W, H, "dark", 1],
-    [360, 748, W, H, "alt",  1],
+    [60,  762, WM, HM, "alt",  1],
+    [160, 746, WM, HM, "base", 1],
+    [260, 768, WM, HM, "dark", 1],
+    [360, 748, WM, HM, "alt",  1],
 ];
 
 function LandingScreen({ onStart }) {
     const vpW = typeof window !== 'undefined' ? window.innerWidth  : CANVAS_W;
     const vpH = typeof window !== 'undefined' ? window.innerHeight : CANVAS_H;
 
-    const isMobile   = vpW <= 768;
-    const canvasW    = isMobile ? CANVAS_MOBILE_W : CANVAS_W;
-    const canvasH    = isMobile ? CANVAS_MOBILE_H : CANVAS_H;
-    const activeCards = isMobile ? CARDS_MOBILE : CARDS;
+    const canvasW    = CANVAS_W;
+    const canvasH    = CANVAS_H;
+    const activeCards = CARDS;
 
     const scale = Math.min(1, vpW / canvasW, vpH / canvasH);
     const cx = vpW / 2;
-    const cy = vpH / 2 + (isMobile ? -40 : 0);
+    const cy = vpH / 2;
 
     return (
         <div className={styles.page}>
@@ -149,8 +151,8 @@ function LandingScreen({ onStart }) {
                             initial={{ opacity: 0, scale: 0.85 }}
                             animate={{ opacity: opacity ?? 1, scale: 1 }}
                             transition={{
-                                delay:    i * (isMobile ? 0.18 : 0.1),
-                                duration: isMobile ? 1.5 : 0.95,
+                                delay:    i * 0.1,
+                                duration: 0.95,
                                 ease:     "easeOut",
                                 offset:   0.5,
                             }}
