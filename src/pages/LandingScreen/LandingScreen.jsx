@@ -79,45 +79,6 @@ const CARDS = [
     [920, 670, W, H, "dark", 1],
 ];
 
-// ─── Canvas mobile (portrait 480×900) ─────────────────────────────────────────
-const CANVAS_MOBILE_W = 480;
-const CANVAS_MOBILE_H = 900;
-
-// Cartes plus petites sur mobile pour en voir davantage
-const WM = 50;
-const HM = 71;
-
-// 5 cartes/rangée (dont 1 rogné à gauche), 3 cartes/virage
-const CARDS_MOBILE = [
-    // === RANGÉE 1 : gauche → droite ===
-    [-20,  90, WM, HM, "dark", 1],  // déborde légèrement hors écran à gauche
-    [30,  106, WM, HM, "base", 1],
-    [120,  80, WM, HM, "dark", 1],
-    [200, 104, WM, HM, "alt",  1],
-    [300,  82, WM, HM, "base", 1],
-
-    // === VIRAGE DROIT ===
-    [386, 116, WM, HM, "dark", 1],
-    [422, 228, WM, HM, "alt",  1],
-    [400, 330, WM, HM, "base", 1],
-
-    // === RANGÉE 2 : droite → gauche ===
-    [330, 368, WM, HM, "dark", 1],
-    [240, 382, WM, HM, "alt",  1],
-    [140, 368, WM, HM, "base", 1],
-    [40,  380, WM, HM, "dark", 1],
-
-    // === VIRAGE GAUCHE ===
-    [28,  480, WM, HM, "alt",  1],
-    [8,   572, WM, HM, "base", 1],
-    [26,  664, WM, HM, "dark", 1],
-
-    // === RANGÉE 3 : gauche → droite (s'estompe avec le masque) ===
-    [60,  762, WM, HM, "alt",  1],
-    [160, 746, WM, HM, "base", 1],
-    [260, 768, WM, HM, "dark", 1],
-    [360, 748, WM, HM, "alt",  1],
-];
 
 function LandingScreen({ onStart }) {
     const vpW = typeof window !== 'undefined' ? window.innerWidth  : CANVAS_W;

@@ -926,7 +926,15 @@
 
 .carousel-card-locked {
     pointer-events: none;
-    opacity: 0.75;
+}
+
+.carousel-card-locked::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-color: rgba(180, 170, 160, 0.35);
+    border-radius: inherit;
+    pointer-events: none;
 }
 
 

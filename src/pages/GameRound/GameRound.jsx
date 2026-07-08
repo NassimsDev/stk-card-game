@@ -751,7 +751,6 @@ export default function GameRound({ pairs, sequenceNumber, totalSequences, onCom
         {/* ── Mobile Swiper carousel ── hidden on desktop via CSS ─────────────── */}
         <div className={styles['mobile-carousel']}>
           <Swiper
-            onSwiper={(s) => { swiperInstanceRef.current = s; }}
             virtualTranslate
             watchSlidesProgress
             centeredSlides

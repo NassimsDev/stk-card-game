@@ -6,19 +6,14 @@
 @import '@fontsource/playfair-display/700.css';
 @import '@fontsource/playfair-display/700-italic.css';
 
-:root {
-  --bg-color: #f4efeb;
-  --text-color: #1a1a1a;
-}
-
 body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   overflow: hidden;
-  background-color: var(--bg-color);
-  color: var(--text-color);
-  font-family: 'Geist Sans', system-ui, sans-serif;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
