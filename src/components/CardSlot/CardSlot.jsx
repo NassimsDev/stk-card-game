@@ -1,6 +1,6 @@
 import { motion, AnimatePresence } from 'framer-motion';
-import { getGlowPath } from './gameRound.constants';
-import styles from './GameRound.module.css';
+import { getGlowPath } from '../../pages/GameRound/gameRound.constants';
+import styles from './CardSlot.module.css';
 
 export default function CardSlot({
   side,

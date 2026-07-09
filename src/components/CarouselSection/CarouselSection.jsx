@@ -1,8 +1,8 @@
 import { useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { applyArcTransforms, setArcTransition, CAROUSEL_REPEAT } from './gameRound.constants';
-import styles from './GameRound.module.css';
+import { applyArcTransforms, setArcTransition, CAROUSEL_REPEAT } from '../../pages/GameRound/gameRound.constants';
+import styles from './CarouselSection.module.css';
 import 'swiper/css';
 
 export default function CarouselSection({

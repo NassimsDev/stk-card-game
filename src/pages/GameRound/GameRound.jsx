@@ -3,8 +3,9 @@ import { soundManager } from '../../utils/soundManager';
 import styles from './GameRound.module.css';
 import { useGameRound } from './useGameRound';
 import { AMBIENT_TRACKS, inspirationVariants, innovationVariants, getTransition } from './gameRound.constants';
-import CarouselSection from './CarouselSection';
-import CardSlot from './CardSlot';
+import CardGrid from '../../components/CardGrid/CardGrid';
+import CardSlot from '../../components/CardSlot/CardSlot';
+import CarouselSection from '../../components/CarouselSection/CarouselSection';
 
 export default function GameRound({ pairs, sequenceNumber, totalSequences, onComplete, onHome }) {
   const {
@@ -47,63 +48,6 @@ export default function GameRound({ pairs, sequenceNumber, totalSequences, onCom
   } = useGameRound({ pairs });
 
   const transition = getTransition(linkStatus);
-
-  // ── Desktop grids ───────────────────────────────────────────────────────────
-  const renderLeftGrid = () => shuffledInspiration.map((pair) => {
-    const isSelected = selectedLeft === pair.id;
-    const isMatched  = matchedPairIds.includes(pair.id);
-    return (
-      <div
-        key={`left-${pair.id}`}
-        className={`${styles['grid-square']}${isSelected ? ` ${styles.selected}` : ''}${(isAnimating || isMatched) ? ` ${styles.locked}` : ''}${isMatched ? ` ${styles.matched}` : ''}`}
-        onClick={() => handleSelectLeft(pair.id)}
-        draggable={!isAnimating && !isMatched}
-        onDragStart={(e) => {
-          e.dataTransfer.effectAllowed = 'move';
-          e.dataTransfer.setData('application/x-stk-card', `left:${pair.id}`);
-        }}
-        aria-label={`Sélectionner l'inspiration ${pair.inspiration.title}`}
-        role="button"
-        tabIndex={0}
-        onKeyDown={(event) => {
-          if (event.key === 'Enter' || event.key === ' ') {
-            event.preventDefault();
-            handleSelectLeft(pair.id);
-          }
-        }}
-      >
-        <img src={pair.inspiration.image} alt={pair.inspiration.alt} className={styles['grid-img']} />
-      </div>
-    );
-  });
-
-  const renderRightGrid = () => shuffledInnovation.map((pair) => {
-    const isSelected = selectedRight === pair.id;
-    const isMatched  = matchedPairIds.includes(pair.id);
-    return (
-      <div
-        key={`right-${pair.id}`}
-        className={`${styles['grid-square']}${isSelected ? ` ${styles.selected}` : ''}${(isAnimating || isMatched) ? ` ${styles.locked}` : ''}${isMatched ? ` ${styles.matched}` : ''}`}
-        onClick={() => handleSelectRight(pair.id)}
-        draggable={!isAnimating && !isMatched}
-        onDragStart={(e) => {
-          e.dataTransfer.effectAllowed = 'move';
-          e.dataTransfer.setData('application/x-stk-card', `right:${pair.id}`);
-        }}
-        aria-label={`Sélectionner l'innovation ${pair.innovation.title}`}
-        role="button"
-        tabIndex={0}
-        onKeyDown={(event) => {
-          if (event.key === 'Enter' || event.key === ' ') {
-            event.preventDefault();
-            handleSelectRight(pair.id);
-          }
-        }}
-      >
-        <img src={pair.innovation.image} alt={pair.innovation.alt} className={styles['grid-img']} />
-      </div>
-    );
-  });
 
   return (
     <motion.div
@@ -174,10 +118,17 @@ export default function GameRound({ pairs, sequenceNumber, totalSequences, onCom
 
       <main className={styles['main-content']}>
         <div className={styles['cards-row']}>
-          {/* Grille gauche — masquée sur mobile, remplacée par le carousel */}
-          <div className={styles['grid-container']}>{renderLeftGrid()}</div>
+          {/* Desktop grids — hidden on mobile, replaced by the carousel */}
+          <CardGrid
+            pairs={shuffledInspiration}
+            side="left"
+            selectedId={selectedLeft}
+            matchedPairIds={matchedPairIds}
+            isAnimating={isAnimating}
+            onSelect={handleSelectLeft}
+          />
 
-          {/* Colonne centrale : cartes + actions */}
+          {/* Center column: cards + actions */}
           <div className={styles['center-column']}>
             <div className={styles['cards-pair']}>
               <CardSlot
@@ -207,7 +158,6 @@ export default function GameRound({ pairs, sequenceNumber, totalSequences, onCom
               />
             </div>
 
-            {/* Section bas */}
             <motion.div
               layout
               transition={{ layout: { duration: 0.4, ease: [0.4, 0, 0.2, 1] } }}
@@ -313,11 +263,16 @@ export default function GameRound({ pairs, sequenceNumber, totalSequences, onCom
             </motion.div>
           </div>
 
-          {/* Grille droite — masquée sur mobile, remplacée par le carousel */}
-          <div className={styles['grid-container']}>{renderRightGrid()}</div>
+          <CardGrid
+            pairs={shuffledInnovation}
+            side="right"
+            selectedId={selectedRight}
+            matchedPairIds={matchedPairIds}
+            isAnimating={isAnimating}
+            onSelect={handleSelectRight}
+          />
         </div>
 
-        {/* ── Mobile Swiper carousel ── hidden on desktop via CSS ─────────────── */}
         <CarouselSection
           visibleCarouselCards={visibleCarouselCards}
           swiperInstanceRef={swiperInstanceRef}
