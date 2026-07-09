@@ -1,296 +1,53 @@
-import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { soundManager } from '../../utils/soundManager';
 import styles from './GameRound.module.css';
-
-const LINK_OFFSET = 18;
-
-const AMBIENT_TRACKS = [
-  { id: 'oiseaux', label: 'Oiseaux' },
-  { id: 'pluie',   label: 'Pluie'   },
-  { id: 'fleuve',  label: 'Fleuve'  },
-];
-
-function getGlowPath(type, id) {
-  const num = String(id).padStart(2, '0');
-  return `/assets/cards/glow/card-${type}-glow-${num}.webp`;
-}
-
-function shuffleArray(arr) {
-  const a = [...arr];
-  for (let i = a.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [a[i], a[j]] = [a[j], a[i]];
-  }
-  return a;
-}
-
-const inspirationVariants = {
-  idle: { x: 0 },
-  linking: { x: LINK_OFFSET },
-  linked: { x: LINK_OFFSET },
-  'linking-wrong': { x: LINK_OFFSET },
-  shaking: {
-    x: [
-      LINK_OFFSET,
-      LINK_OFFSET + 10, LINK_OFFSET - 10,
-      LINK_OFFSET + 6, LINK_OFFSET - 6,
-      LINK_OFFSET + 3, LINK_OFFSET - 3,
-      LINK_OFFSET,
-    ],
-  },
-  separating: { x: 0 },
-};
-
-const innovationVariants = {
-  idle: { x: 0 },
-  linking: { x: -LINK_OFFSET },
-  linked: { x: -LINK_OFFSET },
-  'linking-wrong': { x: -LINK_OFFSET },
-  shaking: {
-    x: [
-      -LINK_OFFSET,
-      -LINK_OFFSET - 10, -LINK_OFFSET + 10,
-      -LINK_OFFSET - 6, -LINK_OFFSET + 6,
-      -LINK_OFFSET - 3, -LINK_OFFSET + 3,
-      -LINK_OFFSET,
-    ],
-  },
-  separating: { x: 0 },
-};
-
-const linkTransition = { duration: 0.9, ease: [0.22, 1, 0.36, 1] };
-const shakeTransition = { duration: 0.55, ease: 'easeInOut' };
-const separateTransition = { duration: 0.7, ease: [0.4, 0, 0.6, 1] };
-
-function getTransition(linkStatus) {
-  if (linkStatus === 'shaking') return shakeTransition;
-  if (linkStatus === 'separating') return separateTransition;
-  return linkTransition;
-}
+import { useGameRound } from './useGameRound';
+import { AMBIENT_TRACKS, inspirationVariants, innovationVariants, getTransition } from './gameRound.constants';
+import CardGrid from '../../components/CardGrid/CardGrid';
+import CardSlot from '../../components/CardSlot/CardSlot';
+import CarouselSection from '../../components/CarouselSection/CarouselSection';
 
 export default function GameRound({ pairs, sequenceNumber, totalSequences, onComplete, onHome }) {
-  const [selectedLeft, setSelectedLeft] = useState(null);
-  const [selectedRight, setSelectedRight] = useState(null);
-  const [linkStatus, setLinkStatus] = useState('idle');
-  const [wrongAttempt, setWrongAttempt] = useState(false);
-  const [matchedPairIds, setMatchedPairIds] = useState([]);
-  const [hintLeftOpen, setHintLeftOpen] = useState(false);
-  const [hintRightOpen, setHintRightOpen] = useState(false);
-  const [hintLeftUsed, setHintLeftUsed] = useState(false);
-  const [hintRightUsed, setHintRightUsed] = useState(false);
-  const [shuffledInspiration] = useState(() => shuffleArray(pairs));
-  const [shuffledInnovation] = useState(() => shuffleArray(pairs));
-  const [dragOverSide, setDragOverSide] = useState(null);
-  const [lierFading, setLierFading] = useState(false);
-  const [ambientTrack, setAmbientTrack] = useState('oiseaux');
-  const [isAmbientOpen, setIsAmbientOpen] = useState(false);
-  const ambientRef = useRef(null);
+  const {
+    ambientRef,
+    swiperInstanceRef,
+    selectedLeft,
+    selectedRight,
+    linkStatus,
+    wrongAttempt,
+    matchedPairIds,
+    hintLeftOpen,
+    hintRightOpen,
+    hintLeftUsed,
+    hintRightUsed,
+    shuffledInspiration,
+    shuffledInnovation,
+    dragOverSide,
+    lierFading,
+    ambientTrack,
+    isAmbientOpen, setIsAmbientOpen,
+    selectedCarouselLeftIdx,
+    selectedCarouselRightIdx,
+    isAnimating,
+    allFound,
+    selectedLeftPair,
+    selectedRightPair,
+    linkedPair,
+    showLierButton,
+    canShowHintToggle,
+    visibleCarouselCards,
+    handleAmbientSelect,
+    handleLierClick,
+    handleAnimationComplete,
+    handleSuivant,
+    handleSelectLeft,
+    handleSelectRight,
+    toggleHintLeft,
+    toggleHintRight,
+    makeDropHandlers,
+  } = useGameRound({ pairs });
 
-  useEffect(() => {
-    if (!isAmbientOpen) return;
-    const handleClickOutside = (e) => {
-      if (ambientRef.current && !ambientRef.current.contains(e.target)) {
-        setIsAmbientOpen(false);
-      }
-    };
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, [isAmbientOpen]);
-
-  const handleAmbientSelect = (trackId) => {
-    setAmbientTrack(trackId);
-    soundManager.switchBgMusic(trackId);
-    setIsAmbientOpen(false);
-  };
-
-  // Bloqué uniquement pendant les animations (pas pendant 'linked' où on peut re-sélectionner)
-  const isAnimating = ['linking', 'linking-wrong', 'shaking', 'separating'].includes(linkStatus);
-  const allFound = matchedPairIds.length === pairs.length;
-
-  const selectedLeftPair = pairs.find(p => p.id === selectedLeft) ?? null;
-  const selectedRightPair = pairs.find(p => p.id === selectedRight) ?? null;
-  const linkedPair = pairs.find(p => p.id === selectedLeft) ?? null;
-
-  const showLierButton = !allFound && linkStatus === 'idle' && !wrongAttempt
-    && selectedLeft !== null && selectedRight !== null
-    && !matchedPairIds.includes(selectedLeft)
-    && !matchedPairIds.includes(selectedRight);
-
-  // Réinitialise l'état de fondu quand le bouton redevient visible
-  useEffect(() => {
-    if (showLierButton) setLierFading(false);
-  }, [showLierButton]);
-
-  const handleLier = () => {
-    soundManager.play('button');
-    if (isAnimating || linkStatus !== 'idle') return;
-    if (selectedLeft === selectedRight) {
-      setLinkStatus('linking');
-    } else {
-      setLinkStatus('linking-wrong');
-    }
-  };
-
-  const handleLierClick = () => {
-    if (isAnimating || linkStatus !== 'idle' || lierFading) return;
-    soundManager.play('button');
-    const isMatch = selectedLeft === selectedRight;
-    setLierFading(true);
-    setTimeout(() => {
-      setLinkStatus(isMatch ? 'linking' : 'linking-wrong');
-    }, 220);
-  };
-
-  const handleAnimationComplete = (definition) => {
-    if (definition === 'linking') {
-      soundManager.play('correct');
-      setLinkStatus('linked');
-    }
-    if (definition === 'linking-wrong') {
-      soundManager.play('wrong');
-      setLinkStatus('shaking');
-    }
-    if (definition === 'shaking') setLinkStatus('separating');
-    if (definition === 'separating') {
-      setLinkStatus('idle');
-      setWrongAttempt(true);
-    }
-  };
-
-  const handleSuivant = () => {
-    soundManager.play('button');
-    const newMatched = matchedPairIds.includes(selectedLeft)
-      ? matchedPairIds
-      : [...matchedPairIds, selectedLeft];
-    setMatchedPairIds(newMatched);
-
-    const remaining = pairs.filter(p => !newMatched.includes(p.id));
-    if (remaining.length > 0) {
-      const pick = () => remaining[Math.floor(Math.random() * remaining.length)].id;
-      setSelectedLeft(pick());
-      setSelectedRight(pick());
-    }
-
-    setLinkStatus('idle');
-    setWrongAttempt(false);
-    setHintLeftOpen(false);
-    setHintRightOpen(false);
-    setHintLeftUsed(false);
-    setHintRightUsed(false);
-  };
-
-  const commitMatchIfLinked = () => {
-    if (linkStatus === 'linked') {
-      setMatchedPairIds(prev => (prev.includes(selectedLeft) ? prev : [...prev, selectedLeft]));
-      setLinkStatus('idle');
-      setHintLeftOpen(false);
-      setHintRightOpen(false);
-      setHintLeftUsed(false);
-      setHintRightUsed(false);
-    }
-  };
-
-  const handleSelectLeft = (id) => {
-    if (isAnimating || matchedPairIds.includes(id)) return;
-    commitMatchIfLinked();
-    if (id !== selectedLeft) {
-      soundManager.play('cardFlip');
-      setHintLeftOpen(false);
-      setHintLeftUsed(false);
-    }
-    setSelectedLeft(id);
-    if (wrongAttempt) setWrongAttempt(false);
-  };
-
-  const handleSelectRight = (id) => {
-    if (isAnimating || matchedPairIds.includes(id)) return;
-    commitMatchIfLinked();
-    if (id !== selectedRight) {
-      soundManager.play('cardFlip');
-      setHintRightOpen(false);
-      setHintRightUsed(false);
-    }
-    setSelectedRight(id);
-    if (wrongAttempt) setWrongAttempt(false);
-  };
-
-  const canShowHintToggle = linkStatus === 'idle';
-
-  const makeDropHandlers = (side) => ({
-    onDragOver: (e) => {
-      e.preventDefault();
-      if (dragOverSide !== side) setDragOverSide(side);
-    },
-    onDragLeave: () => setDragOverSide(null),
-    onDrop: (e) => {
-      e.preventDefault();
-      const data = e.dataTransfer.getData('application/x-stk-card');
-      setDragOverSide(null);
-      const prefix = `${side}:`;
-      if (!data.startsWith(prefix)) return;
-      const id = Number(data.slice(prefix.length));
-      if (Number.isNaN(id)) return;
-      if (side === 'left') handleSelectLeft(id);
-      else handleSelectRight(id);
-    },
-  });
-
-  const renderLeftGrid = () => shuffledInspiration.map((pair) => {
-    const isSelected = selectedLeft === pair.id;
-    const isMatched = matchedPairIds.includes(pair.id);
-    return (
-      <div
-        key={`left-${pair.id}`}
-        className={`${styles['grid-square']}${isSelected ? ` ${styles.selected}` : ''}${(isAnimating || isMatched) ? ` ${styles.locked}` : ''}${isMatched ? ` ${styles.matched}` : ''}`}
-        onClick={() => handleSelectLeft(pair.id)}
-        draggable={!isAnimating && !isMatched}
-        onDragStart={(e) => {
-          e.dataTransfer.effectAllowed = 'move';
-          e.dataTransfer.setData('application/x-stk-card', `left:${pair.id}`);
-        }}
-        aria-label={`Sélectionner l'inspiration ${pair.inspiration.title}`}
-        role="button"
-        tabIndex={0}
-        onKeyDown={(event) => {
-          if (event.key === 'Enter' || event.key === ' ') {
-            event.preventDefault();
-            handleSelectLeft(pair.id);
-          }
-        }}
-      >
-        <img src={pair.inspiration.image} alt={pair.inspiration.alt} className={styles['grid-img']} />
-      </div>
-    );
-  });
-
-  const renderRightGrid = () => shuffledInnovation.map((pair) => {
-    const isSelected = selectedRight === pair.id;
-    const isMatched = matchedPairIds.includes(pair.id);
-    return (
-      <div
-        key={`right-${pair.id}`}
-        className={`${styles['grid-square']}${isSelected ? ` ${styles.selected}` : ''}${(isAnimating || isMatched) ? ` ${styles.locked}` : ''}${isMatched ? ` ${styles.matched}` : ''}`}
-        onClick={() => handleSelectRight(pair.id)}
-        draggable={!isAnimating && !isMatched}
-        onDragStart={(e) => {
-          e.dataTransfer.effectAllowed = 'move';
-          e.dataTransfer.setData('application/x-stk-card', `right:${pair.id}`);
-        }}
-        aria-label={`Sélectionner l'innovation ${pair.innovation.title}`}
-        role="button"
-        tabIndex={0}
-        onKeyDown={(event) => {
-          if (event.key === 'Enter' || event.key === ' ') {
-            event.preventDefault();
-            handleSelectRight(pair.id);
-          }
-        }}
-      >
-        <img src={pair.innovation.image} alt={pair.innovation.alt} className={styles['grid-img']} />
-      </div>
-    );
-  });
+  const transition = getTransition(linkStatus);
 
   return (
     <motion.div
@@ -311,6 +68,7 @@ export default function GameRound({ pairs, sequenceNumber, totalSequences, onCom
             <img src="/assets/images/STK-logo.svg" alt="STK Architecture" className={styles['header-logo']} />
           </button>
         </div>
+
         <div className={styles['ambient-wrapper']} ref={ambientRef}>
           <button
             className={styles['ambient-btn']}
@@ -360,215 +118,51 @@ export default function GameRound({ pairs, sequenceNumber, totalSequences, onCom
 
       <main className={styles['main-content']}>
         <div className={styles['cards-row']}>
-          {/* Grille gauche */}
-          <div className={styles['grid-container']}>{renderLeftGrid()}</div>
+          {/* Desktop grids — hidden on mobile, replaced by the carousel */}
+          <CardGrid
+            pairs={shuffledInspiration}
+            side="left"
+            selectedId={selectedLeft}
+            matchedPairIds={matchedPairIds}
+            isAnimating={isAnimating}
+            onSelect={handleSelectLeft}
+          />
 
-          {/* Colonne centrale : cartes + actions */}
+          {/* Center column: cards + actions */}
           <div className={styles['center-column']}>
             <div className={styles['cards-pair']}>
-
-          {/* Carte Inspiration */}
-          <motion.div
-            className={`${styles['card-wrapper']} ${styles['card-wrapper-left']}`}
-            variants={inspirationVariants}
-            animate={linkStatus}
-            transition={getTransition(linkStatus)}
-            onAnimationComplete={handleAnimationComplete}
-          >
-            <div
-              className={`${styles.card} ${styles['placeholder-card-left']}${dragOverSide === 'left' ? ` ${styles['drop-target-active']}` : ''}`}
-              {...makeDropHandlers('left')}
-            >
-              <AnimatePresence mode="wait">
-                {selectedLeftPair ? (
-                  <motion.img
-                    key={selectedLeftPair.id}
-                    src={selectedLeftPair.inspiration.image}
-                    alt={selectedLeftPair.inspiration.alt}
-                    className={styles['card-img']}
-                    initial={{ rotateY: 90 }}
-                    animate={{ rotateY: 0 }}
-                    exit={{ rotateY: -90 }}
-                    transition={{ duration: 0.25, ease: 'linear' }}
-                  />
-                ) : (
-                  <motion.div
-                    key="placeholder-left"
-                    className={styles['card-placeholder-state']}
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    <span className={styles['card-placeholder-arrow']}>←</span>
-                    <span className={styles['card-placeholder-text']}>Sélectionner une carte <br/> Inspiration </span>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-
-              {/* Glow inspiration lors d'un lien réussi */}
-              {selectedLeftPair && (
-                <motion.img
-                  src={getGlowPath('inspiration', selectedLeftPair.id)}
-                  alt=""
-                  className={styles['card-img']}
-                  style={{ zIndex: 1 }}
-                  initial={{ opacity: 0, scale: 1 }}
-                  animate={
-                    linkStatus === 'linked'
-                      ? { opacity: 1, scale: [1, 1.05, 1] }
-                      : { opacity: 0, scale: 1 }
-                  }
-                  transition={{
-                    opacity: { duration: 0.3 },
-                    scale: { duration: 0.6, ease: 'easeInOut' },
-                  }}
-                />
-              )}
+              <CardSlot
+                side="left"
+                pair={selectedLeftPair}
+                linkStatus={linkStatus}
+                dragOverSide={dragOverSide}
+                hintOpen={hintLeftOpen}
+                canShowHintToggle={canShowHintToggle}
+                dropHandlers={makeDropHandlers('left')}
+                onHintToggle={toggleHintLeft}
+                onAnimationComplete={handleAnimationComplete}
+                variants={inspirationVariants}
+                transition={transition}
+              />
+              <CardSlot
+                side="right"
+                pair={selectedRightPair}
+                linkStatus={linkStatus}
+                dragOverSide={dragOverSide}
+                hintOpen={hintRightOpen}
+                canShowHintToggle={canShowHintToggle}
+                dropHandlers={makeDropHandlers('right')}
+                onHintToggle={toggleHintRight}
+                variants={innovationVariants}
+                transition={transition}
+              />
             </div>
 
-            <div className={`${styles['hint-container-fixed']}${!canShowHintToggle ? ` ${styles['hint-container-collapsed']}` : ''}${linkStatus === 'linked' ? ` ${styles['hint-container-linked']}` : ''}`}>
-              <AnimatePresence mode="wait">
-                {canShowHintToggle && selectedLeftPair && (
-                  <motion.button
-                    key="hint-toggle-left"
-                    type="button"
-                    className={styles['hint-toggle']}
-                    onClick={() => { setHintLeftOpen(v => !v); setHintLeftUsed(true); }}
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0, transition: { duration: 0 } }}
-                    transition={{ duration: 0.25 }}
-                  >
-                    <span className={styles['hint-toggle-icon']} aria-hidden="true">?</span>
-                    {hintLeftOpen ? "Masquer l'indice" : "Voir l'indice"}
-                  </motion.button>
-                )}
-              </AnimatePresence>
-              <AnimatePresence>
-                {canShowHintToggle && selectedLeftPair && hintLeftOpen && (
-                  <motion.div
-                    initial={{ opacity: 0, height: 0 }}
-                    animate={{ opacity: 1, height: 'auto' }}
-                    exit={{ opacity: 0, height: 0, transition: { duration: 0.4, ease: [0.4, 0, 0.2, 1] } }}
-                    transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1], delay: 0.2 }}
-                    style={{ overflow: 'hidden' }}
-                  >
-                    <div className={styles.description}>
-                      <h3>{selectedLeftPair.inspiration.title}</h3>
-                      <p>{selectedLeftPair.inspiration.shortDescription}</p>
-                    </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </div>
-          </motion.div>
-
-          {/* Carte Innovation */}
-          <motion.div
-            className={`${styles['card-wrapper']} ${styles['card-wrapper-right']}`}
-            variants={innovationVariants}
-            animate={linkStatus}
-            transition={getTransition(linkStatus)}
-          >
-            <div
-              className={`${styles.card} ${styles['placeholder-card-right']}${dragOverSide === 'right' ? ` ${styles['drop-target-active']}` : ''}`}
-              {...makeDropHandlers('right')}
-            >
-              <AnimatePresence mode="wait">
-                {selectedRightPair ? (
-                  <motion.img
-                    key={selectedRightPair.id}
-                    src={selectedRightPair.innovation.image}
-                    alt={selectedRightPair.innovation.alt}
-                    className={styles['card-img']}
-                    initial={{ rotateY: 90 }}
-                    animate={{ rotateY: 0 }}
-                    exit={{ rotateY: -90 }}
-                    transition={{ duration: 0.25, ease: 'linear' }}
-                  />
-                ) : (
-                  <motion.div
-                    key="placeholder-right"
-                    className={styles['card-placeholder-state']}
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    <span className={styles['card-placeholder-arrow']}>→</span>
-                    <span className={styles['card-placeholder-text']}>Sélectionner une carte<br/> innovation </span>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-
-              {/* Glow innovation lors d'un lien réussi */}
-              {selectedRightPair && (
-                <motion.img
-                  src={getGlowPath('innovation', selectedRightPair.id)}
-                  alt=""
-                  className={styles['card-img']}
-                  style={{ zIndex: 1 }}
-                  initial={{ opacity: 0, scale: 1 }}
-                  animate={
-                    linkStatus === 'linked'
-                      ? { opacity: 1, scale: [1, 1.05, 1] }
-                      : { opacity: 0, scale: 1 }
-                  }
-                  transition={{
-                    opacity: { duration: 0.3 },
-                    scale: { duration: 0.6, ease: 'easeInOut' },
-                  }}
-                />
-              )}
-            </div>
-
-            <div className={`${styles['hint-container-fixed']}${!canShowHintToggle ? ` ${styles['hint-container-collapsed']}` : ''}${linkStatus === 'linked' ? ` ${styles['hint-container-linked']}` : ''}`}>
-              <AnimatePresence mode="wait">
-                {canShowHintToggle && selectedRightPair && (
-                  <motion.button
-                    key="hint-toggle-right"
-                    type="button"
-                    className={styles['hint-toggle']}
-                    onClick={() => { setHintRightOpen(v => !v); setHintRightUsed(true); }}
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0, transition: { duration: 0 } }}
-                    transition={{ duration: 0.25 }}
-                  >
-                    <span className={styles['hint-toggle-icon']} aria-hidden="true">?</span>
-                    {hintRightOpen ? "Masquer l'indice" : "Voir l'indice"}
-                  </motion.button>
-                )}
-              </AnimatePresence>
-              <AnimatePresence>
-                {canShowHintToggle && selectedRightPair && hintRightOpen && (
-                  <motion.div
-                    initial={{ opacity: 0, height: 0 }}
-                    animate={{ opacity: 1, height: 'auto' }}
-                    exit={{ opacity: 0, height: 0, transition: { duration: 0.4, ease: [0.4, 0, 0.2, 1] } }}
-                    transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1], delay: 0.2 }}
-                    style={{ overflow: 'hidden' }}
-                  >
-                    <div className={styles.description}>
-                      <h3>{selectedRightPair.innovation.title}</h3>
-                      <p>{selectedRightPair.innovation.shortDescription}</p>
-                    </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </div>
-          </motion.div>
-
-            </div>
-
-            {/* Section bas */}
             <motion.div
               layout
               transition={{ layout: { duration: 0.4, ease: [0.4, 0, 0.2, 1] } }}
               className={styles['bottom-action-section']}
             >
-              {/* Succès : Le lien biomimétique */}
               <AnimatePresence>
                 {linkStatus === 'linked' && linkedPair && (
                   <motion.div
@@ -584,7 +178,6 @@ export default function GameRound({ pairs, sequenceNumber, totalSequences, onCom
                 )}
               </AnimatePresence>
 
-              {/* Erreur : Piste d'observation */}
               <AnimatePresence>
                 {linkStatus === 'idle' && wrongAttempt && (
                   <motion.div
@@ -600,7 +193,6 @@ export default function GameRound({ pairs, sequenceNumber, totalSequences, onCom
                 )}
               </AnimatePresence>
 
-              {/* Encouragement entre deux paires */}
               <AnimatePresence>
                 {linkStatus === 'idle' && !wrongAttempt
                   && !hintLeftUsed && !hintRightUsed
@@ -618,7 +210,6 @@ export default function GameRound({ pairs, sequenceNumber, totalSequences, onCom
                 )}
               </AnimatePresence>
 
-              {/* Bouton contextuel */}
               <motion.div
                 layout
                 transition={{ layout: { duration: 0.4, ease: [0.4, 0, 0.2, 1] } }}
@@ -672,9 +263,27 @@ export default function GameRound({ pairs, sequenceNumber, totalSequences, onCom
             </motion.div>
           </div>
 
-          {/* Grille droite */}
-          <div className={styles['grid-container']}>{renderRightGrid()}</div>
+          <CardGrid
+            pairs={shuffledInnovation}
+            side="right"
+            selectedId={selectedRight}
+            matchedPairIds={matchedPairIds}
+            isAnimating={isAnimating}
+            onSelect={handleSelectRight}
+          />
         </div>
+
+        <CarouselSection
+          visibleCarouselCards={visibleCarouselCards}
+          swiperInstanceRef={swiperInstanceRef}
+          isAnimating={isAnimating}
+          selectedCarouselLeftIdx={selectedCarouselLeftIdx}
+          selectedCarouselRightIdx={selectedCarouselRightIdx}
+          onCardTap={(card, idx) => {
+            if (card.type === 'inspiration') handleSelectLeft(card.pairId, idx);
+            else                             handleSelectRight(card.pairId, idx);
+          }}
+        />
       </main>
     </motion.div>
   );

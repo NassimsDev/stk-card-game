@@ -1,4 +1,4 @@
-/* GameRound layout */
+/* ── GameRound layout ─────────────────────────────────────────────────────── */
 .game-round {
     display: flex;
     flex-direction: column;
@@ -6,7 +6,7 @@
     flex: 1;
 }
 
-/* Header */
+/* ── Header ──────────────────────────────────────────────────────────────── */
 .header {
     display: flex;
     justify-content: space-between;
@@ -47,6 +47,7 @@
     border-radius: 4px;
 }
 
+/* ── Ambient dropdown ────────────────────────────────────────────────────── */
 .ambient-wrapper {
     position: relative;
     display: flex;
@@ -145,13 +146,9 @@
     letter-spacing: 0.01em;
 }
 
-/* Main content */
+/* ── Main layout ─────────────────────────────────────────────────────────── */
 .main-content {
     flex: 1;
-    /* min-height: 0 permet à ce conteneur flex de réellement rétrécir et
-       de défiler (filet de sécurité) au lieu de laisser ses enfants se
-       chevaucher quand un indice plus long que prévu déborde de l'espace
-       réservé sur les petits écrans. */
     min-height: 0;
     overflow-y: auto;
     overflow-x: hidden;
@@ -183,361 +180,7 @@
     gap: 36px;
 }
 
-/* Grilles */
-.grid-container {
-    display: grid;
-    /* Colonnes flexibles : les 2 cartes se partagent toute la largeur
-       disponible sans jamais la dépasser (pas de scroll horizontal),
-       plafonnées par max-width pour ne pas grossir à l'infini. */
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 18px;
-    margin-top: 60px;
-    width: 100%;
-    max-width: 492px;
-    /* Zone et cartes agrandies x1.5 (158x222 -> 237x333), ratio conservé.
-       max-height suit (480 -> 720) et permet de défiler verticalement s'il
-       y a plus de cartes que de place visible */
-    max-height: calc(100vh - 320px);
-    overflow-y: auto;
-    overflow-x: hidden;
-    padding-right: 6px;
-    scrollbar-width: thin;
-    scrollbar-color: #01a091 transparent;
-}
-
-/* Scrollbar custom (WebKit), dans les couleurs de la page */
-.grid-container::-webkit-scrollbar {
-    width: 6px;
-}
-
-.grid-container::-webkit-scrollbar-track {
-    background: transparent;
-}
-
-.grid-container::-webkit-scrollbar-thumb {
-    background-color: rgba(1, 160, 145, 0.5);
-    border-radius: 999px;
-}
-
-.grid-container::-webkit-scrollbar-thumb:hover {
-    background-color: #01a091;
-}
-
-.grid-square {
-    /* Ratio largeur/hauteur fixe (237/333, le même qu'avant) : la carte
-       rétrécit avec la colonne au lieu de garder une taille fixe qui
-       dépasserait et provoquerait un scroll horizontal. */
-    width: 100%;
-    aspect-ratio: 237 / 333;
-    background-color: transparent;
-    border-radius: 6px;
-    cursor: pointer;
-    transition:
-        transform 0.25s ease,
-        box-shadow 0.25s ease,
-        border-color 0.2s ease;
-    box-sizing: border-box;
-    border: 3px solid transparent;
-    overflow: hidden;
-    position: relative;
-}
-
-.grid-square:hover {
-    transform: translateY(-3px) scale(1.03);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
-}
-
-.grid-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    transition:
-        transform 0.35s ease,
-        filter 0.25s ease;
-    transform-origin: center center;
-}
-
-.grid-square:hover .grid-img {
-    transform: scale(1.08);
-    filter: brightness(1.05);
-}
-
-/* Grilles désactivées pendant et après l'animation Lier */
-.grid-square.locked {
-    cursor: default;
-    pointer-events: none;
-    opacity: 0.7;
-}
-
-.grid-square.matched {
-    cursor: default;
-    pointer-events: none;
-    background-color: rgba(1, 160, 145, 0.08);
-}
-
-.grid-square.matched .grid-img {
-    filter: grayscale(100%) brightness(1.05);
-    opacity: 0.45;
-}
-
-.grid-square.matched::after {
-    content: "";
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    background-color: #01a091;
-    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'><polyline points='20 6 9 17 4 12'/></svg>");
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: 18px 18px;
-    transform: translate(-50%, -50%);
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
-    pointer-events: none;
-}
-
-/* Effet Selected (Contour vert) */
-.grid-square.selected {
-    border: 3px solid #01a091;
-}
-
-/* Drag & drop : curseur sur les minicards draggables */
-.grid-square[draggable="true"] {
-    cursor: grab;
-}
-
-.grid-square[draggable="true"]:active {
-    cursor: grabbing;
-}
-
-/* Feedback visuel sur la grande carte centrale survolée pendant un drag */
-.card.drop-target-active {
-    outline: 2px dashed #01a091;
-    outline-offset: 4px;
-}
-
-/* Texte d'encouragement entre deux paires */
-.continue-hint p {
-    font-size: 15px;
-    font-style: italic;
-    color: #5c5c5c;
-    text-align: center;
-}
-
-/* Cartes principales */
-.card-wrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 340px;
-    max-width: 340px;
-    min-width: 0;
-    position: relative;
-    will-change: transform;
-    perspective: 1000px;
-}
-
-/* La carte gauche passe au-dessus quand les cartes se rapprochent (pour overlap propre) */
-.card-wrapper-left {
-    z-index: 2;
-}
-
-.card-wrapper-right {
-    z-index: 1;
-}
-
-.card {
-    width: 100%;
-    /* Ratio fixe (340/480) : la carte rétrécit avec son wrapper sans jamais
-       se déformer, à toutes les tailles d'écran. */
-    aspect-ratio: 340 / 480;
-    border-radius: 12px;
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    overflow: hidden;
-    margin-bottom: 24px;
-}
-
-.placeholder-card-left {
-    background-color: #f4efeb;
-}
-
-.placeholder-card-right {
-    background-color: #f4efeb;
-}
-
-.card-img {
-    width: 101%;
-    height: 101%;
-    object-fit: cover;
-    position: absolute;
-    top: -0.5%;
-    left: -0.5%;
-    z-index: 0;
-    backface-visibility: hidden;
-}
-
-/* État vide des cartes centrales avant sélection */
-.card-placeholder-state {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 14px;
-    border: 2px dashed rgba(168, 157, 145, 0.45);
-    border-radius: 10px;
-    animation: placeholder-pulse 2.4s ease-in-out infinite;
-}
-
-@keyframes placeholder-pulse {
-    0%,
-    100% {
-        border-color: rgba(168, 157, 145, 0.25);
-    }
-
-    50% {
-        border-color: rgba(1, 160, 145, 0.45);
-    }
-}
-
-.card-placeholder-arrow {
-    font-size: 22px;
-    color: rgba(138, 126, 114, 0.55);
-    line-height: 1;
-    letter-spacing: 0;
-}
-
-.card-placeholder-text {
-    text-align: center;
-    font-family: inherit;
-    font-size: 13px;
-    font-weight: 400;
-    letter-spacing: 0.04em;
-    color: rgba(138, 126, 114, 0.65);
-    text-transform: uppercase;
-}
-
-.card-text {
-    padding: 30px;
-    text-align: center;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    z-index: 1;
-    /* Le gradient est ajouté en dessous pour fondre le texte avec l'image */
-}
-
-.placeholder-card-left .card-text {
-    background: linear-gradient(to top, #eae1d6 70%, transparent);
-    color: #1a1a1a;
-}
-
-.placeholder-card-right .card-text {
-    background: linear-gradient(to top, #6398c8 70%, transparent);
-    color: #ffffff;
-}
-
-.card-text h2 {
-    font-size: 24px;
-    font-weight: 700;
-    line-height: 1.1;
-    margin-bottom: 8px;
-}
-
-.card-text p {
-    font-size: 14px;
-    font-weight: 400;
-}
-
-.placeholder-card-right .card-text p {
-    color: rgba(255, 255, 255, 0.85);
-}
-
-/* Espace réservé fixe pour le bouton "Voir l'indice" + description animée */
-.hint-container-fixed {
-    min-height: 160px;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-}
-
-/* Textes de description sous la carte */
-.description {
-    text-align: center;
-    max-width: 320px;
-    width: 100%;
-}
-
-.description h3 {
-    font-size: 20px;
-    font-weight: 700;
-    line-height: 1.3;
-    min-height: calc(2 * 1.3em); /* 2 lignes fixes quelle que soit la longueur */
-    margin-bottom: 12px;
-    color: #1a1a1a;
-}
-
-.description p {
-    font-size: 12px;
-    line-height: 1.5;
-    font-weight: 400;
-    color: #333333;
-}
-
-/* Bouton pour afficher/masquer l'indice sous une carte sélectionnée */
-.hint-toggle {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    margin: 0 auto 12px;
-    padding: 8px 16px;
-    min-width: 172px; /* calé sur "Masquer l'indice" (le texte le plus long) */
-    background: transparent;
-    border: 1px solid rgba(1, 160, 145, 0.4);
-    border-radius: 999px;
-    color: #01a091;
-    font-family: inherit;
-    font-size: 13px;
-    font-weight: 500;
-    letter-spacing: 0.01em;
-    cursor: pointer;
-    transition:
-        background-color 0.2s ease,
-        border-color 0.2s ease,
-        color 0.2s ease;
-}
-
-.hint-toggle:hover {
-    background-color: rgba(1, 160, 145, 0.08);
-    border-color: #01a091;
-    color: #007c70;
-}
-
-.hint-toggle-icon {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 18px;
-    height: 18px;
-    border-radius: 50%;
-    background-color: #01a091;
-    color: #ffffff;
-    font-size: 12px;
-    font-weight: 700;
-    line-height: 1;
-}
-
-/* Explication du lien biomimétique */
+/* ── Bottom actions ──────────────────────────────────────────────────────── */
 .bottom-action-section {
     display: flex;
     flex-direction: column;
@@ -554,7 +197,6 @@
     margin-bottom: 24px;
 }
 
-
 .explanation-text h2 {
     font-size: 24px;
     font-weight: 700;
@@ -568,7 +210,13 @@
     color: #333333;
 }
 
-/* Bouton Central */
+.continue-hint p {
+    font-size: 15px;
+    font-style: italic;
+    color: #5c5c5c;
+    text-align: center;
+}
+
 .center-action {
     display: flex;
     justify-content: center;
@@ -595,7 +243,7 @@
     color: #f4efeb;
 }
 
-/* Optimisation pour les petits écrans (14 pouces, ordinateurs portables) */
+/* ── Height breakpoints ──────────────────────────────────────────────────── */
 @media (max-height: 950px) {
     .header {
         margin-bottom: 40px;
@@ -611,64 +259,6 @@
 
     .main-content {
         padding-top: 3vh;
-        /* Espacement fixe pour descendre le bloc sans centrage auto */
-    }
-
-    .card-wrapper {
-        max-width: 298px;
-    }
-
-    .card {
-        margin-bottom: 16px;
-    }
-
-    .card-placeholder-arrow {
-        font-size: 20px;
-    }
-
-    .card-placeholder-text {
-        font-size: 12px;
-    }
-
-    .card-text h2 {
-        font-size: 21px;
-    }
-
-    .card-text p {
-        font-size: 13px;
-    }
-
-    .grid-container {
-        margin-top: -20px;
-        max-width: 468px;
-        max-height: calc(100vh - 280px);
-    }
-
-    .grid-square {
-        border-radius: 10px;
-    }
-
-    .description h3 {
-        font-size: 18px;
-    }
-
-    .description p {
-        font-size: 11px;
-    }
-
-    .hint-toggle {
-        font-size: 12px;
-        padding: 7px 14px;
-    }
-
-    .hint-toggle-icon {
-        width: 16px;
-        height: 16px;
-        font-size: 11px;
-    }
-
-    .hint-container-fixed {
-        min-height: 145px;
     }
 
     .bottom-action-section {
@@ -698,7 +288,6 @@
     }
 }
 
-/* Media query pour les très petits écrans (ordinateurs portables 13 pouces, tablettes) */
 @media (max-height: 800px) {
     .sequence {
         font-size: 16px;
@@ -706,55 +295,6 @@
 
     .pairs-counter {
         font-size: 11px;
-    }
-
-    .card-wrapper {
-        max-width: 269px;
-    }
-
-    .card-placeholder-arrow {
-        font-size: 18px;
-    }
-
-    .card-placeholder-text {
-        font-size: 11px;
-    }
-
-    .card-text h2 {
-        font-size: 19px;
-    }
-
-    .card-text p {
-        font-size: 12px;
-    }
-
-    .grid-container {
-        margin-top: 20px;
-        max-width: 372px;
-        max-height: calc(100vh - 240px);
-    }
-
-    .description h3 {
-        font-size: 16px;
-    }
-
-    .description p {
-        font-size: 11px;
-    }
-
-    .hint-toggle {
-        font-size: 11px;
-        padding: 6px 12px;
-    }
-
-    .hint-toggle-icon {
-        width: 15px;
-        height: 15px;
-        font-size: 10px;
-    }
-
-    .hint-container-fixed {
-        min-height: 130px;
     }
 
     .bottom-action-section {
@@ -780,7 +320,6 @@
     }
 }
 
-/* Media query pour les très petits écrans en hauteur (hauteurs <= 650px) */
 @media (max-height: 650px) and (min-width: 769px) {
     .header {
         margin-bottom: 15px;
@@ -788,24 +327,6 @@
 
     .main-content {
         padding-top: 1vh;
-    }
-
-    .card-wrapper {
-        max-width: 190px;
-    }
-
-    .card {
-        margin-bottom: 8px;
-    }
-
-    .grid-container {
-        margin-top: 10px;
-        max-width: 300px;
-        max-height: calc(100vh - 190px);
-    }
-
-    .hint-container-fixed {
-        min-height: 115px;
     }
 
     .bottom-action-section {
@@ -831,142 +352,48 @@
     }
 }
 
-/* Collapse du hint-container quand les indices ne sont pas affichables (hors état idle).
-   Placé après les media queries de hauteur pour gagner en spécificité à source order égal. */
-.hint-container-collapsed {
-    min-height: 0;
-}
-
-/* Réduction progressive des cartes centrales selon la largeur du viewport */
-@media (max-width: 1400px) {
-    .card-wrapper {
-        width: 300px;
-    }
-}
-
-@media (max-width: 1200px) {
-    .card-wrapper {
-        width: 260px;
-    }
-}
-
+/* ── Width breakpoints ───────────────────────────────────────────────────── */
 @media (max-width: 1024px) {
-    .card-wrapper {
-        width: 210px;
-    }
     .cards-row {
         gap: 24px;
     }
 }
 
 @media (max-width: 860px) {
-    .card-wrapper {
-        width: 170px;
-    }
     .cards-row {
         gap: 18px;
     }
 }
 
-/* Media query pour adapter la disposition sur les mobiles (2x2 grid layout) */
 @media (max-width: 768px) {
     .cards-row {
-        display: grid;
-        grid-template-areas:
-            "center center"
-            "leftgrid rightgrid";
-        grid-template-columns: 1fr 1fr;
-        /* 1fr pour le centre, auto pour les grilles :
-           les grilles restent ancrées en bas quelle que soit
-           la hauteur du centre (indices, bouton Lier). */
-        grid-template-rows: 1fr auto;
-        justify-items: center;
-        align-items: start;
-        gap: 24px;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 0;
         width: 100%;
-        height: 100%; /* remplit main-content pour que 1fr soit calculable */
-        overflow: hidden;
-        padding-bottom: calc(16px + env(safe-area-inset-bottom, 24px)); /* espace + safe area iPhone */
-        box-sizing: border-box;
+        height: auto;
+        overflow: visible;
+        padding-bottom: 0;
     }
 
-    /* Attribution des zones de grille : centre en haut, grilles en bas */
-    .cards-row > :nth-child(1) { grid-area: leftgrid; }
-    .cards-row > :nth-child(2) { grid-area: center; }
-    .cards-row > :nth-child(3) { grid-area: rightgrid; }
+    .main-content {
+        flex-direction: column;
+        overflow: visible;
+        padding-top: 12px;
+        gap: 0;
+    }
 
     .center-column {
         width: 100%;
-        min-height: 0;       /* autorise le shrink dans le 1fr */
-        overflow-y: auto;    /* le centre défile en interne si les indices grandissent */
-        overflow-x: hidden;
+        flex: 1;
+        min-height: 0;
+        overflow: visible;
     }
 
     .cards-pair {
         width: 100%;
         justify-content: center;
-    }
-
-    .card-wrapper {
-        flex: 1;
-        width: auto;
-        max-width: 280px;
-    }
-
-    .card {
-        margin-bottom: 12px;
-        width: 100%;
-    }
-
-    .grid-container {
-        margin-top: 0;
-        max-width: 100%;
-        /* 100dvh = hauteur visible réelle (exclut barre adresse + nav Safari).
-           On soustrait la place occupée par header + paire centrale + actions. */
-        max-height: clamp(140px, calc(100dvh - 500px), 210px);
-        overflow-y: auto;
-        overflow-x: hidden;
-    }
-
-    .card-placeholder-arrow {
-        font-size: 0;
-    }
-
-    .card-placeholder-arrow::after {
-        content: "↓";
-        font-size: 22px;
-        color: rgba(138, 126, 114, 0.55);
-    }
-
-    /* Sur mobile, la card-wrapper est ~169px de large.
-       Le hint-toggle (min-width: 172px) et la description (max-width: 320px)
-       débordent car align-items: center leur permet de prendre leur taille max-content.
-       On les contraint à 100% de leur conteneur. */
-    .hint-toggle {
-        width: 100%;
-        min-width: 0;
-    }
-
-    .description h3 {
-        font-size: 14px;
-        margin-bottom: 6px;
-    }
-
-    .description p {
-        font-size: 11px;
-        /* petit test à voir si c'est pertinent */
-        /* text-align: justify; */
-        /* text-align: left; */
-    }
-
-    .explanation-text h2 {
-        font-size: 16px;
-        margin-bottom: 8px;
-    }
-
-    .explanation-text p {
-        font-size: 11px;
-        text-align: justify;
     }
 
     .header {
@@ -985,27 +412,19 @@
         font-size: 14px;
     }
 
-    .main-content {
-        overflow-y: hidden; /* le scroll vertical est géré par les sous-éléments (centre, grilles) */
-        padding-top: 20px;
-    }
-
-    /* Masquer "Piste d'observation" et "Continuez..." sur mobile,
-       garder le lien biomimétique (.link-success) visible */
+    /* Hide "Piste d'observation" and "Continuez…" on mobile — only show link success */
     .explanation-text:not(.link-success) {
         display: none;
     }
 
-    .hint-container-fixed {
-        min-height: 130px;
+    .explanation-text h2 {
+        font-size: 16px;
+        margin-bottom: 8px;
     }
 
-    .hint-container-collapsed {
-        min-height: 130px; /* pendant les animations courtes, stabilise les grilles */
-    }
-
-    .hint-container-linked {
-        min-height: 0; /* en état succès, on collapse pour laisser la place au texte */
+    .explanation-text p {
+        font-size: 11px;
+        text-align: justify;
     }
 
     .bottom-action-section {
@@ -1013,7 +432,7 @@
         min-height: 20px;
     }
 
-        .continue-hint p {
+    .continue-hint p {
         text-align: left;
     }
 }

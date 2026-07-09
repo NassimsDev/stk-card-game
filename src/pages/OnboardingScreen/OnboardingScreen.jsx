@@ -1,4 +1,4 @@
-import { useState, useCallback, useRef } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Button from "../../components/Button/Button.jsx";
 import styles from "./OnboardingScreen.module.css";
@@ -28,9 +28,14 @@ function OnboardingScreen({ onComplete }) {
     const [index, setIndex] = useState(0);
     const [direction, setDirection] = useState(1); // 1 = avant, -1 = arrière
     const [exiting, setExiting] = useState(false);
-    const isLast = index === SLIDES.length - 1;
+    const [videoReady, setVideoReady] = useState(false);
     const slide = SLIDES[index];
+    const isLast = index === SLIDES.length - 1;
     const touchStartX = useRef(null);
+
+    useEffect(() => {
+        setVideoReady(false);
+    }, [index]);
 
     const goNext = useCallback(() => {
         if (exiting) return;
@@ -79,6 +84,9 @@ function OnboardingScreen({ onComplete }) {
                         transition={{ duration: 0.3, ease: "easeOut" }}
                     >
                         <div className={styles.videoWrap}>
+                            {!videoReady && (
+                                <div className={styles.spinner} aria-hidden="true" />
+                            )}
                             <video
                                 className={styles.videoPlaceholder}
                                 src={slide.video}
@@ -86,6 +94,7 @@ function OnboardingScreen({ onComplete }) {
                                 muted
                                 loop
                                 playsInline
+                                onCanPlay={() => setVideoReady(true)}
                             />
                         </div>
 

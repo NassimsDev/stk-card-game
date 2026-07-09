@@ -1,5 +1,4 @@
 import '@fontsource/playfair-display';
-import '@fontsource/dm-serif-display';
 import './index.css';
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';

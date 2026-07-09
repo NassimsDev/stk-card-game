@@ -1,5 +1,5 @@
 :root {
-  --color-bg: #f1eee7;
+  --color-bg: #f4efeb;
   --color-text: #1a1a1a;
   --color-text-muted: #5c5c5c;
   --color-card-bg: #ece7dc;
@@ -9,7 +9,7 @@
   --color-mini-selected: #4f6750;
   --color-border: #1a1a1a;
 
-  --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-sans: "Geist Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
   --font-serif: "Fraunces", Georgia, "Times New Roman", serif;
 
   --radius-pill: 999px;

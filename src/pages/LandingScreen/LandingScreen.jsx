@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import Button from "../../components/Button/Button.jsx";
 import { soundManager } from "../../utils/soundManager";
 import styles from "./LandingScreen.module.css";
+
 function shuffle(arr) {
     const a = [...arr];
     for (let i = a.length - 1; i > 0; i--) {
@@ -12,16 +13,17 @@ function shuffle(arr) {
 }
 
 const _inspirations = shuffle(Array.from({ length: 21 }, (_, i) => `/assets/cards/inspiration/card-inspiration-${String(i + 1).padStart(2, "0")}.webp`));
-const _innovations = shuffle(Array.from({ length: 21 }, (_, i) => `/assets/cards/innovation/card-innovation-${String(i + 1).padStart(2, "0")}.webp`));
+const _innovations  = shuffle(Array.from({ length: 21 }, (_, i) => `/assets/cards/innovation/card-innovation-${String(i + 1).padStart(2, "0")}.webp`));
 const CARD_IMAGES = _inspirations.flatMap((insp, i) => [insp, _innovations[i]]);
 
-// Dimensions du canvas de référence sur lequel les positions ont été dessinées
+// Format : [left, top, width, height, tone, opacity]
+const W = 63;
+const H = 90;
+
+// ─── Canvas desktop (paysage 1280×800) ────────────────────────────────────────
 const CANVAS_W = 1280;
 const CANVAS_H = 800;
 
-// Format : [left, top, width, height, tone, opacity] — ratio 7:10 (images 350×500)
-const W = 63;
-const H = 90;
 const CARDS = [
     // === LIGNE DU HAUT (De gauche à droite) ===
     [-30, -60, W, H, "base", 1],
@@ -40,12 +42,10 @@ const CARDS = [
     [1040, 25, W, H, "base", 1],
     [1120, -15, W, H, "dark", 1],
     [1200, 15, W, H, "alt", 1],
-
     // === VIRAGE À DROITE (Descente) ===
     [1260, 100, W, H, "base", 1],
     [1270, 200, W, H, "dark", 1],
     [1240, 290, W, H, "base", 1],
-
     // === LIGNE DU MILIEU (De droite à gauche) ===
     [1160, 320, W, H, "alt", 1],
     [1080, 290, W, H, "base", 1],
@@ -61,10 +61,9 @@ const CARDS = [
     [260, 290, W, H, "alt", 1],
     [180, 340, W, H, "dark", 1],
     [100, 320, W, H, "base", 1],
-    [20, 300, W, H, "alt", 1],
-
-    // === VIRAGE À GAUCHE & LIGNE DU BAS (De gauche à droite sous le texte) ===
-    [-10, 420, W, H, "dark", 1],
+    [10, 310, W, H, "alt", 1],
+    // === VIRAGE À GAUCHE & LIGNE DU BAS ===
+    [-30, 420, W, H, "dark", 1],
     [10, 520, W, H, "base", 1],
     [30, 620, W, H, "alt", 1],
     [110, 650, W, H, "base", 1],
@@ -80,21 +79,26 @@ const CARDS = [
     [920, 670, W, H, "dark", 1],
 ];
 
+
 function LandingScreen({ onStart }) {
-    // Scale calculé une fois au montage pour adapter la courbe à la taille du viewport.
-    // Les coordonnées de chaque carte sont exprimées en "pixels canvas" (1280×800),
-    // on les convertit en pixels viewport en centrant + réduisant proportionnellement.
-    const vpW = typeof window !== 'undefined' ? window.innerWidth : CANVAS_W;
+    const vpW = typeof window !== 'undefined' ? window.innerWidth  : CANVAS_W;
     const vpH = typeof window !== 'undefined' ? window.innerHeight : CANVAS_H;
-    const scale = Math.min(1, vpW / CANVAS_W, vpH / CANVAS_H);
-    const cx = vpW / 2;
-    const cy = vpH / 2;
+
+    const canvasW = CANVAS_W;
+    const canvasH = CANVAS_H;
+    const scale   = Math.min(1, vpW / canvasW, vpH / canvasH);
+    const cx      = vpW / 2;
+    const cy      = vpH / 2;
+
+    // Only render cards that are above the gradient-mask cutoff (62% viewport height).
+    // Cards below this threshold are 100% transparent — no reason to load their images.
+    const activeCards = CARDS.filter(([, top]) => (top - canvasH / 2) * scale + cy < vpH * 0.62);
 
     return (
         <div className={styles.page}>
             <div className={styles.maskWrapper}>
                 <div className={styles.cardsLayer}>
-                    {CARDS.map(([left, top, width, height, , opacity], i) => (
+                    {activeCards.map(([left, top, width, height, , opacity], i) => (
                         <motion.img
                             key={i}
                             src={CARD_IMAGES[i % CARD_IMAGES.length]}
@@ -102,18 +106,17 @@ function LandingScreen({ onStart }) {
                             aria-hidden="true"
                             className={styles.card}
                             style={{
-                                left: `${(left - CANVAS_W / 2) * scale + cx}px`,
-                                top:  `${(top  - CANVAS_H / 2) * scale + cy}px`,
-                                width:  `${width  * scale}px`,
-                                height: `${height * scale}px`,
-                                borderRadius: `${Math.round(8 * scale)}px`,
+                                left:         `${(left - canvasW / 2) * scale + cx}px`,
+                                top:          `${(top  - canvasH / 2) * scale + cy}px`,
+                                width:        `${width  * scale}px`,
+                                height:       `${height * scale}px`,
                             }}
                             initial={{ opacity: 0, scale: 0.85 }}
                             animate={{ opacity: opacity ?? 1, scale: 1 }}
                             transition={{
-                                delay: i * 0.1,
+                                delay:    i * 0.1,
                                 duration: 0.95,
-                                ease: "easeOut",
+                                ease:     "easeOut",
                             }}
                         />
                     ))}
@@ -121,9 +124,8 @@ function LandingScreen({ onStart }) {
             </div>
 
             <div className={styles.content}>
-                {/* <Logo /> */}
                 <img src="/assets/images/STK-logo.svg" alt="STK" className={styles.logo} />
-                <h1>Ligne organique</h1>
+                <h1>La passerelle</h1>
                 <p className={styles.subtitle}>
                     Associez chaque carte de la nature à son innovation pour découvrir le lien qui les unit.
                 </p>

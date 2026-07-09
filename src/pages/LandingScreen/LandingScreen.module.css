@@ -116,8 +116,8 @@
 /* Tablettes portrait (768px) */
 @media (max-width: 768px) {
     .maskWrapper {
-        -webkit-mask-image: linear-gradient(to bottom, black 25%, transparent 54%);
-        mask-image: linear-gradient(to bottom, black 25%, transparent 54%);
+        -webkit-mask-image: linear-gradient(to bottom, black 20%, transparent 54%);
+        mask-image: linear-gradient(to bottom, black 20%, transparent 54%);
     }
     .content {
         margin-top: min(90px, 14vh);
@@ -138,8 +138,8 @@
 /* Grands téléphones / petites tablettes portrait (600px) */
 @media (max-width: 600px) {
     .maskWrapper {
-        -webkit-mask-image: linear-gradient(to bottom, black 27%, transparent 51%);
-        mask-image: linear-gradient(to bottom, black 27%, transparent 51%);
+        -webkit-mask-image: linear-gradient(to bottom, black 18%, transparent 52%);
+        mask-image: linear-gradient(to bottom, black 18%, transparent 52%);
     }
     .content {
         margin-top: min(70px, 12vh);
@@ -160,8 +160,8 @@
 /* Téléphones standard (480px) */
 @media (max-width: 480px) {
     .maskWrapper {
-        -webkit-mask-image: linear-gradient(to bottom, black 28%, transparent 48%);
-        mask-image: linear-gradient(to bottom, black 28%, transparent 48%);
+        -webkit-mask-image: linear-gradient(to bottom, black 18%, transparent 50%);
+        mask-image: linear-gradient(to bottom, black 18%, transparent 50%);
     }
     .content {
         margin-top: min(55px, 10vh);
@@ -177,8 +177,8 @@
 /* Petits téléphones (375px — iPhone SE, etc.) */
 @media (max-width: 375px) {
     .maskWrapper {
-        -webkit-mask-image: linear-gradient(to bottom, black 32%, transparent 46%);
-        mask-image: linear-gradient(to bottom, black 32%, transparent 46%);
+        -webkit-mask-image: linear-gradient(to bottom, black 42%, transparent 66%);
+        mask-image: linear-gradient(to bottom, black 42%, transparent 66%);
     }
     .content {
         margin-top: min(40px, 8vh);
