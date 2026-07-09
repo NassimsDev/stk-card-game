@@ -1,0 +1,228 @@
+/* ── Backdrop ────────────────────────────────────────────────────────────── */
+.backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(26, 26, 26, 0.35);
+    z-index: 1000;
+    display: flex;
+    justify-content: flex-end;
+}
+
+/* ── Panel ───────────────────────────────────────────────────────────────── */
+.panel {
+    width: min(440px, 100%);
+    height: 100%;
+    background: #faf7f4;
+    box-shadow: -12px 0 32px rgba(0, 0, 0, 0.15);
+    display: flex;
+    flex-direction: column;
+}
+
+.panel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 24px 24px 16px;
+    border-bottom: 1px solid rgba(26, 26, 26, 0.08);
+}
+
+.panel-title {
+    font-size: 24px;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin: 0;
+}
+
+.panel-count {
+    font-size: 13px;
+    font-weight: 500;
+    color: #5c5c5c;
+    margin-top: 4px;
+}
+
+.close-btn {
+    background: transparent;
+    border: 1px solid rgba(26, 26, 26, 0.2);
+    border-radius: 999px;
+    width: 34px;
+    height: 34px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    color: #1a1a1a;
+    cursor: pointer;
+    transition:
+        background-color 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.close-btn:hover {
+    background-color: rgba(26, 26, 26, 0.06);
+    border-color: #1a1a1a;
+}
+
+/* ── Content ─────────────────────────────────────────────────────────────── */
+.panel-content {
+    flex: 1;
+    overflow-y: auto;
+    padding: 20px 24px 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    overscroll-behavior: contain;
+}
+
+.empty-state {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #5c5c5c;
+    font-style: italic;
+    text-align: center;
+    margin-top: 48px;
+}
+
+/* ── Pair block ──────────────────────────────────────────────────────────── */
+.pair-block {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid rgba(26, 26, 26, 0.08);
+}
+
+.pair-block:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.pair-theme {
+    align-self: flex-start;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #01a091;
+    border: 1px solid rgba(1, 160, 145, 0.35);
+    border-radius: 999px;
+    padding: 3px 10px;
+}
+
+/* Cartes collées (gap 0), sans titre (déjà lisible sur l'image) ni badge ↔ */
+.pair-cards {
+    display: flex;
+    align-items: center;
+    gap: 0;
+}
+
+.pair-card {
+    flex: 1;
+    min-width: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.pair-card img {
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    object-fit: cover;
+    display: block;
+}
+
+.pair-card:first-child img {
+    border-radius: 12px 0 0 12px;
+}
+
+.pair-card:last-child img {
+    border-radius: 0 12px 12px 0;
+}
+
+.pair-explanation h3 {
+    font-size: 14px;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-bottom: 6px;
+}
+
+.pair-explanation p {
+    font-size: 12px;
+    line-height: 1.6;
+    color: #333333;
+}
+
+/* ── Swipe indicator (mobile only) ───────────────────────────────────────── */
+.swipe-indicator {
+    display: none;
+    position: fixed;
+    right: 0;
+    /* Au niveau des cartes : au-dessus du CTA d'indice et des indices,
+       et loin du carrousel swipeable en bas d'écran */
+    top: 30%;
+    /* le centrage vertical (y: -50%) est géré par framer-motion pour ne pas
+       entrer en conflit avec ses transforms d'animation */
+    z-index: 900;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    padding: 10px 6px 10px 4px;
+    background: #faf7f4;
+    border: 1px solid rgba(26, 26, 26, 0.15);
+    border-right: none;
+    border-radius: 12px 0 0 12px;
+    box-shadow: -4px 0 12px rgba(0, 0, 0, 0.08);
+    color: #1a1a1a;
+    cursor: pointer;
+}
+
+.swipe-indicator-chevron {
+    font-size: 16px;
+    line-height: 1;
+    color: #01a091;
+}
+
+.swipe-indicator-icon {
+    font-size: 13px;
+    line-height: 1;
+}
+
+.swipe-indicator-count {
+    min-width: 16px;
+    height: 16px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 4px;
+    background: #01a091;
+    color: #faf7f4;
+    border-radius: 999px;
+    font-size: 10px;
+    font-weight: 600;
+    line-height: 1;
+}
+
+/* ── Desktop ─────────────────────────────────────────────────────────────── */
+@media (min-width: 769px) {
+    .panel {
+        width: min(620px, 92vw);
+    }
+}
+
+/* ── Mobile ──────────────────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+    .panel {
+        width: 100%;
+    }
+
+    .swipe-indicator {
+        display: flex;
+    }
+
+    .panel-header {
+        padding: 20px 18px 14px;
+    }
+
+    .panel-content {
+        padding: 16px 18px 28px;
+    }
+}

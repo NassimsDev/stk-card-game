@@ -100,6 +100,7 @@ function App() {
                 pairs={SEQUENCES[seqIndex]}
                 sequenceNumber={seqIndex + 1}
                 totalSequences={TOTAL_SEQUENCES}
+                previousPairs={SEQUENCES.slice(0, seqIndex).flat()}
                 onComplete={handleSequenceComplete}
                 onHome={handleGoHome}
               />
