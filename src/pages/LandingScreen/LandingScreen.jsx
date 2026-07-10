@@ -125,7 +125,7 @@ function LandingScreen({ onStart }) {
 
             <div className={styles.content}>
                 <img src="/assets/images/STK-logo.svg" alt="STK" className={styles.logo} />
-                <h1>La passerelle</h1>
+                <h1>Bloom</h1>
                 <p className={styles.subtitle}>
                     Associez chaque carte de la nature à son innovation pour découvrir le lien qui les unit.
                 </p>

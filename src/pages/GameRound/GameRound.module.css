@@ -47,6 +47,41 @@
     border-radius: 4px;
 }
 
+/* ── Header actions (ambiance + collection) ──────────────────────────────── */
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.collection-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px;
+    background: transparent;
+    border: 1px solid rgba(26, 26, 26, 0.35);
+    border-radius: 999px;
+    color: #1a1a1a;
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition:
+        background-color 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.collection-btn:hover {
+    background-color: rgba(26, 26, 26, 0.06);
+    border-color: #1a1a1a;
+}
+
+.collection-icon {
+    font-size: 15px;
+    line-height: 1;
+}
+
 /* ── Ambient dropdown ────────────────────────────────────────────────────── */
 .ambient-wrapper {
     position: relative;
@@ -410,6 +445,11 @@
 
     .ambient-btn {
         font-size: 14px;
+    }
+
+    /* Sur mobile le CTA disparaît : l'overlay s'ouvre par swipe depuis le bord droit */
+    .collection-btn {
+        display: none;
     }
 
     /* Hide "Piste d'observation" and "Continuez…" on mobile — only show link success */

@@ -28,9 +28,9 @@ function App() {
   // Gérer la musique de fond de manière réactive
   useEffect(() => {
     if (started && appView !== 'transition') {
-      soundManager.play('bgMusic');
+      soundManager.playCurrentBg();
     } else {
-      soundManager.pause('bgMusic');
+      soundManager.pauseCurrentBg();
     }
   }, [started, appView]);
 
@@ -100,6 +100,7 @@ function App() {
                 pairs={SEQUENCES[seqIndex]}
                 sequenceNumber={seqIndex + 1}
                 totalSequences={TOTAL_SEQUENCES}
+                previousPairs={SEQUENCES.slice(0, seqIndex).flat()}
                 onComplete={handleSequenceComplete}
                 onHome={handleGoHome}
               />

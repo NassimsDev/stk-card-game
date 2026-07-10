@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef, useReducer } from 'react';
 import { soundManager } from '../../utils/soundManager';
-import { shuffleArray, AMBIENT_TRACKS } from './gameRound.constants';
+import { shuffleArray, AMBIENT_TRACKS, buildCarouselDeck } from './gameRound.constants';
 
 // ── Reducer ───────────────────────────────────────────────────────────────────
 
@@ -107,29 +107,9 @@ export function useGameRound({ pairs }) {
   // Computed once on mount — never mutated, so useState is appropriate here.
   const [shuffledInspiration] = useState(() => shuffleArray(pairs));
   const [shuffledInnovation]  = useState(() => shuffleArray(pairs));
-  const [carouselCards]       = useState(() => {
-    const cards = [];
-    const maxLen = Math.max(shuffledInspiration.length, shuffledInnovation.length);
-    for (let i = 0; i < maxLen; i++) {
-      if (i < shuffledInspiration.length) {
-        cards.push({
-          pairId: shuffledInspiration[i].id,
-          type:   'inspiration',
-          image:  shuffledInspiration[i].inspiration.image,
-          alt:    shuffledInspiration[i].inspiration.alt,
-        });
-      }
-      if (i < shuffledInnovation.length) {
-        cards.push({
-          pairId: shuffledInnovation[i].id,
-          type:   'innovation',
-          image:  shuffledInnovation[i].innovation.image,
-          alt:    shuffledInnovation[i].innovation.alt,
-        });
-      }
-    }
-    return cards;
-  });
+  // Mobile carousel deck: independent shuffle from the desktop grids above,
+  // built to guarantee a pair's two cards are never adjacent (see buildCarouselDeck).
+  const [carouselCards]       = useState(() => buildCarouselDeck(pairs));
 
   // Ambient UI state (unrelated to game flow — no grouped resets needed).
   const [ambientTrack,  setAmbientTrack]  = useState(AMBIENT_TRACKS[0].id);
