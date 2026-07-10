@@ -1,9 +1,9 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { soundManager } from '../../utils/soundManager';
 import styles from './GameRound.module.css';
 import { useGameRound } from './useGameRound';
-import { AMBIENT_TRACKS, inspirationVariants, innovationVariants, getTransition } from './gameRound.constants';
+import { AMBIENT_TRACKS, inspirationVariants, innovationVariants, getTransition, COLLECTION_REVEAL_DELAY_MS } from './gameRound.constants';
 import CardGrid from '../../components/CardGrid/CardGrid';
 import CardSlot from '../../components/CardSlot/CardSlot';
 import CarouselSection from '../../components/CarouselSection/CarouselSection';
@@ -56,6 +56,18 @@ export default function GameRound({ pairs, sequenceNumber, totalSequences, previ
     ...previousPairs,
     ...pairs.filter(p => matchedPairIds.includes(p.id)),
   ];
+
+  // Le CTA "Ma collection" est débloqué dès la première paire — mais visible
+  // immédiatement si la collection vient déjà des séquences précédentes.
+  // Sinon, on attend la fin de l'animation de settle des cartes (clic sur
+  // Suivant) avant de le faire apparaître, pour ne pas le superposer.
+  const [showCollectionCta, setShowCollectionCta] = useState(() => previousPairs.length > 0);
+
+  useEffect(() => {
+    if (showCollectionCta || collectedPairs.length === 0) return;
+    const t = setTimeout(() => setShowCollectionCta(true), COLLECTION_REVEAL_DELAY_MS);
+    return () => clearTimeout(t);
+  }, [collectedPairs.length, showCollectionCta]);
 
   const transition = getTransition(linkStatus);
 
@@ -117,19 +129,26 @@ export default function GameRound({ pairs, sequenceNumber, totalSequences, previ
             </AnimatePresence>
           </div>
 
-          <button
-            className={styles['collection-btn']}
-            onClick={() => {
-              soundManager.play('button');
-              setIsCollectionOpen(true);
-            }}
-            disabled={collectedPairs.length === 0}
-            aria-haspopup="dialog"
-            aria-expanded={isCollectionOpen}
-          >
-            <span className={styles['collection-icon']} aria-hidden="true">⧉</span>
-            Ma collection
-          </button>
+          <AnimatePresence>
+            {showCollectionCta && (
+              <motion.button
+                className={styles['collection-btn']}
+                onClick={() => {
+                  soundManager.play('button');
+                  setIsCollectionOpen(true);
+                }}
+                aria-haspopup="dialog"
+                aria-expanded={isCollectionOpen}
+                initial={{ opacity: 0, scale: 0.85, y: -6 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.85, y: -6 }}
+                transition={{ duration: 0.35, ease: [0.34, 1.56, 0.64, 1] }}
+              >
+                <span className={styles['collection-icon']} aria-hidden="true">⧉</span>
+                Ma collection
+              </motion.button>
+            )}
+          </AnimatePresence>
         </div>
 
         <div className={styles['header-right']}>
@@ -314,6 +333,7 @@ export default function GameRound({ pairs, sequenceNumber, totalSequences, previ
 
       <CollectionOverlay
         pairs={collectedPairs}
+        unlocked={showCollectionCta}
         isOpen={isCollectionOpen}
         onOpen={() => setIsCollectionOpen(true)}
         onClose={() => setIsCollectionOpen(false)}

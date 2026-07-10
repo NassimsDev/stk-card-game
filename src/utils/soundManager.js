@@ -1,3 +1,5 @@
+const BG_KEYS = ['bgMusic', 'bgRain', 'bgFleuve'];
+
 class SoundManager {
   constructor() {
     this.sounds = {};
@@ -28,7 +30,7 @@ class SoundManager {
     };
 
     // Configuration des pistes de fond
-    ['bgMusic', 'bgRain', 'bgFleuve'].forEach(key => {
+    BG_KEYS.forEach(key => {
       this.sounds[key].loop = true;
       this.sounds[key].volume = 0.30;
     });
@@ -48,7 +50,7 @@ class SoundManager {
 
     const sound = this.sounds[soundName];
     if (sound) {
-      if (soundName === 'bgMusic') {
+      if (BG_KEYS.includes(soundName)) {
         sound.play().catch(error => {
           console.warn(`Impossible de jouer la musique de fond:`, error);
         });
@@ -109,6 +111,25 @@ class SoundManager {
 
   getMuteState() {
     return this.isMuted;
+  }
+
+  // Joue/coupe la piste de fond actuellement sélectionnée (oiseaux/pluie/fleuve),
+  // quelle qu'elle soit — contrairement à play('bgMusic')/pause('bgMusic') qui
+  // ciblent toujours la piste "oiseaux" par défaut.
+  playCurrentBg() {
+    if (!this.isInitialized) this.init();
+    const sound = this.sounds[this.currentBgKey];
+    if (sound) {
+      sound.play().catch(error => {
+        console.warn(`Impossible de jouer la musique de fond:`, error);
+      });
+    }
+  }
+
+  pauseCurrentBg() {
+    if (!this.isInitialized) return;
+    const sound = this.sounds[this.currentBgKey];
+    if (sound) sound.pause();
   }
 
   switchBgMusic(trackName) {

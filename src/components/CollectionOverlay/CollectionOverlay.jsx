@@ -6,13 +6,14 @@ const EDGE_ZONE = 32;      // px from the right edge where the open-swipe can st
 const SWIPE_THRESHOLD = 50; // px of horizontal travel needed to trigger open/close
 const SWIPE_BAND = 48;      // px above/below the indicator where the swipe is accepted
 
-export default function CollectionOverlay({ pairs, isOpen, onOpen, onClose }) {
+export default function CollectionOverlay({ pairs, unlocked, isOpen, onOpen, onClose }) {
   const indicatorRef = useRef(null);
 
   // Swipe from the right edge to open — only within the indicator's vertical
   // band, so the gesture zone matches what the languette shows on screen.
+  // Disabled until the first pair is found, to match the languette's own visibility.
   useEffect(() => {
-    if (isOpen) return;
+    if (isOpen || !unlocked) return;
     let start = null;
 
     const onTouchStart = (e) => {
@@ -47,7 +48,7 @@ export default function CollectionOverlay({ pairs, isOpen, onOpen, onClose }) {
       document.removeEventListener('touchmove', onTouchMove);
       document.removeEventListener('touchend', onTouchEnd);
     };
-  }, [isOpen, onOpen]);
+  }, [isOpen, onOpen, unlocked]);
 
   // Escape closes, and the page behind stops scrolling while open.
   useEffect(() => {
@@ -86,22 +87,20 @@ export default function CollectionOverlay({ pairs, isOpen, onOpen, onClose }) {
     <>
       {/* Languette mobile : indique le swipe depuis le bord droit (tappable aussi) */}
       <AnimatePresence>
-        {!isOpen && (
+        {!isOpen && unlocked && (
           <motion.button
             ref={indicatorRef}
             className={styles['swipe-indicator']}
             onClick={onOpen}
             aria-label="Ouvrir ma collection"
-            initial={{ opacity: 0, x: 12, y: '-50%' }}
-            animate={{ opacity: 1, x: 0, y: '-50%' }}
-            exit={{ opacity: 0, x: 12, y: '-50%' }}
-            transition={{ duration: 0.25 }}
+            initial={{ opacity: 0, scale: 0.85, x: 12, y: '-50%' }}
+            animate={{ opacity: 1, scale: 1, x: 0, y: '-50%' }}
+            exit={{ opacity: 0, scale: 0.85, x: 12, y: '-50%' }}
+            transition={{ duration: 0.35, ease: [0.34, 1.56, 0.64, 1] }}
           >
             <span className={styles['swipe-indicator-chevron']} aria-hidden="true">‹</span>
             <span className={styles['swipe-indicator-icon']} aria-hidden="true">⧉</span>
-            {pairs.length > 0 && (
-              <span className={styles['swipe-indicator-count']}>{pairs.length}</span>
-            )}
+            <span className={styles['swipe-indicator-count']}>{pairs.length}</span>
           </motion.button>
         )}
       </AnimatePresence>

@@ -149,6 +149,7 @@
     font-size: 12px;
     line-height: 1.6;
     color: #333333;
+    white-space: pre-line;
 }
 
 /* ── Swipe indicator (mobile only) ───────────────────────────────────────── */
@@ -216,6 +217,23 @@
 
     .swipe-indicator {
         display: flex;
+        gap: 6px;
+        padding: 16px 10px 16px 8px;
+        border-radius: 16px 0 0 16px;
+    }
+
+    .swipe-indicator-chevron {
+        font-size: 22px;
+    }
+
+    .swipe-indicator-icon {
+        font-size: 19px;
+    }
+
+    .swipe-indicator-count {
+        min-width: 20px;
+        height: 20px;
+        font-size: 12px;
     }
 
     .panel-header {

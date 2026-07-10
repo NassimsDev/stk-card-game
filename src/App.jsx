@@ -28,9 +28,9 @@ function App() {
   // Gérer la musique de fond de manière réactive
   useEffect(() => {
     if (started && appView !== 'transition') {
-      soundManager.play('bgMusic');
+      soundManager.playCurrentBg();
     } else {
-      soundManager.pause('bgMusic');
+      soundManager.pauseCurrentBg();
     }
   }, [started, appView]);
 

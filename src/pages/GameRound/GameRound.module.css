@@ -77,17 +77,6 @@
     border-color: #1a1a1a;
 }
 
-.collection-btn:disabled {
-    color: rgba(26, 26, 26, 0.35);
-    border-color: rgba(26, 26, 26, 0.15);
-    cursor: not-allowed;
-}
-
-.collection-btn:disabled:hover {
-    background-color: transparent;
-    border-color: rgba(26, 26, 26, 0.15);
-}
-
 .collection-icon {
     font-size: 15px;
     line-height: 1;

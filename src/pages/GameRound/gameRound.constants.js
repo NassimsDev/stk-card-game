@@ -51,6 +51,44 @@ export function shuffleArray(arr) {
   return a;
 }
 
+// Builds the mobile carousel's card deck: strictly alternating inspiration/
+// innovation cards (two independent shuffles interleaved), re-rolled until
+// no pair's two cards land adjacent — checked circularly, since
+// CarouselSection repeats this deck back-to-back (CAROUSEL_REPEAT) for the
+// fake-infinite scroll, creating a seam between the last and first card of
+// each copy.
+const MAX_DECK_SHUFFLE_ATTEMPTS = 200;
+
+function hasAdjacentPair(cards) {
+  for (let i = 0; i < cards.length; i++) {
+    if (cards[i].pairId === cards[(i + 1) % cards.length].pairId) return true;
+  }
+  return false;
+}
+
+function toCarouselCard(pair, type) {
+  return { pairId: pair.id, type, image: pair[type].image, alt: pair[type].alt };
+}
+
+function interleavedDeck(pairs) {
+  const inspiration = shuffleArray(pairs);
+  const innovation   = shuffleArray(pairs);
+  const deck = [];
+  for (let i = 0; i < pairs.length; i++) {
+    deck.push(toCarouselCard(inspiration[i], 'inspiration'));
+    deck.push(toCarouselCard(innovation[i],   'innovation'));
+  }
+  return deck;
+}
+
+export function buildCarouselDeck(pairs) {
+  let deck = interleavedDeck(pairs);
+  for (let attempt = 0; attempt < MAX_DECK_SHUFFLE_ATTEMPTS && hasAdjacentPair(deck); attempt++) {
+    deck = interleavedDeck(pairs);
+  }
+  return deck;
+}
+
 // ── Framer Motion variants ────────────────────────────────────────────────────
 export const inspirationVariants = {
   idle:            { x: 0 },
@@ -86,7 +124,14 @@ export const innovationVariants = {
   separating: { x: 0 },
 };
 
-const linkTransition     = { duration: 0.9,  ease: [0.22, 1, 0.36, 1] };
+// Durée (ms) de l'animation de "settle" des cartes après un clic sur Suivant.
+const LINK_SETTLE_MS = 900;
+
+// Délai (ms) avant de révéler le CTA "Ma collection" — le settle des cartes,
+// plus une marge pour laisser la transition se stabiliser visuellement.
+export const COLLECTION_REVEAL_DELAY_MS = LINK_SETTLE_MS + 800;
+
+const linkTransition     = { duration: LINK_SETTLE_MS / 1000, ease: [0.22, 1, 0.36, 1] };
 const shakeTransition    = { duration: 0.55, ease: 'easeInOut' };
 const separateTransition = { duration: 0.7,  ease: [0.4, 0, 0.6, 1] };
 
