@@ -6,6 +6,30 @@
     flex: 1;
 }
 
+/* Wrapper séparé de CollectionOverlay pour pouvoir le scale sans casser le
+   position:fixed plein écran de l'overlay (un transform sur un ancêtre crée
+   un nouveau containing block pour les descendants fixed). */
+.scale-wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    flex: 1;
+    min-height: 0;
+}
+
+/* En-dessous de 632px de hauteur (desktop uniquement — jamais sur mobile),
+   le contenu est réduit proportionnellement plutôt que de continuer à
+   ajuster manuellement chaque taille de police/marge : scale=1 pile à
+   632px (aucune coupure visible avec le palier au-dessus), puis diminue en
+   continu si l'écran est encore plus court, ce qui garde le CTA "Lier"
+   toujours visible et cliquable sans dépendre d'un seuil figé de plus. */
+@media (max-height: 632px) and (min-width: 769px) {
+    .scale-wrapper {
+        transform: scale(min(1, 100vh / 632px));
+        transform-origin: top center;
+    }
+}
+
 /* ── Header ──────────────────────────────────────────────────────────────── */
 .header {
     display: flex;
@@ -239,6 +263,10 @@
     color: #1a1a1a;
 }
 
+.explanation-text h2.observation-title {
+    font-size: 18px;
+}
+
 .explanation-text p {
     font-size: 13px;
     line-height: 1.6;
@@ -309,6 +337,10 @@
         margin-bottom: 12px;
     }
 
+    .explanation-text h2.observation-title {
+        font-size: 17px;
+    }
+
     .explanation-text p {
         font-size: 12px;
     }
@@ -341,6 +373,10 @@
         margin-bottom: 10px;
     }
 
+    .explanation-text h2.observation-title {
+        font-size: 15px;
+    }
+
     .explanation-text p {
         font-size: 11px;
     }
@@ -355,7 +391,7 @@
     }
 }
 
-@media (max-height: 650px) and (min-width: 769px) {
+@media (max-height: 750px) and (min-width: 769px) {
     .header {
         margin-bottom: 15px;
     }
@@ -375,6 +411,10 @@
     .explanation-text h2 {
         font-size: 16px;
         margin-bottom: 6px;
+    }
+
+    .explanation-text h2.observation-title {
+        font-size: 13px;
     }
 
     .explanation-text p {
@@ -460,6 +500,10 @@
     .explanation-text h2 {
         font-size: 16px;
         margin-bottom: 8px;
+    }
+
+    .explanation-text h2.observation-title {
+        font-size: 13px;
     }
 
     .explanation-text p {
