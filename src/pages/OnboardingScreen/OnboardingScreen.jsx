@@ -105,7 +105,19 @@ function OnboardingScreen({ onComplete }) {
                                 </p>
                             )}
 
-                            <p className={styles.body}>{slide.body}</p>
+                            <div className={styles.bodyWrap}>
+                                {/* Copies invisibles de tous les textes : réservent en
+                                    permanence la hauteur du plus long, pour que le CTA
+                                    en dessous reste à la même position sur les 3 slides
+                                    (sensible sur mobile où le texte wrap sur plus de
+                                    lignes selon sa longueur). */}
+                                <div className={styles.bodySizer} aria-hidden="true">
+                                    {SLIDES.map((s, i) => (
+                                        <p key={i} className={styles.body}>{s.body}</p>
+                                    ))}
+                                </div>
+                                <p className={styles.body}>{slide.body}</p>
+                            </div>
                         </div>
                     </motion.div>
                 </AnimatePresence>
