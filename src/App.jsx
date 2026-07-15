@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import './App.css';
 import pairsData from './data/pairs.json';
 import { soundManager } from './utils/soundManager';
+import { useBackgroundAudio } from './hooks/useBackgroundAudio';
 import GameRound from './pages/GameRound/GameRound';
 import LandingScreen from './pages/LandingScreen/LandingScreen';
 import OnboardingScreen from './pages/OnboardingScreen/OnboardingScreen';
@@ -25,14 +26,23 @@ function App() {
     soundManager.init();
   }, []);
 
+  // La musique de fond doit jouer : partie démarrée, et pas sur l'écran de
+  // transition entre deux séquences (silence volontaire à cet endroit).
+  const isMusicActive = started && appView !== 'transition';
+
   // Gérer la musique de fond de manière réactive
   useEffect(() => {
-    if (started && appView !== 'transition') {
+    if (isMusicActive) {
       soundManager.playCurrentBg();
     } else {
       soundManager.pauseCurrentBg();
     }
-  }, [started, appView]);
+  }, [isMusicActive]);
+
+  // Coupe tout son quand l'onglet/l'app passe en arrière-plan (écran
+  // verrouillé, changement d'appli/onglet) et relance la musique de fond au
+  // retour, si elle était censée jouer à ce moment-là.
+  useBackgroundAudio(isMusicActive);
 
   // 🚧 DEV ONLY — Shift+F : écran de fin. Shift+D : round 2. Shift+T : round 3. Supprimer avant livraison.
   useEffect(() => {
