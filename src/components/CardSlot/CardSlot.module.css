@@ -133,12 +133,39 @@
 
 /* Reserved space for "Voir l'indice" button + animated description */
 .hint-container-fixed {
-    min-height: 160px;
     width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
+}
+
+/* Superpose (grid stack) le contenu réellement affiché (toggle + description
+   animés) et un gabarit invisible calé sur l'indice le plus long de la
+   séquence : la hauteur suit toujours le plus grand des deux, donc le CTA
+   "Lier" en dessous ne bouge jamais, indice ouvert ou fermé. */
+.hint-stack {
+    display: grid;
+    justify-items: center;
+    width: 100%;
+}
+
+.hint-stack > * {
+    grid-area: 1 / 1;
+}
+
+.hint-sizer {
+    visibility: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.hint-real {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
 }
 
 .description {
@@ -275,10 +302,6 @@
         height: 16px;
         font-size: 11px;
     }
-
-    .hint-container-fixed {
-        min-height: 145px;
-    }
 }
 
 @media (max-height: 800px) {
@@ -320,10 +343,6 @@
         height: 15px;
         font-size: 10px;
     }
-
-    .hint-container-fixed {
-        min-height: 130px;
-    }
 }
 
 @media (max-height: 750px) and (min-width: 769px) {
@@ -334,14 +353,8 @@
     .card {
         margin-bottom: 8px;
     }
-
-    .hint-container-fixed {
-        min-height: 115px;
-    }
 }
 
-/* hint-container-collapsed must come AFTER height breakpoints so it wins the
-   cascade over the min-height adjustments above (equal specificity, source order). */
 .hint-container-collapsed {
     min-height: 0;
 }

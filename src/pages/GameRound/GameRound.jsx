@@ -182,6 +182,7 @@ export default function GameRound({ pairs, sequenceNumber, totalSequences, previ
               <CardSlot
                 side="left"
                 pair={selectedLeftPair}
+                allPairs={pairs}
                 linkStatus={linkStatus}
                 dragOverSide={dragOverSide}
                 hintOpen={hintLeftOpen}
@@ -195,6 +196,7 @@ export default function GameRound({ pairs, sequenceNumber, totalSequences, previ
               <CardSlot
                 side="right"
                 pair={selectedRightPair}
+                allPairs={pairs}
                 linkStatus={linkStatus}
                 dragOverSide={dragOverSide}
                 hintOpen={hintRightOpen}
