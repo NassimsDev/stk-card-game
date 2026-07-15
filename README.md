@@ -7,9 +7,9 @@ Application web sans backend, jouable depuis n'importe quel navigateur.
 
 ## Le projet
 
-Nature's Blueprint est un jeu d'association de cartes pédagogique : le joueur doit relier un élément naturel (*Inspiration*) à l'innovation humaine qui s'en inspire (*Innovation*). Le jeu couvre 21 paires biomimétiques réparties en 3 séquences, de la nageoire de baleine aux éoliennes WhalePower, en passant par la termitière et le bâtiment Eastgate.
+Bloom est un jeu d'association de cartes pédagogique : le joueur doit relier un élément naturel (*Inspiration*) à l'innovation humaine qui s'en inspire (*Innovation*). Le jeu couvre 21 paires biomimétiques réparties en 3 séquences, des nageoires de baleine aux éoliennes, en passant par la termitière et le Eastgate Building.
 
-Adapté d'un jeu physique existant de STK Architecture, la version digitale ajoute animations, feedback sonore, système d'indices et déploiement continu.
+Adapté d'un jeu physique existant pour le cabinet STK Architecture, la version digitale ajoute animations, feedback sonore, système d'indices et déploiement continu.
 
 ---
 
@@ -19,29 +19,28 @@ Adapté d'un jeu physique existant de STK Architecture, la version digitale ajou
 
 | Fonctionnalité | État |
 |---|---|
-| Écran d'accueil animé (44 cartes en fond) | Terminé |
+| Écran d'accueil animé (48 cartes en fond) | Terminé |
 | Onboarding 3 slides avec vidéos | Terminé |
-| Sélection des cartes (clic + drag & drop) | Terminé |
+| Sélection des cartes (clic + drag & drop, + carrousel tactile sur mobile) | Terminé |
 | Validation d'une paire (animation correcte/incorrecte) | Terminé |
 | Système d'indices (bouton `?` par carte) | Terminé |
-| Feedback sonore (6 effets + musique de fond) | Terminé |
+| Feedback sonore (6 effets + 3 pistes de fond) | Terminé |
+| Sélecteur d'ambiance sonore (Oiseaux / Pluie / Fleuve) | Terminé |
 | Bouton mute (persistant, position fixe) | Terminé |
 | Affichage de l'explication biomimétique après bonne réponse | Terminé |
 | Piste d'observation après mauvaise réponse | Terminé |
 | 3 séquences avec écrans de transition | Terminé |
 | Écran de fin avec récap et lien STK | Terminé |
 | Responsive (laptop + hauteurs réduites) | Terminé |
+| **Ma collection** — overlay listant les paires déjà trouvées (relecture des explications), CTA en haut à droite du header sur desktop, swipe depuis le bord droit sur mobile | Terminé |
+| Coupure/reprise automatique du son en arrière-plan (écran verrouillé, changement d'onglet/d'appli, via l'API Page Visibility) | Terminé |
+| Mélange du carrousel mobile garanti sans jamais placer les 2 cartes d'une même paire côte à côte | Terminé |
 
-### Présent dans le code mais inactif
+### À nettoyer avant livraison
 
 | Élément | Situation |
 |---|---|
-| `GameContext.jsx` + `useGame.js` | Définis, non utilisés — la logique est gérée localement dans `GameRound` |
-| `GameScreen` page | Existante, non branchée dans le routing |
-| `CardGrid`, `CardPreview`, `SequenceIndicator` | Composants existants, non utilisés dans le rendu actuel |
-| `LandingScreen copy/` | Dossier doublon à supprimer |
-| `react-router-dom` | Installé, jamais importé |
-| Raccourci dev `Shift+F` (saut vers fin) | Présent dans `App.jsx`, à retirer avant livraison |
+| Raccourcis dev `Shift+F` (écran de fin), `Shift+D` (séquence 2), `Shift+T` (séquence 3) | Présents dans `App.jsx`, à retirer avant livraison |
 
 ---
 
@@ -50,12 +49,12 @@ Adapté d'un jeu physique existant de STK Architecture, la version digitale ajou
 | # | Inspiration | Innovation | Thème |
 |---|---|---|---|
 | 1 | Aile de papillon | Panneaux solaires | Thermorégulation |
-| 2 | Nageoires de baleine | Éoliennes WhalePower | Aérodynamisme |
+| 2 | Nageoires de baleine | Éoliennes | Aérodynamisme |
 | 3 | Bec du martin-pêcheur | TGV japonais | Aérodynamisme |
 | 4 | Patte de gecko | Adhésif Geckskin | Adhésion |
 | 5 | Fruit de bardane | Velcro | Fixation |
 | 6 | Coquille de nautile | Turboréacteurs | Aérodynamisme |
-| 7 | Peau de requin | Combinaison de natation | Hydrodynamisme |
+| 7 | Peau de requin | Combinaison de natation | Hydrodynamique |
 | 8 | Papillon Greta oto | Verre antireflet | Optique |
 | 9 | Scarabée du Namib | Filets capteurs de rosée | Hydrologie |
 | 10 | Cicatrisation cutanée | Béton auto-réparant | Matériaux |
@@ -94,38 +93,37 @@ Transition → Séquence 3 — 5 paires
 - Clic "Lier" → animation correcte (glow + explication) ou incorrecte (shake + piste d'observation)
 - Possibilité d'afficher un indice (`?`) avant de valider
 
+Dès la première paire trouvée (dans la séquence en cours, ou héritée d'une séquence précédente), un CTA **"Ma collection"** apparaît en haut à droite du header (desktop) — sur mobile, une languette sur le bord droit s'ouvre au tap ou au swipe. L'overlay liste toutes les paires découvertes avec leur explication biomimétique, pour pouvoir les relire à tout moment sans interrompre la partie.
+
 ---
 
 ## Structure du projet
 
 ```
-stk-card-game/
+stk/
 ├── public/
 │   └── assets/
 │       ├── cards/
 │       │   ├── inspiration/     # 21 images WebP
 │       │   ├── innovation/      # 21 images WebP
 │       │   └── glow/            # 42 overlays lumineux
-│       ├── sounds/              # 6 effets + musique de fond
+│       ├── sounds/              # 6 effets + 3 pistes de fond (ambiance)
 │       └── videos/              # intro, réussite, échec
 ├── src/
 │   ├── components/
 │   │   ├── Button/
-│   │   ├── CardGrid/
-│   │   ├── CardPreview/
-│   │   ├── Logo/
-│   │   ├── MiniCard/
-│   │   └── SequenceIndicator/
-│   ├── context/
-│   │   └── GameContext.jsx      # Context API (défini, non utilisé)
+│   │   ├── CardGrid/            # Grilles desktop (colonnes Inspiration / Innovation)
+│   │   ├── CardSlot/            # Emplacements centraux (carte sélectionnée + indice)
+│   │   ├── CarouselSection/     # Carrousel mobile (Swiper, arc radial)
+│   │   └── CollectionOverlay/   # "Ma collection" — relecture des paires trouvées
 │   ├── data/
 │   │   └── pairs.json           # Source de vérité — 21 paires
 │   ├── hooks/
-│   │   └── useGame.js           # Hook custom (défini, non utilisé)
+│   │   └── useBackgroundAudio.js # Coupe/reprend le son selon la visibilité de l'onglet
 │   ├── pages/
 │   │   ├── LandingScreen/       # Écran d'accueil
 │   │   ├── OnboardingScreen/    # Onboarding 3 slides
-│   │   └── GameRound/           # Écran de jeu principal
+│   │   └── GameRound/           # Écran de jeu principal (+ useGameRound.js, le reducer de jeu)
 │   ├── utils/
 │   │   └── soundManager.js      # Singleton audio
 │   ├── styles/
@@ -141,10 +139,11 @@ stk-card-game/
 |---|---|
 | React 19 + Vite | Framework UI et bundler |
 | Framer Motion | Animations (cartes, transitions, feedback) |
+| Swiper | Carrousel tactile mobile (arc radial de cartes) |
 | CSS Modules | Styles par composant |
-| Context API + useState | Gestion d'état (local dans GameRound) |
+| useReducer + useState | Gestion d'état, locale à chaque écran (pas de state global) |
 | pairs.json | Données du jeu — jamais hardcodées dans le code |
-| Vercel | Hébergement avec déploiement continu depuis GitHub |
+| Netlify | Hébergement avec déploiement continu depuis GitHub |
 
 ---
 

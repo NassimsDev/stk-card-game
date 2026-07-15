@@ -7,19 +7,19 @@ const SLIDES = [
     {
         eyebrow: "Le biomimétisme",
         showLogo: true,
-        body: "Découvrez le biomimétisme avec une expérience ludique et interactive.",
+        body: "Explorez, associez et découvrez comment ses stratégies inspirent nos façons de concevoir, construire et innover.",
         video: "/assets/videos/video-intro-1.mp4",
     },
     {
         eyebrow: "Comment faire le lien",
         showLogo: false,
-        body: "Associez chaque carte de la nature à son innovation pour découvrir le lien qui les unit.",
+        body: "Le vivant est un immense laboratoire de recherche. Associez chaque carte de la nature à son innovation pour découvrir le lien qui les unit.",
         video: "/assets/videos/video_reussite.mp4",
     },
     {
         eyebrow: "Besoin d'aide ?",
         showLogo: false,
-        body: "Des indices sont disponibles à tout moment pour vous guider si vous êtes bloqué.",
+        body: "Des indices sont disponibles à tout moment pour vous guider si vous le souhaitez",
         video: "/assets/videos/video_echec.mp4",
     },
 ];
@@ -105,7 +105,19 @@ function OnboardingScreen({ onComplete }) {
                                 </p>
                             )}
 
-                            <p className={styles.body}>{slide.body}</p>
+                            <div className={styles.bodyWrap}>
+                                {/* Copies invisibles de tous les textes : réservent en
+                                    permanence la hauteur du plus long, pour que le CTA
+                                    en dessous reste à la même position sur les 3 slides
+                                    (sensible sur mobile où le texte wrap sur plus de
+                                    lignes selon sa longueur). */}
+                                <div className={styles.bodySizer} aria-hidden="true">
+                                    {SLIDES.map((s, i) => (
+                                        <p key={i} className={styles.body}>{s.body}</p>
+                                    ))}
+                                </div>
+                                <p className={styles.body}>{slide.body}</p>
+                            </div>
                         </div>
                     </motion.div>
                 </AnimatePresence>
@@ -113,7 +125,7 @@ function OnboardingScreen({ onComplete }) {
                 <div className={styles.footer}>
                     <div className={styles.controls}>
                         <Button onClick={goNext} disabled={exiting}>
-                            {isLast ? "Commencer" : "Suivant"}
+                            {isLast ? "Jouer" : "Suivant"}
                         </Button>
                     </div>
                     <div className={styles.dots}>

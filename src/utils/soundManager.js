@@ -132,6 +132,16 @@ class SoundManager {
     if (sound) sound.pause();
   }
 
+  // Coupe tout ce qui joue actuellement : la piste de fond ET les effets
+  // ponctuels (clics, cartes...) en cours. Utilisé quand l'onglet/l'app passe
+  // en arrière-plan — pause() (pas stop()) pour ne pas perdre la position de
+  // lecture de la musique de fond, qu'on veut pouvoir reprendre proprement.
+  pauseAll() {
+    if (!this.isInitialized) return;
+    Object.values(this.sounds).forEach(sound => sound.pause());
+    Object.values(this.activeClones).forEach(clone => clone.pause());
+  }
+
   switchBgMusic(trackName) {
     if (!this.isInitialized) this.init();
     const trackMap = { oiseaux: 'bgMusic', pluie: 'bgRain', fleuve: 'bgFleuve' };

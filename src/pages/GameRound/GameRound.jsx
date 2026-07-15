@@ -80,6 +80,9 @@ export default function GameRound({ pairs, sequenceNumber, totalSequences, previ
       exit={{ opacity: 0 }}
       transition={{ duration: 0.5 }}
     >
+      {/* Séparé de CollectionOverlay : le scale (très petites hauteurs desktop)
+          ne doit pas s'appliquer à l'overlay, dont le fond doit rester plein écran. */}
+      <div className={styles['scale-wrapper']}>
       <header className={styles.header}>
         <div className="logo-placeholder">
           <button
@@ -232,7 +235,7 @@ export default function GameRound({ pairs, sequenceNumber, totalSequences, previ
                     exit={{ opacity: 0 }}
                     transition={{ duration: 0.4 }}
                   >
-                    <h2>Piste d'observation</h2>
+                    <h2 className={styles['observation-title']}>Presque ! Observez à nouveau</h2>
                     <p>Observez comment une forme peut réduire l'effort d'un mouvement.</p>
                   </motion.div>
                 )}
@@ -330,6 +333,7 @@ export default function GameRound({ pairs, sequenceNumber, totalSequences, previ
           }}
         />
       </main>
+      </div>
 
       <CollectionOverlay
         pairs={collectedPairs}

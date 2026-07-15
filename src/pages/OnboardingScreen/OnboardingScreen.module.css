@@ -31,8 +31,8 @@
 
 .videoWrap {
     /* Sur les écrans courts, la hauteur naturelle (width * 9/16) dépasse l'espace
-       disponible. min() restreint la largeur pour que la hauteur ne soit jamais
-       supérieure à (100vh - 320px), les 320px couvrant texte + footer + gaps. */
+    disponible. min() restreint la largeur pour que la hauteur ne soit jamais
+    supérieure à (100vh - 320px), les 320px couvrant texte + footer + gaps. */
     width: min(100%, calc((100vh - 320px) * 16 / 9));
     aspect-ratio: 16 / 9;
     overflow: hidden;
@@ -101,7 +101,30 @@
     line-height: 1.7;
     max-width: 500px;
     margin: 0;
-    min-height: calc(1.1rem * 1.7 * 3);
+    white-space: pre-line;
+}
+
+/* Superpose (grid stack) le texte réellement affiché et une copie invisible
+   de tous les textes possibles : la hauteur du wrapper suit toujours le plus
+   long des deux, donc le footer/CTA ne bouge jamais d'une slide à l'autre. */
+.bodyWrap {
+    display: grid;
+    justify-items: center;
+    width: 100%;
+}
+
+.bodyWrap > * {
+    grid-area: 1 / 1;
+}
+
+.bodySizer {
+    visibility: hidden;
+    display: grid;
+    justify-items: center;
+}
+
+.bodySizer > * {
+    grid-area: 1 / 1;
 }
 
 .footer {

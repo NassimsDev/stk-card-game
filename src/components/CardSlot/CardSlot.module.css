@@ -326,7 +326,7 @@
     }
 }
 
-@media (max-height: 650px) and (min-width: 769px) {
+@media (max-height: 750px) and (min-width: 769px) {
     .card-wrapper {
         max-width: 190px;
     }

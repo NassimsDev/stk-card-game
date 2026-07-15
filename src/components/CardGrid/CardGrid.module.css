@@ -134,7 +134,7 @@
     }
 }
 
-@media (max-height: 650px) and (min-width: 769px) {
+@media (max-height: 750px) and (min-width: 769px) {
     .grid-container {
         margin-top: 10px;
         max-width: 300px;
