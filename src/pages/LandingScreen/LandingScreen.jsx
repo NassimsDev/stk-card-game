@@ -12,8 +12,20 @@ function shuffle(arr) {
     return a;
 }
 
-const _inspirations = shuffle(Array.from({ length: 21 }, (_, i) => `/assets/cards/inspiration/card-inspiration-${String(i + 1).padStart(2, "0")}.webp`));
-const _innovations  = shuffle(Array.from({ length: 21 }, (_, i) => `/assets/cards/innovation/card-innovation-${String(i + 1).padStart(2, "0")}.webp`));
+const _inspirations = shuffle(
+    Array.from(
+        { length: 21 },
+        (_, i) =>
+            `/assets/cards/inspiration/card-inspiration-${String(i + 1).padStart(2, "0")}.webp`,
+    ),
+);
+const _innovations = shuffle(
+    Array.from(
+        { length: 21 },
+        (_, i) =>
+            `/assets/cards/innovation/card-innovation-${String(i + 1).padStart(2, "0")}.webp`,
+    ),
+);
 const CARD_IMAGES = _inspirations.flatMap((insp, i) => [insp, _innovations[i]]);
 
 // Format : [left, top, width, height, tone, opacity]
@@ -79,61 +91,73 @@ const CARDS = [
     [920, 670, W, H, "dark", 1],
 ];
 
-
 function LandingScreen({ onStart }) {
-    const vpW = typeof window !== 'undefined' ? window.innerWidth  : CANVAS_W;
-    const vpH = typeof window !== 'undefined' ? window.innerHeight : CANVAS_H;
+    const vpW = typeof window !== "undefined" ? window.innerWidth : CANVAS_W;
+    const vpH = typeof window !== "undefined" ? window.innerHeight : CANVAS_H;
 
     const canvasW = CANVAS_W;
     const canvasH = CANVAS_H;
-    const scale   = Math.min(1, vpW / canvasW, vpH / canvasH);
-    const cx      = vpW / 2;
-    const cy      = vpH / 2;
+    const scale = Math.min(1, vpW / canvasW, vpH / canvasH);
+    const cx = vpW / 2;
+    const cy = vpH / 2;
 
     // Only render cards that are above the gradient-mask cutoff (62% viewport height).
     // Cards below this threshold are 100% transparent — no reason to load their images.
-    const activeCards = CARDS.filter(([, top]) => (top - canvasH / 2) * scale + cy < vpH * 0.62);
+    const activeCards = CARDS.filter(
+        ([, top]) => (top - canvasH / 2) * scale + cy < vpH * 0.62,
+    );
 
     return (
         <div className={styles.page}>
             <div className={styles.maskWrapper}>
                 <div className={styles.cardsLayer}>
-                    {activeCards.map(([left, top, width, height, , opacity], i) => (
-                        <motion.img
-                            key={i}
-                            src={CARD_IMAGES[i % CARD_IMAGES.length]}
-                            alt=""
-                            aria-hidden="true"
-                            className={styles.card}
-                            style={{
-                                left:         `${(left - canvasW / 2) * scale + cx}px`,
-                                top:          `${(top  - canvasH / 2) * scale + cy}px`,
-                                width:        `${width  * scale}px`,
-                                height:       `${height * scale}px`,
-                            }}
-                            initial={{ opacity: 0, scale: 0.85 }}
-                            animate={{ opacity: opacity ?? 1, scale: 1 }}
-                            transition={{
-                                delay:    i * 0.1,
-                                duration: 0.95,
-                                ease:     "easeOut",
-                            }}
-                        />
-                    ))}
+                    {activeCards.map(
+                        ([left, top, width, height, , opacity], i) => (
+                            <motion.img
+                                key={i}
+                                src={CARD_IMAGES[i % CARD_IMAGES.length]}
+                                alt=""
+                                aria-hidden="true"
+                                className={styles.card}
+                                style={{
+                                    left: `${(left - canvasW / 2) * scale + cx}px`,
+                                    top: `${(top - canvasH / 2) * scale + cy}px`,
+                                    width: `${width * scale}px`,
+                                    height: `${height * scale}px`,
+                                }}
+                                initial={{ opacity: 0, scale: 0.85 }}
+                                animate={{ opacity: opacity ?? 1, scale: 1 }}
+                                transition={{
+                                    delay: i * 0.1,
+                                    duration: 0.95,
+                                    ease: "easeOut",
+                                }}
+                            />
+                        ),
+                    )}
                 </div>
             </div>
 
             <div className={styles.content}>
-                <img src="/assets/images/STK-logo.svg" alt="STK" className={styles.logo} />
+                <img
+                    src="/assets/images/STK-logo.svg"
+                    alt="STK"
+                    className={styles.logo}
+                />
                 <h1>Bloom</h1>
                 <p className={styles.subtitle}>
-                    Associez chaque carte de la nature à son innovation pour découvrir le lien qui les unit.
+                    Explorez les liens invisibles entre le vivant et
+                    l'innovation. Chaque carte révèle comment la nature inspire nos inventions.
+                    {/* <br /> <br /> */}
+                    {/* Découvrez comment le vivant façonne les idées de demain. */}
                 </p>
                 <div className={styles.cta}>
-                    <Button onClick={() => {
-                        soundManager.play('gameStart');
-                        onStart();
-                    }}>
+                    <Button
+                        onClick={() => {
+                            soundManager.play("gameStart");
+                            onStart();
+                        }}
+                    >
                         Commencer l'exploration
                     </Button>
                 </div>
