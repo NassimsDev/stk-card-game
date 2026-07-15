@@ -193,7 +193,15 @@ export function useGameRound({ pairs }) {
 
   const handleAnimationComplete = (definition) => {
     if (definition === 'linking')       soundManager.play('correct');
-    if (definition === 'linking-wrong') soundManager.play('wrong');
+    if (definition === 'linking-wrong') {
+      soundManager.play('wrong');
+      // Vibration API : pas de support iOS Safari, d'où la vérification —
+      // sur les navigateurs compatibles (Chrome/Android...), un double buzz
+      // court renforce le signal d'erreur en complément du son.
+      if (typeof navigator !== 'undefined' && navigator.vibrate) {
+        navigator.vibrate([60, 40, 60]);
+      }
+    }
     dispatch({ type: 'ANIMATION_COMPLETE', definition });
   };
 
