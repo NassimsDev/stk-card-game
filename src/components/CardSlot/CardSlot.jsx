@@ -41,7 +41,7 @@ export default function CardSlot({
       onAnimationComplete={isLeft ? onAnimationComplete : undefined}
     >
       <div
-        className={`${styles.card} ${isLeft ? styles['placeholder-card-left'] : styles['placeholder-card-right']}${isDropActive ? ` ${styles['drop-target-active']}` : ''}`}
+        className={`${styles.card} ${isLeft ? styles['placeholder-card-left'] : styles['placeholder-card-right']}${isDropActive ? ` ${styles['drop-target-active']}` : ''}${linkStatus === 'shaking' ? ` ${styles['card-wrong-pulse']}` : ''}`}
         {...dropHandlers}
       >
         <AnimatePresence mode="wait">
@@ -91,6 +91,17 @@ export default function CardSlot({
               opacity: { duration: 0.3 },
               scale: { duration: 0.6, ease: 'easeInOut' },
             }}
+          />
+        )}
+
+        {/* Halo rouge miroir du glow vert ci-dessus — pas d'asset image dédié
+            (contrairement au glow de succès), donc un dégradé CSS. */}
+        {pair && (
+          <motion.div
+            className={styles['card-glow-wrong']}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: linkStatus === 'shaking' ? [0, 1, 0.4, 1, 0] : 0 }}
+            transition={{ duration: 0.55, ease: 'easeInOut' }}
           />
         )}
       </div>

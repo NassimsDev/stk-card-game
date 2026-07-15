@@ -131,6 +131,33 @@
     outline-offset: 4px;
 }
 
+/* Halo rouge interne pendant le shake (mauvaise paire) — dégradé CSS, miroir
+   du glow vert (image) affiché en cas de succès. Confiné aux bords arrondis
+   de la carte via l'overflow:hidden de .card. */
+.card-glow-wrong {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: radial-gradient(circle, rgba(220, 38, 38, 0) 45%, rgba(220, 38, 38, 0.6) 100%);
+    mix-blend-mode: hard-light;
+    pointer-events: none;
+}
+
+/* Bordure rouge qui pulse 2x pendant le shake — sur .card (pas .card-wrapper)
+   pour rester collée au cadre visible ; l'outline n'est pas coupé par
+   l'overflow:hidden de la carte, contrairement à un contenu interne. */
+@keyframes card-wrong-pulse {
+    0%, 100% { outline-color: rgba(220, 38, 38, 0); }
+    25%, 75% { outline-color: rgba(220, 38, 38, 0.85); }
+    50%      { outline-color: rgba(220, 38, 38, 0.35); }
+}
+
+.card-wrong-pulse {
+    outline: 3px solid transparent;
+    outline-offset: 2px;
+    animation: card-wrong-pulse 0.55s ease-in-out;
+}
+
 /* Reserved space for "Voir l'indice" button + animated description */
 .hint-container-fixed {
     width: 100%;
