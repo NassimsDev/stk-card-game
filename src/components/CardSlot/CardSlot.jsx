@@ -68,7 +68,7 @@ export default function CardSlot({
               <span className={styles['card-placeholder-arrow']}>{isLeft ? '←' : '→'}</span>
               <span className={styles['card-placeholder-text']}>
                 {isLeft
-                  ? <>Cliquez pour sélectionner une carte <br/> Inspiration </>
+                  ? <>Cliquez pour sélectionner une carte<br/> Inspiration </>
                   : <>Cliquez pour sélectionner une carte<br/> innovation </>}
               </span>
             </motion.div>
