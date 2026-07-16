@@ -63,7 +63,7 @@
         "alt": "Panneaux solaires"
       },
       "explanation": {
-        "title": "Bravo tu as trouvé le lien biomimétique",
+        "title": "Bravo vous avez trouvé le lien biomimétique",
         "body": "Les ailes de ce papillon rejettent la chaleur sous forme d'ondes pour éviter de surchauffer. \n En imitant cette régulation thermique, ces panneaux solaires restent frais et gardent un rendement maximal.",
         "source": ""
       },
@@ -85,7 +85,7 @@
             "image": "/assets/cards/english/innovation/card-innovation-01.webp"
           },
           "explanation": {
-            "title": "The biomimetic link",
+            "title": "Well done, you found the biomimetic link",
             "body": "This butterfly's wings release heat as waves to avoid overheating. \n By mimicking this thermal regulation, these solar panels stay cool and keep a maximum output."
           }
         }
@@ -109,7 +109,7 @@
         "alt": "Pales d'éolienne"
       },
       "explanation": {
-        "title": "Bravo tu as trouvé le lien biomimétique",
+        "title": "Bravo vous avez trouvé le lien biomimétique",
         "body": "Les bosses sur les nageoires de la baleine créent des micro-vortex qui améliorent sa portance. Sculptées de la même façon, ces pales d'éoliennes captent le vent avec beaucoup moins de frottement.",
         "source": ""
       },
@@ -131,7 +131,7 @@
             "image": "/assets/cards/english/innovation/card-innovation-02.webp"
           },
           "explanation": {
-            "title": "The biomimetic link",
+            "title": "Well done, you found the biomimetic link",
             "body": "The bumps on the whale's fins create micro-vortices that improve its lift. Shaped the same way, these turbine blades capture wind with far less drag."
           }
         }
@@ -155,7 +155,7 @@
         "alt": "Nez profilé du TGV Shinkansen"
       },
       "explanation": {
-        "title": "Bravo tu as trouvé le lien biomimétique",
+        "title": "Bravo vous avez trouvé le lien biomimétique",
         "body": "Le bec du martin-pêcheur pénètre l'eau sans créer d'onde de choc. En imitant sa forme fuselée, le nez du TGV fend l'air en silence et supprime le dérangeant \"bang\" à la sortie des tunnels.",
         "source": ""
       },
@@ -177,7 +177,7 @@
             "image": "/assets/cards/english/innovation/card-innovation-03.webp"
           },
           "explanation": {
-            "title": "The biomimetic link",
+            "title": "Well done, you found the biomimetic link",
             "body": "The kingfisher's beak pierces water without creating a shock wave. By copying its streamlined shape, the bullet train's nose cuts through air silently and removes the jarring \"boom\" when exiting tunnels."
           }
         }
@@ -201,7 +201,7 @@
         "alt": "Adhésif sec geckskin"
       },
       "explanation": {
-        "title": "Bravo tu as trouvé le lien biomimétique",
+        "title": "Bravo vous avez trouvé le lien biomimétique",
         "body": "Les pattes du gekko possèdent des millions de micro-poils qui s'aimantent à la matière à l'échelle moléculaire. Cet adhésif imite cette friction sèche pour fixer des charges lourdes sans colle.",
         "source": ""
       },
@@ -223,7 +223,7 @@
             "image": "/assets/cards/english/innovation/card-innovation-04.webp"
           },
           "explanation": {
-            "title": "The biomimetic link",
+            "title": "Well done, you found the biomimetic link",
             "body": "The gecko's feet are covered in millions of micro-hairs that bond to surfaces at the molecular scale. This adhesive mimics that dry friction to hold heavy loads without any glue."
           }
         }
@@ -247,7 +247,7 @@
         "alt": "Bande Velcro"
       },
       "explanation": {
-        "title": "Bravo tu as trouvé le lien biomimétique",
+        "title": "Bravo vous avez trouvé le lien biomimétique",
         "body": "Les crochets souples de ce fruit s'agrippent naturellement aux boucles formées par les poils d'animaux. Le velcro reproduit ce duo mécanique pour fermer et ouvrir des tissus à l'infini.",
         "source": ""
       },
@@ -269,7 +269,7 @@
             "image": "/assets/cards/english/innovation/card-innovation-05.webp"
           },
           "explanation": {
-            "title": "The biomimetic link",
+            "title": "Well done, you found the biomimetic link",
             "body": "This burr's flexible hooks naturally grip the loops formed by animal fur. Velcro reproduces this mechanical pairing to fasten and unfasten fabric endlessly."
           }
         }
@@ -293,7 +293,7 @@
         "alt": "Turboréacteur d'avion"
       },
       "explanation": {
-        "title": "Bravo tu as trouvé le lien biomimétique",
+        "title": "Bravo vous avez trouvé le lien biomimétique",
         "body": "La coquille en spirale du nautile canalise l'eau pour le propulser par réaction. Les turboréacteurs copient cette géométrie courbe pour comprimer et guider les flux d'air avec un rendement maximal.",
         "source": ""
       },
@@ -315,7 +315,7 @@
             "image": "/assets/cards/english/innovation/card-innovation-06.webp"
           },
           "explanation": {
-            "title": "The biomimetic link",
+            "title": "Well done, you found the biomimetic link",
             "body": "The nautilus's spiral shell channels water to propel it by reaction. Turbojet engines copy this curved geometry to compress and guide airflow with maximum efficiency."
           }
         }
@@ -339,7 +339,7 @@
         "alt": "Combinaison de natation haute performance"
       },
       "explanation": {
-        "title": "Bravo tu as trouvé le lien biomimétique",
+        "title": "Bravo vous avez trouvé le lien biomimétique",
         "body": "La peau de ce prédateur est couverte de micro-dentelures qui canalisent l'eau et éliminent les turbulences. Cette combinaison imite ce relief rugueux pour aider le nageur à glisser bien plus vite.",
         "source": ""
       },
@@ -361,7 +361,7 @@
             "image": "/assets/cards/english/innovation/card-innovation-07.webp"
           },
           "explanation": {
-            "title": "The biomimetic link",
+            "title": "Well done, you found the biomimetic link",
             "body": "This predator's skin is covered in micro-ridges that channel water and eliminate turbulence. This swimsuit mimics that rough texture to help swimmers glide much faster."
           }
         }
@@ -385,7 +385,7 @@
         "alt": "Verre anti-reflet"
       },
       "explanation": {
-        "title": "Bravo tu as trouvé le lien biomimétique",
+        "title": "Bravo vous avez trouvé le lien biomimétique",
         "body": "Les ailes de ce papillon possèdent un relief invisible qui empêche la lumière de rebondir. En copiant cette surface texturée sur les écrans et les lunettes, on élimine enfin l'effet miroir.",
         "source": ""
       },
@@ -407,7 +407,7 @@
             "image": "/assets/cards/english/innovation/card-innovation-08.webp"
           },
           "explanation": {
-            "title": "The biomimetic link",
+            "title": "Well done, you found the biomimetic link",
             "body": "This butterfly's wings have an invisible texture that stops light from bouncing back. By copying this textured surface on screens and glasses, the mirror effect is finally eliminated."
           }
         }
@@ -431,7 +431,7 @@
         "alt": "Filet capteur de rosée"
       },
       "explanation": {
-        "title": "Bravo tu as trouvé le lien biomimétique",
+        "title": "Bravo vous avez trouvé le lien biomimétique",
         "body": "Le dos du scarabée alterne des zones qui attirent l'eau et d'autres qui la repoussent. Les gouttelettes grossissent sur les premières, puis glissent vers sa bouche via les secondes. Les filets reprennent ce principe pour collecter l'eau sans consommer d'énergie.",
         "source": ""
       },
@@ -453,7 +453,7 @@
             "image": "/assets/cards/english/innovation/card-innovation-09.webp"
           },
           "explanation": {
-            "title": "The biomimetic link",
+            "title": "Well done, you found the biomimetic link",
             "body": "The beetle's back alternates zones that attract water with zones that repel it. Droplets grow on the first, then slide toward its mouth via the second. These nets reuse this principle to collect water without consuming any energy."
           }
         }
@@ -477,7 +477,7 @@
         "alt": "Béton auto-réparant"
       },
       "explanation": {
-        "title": "Bravo tu as trouvé le lien biomimétique",
+        "title": "Bravo vous avez trouvé le lien biomimétique",
         "body": "Quand de l'eau s'infiltre dans une fissure, des bactéries encapsulées dans le béton se réactivent. Elles consomment des nutriments stockés à leur côté et produisent un minéral qui rebouche naturellement la fissure.",
         "source": ""
       },
@@ -499,7 +499,7 @@
             "image": "/assets/cards/english/innovation/card-innovation-10.webp"
           },
           "explanation": {
-            "title": "The biomimetic link",
+            "title": "Well done, you found the biomimetic link",
             "body": "When water seeps into a crack, bacteria encapsulated in the concrete reactivate. They consume nutrients stored alongside them and produce a mineral that naturally seals the crack."
           }
         }
@@ -523,7 +523,7 @@
         "alt": "Gratte-ciel 30 St Mary Axe à Londres"
       },
       "explanation": {
-        "title": "Bravo tu as trouvé le lien biomimétique",
+        "title": "Bravo vous avez trouvé le lien biomimétique",
         "body": "L'éponge Euplectella tisse des fibres de verre biologiques en treillis diagonal, ce qui lui donne une rigidité remarquable pour un poids minimal. Les architectes du Gherkin ont transposé cette logique pour concevoir une tour économe en acier et capable d'encaisser les vents urbains.",
         "source": ""
       },
@@ -545,7 +545,7 @@
             "image": "/assets/cards/english/innovation/card-innovation-11.webp"
           },
           "explanation": {
-            "title": "The biomimetic link",
+            "title": "Well done, you found the biomimetic link",
             "body": "The Euplectella sponge weaves biological glass fibers into a diagonal lattice, giving it remarkable rigidity for minimal weight. The Gherkin's architects applied this same logic to design a tower that uses less steel while withstanding urban winds."
           }
         }
@@ -569,7 +569,7 @@
         "alt": "Surface hydrophobe"
       },
       "explanation": {
-        "title": "Bravo tu as trouvé le lien biomimétique",
+        "title": "Bravo vous avez trouvé le lien biomimétique",
         "body": "La surface de la feuille de lotus est couverte de reliefs invisibles à l'œil nu qui empêchent l'eau d'adhérer. Les gouttes roulent en emportant poussières et dépôts. En reproduisant cette texture sur des peintures ou des tuiles, on obtient des façades qui se nettoient sous la pluie.",
         "source": ""
       },
@@ -591,7 +591,7 @@
             "image": "/assets/cards/english/innovation/card-innovation-12.webp"
           },
           "explanation": {
-            "title": "The biomimetic link",
+            "title": "Well done, you found the biomimetic link",
             "body": "The lotus leaf's surface is covered in bumps invisible to the naked eye that prevent water from sticking. Droplets roll off, carrying away dust and grime. By reproducing this texture on paints or tiles, facades are created that clean themselves in the rain."
           }
         }
@@ -615,7 +615,7 @@
         "alt": "Ciment neutre en carbone"
       },
       "explanation": {
-        "title": "Bravo tu as trouvé le lien biomimétique",
+        "title": "Bravo vous avez trouvé le lien biomimétique",
         "body": "Les polypes de corail puisent le carbone présent dans l'eau pour sécréter leur structure solide. En reproduisant ce mécanisme à échelle industrielle, on dissout du CO₂ dans l'eau de mer pour fabriquer un matériau de construction qui capte plus qu'il n'en émet.",
         "source": ""
       },
@@ -637,7 +637,7 @@
             "image": "/assets/cards/english/innovation/card-innovation-13.webp"
           },
           "explanation": {
-            "title": "The biomimetic link",
+            "title": "Well done, you found the biomimetic link",
             "body": "Coral polyps draw carbon from the water to secrete their solid structure. By reproducing this mechanism at industrial scale, CO₂ is dissolved in seawater to make a building material that captures more than it emits."
           }
         }
@@ -661,7 +661,7 @@
         "alt": "Lampe LED"
       },
       "explanation": {
-        "title": "Bravo tu as trouvé le lien biomimétique",
+        "title": "Bravo vous avez trouvé le lien biomimétique",
         "body": "Les écailles en dents de scie de la luciole empêchent sa lumière de refléter vers l'intérieur. En copiant ces micro-pentes sur les puces LED, on libère les rayons piégés pour briller 55% plus fort.",
         "source": ""
       },
@@ -683,7 +683,7 @@
             "image": "/assets/cards/english/innovation/card-innovation-14.webp"
           },
           "explanation": {
-            "title": "The biomimetic link",
+            "title": "Well done, you found the biomimetic link",
             "body": "The firefly's jagged, saw-toothed scales stop its light from reflecting back inward. By copying these micro-slopes on LED chips, trapped light rays are released, shining 55% brighter."
           }
         }
@@ -707,7 +707,7 @@
         "alt": "Aiguille médicale indolore"
       },
       "explanation": {
-        "title": "Bravo tu as trouvé le lien biomimétique",
+        "title": "Bravo vous avez trouvé le lien biomimétique",
         "body": "La trompe du moustique est conique et dentelée, réduisant au minimum le contact avec les nerfs. Cette aiguille médicale copie ce relief microscopique pour glisser dans la peau sans douleur.",
         "source": ""
       },
@@ -729,7 +729,7 @@
             "image": "/assets/cards/english/innovation/card-innovation-15.webp"
           },
           "explanation": {
-            "title": "The biomimetic link",
+            "title": "Well done, you found the biomimetic link",
             "body": "The mosquito's proboscis is conical and serrated, minimizing contact with nerve endings. This medical needle copies that microscopic texture to slide into skin painlessly."
           }
         }
@@ -753,7 +753,7 @@
         "alt": "Quartier compact District 11 à Skolkovo"
       },
       "explanation": {
-        "title": "Bravo tu as trouvé le lien biomimétique",
+        "title": "Bravo vous avez trouvé le lien biomimétique",
         "body": "Les manchots empereurs se serrent en colonie dense, exposant le minimum de surface au vent. Le projet District 11 à Skolkovo reprend cette logique : des villas regroupées par blocs de dix forment un ensemble compact qui maintient des températures intérieures supérieures de 5°C.",
         "source": ""
       },
@@ -775,7 +775,7 @@
             "image": "/assets/cards/english/innovation/card-innovation-16.webp"
           },
           "explanation": {
-            "title": "The biomimetic link",
+            "title": "Well done, you found the biomimetic link",
             "body": "Emperor penguins huddle into a dense colony, exposing the least possible surface to the wind. The District 11 project in Skolkovo follows the same logic: villas grouped in blocks of ten form a compact ensemble that keeps indoor temperatures 5°C higher."
           }
         }
@@ -799,7 +799,7 @@
         "alt": "Eastgate Building à Harare"
       },
       "explanation": {
-        "title": "Bravo tu as trouvé le lien biomimétique",
+        "title": "Bravo vous avez trouvé le lien biomimétique",
         "body": "La termitière aspire l'air frais par le bas et évacue le chaud par ses cheminées. Ce bâtiment imite ce poumon de terre pour s'auto-ventiler naturellement, réduisant sa climatisation de 90 %.",
         "source": ""
       },
@@ -821,7 +821,7 @@
             "image": "/assets/cards/english/innovation/card-innovation-17.webp"
           },
           "explanation": {
-            "title": "The biomimetic link",
+            "title": "Well done, you found the biomimetic link",
             "body": "The termite mound draws cool air in from below and vents hot air out through its chimneys. This building mimics that earthen lung to ventilate itself naturally, cutting its air conditioning needs by 90%."
           }
         }
@@ -845,7 +845,7 @@
         "alt": "Colle forte adhésive"
       },
       "explanation": {
-        "title": "Bravo tu as trouvé le lien biomimétique",
+        "title": "Bravo vous avez trouvé le lien biomimétique",
         "body": "La moule sécrète une protéine contenant une molécule qui se fixe à presque tout, même sous l'eau. Des chercheurs ont reproduit cette chimie pour créer une colle permettant de fixer des enzymes sur des surfaces métalliques, ouvrant des applications en médecine et en capteurs biologiques.",
         "source": ""
       },
@@ -867,7 +867,7 @@
             "image": "/assets/cards/english/innovation/card-innovation-18.webp"
           },
           "explanation": {
-            "title": "The biomimetic link",
+            "title": "Well done, you found the biomimetic link",
             "body": "The mussel secretes a protein containing a molecule that bonds to almost anything, even underwater. Researchers reproduced this chemistry to create an adhesive that fixes enzymes onto metal surfaces, opening applications in medicine and biological sensors."
           }
         }
@@ -891,7 +891,7 @@
         "alt": "Navire au camouflage dazzle"
       },
       "explanation": {
-        "title": "Bravo tu as trouvé le lien biomimétique",
+        "title": "Bravo vous avez trouvé le lien biomimétique",
         "body": "Le contraste fort des rayures du zèbre perturbe la lecture du déplacement par les prédateurs. Le peintre Norman Wilkinson s'en est inspiré pour couvrir les navires britanniques de formes angulaires, rendant leur cap et leur vitesse difficiles à évaluer pour les torpilleurs ennemis.",
         "source": ""
       },
@@ -913,7 +913,7 @@
             "image": "/assets/cards/english/innovation/card-innovation-19.webp"
           },
           "explanation": {
-            "title": "The biomimetic link",
+            "title": "Well done, you found the biomimetic link",
             "body": "The zebra's high-contrast stripes disrupt predators' ability to read its movement. Painter Norman Wilkinson drew on this to cover British ships in angular shapes, making their heading and speed hard for enemy torpedo boats to judge."
           }
         }
@@ -937,7 +937,7 @@
         "alt": "Supertrees des Gardens by the Bay à Singapour"
       },
       "explanation": {
-        "title": "Bravo tu as trouvé le lien biomimétique",
+        "title": "Bravo vous avez trouvé le lien biomimétique",
         "body": "Les Supertrees de Gardens by the Bay s'inspirent de la forme de l'orchidée pour créer des tours végétales qui captent l'eau de pluie, accueillent des panneaux solaires et ventilent les serres environnantes. Comme la fleur, chaque structure unit esthétique et efficacité dans un seul organisme.",
         "source": ""
       },
@@ -959,7 +959,7 @@
             "image": "/assets/cards/english/innovation/card-innovation-20.webp"
           },
           "explanation": {
-            "title": "The biomimetic link",
+            "title": "Well done, you found the biomimetic link",
             "body": "The Supertrees at Gardens by the Bay draw on the orchid's form to create vertical gardens that collect rainwater, host solar panels, and ventilate the surrounding conservatories. Like the flower, each structure unites beauty and efficiency in a single organism."
           }
         }
@@ -983,7 +983,7 @@
         "alt": "La Tour Eiffel à Paris"
       },
       "explanation": {
-        "title": "Bravo tu as trouvé le lien biomimétique",
+        "title": "Bravo vous avez trouvé le lien biomimétique",
         "body": "L'intérieur d'un os n'est pas homogène : la matière se densifie là où les contraintes mécaniques sont fortes. Eiffel a suivi cette même logique en ne plaçant le métal qu'aux endroits soumis à compression ou traction, ce qui rend sa tour plus légère que le volume d'air qu'elle occupe.",
         "source": ""
       },
@@ -1005,7 +1005,7 @@
             "image": "/assets/cards/english/innovation/card-innovation-21.webp"
           },
           "explanation": {
-            "title": "The biomimetic link",
+            "title": "Well done, you found the biomimetic link",
             "body": "The inside of a bone isn't uniform: material becomes denser wherever mechanical stress is greatest. Eiffel followed this very same logic, placing metal only where it faced compression or tension — making his tower lighter than the volume of air it occupies."
           }
         }

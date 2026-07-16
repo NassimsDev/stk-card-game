@@ -115,7 +115,10 @@
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    z-index: 1000;
+    /* Au-dessus de .pageOnboarding (2000) : OnboardingScreen (accueil comme
+       overlay de révision) a un fond opaque plein écran qui masquait sinon
+       ces boutons pourtant bien présents (position fixe identique partout). */
+    z-index: 2100;
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
     transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
 }
@@ -159,7 +162,7 @@
     font-weight: 600;
     letter-spacing: 0.02em;
     cursor: pointer;
-    z-index: 1000;
+    z-index: 2100;
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
     transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
 }
