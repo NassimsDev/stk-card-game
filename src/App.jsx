@@ -30,6 +30,10 @@ function AppContent() {
   const [seqIndex, setSeqIndex] = useState(0);
   const [appView, setAppView] = useState('game');
   const [isMuted, setIsMuted] = useState(() => soundManager.getMuteState());
+  // Revoir l'onboarding depuis le jeu ("?" dans GameRound) : rendu en overlay
+  // par-dessus GameRound (jamais démonté), donc la progression de la
+  // séquence en cours (paires trouvées...) reste intacte au retour.
+  const [showHelp, setShowHelp] = useState(false);
 
   // Recalculée uniquement quand la langue change — le contenu (pairs.json)
   // reste la seule source de vérité, on ne fait que fusionner ses traductions.
@@ -131,6 +135,7 @@ function AppContent() {
                 previousPairs={SEQUENCES.slice(0, seqIndex).flat()}
                 onComplete={handleSequenceComplete}
                 onHome={handleGoHome}
+                onShowHelp={() => setShowHelp(true)}
               />
             )}
 
@@ -211,6 +216,19 @@ function AppContent() {
           </AnimatePresence>
         </div>
       )}
+
+      {/* Overlay de révision : GameRound reste monté en dessous, donc sa
+          progression (paires trouvées de la séquence en cours...) survit. */}
+      <AnimatePresence>
+        {showHelp && (
+          <OnboardingScreen
+            key="help-overlay"
+            onComplete={() => setShowHelp(false)}
+            onClose={() => setShowHelp(false)}
+            onHome={handleGoHome}
+          />
+        )}
+      </AnimatePresence>
 
       {started && (
         <button

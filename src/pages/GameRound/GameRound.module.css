@@ -38,11 +38,36 @@
     margin-bottom: 20px;
 }
 
-/* ── Header actions (ambiance + collection) ──────────────────────────────── */
+/* ── Header actions (aide + ambiance + collection) ───────────────────────── */
 .header-actions {
     display: flex;
     align-items: center;
     gap: 12px;
+}
+
+.help-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    flex-shrink: 0;
+    background: transparent;
+    border: 1px solid rgba(26, 26, 26, 0.35);
+    border-radius: 999px;
+    color: #1a1a1a;
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    transition:
+        background-color 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.help-btn:hover {
+    background-color: rgba(26, 26, 26, 0.06);
+    border-color: #1a1a1a;
 }
 
 .collection-btn {

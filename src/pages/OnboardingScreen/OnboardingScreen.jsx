@@ -14,8 +14,11 @@ const SLIDE_MEDIA = [
     { showLogo: false, video: "/assets/videos/video_echec.mp4" },
 ];
 
-function OnboardingScreen({ onComplete, onHome }) {
+function OnboardingScreen({ onComplete, onHome, onClose }) {
     const { lang, t } = useLang();
+    // Mode révision (depuis le "?" de GameRound) : les vidéos ont déjà été vues
+    // et sont normalement en cache navigateur — pas de spinner de chargement.
+    const isReview = Boolean(onClose);
     const SLIDES = useMemo(
         () => SLIDE_MEDIA.map((media, i) => ({ ...media, ...strings[lang].onboarding.slides[i] })),
         [lang]
@@ -63,11 +66,27 @@ function OnboardingScreen({ onComplete, onHome }) {
     }, [goNext, goBack]);
 
     return (
-        <div
+        <motion.div
             className={styles.pageOnboarding}
             onTouchStart={handleTouchStart}
             onTouchEnd={handleTouchEnd}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
         >
+            {/* Mode révision uniquement (depuis GameRound) : fermeture immédiate,
+                sans repasser par le fondu de fin de parcours ci-dessous. */}
+            {onClose && (
+                <button
+                    className={styles.closeBtn}
+                    onClick={onClose}
+                    aria-label={t('onboarding.closeAria')}
+                >
+                    ✕
+                </button>
+            )}
+
             {/* Desktop : logo épinglé en haut à gauche, indépendant de la vidéo. */}
             <Logo onClick={onHome} className={styles.logoSlot} />
 
@@ -89,7 +108,7 @@ function OnboardingScreen({ onComplete, onHome }) {
                         transition={{ duration: 0.3, ease: "easeOut" }}
                     >
                         <div className={styles.videoWrap}>
-                            {!videoReady && (
+                            {!isReview && !videoReady && (
                                 <div className={styles.spinner} aria-hidden="true" />
                             )}
                             <video
@@ -161,7 +180,7 @@ function OnboardingScreen({ onComplete, onHome }) {
                     />
                 )}
             </AnimatePresence>
-        </div>
+        </motion.div>
     );
 }
 

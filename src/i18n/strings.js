@@ -31,6 +31,7 @@ export const strings = {
       next: 'Suivant',
       play: 'Jouer',
       slideAria: (n) => `Slide ${n}`,
+      closeAria: 'Fermer',
     },
     transition: {
       sequenceWord: 'Séquence',
@@ -57,6 +58,7 @@ export const strings = {
       finish: 'Terminer',
       link: 'Lier',
       next: 'Suivant',
+      help: 'Revoir les explications',
     },
     ambientTracks: {
       oiseaux: 'Oiseaux',
@@ -112,6 +114,7 @@ export const strings = {
       next: 'Next',
       play: 'Play',
       slideAria: (n) => `Slide ${n}`,
+      closeAria: 'Close',
     },
     transition: {
       sequenceWord: 'Sequence',
@@ -138,6 +141,7 @@ export const strings = {
       finish: 'Finish',
       link: 'Link',
       next: 'Next',
+      help: 'Review the instructions',
     },
     ambientTracks: {
       oiseaux: 'Birds',

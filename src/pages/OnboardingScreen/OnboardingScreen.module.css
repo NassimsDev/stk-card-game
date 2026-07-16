@@ -1,5 +1,9 @@
 .pageOnboarding {
-    position: relative;
+    /* fixed + inset:0 (pas relative) : indispensable pour se superposer à
+       GameRound en mode révision — "relative" ne sort pas du flux normal,
+       le composant s'affichait alors sous tout le reste de la page. */
+    position: fixed;
+    inset: 0;
     width: 100vw;
     height: 100vh;
     background-color: var(--color-bg);
@@ -7,6 +11,9 @@
     align-items: center;
     justify-content: center;
     overflow: hidden;
+    /* Au-dessus de tout (boutons son/langue, overlay collection...) quand ce
+       composant sert d'overlay de révision par-dessus GameRound. */
+    z-index: 2000;
 }
 
 /* Même emplacement qu'en haut à gauche du header GameRound — épinglé au
@@ -16,6 +23,34 @@
     top: clamp(12px, 3vh, 24px);
     left: clamp(16px, 3vw, 32px);
     z-index: 10;
+}
+
+/* Coin opposé au logo — visible seulement en mode révision (depuis le "?"
+   de GameRound), pour fermer sans repasser par les 3 slides. */
+.closeBtn {
+    position: absolute;
+    top: clamp(12px, 3vh, 24px);
+    right: clamp(16px, 3vw, 32px);
+    z-index: 10;
+    width: 34px;
+    height: 34px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: 1px solid rgba(26, 26, 26, 0.2);
+    border-radius: 999px;
+    color: var(--color-text);
+    font-size: 14px;
+    cursor: pointer;
+    transition:
+        background-color 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.closeBtn:hover {
+    background-color: rgba(26, 26, 26, 0.06);
+    border-color: #1a1a1a;
 }
 
 /* Dans le flux, au-dessus de la vidéo, centré horizontalement — le flexbox

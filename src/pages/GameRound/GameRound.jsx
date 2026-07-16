@@ -12,7 +12,7 @@ import CardSlot from '../../components/CardSlot/CardSlot';
 import CarouselSection from '../../components/CarouselSection/CarouselSection';
 import CollectionOverlay from '../../components/CollectionOverlay/CollectionOverlay';
 
-export default function GameRound({ pairs, sequenceNumber, totalSequences, previousPairs = [], onComplete, onHome }) {
+export default function GameRound({ pairs, sequenceNumber, totalSequences, previousPairs = [], onComplete, onHome, onShowHelp }) {
   const {
     swiperInstanceRef,
     selectedLeft,
@@ -87,6 +87,17 @@ export default function GameRound({ pairs, sequenceNumber, totalSequences, previ
         <Logo onClick={onHome} />
 
         <div className={styles['header-actions']}>
+          <button
+            className={styles['help-btn']}
+            onClick={() => {
+              soundManager.play('button');
+              onShowHelp?.();
+            }}
+            aria-label={t('gameRound.help')}
+          >
+            ?
+          </button>
+
           <AmbientSelector />
 
           <AnimatePresence>
