@@ -160,6 +160,7 @@ export default function GameRound({ pairs, sequenceNumber, totalSequences, previ
                 onAnimationComplete={handleAnimationComplete}
                 variants={inspirationVariants}
                 transition={transition}
+                showGuidance={matchedPairIds.length === 0}
               />
               <CardSlot
                 side="right"
@@ -173,6 +174,7 @@ export default function GameRound({ pairs, sequenceNumber, totalSequences, previ
                 onHintToggle={toggleHintRight}
                 variants={innovationVariants}
                 transition={transition}
+                showGuidance={matchedPairIds.length === 0}
               />
             </div>
 

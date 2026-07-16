@@ -17,6 +17,7 @@ export default function CardSlot({
   onAnimationComplete,
   variants,
   transition,
+  showGuidance,
 }) {
   const { t, lang } = useLang();
   const isLeft = side === 'left';
@@ -67,10 +68,14 @@ export default function CardSlot({
               exit={{ opacity: 0 }}
               transition={{ duration: 0.3 }}
             >
-              <span className={styles['card-placeholder-arrow']}>{isLeft ? '←' : '→'}</span>
-              <span className={styles['card-placeholder-text']}>
-                {t(isLeft ? 'cardSlot.selectInspiration' : 'cardSlot.selectInnovation')}
-              </span>
+              {showGuidance && (
+                <>
+                  <span className={styles['card-placeholder-arrow']}>{isLeft ? '←' : '→'}</span>
+                  <span className={styles['card-placeholder-text']}>
+                    {t(isLeft ? 'cardSlot.selectInspiration' : 'cardSlot.selectInnovation')}
+                  </span>
+                </>
+              )}
             </motion.div>
           )}
         </AnimatePresence>
