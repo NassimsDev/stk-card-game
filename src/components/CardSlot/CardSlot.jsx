@@ -18,7 +18,7 @@ export default function CardSlot({
   variants,
   transition,
 }) {
-  const { t } = useLang();
+  const { t, lang } = useLang();
   const isLeft = side === 'left';
   const isDropActive = dragOverSide === side;
   const card = pair ? (isLeft ? pair.inspiration : pair.innovation) : null;
@@ -77,7 +77,7 @@ export default function CardSlot({
 
         {pair && (
           <motion.img
-            src={getGlowPath(glowType, pair.id)}
+            src={getGlowPath(glowType, pair.id, lang)}
             alt=""
             className={styles['card-img']}
             style={{ zIndex: 1 }}

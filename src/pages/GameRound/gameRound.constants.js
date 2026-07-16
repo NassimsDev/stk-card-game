@@ -55,9 +55,10 @@ export function localizePair(pair, lang) {
 }
 
 // ── Utilities ─────────────────────────────────────────────────────────────────
-export function getGlowPath(type, id) {
+export function getGlowPath(type, id, lang = 'fr') {
   const num = String(id).padStart(2, '0');
-  return `/assets/cards/french/glow/card-${type}-glow-${num}.webp`;
+  const folder = lang === 'en' ? 'english' : 'french';
+  return `/assets/cards/${folder}/glow/card-${type}-glow-${num}.webp`;
 }
 
 export function shuffleArray(arr) {

@@ -3,9 +3,45 @@
     "version": "1.0.0",
     "totalPairs": 21,
     "sequences": [
-      { "id": 1, "name": "Séquence 1", "pairIds": [1, 2, 3, 4, 5, 6, 7, 8] },
-      { "id": 2, "name": "Séquence 2", "pairIds": [9, 10, 11, 12, 13, 14, 15, 16] },
-      { "id": 3, "name": "Séquence 3", "pairIds": [17, 18, 19, 20, 21] }
+      {
+        "id": 1,
+        "name": "Séquence 1",
+        "pairIds": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
+        ]
+      },
+      {
+        "id": 2,
+        "name": "Séquence 2",
+        "pairIds": [
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16
+        ]
+      },
+      {
+        "id": 3,
+        "name": "Séquence 3",
+        "pairIds": [
+          17,
+          18,
+          19,
+          20,
+          21
+        ]
+      }
     ]
   },
   "pairs": [
@@ -38,13 +74,15 @@
             "title": "Butterfly wings",
             "subtitle": "Inspiration",
             "shortDescription": "Cold-blooded, it must regulate its inner temperature before it can take flight.",
-            "alt": "Blue Morpho butterfly wing"
+            "alt": "Blue Morpho butterfly wing",
+            "image": "/assets/cards/english/inspiration/card-inspiration-01.webp"
           },
           "innovation": {
             "title": "Solar panels",
             "subtitle": "Innovation",
             "shortDescription": "An external energy receiver that self-cools to stay efficient.",
-            "alt": "Solar panels"
+            "alt": "Solar panels",
+            "image": "/assets/cards/english/innovation/card-innovation-01.webp"
           },
           "explanation": {
             "title": "The biomimetic link",
@@ -82,13 +120,15 @@
             "title": "Whale fins",
             "subtitle": "Inspiration",
             "shortDescription": "Its shape breaks the current's resistance, letting it glide with minimal effort.",
-            "alt": "Humpback whale fins"
+            "alt": "Humpback whale fins",
+            "image": "/assets/cards/english/inspiration/card-inspiration-02.webp"
           },
           "innovation": {
             "title": "Wind turbines",
             "subtitle": "Innovation",
             "shortDescription": "These giant blades spin even in very light wind thanks to their unique profile.",
-            "alt": "Wind turbine blades"
+            "alt": "Wind turbine blades",
+            "image": "/assets/cards/english/innovation/card-innovation-02.webp"
           },
           "explanation": {
             "title": "The biomimetic link",
@@ -126,13 +166,15 @@
             "title": "The kingfisher",
             "subtitle": "Inspiration",
             "shortDescription": "Its slender beak cuts through air and water silently to surprise its prey.",
-            "alt": "Kingfisher diving"
+            "alt": "Kingfisher diving",
+            "image": "/assets/cards/english/inspiration/card-inspiration-03.webp"
           },
           "innovation": {
             "title": "The Japanese bullet train",
             "subtitle": "Innovation",
             "shortDescription": "An aerodynamic shape that reduces noise at high speed through cities.",
-            "alt": "Streamlined nose of the Shinkansen bullet train"
+            "alt": "Streamlined nose of the Shinkansen bullet train",
+            "image": "/assets/cards/english/innovation/card-innovation-03.webp"
           },
           "explanation": {
             "title": "The biomimetic link",
@@ -170,13 +212,15 @@
             "title": "The gecko",
             "subtitle": "Inspiration",
             "shortDescription": "Able to run upside down across a ceiling without ever fearing a fall.",
-            "alt": "Gecko clinging to a surface"
+            "alt": "Gecko clinging to a surface",
+            "image": "/assets/cards/english/inspiration/card-inspiration-04.webp"
           },
           "innovation": {
             "title": "Geckskin",
             "subtitle": "Innovation",
             "shortDescription": "A single piece of this fabric can hold a flat-screen TV on a wall.",
-            "alt": "Geckskin dry adhesive"
+            "alt": "Geckskin dry adhesive",
+            "image": "/assets/cards/english/innovation/card-innovation-04.webp"
           },
           "explanation": {
             "title": "The biomimetic link",
@@ -214,13 +258,15 @@
             "title": "Burdock burrs",
             "subtitle": "Inspiration",
             "shortDescription": "This wild plant relies on dogs and walkers to scatter its seeds.",
-            "alt": "Burdock burr covered in hooks"
+            "alt": "Burdock burr covered in hooks",
+            "image": "/assets/cards/english/inspiration/card-inspiration-05.webp"
           },
           "innovation": {
             "title": "Velcro",
             "subtitle": "Innovation",
             "shortDescription": "This invention joins two objects with simple mechanical pressure, no adhesive at all.",
-            "alt": "Velcro strip"
+            "alt": "Velcro strip",
+            "image": "/assets/cards/english/innovation/card-innovation-05.webp"
           },
           "explanation": {
             "title": "The biomimetic link",
@@ -258,13 +304,15 @@
             "title": "The nautilus",
             "subtitle": "Inspiration",
             "shortDescription": "It glides effortlessly through the ocean thanks to a hydrodynamic shape millions of years in the making.",
-            "alt": "Spiral shell of a nautilus"
+            "alt": "Spiral shell of a nautilus",
+            "image": "/assets/cards/english/inspiration/card-inspiration-06.webp"
           },
           "innovation": {
             "title": "Turbojet engines",
             "subtitle": "Innovation",
             "shortDescription": "A system designed to cut through the atmosphere at high altitude and high speed.",
-            "alt": "Aircraft turbojet engine"
+            "alt": "Aircraft turbojet engine",
+            "image": "/assets/cards/english/innovation/card-innovation-06.webp"
           },
           "explanation": {
             "title": "The biomimetic link",
@@ -302,13 +350,15 @@
             "title": "Shark skin",
             "subtitle": "Inspiration",
             "shortDescription": "Its body is covered in millions of tiny tooth-like scales aligned with the current.",
-            "alt": "Close-up of shark skin"
+            "alt": "Close-up of shark skin",
+            "image": "/assets/cards/english/inspiration/card-inspiration-07.webp"
           },
           "innovation": {
             "title": "Swimsuits",
             "subtitle": "Innovation",
             "shortDescription": "A textile innovation that shattered every speed world record.",
-            "alt": "High-performance swimsuit"
+            "alt": "High-performance swimsuit",
+            "image": "/assets/cards/english/innovation/card-innovation-07.webp"
           },
           "explanation": {
             "title": "The biomimetic link",
@@ -346,13 +396,15 @@
             "title": "The Greta oto butterfly",
             "subtitle": "Inspiration",
             "shortDescription": "Its wing membranes create no glare that could give away its presence.",
-            "alt": "Greta oto butterfly with transparent wings"
+            "alt": "Greta oto butterfly with transparent wings",
+            "image": "/assets/cards/english/inspiration/card-inspiration-08.webp"
           },
           "innovation": {
             "title": "Anti-glare glass",
             "subtitle": "Innovation",
             "shortDescription": "Lets you read your phone in bright sunlight without your own reflection getting in the way.",
-            "alt": "Anti-glare glass"
+            "alt": "Anti-glare glass",
+            "image": "/assets/cards/english/innovation/card-innovation-08.webp"
           },
           "explanation": {
             "title": "The biomimetic link",
@@ -390,13 +442,15 @@
             "title": "The Namib desert beetle",
             "subtitle": "Inspiration",
             "shortDescription": "This desert beetle extracts water from the morning air thanks to the shape of its back.",
-            "alt": "Namib desert beetle"
+            "alt": "Namib desert beetle",
+            "image": "/assets/cards/english/inspiration/card-inspiration-09.webp"
           },
           "innovation": {
             "title": "Dew-collecting nets",
             "subtitle": "Innovation",
             "shortDescription": "Nets that harvest atmospheric moisture in regions where water is scarce.",
-            "alt": "Dew-collecting net"
+            "alt": "Dew-collecting net",
+            "image": "/assets/cards/english/innovation/card-innovation-09.webp"
           },
           "explanation": {
             "title": "The biomimetic link",
@@ -434,13 +488,15 @@
             "title": "The scar",
             "subtitle": "Inspiration",
             "shortDescription": "Skin heals its wounds by mobilizing its own internal resources.",
-            "alt": "Skin healing"
+            "alt": "Skin healing",
+            "image": "/assets/cards/english/inspiration/card-inspiration-10.webp"
           },
           "innovation": {
             "title": "Self-healing concrete",
             "subtitle": "Innovation",
             "shortDescription": "A building material that seals its own cracks without any human intervention.",
-            "alt": "Self-repairing concrete"
+            "alt": "Self-repairing concrete",
+            "image": "/assets/cards/english/innovation/card-innovation-10.webp"
           },
           "explanation": {
             "title": "The biomimetic link",
@@ -478,13 +534,15 @@
             "title": "Venus' flower basket",
             "subtitle": "Inspiration",
             "shortDescription": "This deep-sea sponge builds a frame that is fine yet remarkably rigid.",
-            "alt": "Venus' flower basket sponge"
+            "alt": "Venus' flower basket sponge",
+            "image": "/assets/cards/english/inspiration/card-inspiration-11.webp"
           },
           "innovation": {
             "title": "30 St Mary Axe",
             "subtitle": "Innovation",
             "shortDescription": "This London skyscraper draws its strength from a spiral geometry borrowed from nature.",
-            "alt": "30 St Mary Axe skyscraper in London"
+            "alt": "30 St Mary Axe skyscraper in London",
+            "image": "/assets/cards/english/innovation/card-innovation-11.webp"
           },
           "explanation": {
             "title": "The biomimetic link",
@@ -522,13 +580,15 @@
             "title": "The lotus effect",
             "subtitle": "Inspiration",
             "shortDescription": "This plant's leaf stays spotless in any weather, with no maintenance at all.",
-            "alt": "Water droplet on a lotus leaf"
+            "alt": "Water droplet on a lotus leaf",
+            "image": "/assets/cards/english/inspiration/card-inspiration-12.webp"
           },
           "innovation": {
             "title": "Hydrophobic surfaces",
             "subtitle": "Innovation",
             "shortDescription": "Architectural coatings that repel dirt without any chemical products.",
-            "alt": "Hydrophobic surface"
+            "alt": "Hydrophobic surface",
+            "image": "/assets/cards/english/innovation/card-innovation-12.webp"
           },
           "explanation": {
             "title": "The biomimetic link",
@@ -566,13 +626,15 @@
             "title": "Coral",
             "subtitle": "Inspiration",
             "shortDescription": "These marine organisms build their skeleton by transforming dissolved CO₂.",
-            "alt": "Coral reef"
+            "alt": "Coral reef",
+            "image": "/assets/cards/english/inspiration/card-inspiration-13.webp"
           },
           "innovation": {
             "title": "Carbon-neutral cement",
             "subtitle": "Innovation",
             "shortDescription": "A mineral binder whose production absorbs as much CO₂ as it releases.",
-            "alt": "Carbon-neutral cement"
+            "alt": "Carbon-neutral cement",
+            "image": "/assets/cards/english/innovation/card-innovation-13.webp"
           },
           "explanation": {
             "title": "The biomimetic link",
@@ -610,13 +672,15 @@
             "title": "Fireflies",
             "subtitle": "Inspiration",
             "shortDescription": "Its love signal must pierce the pitch-black night to attract a distant mate.",
-            "alt": "Firefly emitting bioluminescent light"
+            "alt": "Firefly emitting bioluminescent light",
+            "image": "/assets/cards/english/inspiration/card-inspiration-14.webp"
           },
           "innovation": {
             "title": "LED lamps",
             "subtitle": "Innovation",
             "shortDescription": "A technology ideal for designing ultra-bright screens and beacons.",
-            "alt": "LED lamp"
+            "alt": "LED lamp",
+            "image": "/assets/cards/english/innovation/card-innovation-14.webp"
           },
           "explanation": {
             "title": "The biomimetic link",
@@ -654,13 +718,15 @@
             "title": "The mosquito's proboscis",
             "subtitle": "Inspiration",
             "shortDescription": "This insect pierces the skin barrier without its target ever noticing.",
-            "alt": "Mosquito proboscis"
+            "alt": "Mosquito proboscis",
+            "image": "/assets/cards/english/inspiration/card-inspiration-15.webp"
           },
           "innovation": {
             "title": "The painless medical needle",
             "subtitle": "Innovation",
             "shortDescription": "A medical device so fine that the nervous system doesn't detect its presence.",
-            "alt": "Painless medical needle"
+            "alt": "Painless medical needle",
+            "image": "/assets/cards/english/innovation/card-innovation-15.webp"
           },
           "explanation": {
             "title": "The biomimetic link",
@@ -698,13 +764,15 @@
             "title": "The emperor penguin",
             "subtitle": "Inspiration",
             "shortDescription": "Facing polar cold, these birds huddle together to preserve their collective warmth.",
-            "alt": "Colony of emperor penguins"
+            "alt": "Colony of emperor penguins",
+            "image": "/assets/cards/english/inspiration/card-inspiration-16.webp"
           },
           "innovation": {
             "title": "District 11",
             "subtitle": "Innovation",
             "shortDescription": "A Russian district whose compact layout reduces heat loss.",
-            "alt": "Compact District 11 neighborhood in Skolkovo"
+            "alt": "Compact District 11 neighborhood in Skolkovo",
+            "image": "/assets/cards/english/innovation/card-innovation-16.webp"
           },
           "explanation": {
             "title": "The biomimetic link",
@@ -742,13 +810,15 @@
             "title": "The termite mound",
             "subtitle": "Inspiration",
             "shortDescription": "This mound survives scorching desert days and freezing desert nights.",
-            "alt": "African termite mound"
+            "alt": "African termite mound",
+            "image": "/assets/cards/english/inspiration/card-inspiration-17.webp"
           },
           "innovation": {
             "title": "The Eastgate Building",
             "subtitle": "Innovation",
             "shortDescription": "A building solution ideal for hot countries lacking reliable electricity.",
-            "alt": "Eastgate Building in Harare"
+            "alt": "Eastgate Building in Harare",
+            "image": "/assets/cards/english/innovation/card-innovation-17.webp"
           },
           "explanation": {
             "title": "The biomimetic link",
@@ -786,13 +856,15 @@
             "title": "The mussel",
             "subtitle": "Inspiration",
             "shortDescription": "This mollusk clings to any submerged surface thanks to its byssal threads.",
-            "alt": "Mussel clinging to a rock"
+            "alt": "Mussel clinging to a rock",
+            "image": "/assets/cards/english/inspiration/card-inspiration-18.webp"
           },
           "innovation": {
             "title": "Strong adhesive",
             "subtitle": "Innovation",
             "shortDescription": "An adhesive able to bind active molecules to metal, even underwater.",
-            "alt": "Strong adhesive glue"
+            "alt": "Strong adhesive glue",
+            "image": "/assets/cards/english/innovation/card-innovation-18.webp"
           },
           "explanation": {
             "title": "The biomimetic link",
@@ -830,13 +902,15 @@
             "title": "The zebra",
             "subtitle": "Inspiration",
             "shortDescription": "Its stripes scramble a viewer's perception of its movement.",
-            "alt": "Zebra with high-contrast stripes"
+            "alt": "Zebra with high-contrast stripes",
+            "image": "/assets/cards/english/inspiration/card-inspiration-19.webp"
           },
           "innovation": {
             "title": "Dazzle camouflage",
             "subtitle": "Innovation",
             "shortDescription": "In 1917, geometric patterns painted on hulls made a ship's heading unreadable.",
-            "alt": "Ship painted with dazzle camouflage"
+            "alt": "Ship painted with dazzle camouflage",
+            "image": "/assets/cards/english/innovation/card-innovation-19.webp"
           },
           "explanation": {
             "title": "The biomimetic link",
@@ -874,13 +948,15 @@
             "title": "The orchid",
             "subtitle": "Inspiration",
             "shortDescription": "This flower combines an intricate airborne form with the efficient management of its resources.",
-            "alt": "Blooming orchid"
+            "alt": "Blooming orchid",
+            "image": "/assets/cards/english/inspiration/card-inspiration-20.webp"
           },
           "innovation": {
             "title": "Gardens by the Bay",
             "subtitle": "Innovation",
             "shortDescription": "This Singapore park builds energy-generating functions into its giant tree-like structures.",
-            "alt": "Supertrees at Gardens by the Bay in Singapore"
+            "alt": "Supertrees at Gardens by the Bay in Singapore",
+            "image": "/assets/cards/english/innovation/card-innovation-20.webp"
           },
           "explanation": {
             "title": "The biomimetic link",
@@ -918,13 +994,15 @@
             "title": "Human bone",
             "subtitle": "Inspiration",
             "shortDescription": "Our skeleton concentrates material only where stress is greatest, with no excess.",
-            "alt": "Human bone (femur)"
+            "alt": "Human bone (femur)",
+            "image": "/assets/cards/english/inspiration/card-inspiration-21.webp"
           },
           "innovation": {
             "title": "The Eiffel Tower",
             "subtitle": "Innovation",
             "shortDescription": "This Parisian structure places its iron exactly where the forces demand it.",
-            "alt": "The Eiffel Tower in Paris"
+            "alt": "The Eiffel Tower in Paris",
+            "image": "/assets/cards/english/innovation/card-innovation-21.webp"
           },
           "explanation": {
             "title": "The biomimetic link",

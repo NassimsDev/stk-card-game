@@ -13,6 +13,8 @@ function shuffle(arr) {
     return a;
 }
 
+// Toujours "french" : les cartes sont trop petites dans cette mosaïque pour
+// que le texte dessus soit lisible, pas besoin de suivre la langue ici.
 const _inspirations = shuffle(
     Array.from(
         { length: 21 },
