@@ -17,15 +17,15 @@ export const strings = {
       slides: [
         {
           eyebrow: 'Le biomimétisme',
-          body: 'Explorez, associez et découvrez comment ses stratégies inspirent nos façons de concevoir, construire et innover.',
+          body: 'Explorez, associez et découvrez comment ses stratégies inspirent nos façons de concevoir, construire et innover',
         },
         {
           eyebrow: 'Comment faire le lien',
-          body: "Le vivant est un immense laboratoire de recherche. Associez chaque carte de la nature à son innovation pour découvrir le lien qui les unit.",
+          body: "Le vivant est un immense laboratoire de recherche. Associez chaque carte de la nature à son innovation pour découvrir le lien qui les unit",
         },
         {
           eyebrow: "Besoin d'aide ?",
-          body: "Des indices sont disponibles à tout moment pour vous guider si vous le souhaitez",
+          body: "Des indices sont disponibles à tout moment pour vous guider",
         },
       ],
       next: 'Suivant',
@@ -52,8 +52,8 @@ export const strings = {
       sequence: (n, total) => `Séquence ${n}/${total}`,
       pairsFound: (found, total) => `${found}/${total} paires trouvées`,
       wrongTitle: 'Dommage ! Observez à nouveau',
-      wrongBody: "Admirez comment une forme peut réduire l'effort d'un mouvement",
-      continueHint: "Continuez à découvrir les autres liens entre le vivant et l'innovation",
+      wrongBody: "Admirez comment une forme peut réduire l'effort d'un mouvement.",
+      continueHint: "Continuez à découvrir les autres liens entre le vivant et l'innovation.",
       nextSequence: 'Séquence suivante',
       finish: 'Terminer',
       link: 'Lier',
@@ -100,15 +100,15 @@ export const strings = {
       slides: [
         {
           eyebrow: 'Biomimicry',
-          body: 'Explore, match, and discover how nature’s strategies inspire the way we design, build, and innovate.',
+          body: 'Explore, match, and discover how nature’s strategies inspire the way we design, build, and innovate',
         },
         {
           eyebrow: 'How the matching works',
-          body: 'The living world is a vast research lab. Match each nature card with its innovation to uncover the link between them.',
+          body: 'The living world is a vast research lab. Match each nature card with its innovation to uncover the link between them',
         },
         {
           eyebrow: 'Need a hand?',
-          body: 'Hints are available at any time to guide you, whenever you need them',
+          body: 'Hints are available at any time to guide you',
         },
       ],
       next: 'Next',
@@ -135,8 +135,8 @@ export const strings = {
       sequence: (n, total) => `Sequence ${n}/${total}`,
       pairsFound: (found, total) => `${found}/${total} pairs found`,
       wrongTitle: 'Too bad! Take another look',
-      wrongBody: 'Notice how a shape can reduce the effort of a movement',
-      continueHint: 'Keep discovering the other links between nature and innovation',
+      wrongBody: 'Notice how a shape can reduce the effort of a movement.',
+      continueHint: 'Keep discovering the other links between nature and innovation.',
       nextSequence: 'Next sequence',
       finish: 'Finish',
       link: 'Link',
