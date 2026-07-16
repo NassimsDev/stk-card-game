@@ -1,30 +1,23 @@
-import { useState, useEffect, useCallback, useRef } from "react";
+import { useState, useEffect, useCallback, useRef, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Button from "../../components/Button/Button.jsx";
+import { useLang } from "../../i18n/LangContext";
+import { strings } from "../../i18n/strings";
 import styles from "./OnboardingScreen.module.css";
 
-const SLIDES = [
-    {
-        eyebrow: "Le biomimétisme",
-        showLogo: true,
-        body: "Explorez, associez et découvrez comment ses stratégies inspirent nos façons de concevoir, construire et innover.",
-        video: "/assets/videos/video-intro-1.mp4",
-    },
-    {
-        eyebrow: "Comment faire le lien",
-        showLogo: false,
-        body: "Le vivant est un immense laboratoire de recherche. Associez chaque carte de la nature à son innovation pour découvrir le lien qui les unit.",
-        video: "/assets/videos/video_reussite.mp4",
-    },
-    {
-        eyebrow: "Besoin d'aide ?",
-        showLogo: false,
-        body: "Des indices sont disponibles à tout moment pour vous guider si vous le souhaitez",
-        video: "/assets/videos/video_echec.mp4",
-    },
+// Vidéos + mise en page : partagées entre les langues, seul le texte change.
+const SLIDE_MEDIA = [
+    { showLogo: true, video: "/assets/videos/video-intro-1.mp4" },
+    { showLogo: false, video: "/assets/videos/video_reussite.mp4" },
+    { showLogo: false, video: "/assets/videos/video_echec.mp4" },
 ];
 
 function OnboardingScreen({ onComplete }) {
+    const { lang, t } = useLang();
+    const SLIDES = useMemo(
+        () => SLIDE_MEDIA.map((media, i) => ({ ...media, ...strings[lang].onboarding.slides[i] })),
+        [lang]
+    );
     const [index, setIndex] = useState(0);
     const [direction, setDirection] = useState(1); // 1 = avant, -1 = arrière
     const [exiting, setExiting] = useState(false);
@@ -125,7 +118,7 @@ function OnboardingScreen({ onComplete }) {
                 <div className={styles.footer}>
                     <div className={styles.controls}>
                         <Button onClick={goNext} disabled={exiting}>
-                            {isLast ? "Jouer" : "Suivant"}
+                            {isLast ? t('onboarding.play') : t('onboarding.next')}
                         </Button>
                     </div>
                     <div className={styles.dots}>
@@ -138,7 +131,7 @@ function OnboardingScreen({ onComplete }) {
                                     setDirection(i > index ? 1 : -1);
                                     setIndex(i);
                                 }}
-                                aria-label={`Slide ${i + 1}`}
+                                aria-label={t('onboarding.slideAria')(i + 1)}
                             />
                         ))}
                     </div>

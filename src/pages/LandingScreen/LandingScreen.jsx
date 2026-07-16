@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import Button from "../../components/Button/Button.jsx";
 import { soundManager } from "../../utils/soundManager";
+import { useLang } from "../../i18n/LangContext";
 import styles from "./LandingScreen.module.css";
 
 function shuffle(arr) {
@@ -92,6 +93,7 @@ const CARDS = [
 ];
 
 function LandingScreen({ onStart }) {
+    const { t } = useLang();
     const vpW = typeof window !== "undefined" ? window.innerWidth : CANVAS_W;
     const vpH = typeof window !== "undefined" ? window.innerHeight : CANVAS_H;
 
@@ -146,10 +148,7 @@ function LandingScreen({ onStart }) {
                 />
                 <h1>Bloom</h1>
                 <p className={styles.subtitle}>
-                    Explorez les liens invisibles entre le vivant et
-                    l'innovation. Chaque carte révèle comment la nature inspire nos inventions.
-                    {/* <br /> <br /> */}
-                    {/* Découvrez comment le vivant façonne les idées de demain. */}
+                    {t('landing.subtitle')}
                 </p>
                 <div className={styles.cta}>
                     <Button
@@ -158,7 +157,7 @@ function LandingScreen({ onStart }) {
                             onStart();
                         }}
                     >
-                        Commencer l'exploration
+                        {t('landing.cta')}
                     </Button>
                 </div>
             </div>

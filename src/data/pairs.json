@@ -30,6 +30,27 @@
         "title": "Le lien biomimétique",
         "body": "Les ailes de ce papillon rejettent la chaleur sous forme d'ondes pour éviter de surchauffer. \n En imitant cette régulation thermique, ces panneaux solaires restent frais et gardent un rendement maximal.",
         "source": ""
+      },
+      "translations": {
+        "en": {
+          "theme": "Thermoregulation",
+          "inspiration": {
+            "title": "Butterfly wings",
+            "subtitle": "Inspiration",
+            "shortDescription": "Cold-blooded, it must regulate its inner temperature before it can take flight.",
+            "alt": "Blue Morpho butterfly wing"
+          },
+          "innovation": {
+            "title": "Solar panels",
+            "subtitle": "Innovation",
+            "shortDescription": "An external energy receiver that self-cools to stay efficient.",
+            "alt": "Solar panels"
+          },
+          "explanation": {
+            "title": "The biomimetic link",
+            "body": "This butterfly's wings release heat as waves to avoid overheating. \n By mimicking this thermal regulation, these solar panels stay cool and keep a maximum output."
+          }
+        }
       }
     },
     {
@@ -53,6 +74,27 @@
         "title": "Le lien biomimétique",
         "body": "Les bosses sur les nageoires de la baleine créent des micro-vortex qui améliorent sa portance. Sculptées de la même façon, ces pales d'éoliennes captent le vent avec beaucoup moins de frottement.",
         "source": ""
+      },
+      "translations": {
+        "en": {
+          "theme": "Aerodynamics",
+          "inspiration": {
+            "title": "Whale fins",
+            "subtitle": "Inspiration",
+            "shortDescription": "Its shape breaks the current's resistance, letting it glide with minimal effort.",
+            "alt": "Humpback whale fins"
+          },
+          "innovation": {
+            "title": "Wind turbines",
+            "subtitle": "Innovation",
+            "shortDescription": "These giant blades spin even in very light wind thanks to their unique profile.",
+            "alt": "Wind turbine blades"
+          },
+          "explanation": {
+            "title": "The biomimetic link",
+            "body": "The bumps on the whale's fins create micro-vortices that improve its lift. Shaped the same way, these turbine blades capture wind with far less drag."
+          }
+        }
       }
     },
     {
@@ -76,6 +118,27 @@
         "title": "Le lien biomimétique",
         "body": "Le bec du martin-pêcheur pénètre l'eau sans créer d'onde de choc. En imitant sa forme fuselée, le nez du TGV fend l'air en silence et supprime le dérangeant \"bang\" à la sortie des tunnels.",
         "source": ""
+      },
+      "translations": {
+        "en": {
+          "theme": "Aerodynamics",
+          "inspiration": {
+            "title": "The kingfisher",
+            "subtitle": "Inspiration",
+            "shortDescription": "Its slender beak cuts through air and water silently to surprise its prey.",
+            "alt": "Kingfisher diving"
+          },
+          "innovation": {
+            "title": "The Japanese bullet train",
+            "subtitle": "Innovation",
+            "shortDescription": "An aerodynamic shape that reduces noise at high speed through cities.",
+            "alt": "Streamlined nose of the Shinkansen bullet train"
+          },
+          "explanation": {
+            "title": "The biomimetic link",
+            "body": "The kingfisher's beak pierces water without creating a shock wave. By copying its streamlined shape, the bullet train's nose cuts through air silently and removes the jarring \"boom\" when exiting tunnels."
+          }
+        }
       }
     },
     {
@@ -99,6 +162,27 @@
         "title": "Le lien biomimétique",
         "body": "Les pattes du gekko possèdent des millions de micro-poils qui s'aimantent à la matière à l'échelle moléculaire. Cet adhésif imite cette friction sèche pour fixer des charges lourdes sans colle.",
         "source": ""
+      },
+      "translations": {
+        "en": {
+          "theme": "Adhesion",
+          "inspiration": {
+            "title": "The gecko",
+            "subtitle": "Inspiration",
+            "shortDescription": "Able to run upside down across a ceiling without ever fearing a fall.",
+            "alt": "Gecko clinging to a surface"
+          },
+          "innovation": {
+            "title": "Geckskin",
+            "subtitle": "Innovation",
+            "shortDescription": "A single piece of this fabric can hold a flat-screen TV on a wall.",
+            "alt": "Geckskin dry adhesive"
+          },
+          "explanation": {
+            "title": "The biomimetic link",
+            "body": "The gecko's feet are covered in millions of micro-hairs that bond to surfaces at the molecular scale. This adhesive mimics that dry friction to hold heavy loads without any glue."
+          }
+        }
       }
     },
     {
@@ -122,6 +206,27 @@
         "title": "Le lien biomimétique",
         "body": "Les crochets souples de ce fruit s'agrippent naturellement aux boucles formées par les poils d'animaux. Le velcro reproduit ce duo mécanique pour fermer et ouvrir des tissus à l'infini.",
         "source": ""
+      },
+      "translations": {
+        "en": {
+          "theme": "Fastening",
+          "inspiration": {
+            "title": "Burdock burrs",
+            "subtitle": "Inspiration",
+            "shortDescription": "This wild plant relies on dogs and walkers to scatter its seeds.",
+            "alt": "Burdock burr covered in hooks"
+          },
+          "innovation": {
+            "title": "Velcro",
+            "subtitle": "Innovation",
+            "shortDescription": "This invention joins two objects with simple mechanical pressure, no adhesive at all.",
+            "alt": "Velcro strip"
+          },
+          "explanation": {
+            "title": "The biomimetic link",
+            "body": "This burr's flexible hooks naturally grip the loops formed by animal fur. Velcro reproduces this mechanical pairing to fasten and unfasten fabric endlessly."
+          }
+        }
       }
     },
     {
@@ -145,6 +250,27 @@
         "title": "Le lien biomimétique",
         "body": "La coquille en spirale du nautile canalise l'eau pour le propulser par réaction. Les turboréacteurs copient cette géométrie courbe pour comprimer et guider les flux d'air avec un rendement maximal.",
         "source": ""
+      },
+      "translations": {
+        "en": {
+          "theme": "Aerodynamics",
+          "inspiration": {
+            "title": "The nautilus",
+            "subtitle": "Inspiration",
+            "shortDescription": "It glides effortlessly through the ocean thanks to a hydrodynamic shape millions of years in the making.",
+            "alt": "Spiral shell of a nautilus"
+          },
+          "innovation": {
+            "title": "Turbojet engines",
+            "subtitle": "Innovation",
+            "shortDescription": "A system designed to cut through the atmosphere at high altitude and high speed.",
+            "alt": "Aircraft turbojet engine"
+          },
+          "explanation": {
+            "title": "The biomimetic link",
+            "body": "The nautilus's spiral shell channels water to propel it by reaction. Turbojet engines copy this curved geometry to compress and guide airflow with maximum efficiency."
+          }
+        }
       }
     },
     {
@@ -168,6 +294,27 @@
         "title": "Le lien biomimétique",
         "body": "La peau de ce prédateur est couverte de micro-dentelures qui canalisent l'eau et éliminent les turbulences. Cette combinaison imite ce relief rugueux pour aider le nageur à glisser bien plus vite.",
         "source": ""
+      },
+      "translations": {
+        "en": {
+          "theme": "Hydrodynamics",
+          "inspiration": {
+            "title": "Shark skin",
+            "subtitle": "Inspiration",
+            "shortDescription": "Its body is covered in millions of tiny tooth-like scales aligned with the current.",
+            "alt": "Close-up of shark skin"
+          },
+          "innovation": {
+            "title": "Swimsuits",
+            "subtitle": "Innovation",
+            "shortDescription": "A textile innovation that shattered every speed world record.",
+            "alt": "High-performance swimsuit"
+          },
+          "explanation": {
+            "title": "The biomimetic link",
+            "body": "This predator's skin is covered in micro-ridges that channel water and eliminate turbulence. This swimsuit mimics that rough texture to help swimmers glide much faster."
+          }
+        }
       }
     },
     {
@@ -191,6 +338,27 @@
         "title": "Le lien biomimétique",
         "body": "Les ailes de ce papillon possèdent un relief invisible qui empêche la lumière de rebondir. En copiant cette surface texturée sur les écrans et les lunettes, on élimine enfin l'effet miroir.",
         "source": ""
+      },
+      "translations": {
+        "en": {
+          "theme": "Optics",
+          "inspiration": {
+            "title": "The Greta oto butterfly",
+            "subtitle": "Inspiration",
+            "shortDescription": "Its wing membranes create no glare that could give away its presence.",
+            "alt": "Greta oto butterfly with transparent wings"
+          },
+          "innovation": {
+            "title": "Anti-glare glass",
+            "subtitle": "Innovation",
+            "shortDescription": "Lets you read your phone in bright sunlight without your own reflection getting in the way.",
+            "alt": "Anti-glare glass"
+          },
+          "explanation": {
+            "title": "The biomimetic link",
+            "body": "This butterfly's wings have an invisible texture that stops light from bouncing back. By copying this textured surface on screens and glasses, the mirror effect is finally eliminated."
+          }
+        }
       }
     },
     {
@@ -214,6 +382,27 @@
         "title": "Le lien biomimétique",
         "body": "Le dos du scarabée alterne des zones qui attirent l'eau et d'autres qui la repoussent. Les gouttelettes grossissent sur les premières, puis glissent vers sa bouche via les secondes. Les filets reprennent ce principe pour collecter l'eau sans consommer d'énergie.",
         "source": ""
+      },
+      "translations": {
+        "en": {
+          "theme": "Hydrology",
+          "inspiration": {
+            "title": "The Namib desert beetle",
+            "subtitle": "Inspiration",
+            "shortDescription": "This desert beetle extracts water from the morning air thanks to the shape of its back.",
+            "alt": "Namib desert beetle"
+          },
+          "innovation": {
+            "title": "Dew-collecting nets",
+            "subtitle": "Innovation",
+            "shortDescription": "Nets that harvest atmospheric moisture in regions where water is scarce.",
+            "alt": "Dew-collecting net"
+          },
+          "explanation": {
+            "title": "The biomimetic link",
+            "body": "The beetle's back alternates zones that attract water with zones that repel it. Droplets grow on the first, then slide toward its mouth via the second. These nets reuse this principle to collect water without consuming any energy."
+          }
+        }
       }
     },
     {
@@ -237,6 +426,27 @@
         "title": "Le lien biomimétique",
         "body": "Quand de l'eau s'infiltre dans une fissure, des bactéries encapsulées dans le béton se réactivent. Elles consomment des nutriments stockés à leur côté et produisent un minéral qui rebouche naturellement la fissure.",
         "source": ""
+      },
+      "translations": {
+        "en": {
+          "theme": "Materials",
+          "inspiration": {
+            "title": "The scar",
+            "subtitle": "Inspiration",
+            "shortDescription": "Skin heals its wounds by mobilizing its own internal resources.",
+            "alt": "Skin healing"
+          },
+          "innovation": {
+            "title": "Self-healing concrete",
+            "subtitle": "Innovation",
+            "shortDescription": "A building material that seals its own cracks without any human intervention.",
+            "alt": "Self-repairing concrete"
+          },
+          "explanation": {
+            "title": "The biomimetic link",
+            "body": "When water seeps into a crack, bacteria encapsulated in the concrete reactivate. They consume nutrients stored alongside them and produce a mineral that naturally seals the crack."
+          }
+        }
       }
     },
     {
@@ -260,6 +470,27 @@
         "title": "Le lien biomimétique",
         "body": "L'éponge Euplectella tisse des fibres de verre biologiques en treillis diagonal, ce qui lui donne une rigidité remarquable pour un poids minimal. Les architectes du Gherkin ont transposé cette logique pour concevoir une tour économe en acier et capable d'encaisser les vents urbains.",
         "source": ""
+      },
+      "translations": {
+        "en": {
+          "theme": "Structure",
+          "inspiration": {
+            "title": "Venus' flower basket",
+            "subtitle": "Inspiration",
+            "shortDescription": "This deep-sea sponge builds a frame that is fine yet remarkably rigid.",
+            "alt": "Venus' flower basket sponge"
+          },
+          "innovation": {
+            "title": "30 St Mary Axe",
+            "subtitle": "Innovation",
+            "shortDescription": "This London skyscraper draws its strength from a spiral geometry borrowed from nature.",
+            "alt": "30 St Mary Axe skyscraper in London"
+          },
+          "explanation": {
+            "title": "The biomimetic link",
+            "body": "The Euplectella sponge weaves biological glass fibers into a diagonal lattice, giving it remarkable rigidity for minimal weight. The Gherkin's architects applied this same logic to design a tower that uses less steel while withstanding urban winds."
+          }
+        }
       }
     },
     {
@@ -283,6 +514,27 @@
         "title": "Le lien biomimétique",
         "body": "La surface de la feuille de lotus est couverte de reliefs invisibles à l'œil nu qui empêchent l'eau d'adhérer. Les gouttes roulent en emportant poussières et dépôts. En reproduisant cette texture sur des peintures ou des tuiles, on obtient des façades qui se nettoient sous la pluie.",
         "source": ""
+      },
+      "translations": {
+        "en": {
+          "theme": "Surfaces",
+          "inspiration": {
+            "title": "The lotus effect",
+            "subtitle": "Inspiration",
+            "shortDescription": "This plant's leaf stays spotless in any weather, with no maintenance at all.",
+            "alt": "Water droplet on a lotus leaf"
+          },
+          "innovation": {
+            "title": "Hydrophobic surfaces",
+            "subtitle": "Innovation",
+            "shortDescription": "Architectural coatings that repel dirt without any chemical products.",
+            "alt": "Hydrophobic surface"
+          },
+          "explanation": {
+            "title": "The biomimetic link",
+            "body": "The lotus leaf's surface is covered in bumps invisible to the naked eye that prevent water from sticking. Droplets roll off, carrying away dust and grime. By reproducing this texture on paints or tiles, facades are created that clean themselves in the rain."
+          }
+        }
       }
     },
     {
@@ -306,6 +558,27 @@
         "title": "Le lien biomimétique",
         "body": "Les polypes de corail puisent le carbone présent dans l'eau pour sécréter leur structure solide. En reproduisant ce mécanisme à échelle industrielle, on dissout du CO₂ dans l'eau de mer pour fabriquer un matériau de construction qui capte plus qu'il n'en émet.",
         "source": ""
+      },
+      "translations": {
+        "en": {
+          "theme": "Materials",
+          "inspiration": {
+            "title": "Coral",
+            "subtitle": "Inspiration",
+            "shortDescription": "These marine organisms build their skeleton by transforming dissolved CO₂.",
+            "alt": "Coral reef"
+          },
+          "innovation": {
+            "title": "Carbon-neutral cement",
+            "subtitle": "Innovation",
+            "shortDescription": "A mineral binder whose production absorbs as much CO₂ as it releases.",
+            "alt": "Carbon-neutral cement"
+          },
+          "explanation": {
+            "title": "The biomimetic link",
+            "body": "Coral polyps draw carbon from the water to secrete their solid structure. By reproducing this mechanism at industrial scale, CO₂ is dissolved in seawater to make a building material that captures more than it emits."
+          }
+        }
       }
     },
     {
@@ -329,6 +602,27 @@
         "title": "Le lien biomimétique",
         "body": "Les écailles en dents de scie de la luciole empêchent sa lumière de refléter vers l'intérieur. En copiant ces micro-pentes sur les puces LED, on libère les rayons piégés pour briller 55% plus fort.",
         "source": ""
+      },
+      "translations": {
+        "en": {
+          "theme": "Optics",
+          "inspiration": {
+            "title": "Fireflies",
+            "subtitle": "Inspiration",
+            "shortDescription": "Its love signal must pierce the pitch-black night to attract a distant mate.",
+            "alt": "Firefly emitting bioluminescent light"
+          },
+          "innovation": {
+            "title": "LED lamps",
+            "subtitle": "Innovation",
+            "shortDescription": "A technology ideal for designing ultra-bright screens and beacons.",
+            "alt": "LED lamp"
+          },
+          "explanation": {
+            "title": "The biomimetic link",
+            "body": "The firefly's jagged, saw-toothed scales stop its light from reflecting back inward. By copying these micro-slopes on LED chips, trapped light rays are released, shining 55% brighter."
+          }
+        }
       }
     },
     {
@@ -352,6 +646,27 @@
         "title": "Le lien biomimétique",
         "body": "La trompe du moustique est conique et dentelée, réduisant au minimum le contact avec les nerfs. Cette aiguille médicale copie ce relief microscopique pour glisser dans la peau sans douleur.",
         "source": ""
+      },
+      "translations": {
+        "en": {
+          "theme": "Medicine",
+          "inspiration": {
+            "title": "The mosquito's proboscis",
+            "subtitle": "Inspiration",
+            "shortDescription": "This insect pierces the skin barrier without its target ever noticing.",
+            "alt": "Mosquito proboscis"
+          },
+          "innovation": {
+            "title": "The painless medical needle",
+            "subtitle": "Innovation",
+            "shortDescription": "A medical device so fine that the nervous system doesn't detect its presence.",
+            "alt": "Painless medical needle"
+          },
+          "explanation": {
+            "title": "The biomimetic link",
+            "body": "The mosquito's proboscis is conical and serrated, minimizing contact with nerve endings. This medical needle copies that microscopic texture to slide into skin painlessly."
+          }
+        }
       }
     },
     {
@@ -375,6 +690,27 @@
         "title": "Le lien biomimétique",
         "body": "Les manchots empereurs se serrent en colonie dense, exposant le minimum de surface au vent. Le projet District 11 à Skolkovo reprend cette logique : des villas regroupées par blocs de dix forment un ensemble compact qui maintient des températures intérieures supérieures de 5°C.",
         "source": ""
+      },
+      "translations": {
+        "en": {
+          "theme": "Thermoregulation",
+          "inspiration": {
+            "title": "The emperor penguin",
+            "subtitle": "Inspiration",
+            "shortDescription": "Facing polar cold, these birds huddle together to preserve their collective warmth.",
+            "alt": "Colony of emperor penguins"
+          },
+          "innovation": {
+            "title": "District 11",
+            "subtitle": "Innovation",
+            "shortDescription": "A Russian district whose compact layout reduces heat loss.",
+            "alt": "Compact District 11 neighborhood in Skolkovo"
+          },
+          "explanation": {
+            "title": "The biomimetic link",
+            "body": "Emperor penguins huddle into a dense colony, exposing the least possible surface to the wind. The District 11 project in Skolkovo follows the same logic: villas grouped in blocks of ten form a compact ensemble that keeps indoor temperatures 5°C higher."
+          }
+        }
       }
     },
     {
@@ -398,6 +734,27 @@
         "title": "Le lien biomimétique",
         "body": "La termitière aspire l'air frais par le bas et évacue le chaud par ses cheminées. Ce bâtiment imite ce poumon de terre pour s'auto-ventiler naturellement, réduisant sa climatisation de 90 %.",
         "source": ""
+      },
+      "translations": {
+        "en": {
+          "theme": "Thermoregulation",
+          "inspiration": {
+            "title": "The termite mound",
+            "subtitle": "Inspiration",
+            "shortDescription": "This mound survives scorching desert days and freezing desert nights.",
+            "alt": "African termite mound"
+          },
+          "innovation": {
+            "title": "The Eastgate Building",
+            "subtitle": "Innovation",
+            "shortDescription": "A building solution ideal for hot countries lacking reliable electricity.",
+            "alt": "Eastgate Building in Harare"
+          },
+          "explanation": {
+            "title": "The biomimetic link",
+            "body": "The termite mound draws cool air in from below and vents hot air out through its chimneys. This building mimics that earthen lung to ventilate itself naturally, cutting its air conditioning needs by 90%."
+          }
+        }
       }
     },
     {
@@ -421,6 +778,27 @@
         "title": "Le lien biomimétique",
         "body": "La moule sécrète une protéine contenant une molécule qui se fixe à presque tout, même sous l'eau. Des chercheurs ont reproduit cette chimie pour créer une colle permettant de fixer des enzymes sur des surfaces métalliques, ouvrant des applications en médecine et en capteurs biologiques.",
         "source": ""
+      },
+      "translations": {
+        "en": {
+          "theme": "Adhesion",
+          "inspiration": {
+            "title": "The mussel",
+            "subtitle": "Inspiration",
+            "shortDescription": "This mollusk clings to any submerged surface thanks to its byssal threads.",
+            "alt": "Mussel clinging to a rock"
+          },
+          "innovation": {
+            "title": "Strong adhesive",
+            "subtitle": "Innovation",
+            "shortDescription": "An adhesive able to bind active molecules to metal, even underwater.",
+            "alt": "Strong adhesive glue"
+          },
+          "explanation": {
+            "title": "The biomimetic link",
+            "body": "The mussel secretes a protein containing a molecule that bonds to almost anything, even underwater. Researchers reproduced this chemistry to create an adhesive that fixes enzymes onto metal surfaces, opening applications in medicine and biological sensors."
+          }
+        }
       }
     },
     {
@@ -444,6 +822,27 @@
         "title": "Le lien biomimétique",
         "body": "Le contraste fort des rayures du zèbre perturbe la lecture du déplacement par les prédateurs. Le peintre Norman Wilkinson s'en est inspiré pour couvrir les navires britanniques de formes angulaires, rendant leur cap et leur vitesse difficiles à évaluer pour les torpilleurs ennemis.",
         "source": ""
+      },
+      "translations": {
+        "en": {
+          "theme": "Camouflage",
+          "inspiration": {
+            "title": "The zebra",
+            "subtitle": "Inspiration",
+            "shortDescription": "Its stripes scramble a viewer's perception of its movement.",
+            "alt": "Zebra with high-contrast stripes"
+          },
+          "innovation": {
+            "title": "Dazzle camouflage",
+            "subtitle": "Innovation",
+            "shortDescription": "In 1917, geometric patterns painted on hulls made a ship's heading unreadable.",
+            "alt": "Ship painted with dazzle camouflage"
+          },
+          "explanation": {
+            "title": "The biomimetic link",
+            "body": "The zebra's high-contrast stripes disrupt predators' ability to read its movement. Painter Norman Wilkinson drew on this to cover British ships in angular shapes, making their heading and speed hard for enemy torpedo boats to judge."
+          }
+        }
       }
     },
     {
@@ -467,6 +866,27 @@
         "title": "Le lien biomimétique",
         "body": "Les Supertrees de Gardens by the Bay s'inspirent de la forme de l'orchidée pour créer des tours végétales qui captent l'eau de pluie, accueillent des panneaux solaires et ventilent les serres environnantes. Comme la fleur, chaque structure unit esthétique et efficacité dans un seul organisme.",
         "source": ""
+      },
+      "translations": {
+        "en": {
+          "theme": "Architecture",
+          "inspiration": {
+            "title": "The orchid",
+            "subtitle": "Inspiration",
+            "shortDescription": "This flower combines an intricate airborne form with the efficient management of its resources.",
+            "alt": "Blooming orchid"
+          },
+          "innovation": {
+            "title": "Gardens by the Bay",
+            "subtitle": "Innovation",
+            "shortDescription": "This Singapore park builds energy-generating functions into its giant tree-like structures.",
+            "alt": "Supertrees at Gardens by the Bay in Singapore"
+          },
+          "explanation": {
+            "title": "The biomimetic link",
+            "body": "The Supertrees at Gardens by the Bay draw on the orchid's form to create vertical gardens that collect rainwater, host solar panels, and ventilate the surrounding conservatories. Like the flower, each structure unites beauty and efficiency in a single organism."
+          }
+        }
       }
     },
     {
@@ -490,6 +910,27 @@
         "title": "Le lien biomimétique",
         "body": "L'intérieur d'un os n'est pas homogène : la matière se densifie là où les contraintes mécaniques sont fortes. Eiffel a suivi cette même logique en ne plaçant le métal qu'aux endroits soumis à compression ou traction, ce qui rend sa tour plus légère que le volume d'air qu'elle occupe.",
         "source": ""
+      },
+      "translations": {
+        "en": {
+          "theme": "Structure",
+          "inspiration": {
+            "title": "Human bone",
+            "subtitle": "Inspiration",
+            "shortDescription": "Our skeleton concentrates material only where stress is greatest, with no excess.",
+            "alt": "Human bone (femur)"
+          },
+          "innovation": {
+            "title": "The Eiffel Tower",
+            "subtitle": "Innovation",
+            "shortDescription": "This Parisian structure places its iron exactly where the forces demand it.",
+            "alt": "The Eiffel Tower in Paris"
+          },
+          "explanation": {
+            "title": "The biomimetic link",
+            "body": "The inside of a bone isn't uniform: material becomes denser wherever mechanical stress is greatest. Eiffel followed this very same logic, placing metal only where it faced compression or tension — making his tower lighter than the volume of air it occupies."
+          }
+        }
       }
     }
   ]

@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { soundManager } from '../../utils/soundManager';
+import { useLang } from '../../i18n/LangContext';
 import styles from './GameRound.module.css';
 import { useGameRound } from './useGameRound';
 import { AMBIENT_TRACKS, inspirationVariants, innovationVariants, getTransition, COLLECTION_REVEAL_DELAY_MS } from './gameRound.constants';
@@ -49,6 +50,7 @@ export default function GameRound({ pairs, sequenceNumber, totalSequences, previ
     makeDropHandlers,
   } = useGameRound({ pairs });
 
+  const { t } = useLang();
   const [isCollectionOpen, setIsCollectionOpen] = useState(false);
 
   // Collection cumulée : paires des séquences terminées + celles trouvées ici.
@@ -88,7 +90,7 @@ export default function GameRound({ pairs, sequenceNumber, totalSequences, previ
           <button
             onClick={onHome}
             className={styles['logo-link']}
-            aria-label="Retourner à la page d'accueil"
+            aria-label={t('common.logoAlt')}
           >
             <img src="/assets/images/STK-logo.svg" alt="STK Architecture" className={styles['header-logo']} />
           </button>
@@ -103,7 +105,7 @@ export default function GameRound({ pairs, sequenceNumber, totalSequences, previ
               aria-expanded={isAmbientOpen}
             >
               <span className={styles['ambient-icon']} aria-hidden="true">♪</span>
-              Ambiance
+              {t('gameRound.ambiance')}
             </button>
             <AnimatePresence>
               {isAmbientOpen && (
@@ -124,7 +126,7 @@ export default function GameRound({ pairs, sequenceNumber, totalSequences, previ
                       onClick={() => handleAmbientSelect(track.id)}
                     >
                       {ambientTrack === track.id && <span className={styles['ambient-check']} aria-hidden="true">✓</span>}
-                      {track.label}
+                      {t(`ambientTracks.${track.id}`)}
                     </button>
                   ))}
                 </motion.div>
@@ -148,7 +150,7 @@ export default function GameRound({ pairs, sequenceNumber, totalSequences, previ
                 transition={{ duration: 0.35, ease: [0.34, 1.56, 0.64, 1] }}
               >
                 <span className={styles['collection-icon']} aria-hidden="true">⧉</span>
-                Ma collection
+                {t('gameRound.collection')}
               </motion.button>
             )}
           </AnimatePresence>
@@ -156,10 +158,10 @@ export default function GameRound({ pairs, sequenceNumber, totalSequences, previ
 
         <div className={styles['header-right']}>
           <div className={styles.sequence}>
-            Séquence {sequenceNumber}/{totalSequences}
+            {t('gameRound.sequence')(sequenceNumber, totalSequences)}
           </div>
           <div className={styles['pairs-counter']}>
-            {matchedPairIds.length}/{pairs.length} paires trouvées
+            {t('gameRound.pairsFound')(matchedPairIds.length, pairs.length)}
           </div>
         </div>
       </header>
@@ -237,8 +239,8 @@ export default function GameRound({ pairs, sequenceNumber, totalSequences, previ
                     exit={{ opacity: 0 }}
                     transition={{ duration: 0.4 }}
                   >
-                    <h2 className={styles['observation-title']}>Presque ! Observez à nouveau</h2>
-                    <p>Observez comment une forme peut réduire l'effort d'un mouvement.</p>
+                    <h2 className={styles['observation-title']}>{t('gameRound.wrongTitle')}</h2>
+                    <p>{t('gameRound.wrongBody')}</p>
                   </motion.div>
                 )}
               </AnimatePresence>
@@ -255,7 +257,7 @@ export default function GameRound({ pairs, sequenceNumber, totalSequences, previ
                     exit={{ opacity: 0 }}
                     transition={{ duration: 0.4 }}
                   >
-                    <p>Continuez à découvrir les autres liens entre le vivant et l'innovation.</p>
+                    <p>{t('gameRound.continueHint')}</p>
                   </motion.div>
                 )}
               </AnimatePresence>
@@ -279,7 +281,7 @@ export default function GameRound({ pairs, sequenceNumber, totalSequences, previ
                       exit={{ opacity: 0, y: -8 }}
                       transition={{ duration: 0.35, ease: 'easeOut' }}
                     >
-                      {sequenceNumber < totalSequences ? 'Séquence suivante' : 'Terminer'}
+                      {sequenceNumber < totalSequences ? t('gameRound.nextSequence') : t('gameRound.finish')}
                     </motion.button>
                   )}
                   {showLierButton && (
@@ -292,7 +294,7 @@ export default function GameRound({ pairs, sequenceNumber, totalSequences, previ
                       exit={{ opacity: 0, scale: 0.9 }}
                       transition={{ duration: 0.2 }}
                     >
-                      Lier
+                      {t('gameRound.link')}
                     </motion.button>
                   )}
                   {linkStatus === 'linked' && (
@@ -305,7 +307,7 @@ export default function GameRound({ pairs, sequenceNumber, totalSequences, previ
                       exit={{ opacity: 0, y: -20 }}
                       transition={{ duration: 0.4, ease: 'easeIn' }}
                     >
-                      Suivant
+                      {t('gameRound.next')}
                     </motion.button>
                   )}
                 </AnimatePresence>

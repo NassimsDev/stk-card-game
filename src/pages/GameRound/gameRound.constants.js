@@ -6,10 +6,11 @@ export const CAROUSEL_REPEAT = 3;    // deck copies for fake-infinite scroll
 
 export const LINK_OFFSET = 18;       // px — card separation during link animation
 
+// Labels traduits via strings.ambientTracks[id] — voir GameRound.jsx.
 export const AMBIENT_TRACKS = [
-  { id: 'oiseaux', label: 'Oiseaux' },
-  { id: 'pluie',   label: 'Pluie'   },
-  { id: 'fleuve',  label: 'Fleuve'  },
+  { id: 'oiseaux' },
+  { id: 'pluie'   },
+  { id: 'fleuve'  },
 ];
 
 // ── Arc transform helpers (imperative DOM — required by Swiper + virtualTranslate) ──
@@ -34,6 +35,23 @@ export function setArcTransition(swiper, ms) {
   swiper?.slides?.forEach((slide) => {
     slide.style.transitionDuration = `${ms}ms`;
   });
+}
+
+// ── i18n ──────────────────────────────────────────────────────────────────────
+// pairs.json reste la seule source de vérité : chaque paire porte un champ
+// additif `translations.en` (mêmes clés que title/subtitle/shortDescription/alt,
+// sans `image` qui est partagée). En anglais, on fusionne ces overrides
+// par-dessus le français plutôt que de dupliquer tout le fichier.
+export function localizePair(pair, lang) {
+  const t = pair.translations?.[lang];
+  if (!t) return pair;
+  return {
+    ...pair,
+    theme: t.theme ?? pair.theme,
+    inspiration: { ...pair.inspiration, ...t.inspiration },
+    innovation: { ...pair.innovation, ...t.innovation },
+    explanation: { ...pair.explanation, ...t.explanation },
+  };
 }
 
 // ── Utilities ─────────────────────────────────────────────────────────────────
