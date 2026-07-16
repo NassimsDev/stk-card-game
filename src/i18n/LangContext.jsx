@@ -1,7 +1,7 @@
-import { createContext, useContext, useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import { strings } from './strings';
-
-const LangContext = createContext(null);
+import { preloadCardImages } from './preloadCardImages';
+import { LangContext } from './langContextObject';
 
 function getInitialLang() {
   if (typeof window === 'undefined') return 'fr';
@@ -11,6 +11,20 @@ function getInitialLang() {
 
 export function LangProvider({ children }) {
   const [lang, setLangState] = useState(getInitialLang);
+
+  // Une fois la langue affichée au démarrage bien chargée, on précharge en
+  // tâche de fond les images de l'AUTRE langue (pendant un temps mort du
+  // navigateur, pour ne pas ralentir le chargement initial) — comme ça, le
+  // toggle FR/EN est instantané la première fois qu'on l'utilise, sans
+  // attendre le téléchargement des images.
+  useEffect(() => {
+    const otherLang = lang === 'en' ? 'fr' : 'en';
+    const schedule = window.requestIdleCallback ?? ((cb) => setTimeout(cb, 2000));
+    const cancel = window.cancelIdleCallback ?? clearTimeout;
+    const id = schedule(() => preloadCardImages(otherLang));
+    return () => cancel(id);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []); // volontairement une seule fois — la langue "de départ" ne change pas
 
   const setLang = useCallback((next) => {
     setLangState(next);
@@ -36,10 +50,4 @@ export function LangProvider({ children }) {
       {children}
     </LangContext.Provider>
   );
-}
-
-export function useLang() {
-  const ctx = useContext(LangContext);
-  if (!ctx) throw new Error('useLang doit être utilisé à l\'intérieur de <LangProvider>');
-  return ctx;
 }

@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useLang } from '../../i18n/LangContext';
+import { useLang } from '../../i18n/useLang';
 import styles from './CollectionOverlay.module.css';
 
 const EDGE_ZONE = 32;      // px from the right edge where the open-swipe can start

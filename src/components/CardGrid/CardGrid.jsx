@@ -1,4 +1,4 @@
-import { useLang } from '../../i18n/LangContext';
+import { useLang } from '../../i18n/useLang';
 import styles from './CardGrid.module.css';
 
 export default function CardGrid({ pairs, side, selectedId, matchedPairIds, isAnimating, onSelect }) {

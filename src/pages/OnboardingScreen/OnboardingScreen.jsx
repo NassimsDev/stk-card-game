@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback, useRef, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Button from "../../components/Button/Button.jsx";
-import { useLang } from "../../i18n/LangContext";
+import { useLang } from "../../i18n/useLang";
 import { strings } from "../../i18n/strings";
 import styles from "./OnboardingScreen.module.css";
 

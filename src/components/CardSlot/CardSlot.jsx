@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { getGlowPath } from '../../pages/GameRound/gameRound.constants';
-import { useLang } from '../../i18n/LangContext';
+import { useLang } from '../../i18n/useLang';
 import styles from './CardSlot.module.css';
 
 export default function CardSlot({

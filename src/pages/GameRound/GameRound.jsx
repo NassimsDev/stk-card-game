@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { soundManager } from '../../utils/soundManager';
-import { useLang } from '../../i18n/LangContext';
+import { useLang } from '../../i18n/useLang';
 import styles from './GameRound.module.css';
 import { useGameRound } from './useGameRound';
 import { AMBIENT_TRACKS, inspirationVariants, innovationVariants, getTransition, COLLECTION_REVEAL_DELAY_MS } from './gameRound.constants';
