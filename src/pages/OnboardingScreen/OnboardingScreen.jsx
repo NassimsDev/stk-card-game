@@ -68,10 +68,14 @@ function OnboardingScreen({ onComplete, onHome }) {
             onTouchStart={handleTouchStart}
             onTouchEnd={handleTouchEnd}
         >
+            {/* Desktop : logo épinglé en haut à gauche, indépendant de la vidéo. */}
             <Logo onClick={onHome} className={styles.logoSlot} />
 
             <div className={styles.inner}>
+                {/* Mobile : logo + ambiance côte à côte, centrés ensemble (voir CSS) —
+                    le logo du dessus se masque, celui-ci prend le relais. */}
                 <div className={styles.ambientRow}>
+                    <Logo onClick={onHome} className={styles.logoInline} />
                     <AmbientSelector />
                 </div>
 
