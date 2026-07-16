@@ -26,12 +26,16 @@
 }
 
 /* Coin opposé au logo — visible seulement en mode révision (depuis le "?"
-   de GameRound), pour fermer sans repasser par les 3 slides. */
+   de GameRound), pour fermer sans repasser par les 3 slides.
+   z-index au-dessus de .ambientRow (mobile) : celui-ci est un bloc pleine
+   largeur (left:0/right:0) bien que son contenu soit centré — sans priorité
+   de z-index, sa zone invisible passait par-dessus le bouton et absorbait
+   les taps au lieu de les laisser atteindre ✕. */
 .closeBtn {
     position: absolute;
     top: clamp(12px, 3vh, 24px);
     right: clamp(16px, 3vw, 32px);
-    z-index: 10;
+    z-index: 11;
     width: 34px;
     height: 34px;
     display: inline-flex;

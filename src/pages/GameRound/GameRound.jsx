@@ -87,17 +87,6 @@ export default function GameRound({ pairs, sequenceNumber, totalSequences, previ
         <Logo onClick={onHome} />
 
         <div className={styles['header-actions']}>
-          <button
-            className={styles['help-btn']}
-            onClick={() => {
-              soundManager.play('button');
-              onShowHelp?.();
-            }}
-            aria-label={t('gameRound.help')}
-          >
-            ?
-          </button>
-
           <AmbientSelector />
 
           <AnimatePresence>
@@ -120,6 +109,17 @@ export default function GameRound({ pairs, sequenceNumber, totalSequences, previ
               </motion.button>
             )}
           </AnimatePresence>
+
+          <button
+            className={styles['help-btn']}
+            onClick={() => {
+              soundManager.play('button');
+              onShowHelp?.();
+            }}
+            aria-label={t('gameRound.help')}
+          >
+            ?
+          </button>
         </div>
 
         <div className={styles['header-right']}>
