@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback, useRef, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Button from "../../components/Button/Button.jsx";
+import AmbientSelector from "../../components/AmbientSelector/AmbientSelector.jsx";
 import { useLang } from "../../i18n/useLang";
 import { strings } from "../../i18n/strings";
 import styles from "./OnboardingScreen.module.css";
@@ -67,6 +68,10 @@ function OnboardingScreen({ onComplete }) {
             onTouchEnd={handleTouchEnd}
         >
             <div className={styles.inner}>
+                <div className={styles.ambientRow}>
+                    <AmbientSelector />
+                </div>
+
                 <AnimatePresence mode="wait">
                     <motion.div
                         key={index}

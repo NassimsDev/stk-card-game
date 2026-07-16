@@ -4,7 +4,8 @@ import { soundManager } from '../../utils/soundManager';
 import { useLang } from '../../i18n/useLang';
 import styles from './GameRound.module.css';
 import { useGameRound } from './useGameRound';
-import { AMBIENT_TRACKS, inspirationVariants, innovationVariants, getTransition, COLLECTION_REVEAL_DELAY_MS } from './gameRound.constants';
+import { inspirationVariants, innovationVariants, getTransition, COLLECTION_REVEAL_DELAY_MS } from './gameRound.constants';
+import AmbientSelector from '../../components/AmbientSelector/AmbientSelector';
 import CardGrid from '../../components/CardGrid/CardGrid';
 import CardSlot from '../../components/CardSlot/CardSlot';
 import CarouselSection from '../../components/CarouselSection/CarouselSection';
@@ -12,7 +13,6 @@ import CollectionOverlay from '../../components/CollectionOverlay/CollectionOver
 
 export default function GameRound({ pairs, sequenceNumber, totalSequences, previousPairs = [], onComplete, onHome }) {
   const {
-    ambientRef,
     swiperInstanceRef,
     selectedLeft,
     selectedRight,
@@ -27,8 +27,6 @@ export default function GameRound({ pairs, sequenceNumber, totalSequences, previ
     shuffledInnovation,
     dragOverSide,
     lierFading,
-    ambientTrack,
-    isAmbientOpen, setIsAmbientOpen,
     selectedCarouselLeftIdx,
     selectedCarouselRightIdx,
     isAnimating,
@@ -39,7 +37,6 @@ export default function GameRound({ pairs, sequenceNumber, totalSequences, previ
     showLierButton,
     canShowHintToggle,
     visibleCarouselCards,
-    handleAmbientSelect,
     handleLierClick,
     handleAnimationComplete,
     handleSuivant,
@@ -97,42 +94,7 @@ export default function GameRound({ pairs, sequenceNumber, totalSequences, previ
         </div>
 
         <div className={styles['header-actions']}>
-          <div className={styles['ambient-wrapper']} ref={ambientRef}>
-            <button
-              className={styles['ambient-btn']}
-              onClick={() => setIsAmbientOpen(v => !v)}
-              aria-haspopup="listbox"
-              aria-expanded={isAmbientOpen}
-            >
-              <span className={styles['ambient-icon']} aria-hidden="true">♪</span>
-              {t('gameRound.ambiance')}
-            </button>
-            <AnimatePresence>
-              {isAmbientOpen && (
-                <motion.div
-                  className={styles['ambient-dropdown']}
-                  role="listbox"
-                  initial={{ opacity: 0, y: -6, scale: 0.97 }}
-                  animate={{ opacity: 1, y: 0, scale: 1 }}
-                  exit={{ opacity: 0, y: -6, scale: 0.97 }}
-                  transition={{ duration: 0.15, ease: 'easeOut' }}
-                >
-                  {AMBIENT_TRACKS.map(track => (
-                    <button
-                      key={track.id}
-                      role="option"
-                      aria-selected={ambientTrack === track.id}
-                      className={`${styles['ambient-option']}${ambientTrack === track.id ? ` ${styles['ambient-option-active']}` : ''}`}
-                      onClick={() => handleAmbientSelect(track.id)}
-                    >
-                      {ambientTrack === track.id && <span className={styles['ambient-check']} aria-hidden="true">✓</span>}
-                      {t(`ambientTracks.${track.id}`)}
-                    </button>
-                  ))}
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </div>
+          <AmbientSelector />
 
           <AnimatePresence>
             {showCollectionCta && (
