@@ -118,7 +118,7 @@ function AppContent() {
       {!started ? (
         <LandingScreen onStart={() => setStarted(true)} />
       ) : !onboarded ? (
-        <OnboardingScreen onComplete={() => setOnboarded(true)} />
+        <OnboardingScreen onComplete={() => setOnboarded(true)} onHome={handleGoHome} />
       ) : (
         <div className="container">
           <AnimatePresence mode="wait">

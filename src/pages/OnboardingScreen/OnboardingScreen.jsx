@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback, useRef, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Button from "../../components/Button/Button.jsx";
 import AmbientSelector from "../../components/AmbientSelector/AmbientSelector.jsx";
+import Logo from "../../components/Logo/Logo.jsx";
 import { useLang } from "../../i18n/useLang";
 import { strings } from "../../i18n/strings";
 import styles from "./OnboardingScreen.module.css";
@@ -13,7 +14,7 @@ const SLIDE_MEDIA = [
     { showLogo: false, video: "/assets/videos/video_echec.mp4" },
 ];
 
-function OnboardingScreen({ onComplete }) {
+function OnboardingScreen({ onComplete, onHome }) {
     const { lang, t } = useLang();
     const SLIDES = useMemo(
         () => SLIDE_MEDIA.map((media, i) => ({ ...media, ...strings[lang].onboarding.slides[i] })),
@@ -67,6 +68,8 @@ function OnboardingScreen({ onComplete }) {
             onTouchStart={handleTouchStart}
             onTouchEnd={handleTouchEnd}
         >
+            <Logo onClick={onHome} className={styles.logoSlot} />
+
             <div className={styles.inner}>
                 <div className={styles.ambientRow}>
                     <AmbientSelector />

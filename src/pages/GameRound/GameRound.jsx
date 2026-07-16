@@ -6,6 +6,7 @@ import styles from './GameRound.module.css';
 import { useGameRound } from './useGameRound';
 import { inspirationVariants, innovationVariants, getTransition, COLLECTION_REVEAL_DELAY_MS } from './gameRound.constants';
 import AmbientSelector from '../../components/AmbientSelector/AmbientSelector';
+import Logo from '../../components/Logo/Logo';
 import CardGrid from '../../components/CardGrid/CardGrid';
 import CardSlot from '../../components/CardSlot/CardSlot';
 import CarouselSection from '../../components/CarouselSection/CarouselSection';
@@ -83,15 +84,7 @@ export default function GameRound({ pairs, sequenceNumber, totalSequences, previ
           ne doit pas s'appliquer à l'overlay, dont le fond doit rester plein écran. */}
       <div className={styles['scale-wrapper']}>
       <header className={styles.header}>
-        <div className="logo-placeholder">
-          <button
-            onClick={onHome}
-            className={styles['logo-link']}
-            aria-label={t('common.logoAlt')}
-          >
-            <img src="/assets/images/STK-logo.svg" alt="STK Architecture" className={styles['header-logo']} />
-          </button>
-        </div>
+        <Logo onClick={onHome} />
 
         <div className={styles['header-actions']}>
           <AmbientSelector />

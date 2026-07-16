@@ -9,6 +9,15 @@
     overflow: hidden;
 }
 
+/* Même emplacement qu'en haut à gauche du header GameRound — épinglé au
+   coin de l'écran (pas du bloc vidéo), à toutes les tailles. */
+.logoSlot {
+    position: absolute;
+    top: clamp(12px, 3vh, 24px);
+    left: clamp(16px, 3vw, 32px);
+    z-index: 10;
+}
+
 /* Dans le flux, au-dessus de la vidéo, centré horizontalement — le flexbox
    centre nativement à toutes les tailles, pas besoin de breakpoints. */
 .ambientRow {
