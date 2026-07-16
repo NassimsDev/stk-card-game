@@ -17,14 +17,14 @@ const _inspirations = shuffle(
     Array.from(
         { length: 21 },
         (_, i) =>
-            `/assets/cards/inspiration/card-inspiration-${String(i + 1).padStart(2, "0")}.webp`,
+            `/assets/cards/french/inspiration/card-inspiration-${String(i + 1).padStart(2, "0")}.webp`,
     ),
 );
 const _innovations = shuffle(
     Array.from(
         { length: 21 },
         (_, i) =>
-            `/assets/cards/innovation/card-innovation-${String(i + 1).padStart(2, "0")}.webp`,
+            `/assets/cards/french/innovation/card-innovation-${String(i + 1).padStart(2, "0")}.webp`,
     ),
 );
 const CARD_IMAGES = _inspirations.flatMap((insp, i) => [insp, _innovations[i]]);
