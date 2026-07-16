@@ -279,7 +279,7 @@
       "id": 6,
       "theme": "Aérodynamisme",
       "inspiration": {
-        "title": "Le Nautile",
+        "title": "Le nautile",
         "subtitle": "Inspiration",
         "image": "/assets/cards/french/inspiration/card-inspiration-06.webp",
         "shortDescription": "Il glisse sans effort dans l'océan grâce à une forme hydrodynamique millénaire.",
@@ -662,7 +662,7 @@
       },
       "explanation": {
         "title": "Bravo vous avez trouvé le lien biomimétique",
-        "body": "Les écailles en dents de scie de la luciole empêchent sa lumière de refléter vers l'intérieur. En copiant ces micro-pentes sur les puces LED, on libère les rayons piégés pour briller 55% plus fort.",
+        "body": "Les écailles en dents de scie de la luciole empêchent sa lumière de refléter vers l'intérieur. En copiant ces micro-pentes sur les puces LED, on libère les rayons piégés pour briller 55 % plus fort.",
         "source": ""
       },
       "translations": {
@@ -792,7 +792,7 @@
         "alt": "Termitière africaine"
       },
       "innovation": {
-        "title": "Le Eastgate Building",
+        "title": "L'Eastgate Building",
         "subtitle": "Innovation",
         "image": "/assets/cards/french/innovation/card-innovation-17.webp",
         "shortDescription": "Une solution constructive idéale pour les pays chauds qui manquent d'électricité.",

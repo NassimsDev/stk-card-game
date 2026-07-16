@@ -66,7 +66,7 @@ export const strings = {
       fleuve: 'Fleuve',
     },
     cardSlot: {
-      selectInspiration: 'Cliquez pour sélectionner une carte Inspiration',
+      selectInspiration: 'Cliquez pour sélectionner une carte inspiration',
       selectInnovation: 'Cliquez pour sélectionner une carte innovation',
       hintShow: "Voir l'indice",
       hintHide: "Masquer l'indice",
@@ -149,7 +149,7 @@ export const strings = {
       fleuve: 'River',
     },
     cardSlot: {
-      selectInspiration: 'Click to select an Inspiration card',
+      selectInspiration: 'Click to select an inspiration card',
       selectInnovation: 'Click to select an innovation card',
       hintShow: 'Show hint',
       hintHide: 'Hide hint',
