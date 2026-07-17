@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useLang } from '../../i18n/useLang';
 import styles from './CollectionOverlay.module.css';
 
 const EDGE_ZONE = 32;      // px from the right edge where the open-swipe can start
@@ -7,6 +8,7 @@ const SWIPE_THRESHOLD = 50; // px of horizontal travel needed to trigger open/cl
 const SWIPE_BAND = 48;      // px above/below the indicator where the swipe is accepted
 
 export default function CollectionOverlay({ pairs, unlocked, isOpen, onOpen, onClose }) {
+  const { t } = useLang();
   const indicatorRef = useRef(null);
 
   // Swipe from the right edge to open — only within the indicator's vertical
@@ -92,7 +94,7 @@ export default function CollectionOverlay({ pairs, unlocked, isOpen, onOpen, onC
             ref={indicatorRef}
             className={styles['swipe-indicator']}
             onClick={onOpen}
-            aria-label="Ouvrir ma collection"
+            aria-label={t('collection.openAria')}
             initial={{ opacity: 0, scale: 0.85, x: 12, y: '-50%' }}
             animate={{ opacity: 1, scale: 1, x: 0, y: '-50%' }}
             exit={{ opacity: 0, scale: 0.85, x: 12, y: '-50%' }}
@@ -119,7 +121,7 @@ export default function CollectionOverlay({ pairs, unlocked, isOpen, onOpen, onC
             className={styles.panel}
             role="dialog"
             aria-modal="true"
-            aria-label="Ma collection"
+            aria-label={t('collection.title')}
             initial={{ x: '100%' }}
             animate={{ x: 0 }}
             exit={{ x: '100%' }}
@@ -129,15 +131,15 @@ export default function CollectionOverlay({ pairs, unlocked, isOpen, onOpen, onC
           >
             <header className={styles['panel-header']}>
               <div>
-                <h2 className={styles['panel-title']}>Ma collection</h2>
+                <h2 className={styles['panel-title']}>{t('collection.title')}</h2>
                 <p className={styles['panel-count']}>
-                  {pairs.length} paire{pairs.length > 1 ? 's' : ''} trouvée{pairs.length > 1 ? 's' : ''}
+                  {t('collection.count')(pairs.length)}
                 </p>
               </div>
               <button
                 className={styles['close-btn']}
                 onClick={onClose}
-                aria-label="Fermer la collection"
+                aria-label={t('collection.closeAria')}
               >
                 ✕
               </button>
@@ -146,8 +148,8 @@ export default function CollectionOverlay({ pairs, unlocked, isOpen, onOpen, onC
             <div className={styles['panel-content']}>
               {pairs.length === 0 ? (
                 <p className={styles['empty-state']}>
-                  Aucune paire découverte pour le moment.<br />
-                  Liez des cartes pour enrichir votre collection.
+                  {t('collection.emptyLine1')}<br />
+                  {t('collection.emptyLine2')}
                 </p>
               ) : (
                 pairs.map(pair => (

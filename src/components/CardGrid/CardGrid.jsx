@@ -1,6 +1,8 @@
+import { useLang } from '../../i18n/useLang';
 import styles from './CardGrid.module.css';
 
 export default function CardGrid({ pairs, side, selectedId, matchedPairIds, isAnimating, onSelect }) {
+  const { t } = useLang();
   const isLeft = side === 'left';
 
   return (
@@ -24,7 +26,7 @@ export default function CardGrid({ pairs, side, selectedId, matchedPairIds, isAn
               e.dataTransfer.effectAllowed = 'move';
               e.dataTransfer.setData('application/x-stk-card', `${side}:${pair.id}`);
             }}
-            aria-label={`Sélectionner l'${isLeft ? 'inspiration' : 'innovation'} ${card.title}`}
+            aria-label={t(isLeft ? 'cardGrid.selectInspirationAria' : 'cardGrid.selectInnovationAria')(card.title)}
             role="button"
             tabIndex={0}
             onKeyDown={(e) => {

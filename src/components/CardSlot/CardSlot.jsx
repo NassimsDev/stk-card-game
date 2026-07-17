@@ -1,6 +1,7 @@
 import { useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { getGlowPath } from '../../pages/GameRound/gameRound.constants';
+import { useLang } from '../../i18n/useLang';
 import styles from './CardSlot.module.css';
 
 export default function CardSlot({
@@ -16,7 +17,9 @@ export default function CardSlot({
   onAnimationComplete,
   variants,
   transition,
+  showGuidance,
 }) {
+  const { t, lang } = useLang();
   const isLeft = side === 'left';
   const isDropActive = dragOverSide === side;
   const card = pair ? (isLeft ? pair.inspiration : pair.innovation) : null;
@@ -65,19 +68,21 @@ export default function CardSlot({
               exit={{ opacity: 0 }}
               transition={{ duration: 0.3 }}
             >
-              <span className={styles['card-placeholder-arrow']}>{isLeft ? '←' : '→'}</span>
-              <span className={styles['card-placeholder-text']}>
-                {isLeft
-                  ? <>Cliquez pour sélectionner une carte<br/> Inspiration </>
-                  : <>Cliquez pour sélectionner une carte<br/> innovation </>}
-              </span>
+              {showGuidance && (
+                <>
+                  <span className={styles['card-placeholder-arrow']}>{isLeft ? '←' : '→'}</span>
+                  <span className={styles['card-placeholder-text']}>
+                    {t(isLeft ? 'cardSlot.selectInspiration' : 'cardSlot.selectInnovation')}
+                  </span>
+                </>
+              )}
             </motion.div>
           )}
         </AnimatePresence>
 
         {pair && (
           <motion.img
-            src={getGlowPath(glowType, pair.id)}
+            src={getGlowPath(glowType, pair.id, lang)}
             alt=""
             className={styles['card-img']}
             style={{ zIndex: 1 }}
@@ -101,7 +106,7 @@ export default function CardSlot({
             <div className={styles['hint-sizer']} aria-hidden="true">
               <span className={styles['hint-toggle']}>
                 <span className={styles['hint-toggle-icon']}>?</span>
-                <span>Masquer l'indice</span>
+                <span>{t('cardSlot.hintHide')}</span>
               </span>
               <div className={styles.description}>
                 <h3>{longestHintCard.title}</h3>
@@ -135,7 +140,7 @@ export default function CardSlot({
                     animate={{ opacity: 1 }}
                     transition={{ duration: 0.15 }}
                   >
-                    {hintOpen ? "Masquer l'indice" : "Voir l'indice"}
+                    {t(hintOpen ? 'cardSlot.hintHide' : 'cardSlot.hintShow')}
                   </motion.span>
                 </motion.button>
               )}

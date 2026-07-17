@@ -1,5 +1,9 @@
 .pageOnboarding {
-    position: relative;
+    /* fixed + inset:0 (pas relative) : indispensable pour se superposer à
+       GameRound en mode révision — "relative" ne sort pas du flux normal,
+       le composant s'affichait alors sous tout le reste de la page. */
+    position: fixed;
+    inset: 0;
     width: 100vw;
     height: 100vh;
     background-color: var(--color-bg);
@@ -7,6 +11,66 @@
     align-items: center;
     justify-content: center;
     overflow: hidden;
+    /* Au-dessus de tout (boutons son/langue, overlay collection...) quand ce
+       composant sert d'overlay de révision par-dessus GameRound. */
+    z-index: 2000;
+}
+
+/* Même emplacement qu'en haut à gauche du header GameRound — épinglé au
+   coin de l'écran (pas du bloc vidéo), à toutes les tailles. */
+.logoSlot {
+    position: absolute;
+    top: clamp(12px, 3vh, 24px);
+    left: clamp(16px, 3vw, 32px);
+    z-index: 10;
+}
+
+/* Coin opposé au logo — visible seulement en mode révision (depuis le "?"
+   de GameRound), pour fermer sans repasser par les 3 slides.
+   z-index au-dessus de .ambientRow (mobile) : celui-ci est un bloc pleine
+   largeur (left:0/right:0) bien que son contenu soit centré — sans priorité
+   de z-index, sa zone invisible passait par-dessus le bouton et absorbait
+   les taps au lieu de les laisser atteindre ✕. */
+.closeBtn {
+    position: absolute;
+    top: clamp(12px, 3vh, 24px);
+    right: clamp(16px, 3vw, 32px);
+    z-index: 11;
+    width: 34px;
+    height: 34px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: 1px solid rgba(26, 26, 26, 0.2);
+    border-radius: 999px;
+    color: var(--color-text);
+    font-size: 14px;
+    cursor: pointer;
+    transition:
+        background-color 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.closeBtn:hover {
+    background-color: rgba(26, 26, 26, 0.06);
+    border-color: #1a1a1a;
+}
+
+/* Dans le flux, au-dessus de la vidéo, centré horizontalement — le flexbox
+   centre nativement à toutes les tailles, pas besoin de breakpoints. */
+.ambientRow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    width: 100%;
+}
+
+/* Doublon du logo du dessus, réservé au mobile : masqué sur desktop où le
+   logo "flottant" (.logoSlot) suffit déjà. */
+.logoInline {
+    display: none;
 }
 
 .inner {
@@ -179,4 +243,28 @@
     inset: 0;
     background-color: var(--color-bg);
     pointer-events: none;
+}
+
+/* Sur mobile, .inner est centré verticalement dans la page — si on laisse
+   .ambientRow dans ce flux, il hérite de tout l'espace vide au-dessus de la
+   vidéo. On le sort du flux et on l'épingle en haut de l'écran (comme le
+   header sur GameRound), indépendamment de la hauteur du reste du contenu.
+   Le logo et le CTA ambiance y apparaissent côte à côte, centrés ensemble —
+   le logo "flottant" du dessus (desktop) cède donc la place à celui-ci. */
+@media (max-width: 768px) {
+    .logoSlot {
+        display: none;
+    }
+
+    .logoInline {
+        display: inline-flex;
+    }
+
+    .ambientRow {
+        position: absolute;
+        top: clamp(12px, 3vh, 24px);
+        left: 0;
+        right: 0;
+        z-index: 10;
+    }
 }

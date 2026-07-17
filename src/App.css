@@ -115,7 +115,10 @@
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    z-index: 1000;
+    /* Au-dessus de .pageOnboarding (2000) : OnboardingScreen (accueil comme
+       overlay de révision) a un fond opaque plein écran qui masquait sinon
+       ces boutons pourtant bien présents (position fixe identique partout). */
+    z-index: 2100;
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
     transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
 }
@@ -132,6 +135,50 @@
 }
 
 .sound-toggle-btn:focus-visible {
+    outline: 2px solid #1a1a1a;
+    outline-offset: 3px;
+}
+
+/* Bord gauche (miroir du sound-toggle-btn à droite) — visible même avant
+   "started", pour choisir la langue dès l'écran d'accueil. */
+.lang-toggle-btn {
+    position: fixed;
+    bottom: 24px;
+    left: 24px;
+    min-width: 44px;
+    height: 44px;
+    padding: 0 14px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    color: #1a1a1a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "Geist Sans", sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    cursor: pointer;
+    z-index: 2100;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+    transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.lang-toggle-btn:hover {
+    transform: translateY(-2px) scale(1.05);
+    background: #ffffff;
+    border-color: rgba(0, 0, 0, 0.15);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+}
+
+.lang-toggle-btn:active {
+    transform: translateY(0) scale(0.95);
+}
+
+.lang-toggle-btn:focus-visible {
     outline: 2px solid #1a1a1a;
     outline-offset: 3px;
 }
@@ -181,6 +228,13 @@
         right: 16px;
         width: 40px;
         height: 40px;
+    }
+
+    .lang-toggle-btn {
+        bottom: 16px;
+        left: 16px;
+        height: 40px;
+        font-size: 12px;
     }
 }
 
