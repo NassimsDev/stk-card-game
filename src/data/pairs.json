@@ -3,9 +3,42 @@
     "version": "1.0.0",
     "totalPairs": 21,
     "sequences": [
-      { "id": 1, "name": "Séquence 1", "pairIds": [1, 2, 3, 4, 5, 6, 7, 8] },
-      { "id": 2, "name": "Séquence 2", "pairIds": [9, 10, 11, 12, 13, 14, 15, 16] },
-      { "id": 3, "name": "Séquence 3", "pairIds": [17, 18, 19, 20, 21] }
+      {
+        "id": 1,
+        "pairIds": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
+        ]
+      },
+      {
+        "id": 2,
+        "pairIds": [
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16
+        ]
+      },
+      {
+        "id": 3,
+        "pairIds": [
+          17,
+          18,
+          19,
+          20,
+          21
+        ]
+      }
     ]
   },
   "pairs": [
@@ -15,21 +48,44 @@
       "inspiration": {
         "title": "Ailes de papillon",
         "subtitle": "Inspiration",
-        "image": "/assets/cards/inspiration/card-inspiration-01.webp",
+        "image": "/assets/cards/french/inspiration/card-inspiration-01.webp",
         "shortDescription": "À sang froid, il doit réguler sa température interne pour pouvoir prendre son envol.",
         "alt": "Aile de papillon bleu Morpho"
       },
       "innovation": {
         "title": "Les panneaux solaires",
         "subtitle": "Innovation",
-        "image": "/assets/cards/innovation/card-innovation-01.webp",
+        "image": "/assets/cards/french/innovation/card-innovation-01.webp",
         "shortDescription": "Un récepteur d'énergie extérieure qui s'auto-refroidit pour rester performant.",
         "alt": "Panneaux solaires"
       },
       "explanation": {
-        "title": "Le lien biomimétique",
+        "title": "Bravo vous avez trouvé le lien biomimétique",
         "body": "Les ailes de ce papillon rejettent la chaleur sous forme d'ondes pour éviter de surchauffer. \n En imitant cette régulation thermique, ces panneaux solaires restent frais et gardent un rendement maximal.",
         "source": ""
+      },
+      "translations": {
+        "en": {
+          "theme": "Thermoregulation",
+          "inspiration": {
+            "title": "Butterfly wings",
+            "subtitle": "Inspiration",
+            "shortDescription": "Cold-blooded, it must regulate its inner temperature before it can take flight.",
+            "alt": "Blue Morpho butterfly wing",
+            "image": "/assets/cards/english/inspiration/card-inspiration-01.webp"
+          },
+          "innovation": {
+            "title": "Solar panels",
+            "subtitle": "Innovation",
+            "shortDescription": "An external energy receiver that self-cools to stay efficient.",
+            "alt": "Solar panels",
+            "image": "/assets/cards/english/innovation/card-innovation-01.webp"
+          },
+          "explanation": {
+            "title": "Well done, you found the biomimetic link",
+            "body": "This butterfly's wings release heat as waves to avoid overheating. \n By mimicking this thermal regulation, these solar panels stay cool and keep a maximum output."
+          }
+        }
       }
     },
     {
@@ -38,21 +94,44 @@
       "inspiration": {
         "title": "Les nageoires de baleines",
         "subtitle": "Inspiration",
-        "image": "/assets/cards/inspiration/card-inspiration-02.webp",
+        "image": "/assets/cards/french/inspiration/card-inspiration-02.webp",
         "shortDescription": "Sa morphologie brise la résistance du courant pour glisser avec un effort minimal.",
         "alt": "Nageoires d'une baleine à bosse"
       },
       "innovation": {
         "title": "Les éoliennes",
         "subtitle": "Innovation",
-        "image": "/assets/cards/innovation/card-innovation-02.webp",
+        "image": "/assets/cards/french/innovation/card-innovation-02.webp",
         "shortDescription": "Ces pales géantes tournent même par vent très faible grâce à leur profil unique.",
         "alt": "Pales d'éolienne"
       },
       "explanation": {
-        "title": "Le lien biomimétique",
+        "title": "Bravo vous avez trouvé le lien biomimétique",
         "body": "Les bosses sur les nageoires de la baleine créent des micro-vortex qui améliorent sa portance. Sculptées de la même façon, ces pales d'éoliennes captent le vent avec beaucoup moins de frottement.",
         "source": ""
+      },
+      "translations": {
+        "en": {
+          "theme": "Aerodynamics",
+          "inspiration": {
+            "title": "Whale fins",
+            "subtitle": "Inspiration",
+            "shortDescription": "Its shape breaks the current's resistance, letting it glide with minimal effort.",
+            "alt": "Humpback whale fins",
+            "image": "/assets/cards/english/inspiration/card-inspiration-02.webp"
+          },
+          "innovation": {
+            "title": "Wind turbines",
+            "subtitle": "Innovation",
+            "shortDescription": "These giant blades spin even in very light wind thanks to their unique profile.",
+            "alt": "Wind turbine blades",
+            "image": "/assets/cards/english/innovation/card-innovation-02.webp"
+          },
+          "explanation": {
+            "title": "Well done, you found the biomimetic link",
+            "body": "The bumps on the whale's fins create micro-vortices that improve its lift. Shaped the same way, these turbine blades capture wind with far less drag."
+          }
+        }
       }
     },
     {
@@ -61,21 +140,44 @@
       "inspiration": {
         "title": "Le martin-pêcheur",
         "subtitle": "Inspiration",
-        "image": "/assets/cards/inspiration/card-inspiration-03.webp",
+        "image": "/assets/cards/french/inspiration/card-inspiration-03.webp",
         "shortDescription": "Son bec effilé fend l'air et l'eau en silence pour surprendre ses proies.",
         "alt": "Martin-pêcheur en plongée"
       },
       "innovation": {
         "title": "Le TGV Japonais",
         "subtitle": "Innovation",
-        "image": "/assets/cards/innovation/card-innovation-03.webp",
+        "image": "/assets/cards/french/innovation/card-innovation-03.webp",
         "shortDescription": "Une forme aérodynamique pour réduire le bruit à haute vitesse en ville.",
         "alt": "Nez profilé du TGV Shinkansen"
       },
       "explanation": {
-        "title": "Le lien biomimétique",
+        "title": "Bravo vous avez trouvé le lien biomimétique",
         "body": "Le bec du martin-pêcheur pénètre l'eau sans créer d'onde de choc. En imitant sa forme fuselée, le nez du TGV fend l'air en silence et supprime le dérangeant \"bang\" à la sortie des tunnels.",
         "source": ""
+      },
+      "translations": {
+        "en": {
+          "theme": "Aerodynamics",
+          "inspiration": {
+            "title": "The kingfisher",
+            "subtitle": "Inspiration",
+            "shortDescription": "Its slender beak cuts through air and water silently to surprise its prey.",
+            "alt": "Kingfisher diving",
+            "image": "/assets/cards/english/inspiration/card-inspiration-03.webp"
+          },
+          "innovation": {
+            "title": "The Japanese bullet train",
+            "subtitle": "Innovation",
+            "shortDescription": "An aerodynamic shape that reduces noise at high speed through cities.",
+            "alt": "Streamlined nose of the Shinkansen bullet train",
+            "image": "/assets/cards/english/innovation/card-innovation-03.webp"
+          },
+          "explanation": {
+            "title": "Well done, you found the biomimetic link",
+            "body": "The kingfisher's beak pierces water without creating a shock wave. By copying its streamlined shape, the bullet train's nose cuts through air silently and removes the jarring \"boom\" when exiting tunnels."
+          }
+        }
       }
     },
     {
@@ -84,21 +186,44 @@
       "inspiration": {
         "title": "Le gekko",
         "subtitle": "Inspiration",
-        "image": "/assets/cards/inspiration/card-inspiration-04.webp",
+        "image": "/assets/cards/french/inspiration/card-inspiration-04.webp",
         "shortDescription": "Capable de courir au plafond la tête en bas sans jamais craindre la chute.",
         "alt": "Gekko accroché à une surface"
       },
       "innovation": {
         "title": "La geckskin",
         "subtitle": "Innovation",
-        "image": "/assets/cards/innovation/card-innovation-04.webp",
+        "image": "/assets/cards/french/innovation/card-innovation-04.webp",
         "shortDescription": "Un simple morceau de ce tissu peut suspendre un écran plat sur un mur.",
         "alt": "Adhésif sec geckskin"
       },
       "explanation": {
-        "title": "Le lien biomimétique",
+        "title": "Bravo vous avez trouvé le lien biomimétique",
         "body": "Les pattes du gekko possèdent des millions de micro-poils qui s'aimantent à la matière à l'échelle moléculaire. Cet adhésif imite cette friction sèche pour fixer des charges lourdes sans colle.",
         "source": ""
+      },
+      "translations": {
+        "en": {
+          "theme": "Adhesion",
+          "inspiration": {
+            "title": "The gecko",
+            "subtitle": "Inspiration",
+            "shortDescription": "Able to run upside down across a ceiling without ever fearing a fall.",
+            "alt": "Gecko clinging to a surface",
+            "image": "/assets/cards/english/inspiration/card-inspiration-04.webp"
+          },
+          "innovation": {
+            "title": "Geckskin adhesive",
+            "subtitle": "Innovation",
+            "shortDescription": "A single piece of this fabric can hold a flat-screen TV on a wall.",
+            "alt": "Geckskin dry adhesive",
+            "image": "/assets/cards/english/innovation/card-innovation-04.webp"
+          },
+          "explanation": {
+            "title": "Well done, you found the biomimetic link",
+            "body": "The gecko's feet are covered in millions of micro-hairs that bond to surfaces at the molecular scale. This adhesive mimics that dry friction to hold heavy loads without any glue."
+          }
+        }
       }
     },
     {
@@ -107,44 +232,90 @@
       "inspiration": {
         "title": "Les fruits de bardane",
         "subtitle": "Inspiration",
-        "image": "/assets/cards/inspiration/card-inspiration-05.webp",
+        "image": "/assets/cards/french/inspiration/card-inspiration-05.webp",
         "shortDescription": "Cette plante sauvage utilise les chiens et les promeneurs pour semer ses graines.",
         "alt": "Fruit de bardane couvert de crochets"
       },
       "innovation": {
         "title": "Le velcro",
         "subtitle": "Innovation",
-        "image": "/assets/cards/innovation/card-innovation-05.webp",
+        "image": "/assets/cards/french/innovation/card-innovation-05.webp",
         "shortDescription": "Cette invention lie deux objets par simple pression mécanique, sans aucun adhésif.",
         "alt": "Bande Velcro"
       },
       "explanation": {
-        "title": "Le lien biomimétique",
+        "title": "Bravo vous avez trouvé le lien biomimétique",
         "body": "Les crochets souples de ce fruit s'agrippent naturellement aux boucles formées par les poils d'animaux. Le velcro reproduit ce duo mécanique pour fermer et ouvrir des tissus à l'infini.",
         "source": ""
+      },
+      "translations": {
+        "en": {
+          "theme": "Fastening",
+          "inspiration": {
+            "title": "Burdock burrs",
+            "subtitle": "Inspiration",
+            "shortDescription": "This wild plant relies on dogs and walkers to scatter its seeds.",
+            "alt": "Burdock burr covered in hooks",
+            "image": "/assets/cards/english/inspiration/card-inspiration-05.webp"
+          },
+          "innovation": {
+            "title": "Velcro",
+            "subtitle": "Innovation",
+            "shortDescription": "This invention joins two objects with simple mechanical pressure, no adhesive at all.",
+            "alt": "Velcro strip",
+            "image": "/assets/cards/english/innovation/card-innovation-05.webp"
+          },
+          "explanation": {
+            "title": "Well done, you found the biomimetic link",
+            "body": "This burr's flexible hooks naturally grip the loops formed by animal fur. Velcro reproduces this mechanical pairing to fasten and unfasten fabric endlessly."
+          }
+        }
       }
     },
     {
       "id": 6,
       "theme": "Aérodynamisme",
       "inspiration": {
-        "title": "Le Nautile",
+        "title": "Le nautile",
         "subtitle": "Inspiration",
-        "image": "/assets/cards/inspiration/card-inspiration-06.webp",
+        "image": "/assets/cards/french/inspiration/card-inspiration-06.webp",
         "shortDescription": "Il glisse sans effort dans l'océan grâce à une forme hydrodynamique millénaire.",
         "alt": "Coquille en spirale d'un nautile"
       },
       "innovation": {
         "title": "Les turboréacteurs",
         "subtitle": "Innovation",
-        "image": "/assets/cards/innovation/card-innovation-06.webp",
+        "image": "/assets/cards/french/innovation/card-innovation-06.webp",
         "shortDescription": "Un système conçu pour fendre l'atmosphère à haute altitude et à grande vitesse.",
         "alt": "Turboréacteur d'avion"
       },
       "explanation": {
-        "title": "Le lien biomimétique",
+        "title": "Bravo vous avez trouvé le lien biomimétique",
         "body": "La coquille en spirale du nautile canalise l'eau pour le propulser par réaction. Les turboréacteurs copient cette géométrie courbe pour comprimer et guider les flux d'air avec un rendement maximal.",
         "source": ""
+      },
+      "translations": {
+        "en": {
+          "theme": "Aerodynamics",
+          "inspiration": {
+            "title": "The nautilus",
+            "subtitle": "Inspiration",
+            "shortDescription": "It glides effortlessly through the ocean thanks to a hydrodynamic shape millions of years in the making.",
+            "alt": "Spiral shell of a nautilus",
+            "image": "/assets/cards/english/inspiration/card-inspiration-06.webp"
+          },
+          "innovation": {
+            "title": "Turbojet engines",
+            "subtitle": "Innovation",
+            "shortDescription": "A system designed to cut through the atmosphere at high altitude and high speed.",
+            "alt": "Aircraft turbojet engine",
+            "image": "/assets/cards/english/innovation/card-innovation-06.webp"
+          },
+          "explanation": {
+            "title": "Well done, you found the biomimetic link",
+            "body": "The nautilus's spiral shell channels water to propel it by reaction. Turbojet engines copy this curved geometry to compress and guide airflow with maximum efficiency."
+          }
+        }
       }
     },
     {
@@ -153,21 +324,44 @@
       "inspiration": {
         "title": "La peau du requin",
         "subtitle": "Inspiration",
-        "image": "/assets/cards/inspiration/card-inspiration-07.webp",
+        "image": "/assets/cards/french/inspiration/card-inspiration-07.webp",
         "shortDescription": "Son corps est recouvert de millions de micro-dents alignées face au courant.",
         "alt": "Détail de la peau d'un requin"
       },
       "innovation": {
         "title": "Les combinaisons de natation",
         "subtitle": "Innovation",
-        "image": "/assets/cards/innovation/card-innovation-07.webp",
+        "image": "/assets/cards/french/innovation/card-innovation-07.webp",
         "shortDescription": "Une innovation textile qui a bousculé tous les records du monde de vitesse.",
         "alt": "Combinaison de natation haute performance"
       },
       "explanation": {
-        "title": "Le lien biomimétique",
+        "title": "Bravo vous avez trouvé le lien biomimétique",
         "body": "La peau de ce prédateur est couverte de micro-dentelures qui canalisent l'eau et éliminent les turbulences. Cette combinaison imite ce relief rugueux pour aider le nageur à glisser bien plus vite.",
         "source": ""
+      },
+      "translations": {
+        "en": {
+          "theme": "Hydrodynamics",
+          "inspiration": {
+            "title": "Shark skin",
+            "subtitle": "Inspiration",
+            "shortDescription": "Its body is covered in millions of tiny tooth-like scales aligned with the current.",
+            "alt": "Close-up of shark skin",
+            "image": "/assets/cards/english/inspiration/card-inspiration-07.webp"
+          },
+          "innovation": {
+            "title": "Swimsuits",
+            "subtitle": "Innovation",
+            "shortDescription": "A textile innovation that shattered every speed world record.",
+            "alt": "High-performance swimsuit",
+            "image": "/assets/cards/english/innovation/card-innovation-07.webp"
+          },
+          "explanation": {
+            "title": "Well done, you found the biomimetic link",
+            "body": "This predator's skin is covered in micro-ridges that channel water and eliminate turbulence. This swimsuit mimics that rough texture to help swimmers glide much faster."
+          }
+        }
       }
     },
     {
@@ -176,21 +370,44 @@
       "inspiration": {
         "title": "Le papillon Greta oto",
         "subtitle": "Inspiration",
-        "image": "/assets/cards/inspiration/card-inspiration-08.webp",
+        "image": "/assets/cards/french/inspiration/card-inspiration-08.webp",
         "shortDescription": "Ses membranes ne créent aucun éclat brillant qui pourrait trahir sa présence.",
         "alt": "Papillon Greta oto aux ailes transparentes"
       },
       "innovation": {
         "title": "Les verres anti-reflet",
         "subtitle": "Innovation",
-        "image": "/assets/cards/innovation/card-innovation-08.webp",
+        "image": "/assets/cards/french/innovation/card-innovation-08.webp",
         "shortDescription": "Permet de lire son smartphone en plein soleil sans être gêné par son propre visage.",
         "alt": "Verre anti-reflet"
       },
       "explanation": {
-        "title": "Le lien biomimétique",
+        "title": "Bravo vous avez trouvé le lien biomimétique",
         "body": "Les ailes de ce papillon possèdent un relief invisible qui empêche la lumière de rebondir. En copiant cette surface texturée sur les écrans et les lunettes, on élimine enfin l'effet miroir.",
         "source": ""
+      },
+      "translations": {
+        "en": {
+          "theme": "Optics",
+          "inspiration": {
+            "title": "The Greta oto butterfly",
+            "subtitle": "Inspiration",
+            "shortDescription": "Its wing membranes create no glare that could give away its presence.",
+            "alt": "Greta oto butterfly with transparent wings",
+            "image": "/assets/cards/english/inspiration/card-inspiration-08.webp"
+          },
+          "innovation": {
+            "title": "Anti-glare glass",
+            "subtitle": "Innovation",
+            "shortDescription": "Lets you read your phone in bright sunlight without your own reflection getting in the way.",
+            "alt": "Anti-glare glass",
+            "image": "/assets/cards/english/innovation/card-innovation-08.webp"
+          },
+          "explanation": {
+            "title": "Well done, you found the biomimetic link",
+            "body": "This butterfly's wings have an invisible texture that stops light from bouncing back. By copying this textured surface on screens and glasses, the mirror effect is finally eliminated."
+          }
+        }
       }
     },
     {
@@ -199,21 +416,44 @@
       "inspiration": {
         "title": "Le coléoptère de Namibie",
         "subtitle": "Inspiration",
-        "image": "/assets/cards/inspiration/card-inspiration-09.webp",
+        "image": "/assets/cards/french/inspiration/card-inspiration-09.webp",
         "shortDescription": "Ce scarabée du désert extrait l'eau de l'air du matin grâce à la forme de son dos.",
         "alt": "Coléoptère du désert de Namibie"
       },
       "innovation": {
         "title": "Les filets capteurs de rosée",
         "subtitle": "Innovation",
-        "image": "/assets/cards/innovation/card-innovation-09.webp",
+        "image": "/assets/cards/french/innovation/card-innovation-09.webp",
         "shortDescription": "Des filets récoltent l'humidité atmosphérique dans des régions où l'eau est rare.",
         "alt": "Filet capteur de rosée"
       },
       "explanation": {
-        "title": "Le lien biomimétique",
+        "title": "Bravo vous avez trouvé le lien biomimétique",
         "body": "Le dos du scarabée alterne des zones qui attirent l'eau et d'autres qui la repoussent. Les gouttelettes grossissent sur les premières, puis glissent vers sa bouche via les secondes. Les filets reprennent ce principe pour collecter l'eau sans consommer d'énergie.",
         "source": ""
+      },
+      "translations": {
+        "en": {
+          "theme": "Hydrology",
+          "inspiration": {
+            "title": "The Namib desert beetle",
+            "subtitle": "Inspiration",
+            "shortDescription": "This desert beetle extracts water from the morning air thanks to the shape of its back.",
+            "alt": "Namib desert beetle",
+            "image": "/assets/cards/english/inspiration/card-inspiration-09.webp"
+          },
+          "innovation": {
+            "title": "Dew-collecting nets",
+            "subtitle": "Innovation",
+            "shortDescription": "Nets that harvest atmospheric moisture in regions where water is scarce.",
+            "alt": "Dew-collecting net",
+            "image": "/assets/cards/english/innovation/card-innovation-09.webp"
+          },
+          "explanation": {
+            "title": "Well done, you found the biomimetic link",
+            "body": "The beetle's back alternates zones that attract water with zones that repel it. Droplets grow on the first, then slide toward its mouth via the second. These nets reuse this principle to collect water without consuming any energy."
+          }
+        }
       }
     },
     {
@@ -222,21 +462,44 @@
       "inspiration": {
         "title": "La cicatrice",
         "subtitle": "Inspiration",
-        "image": "/assets/cards/inspiration/card-inspiration-10.webp",
+        "image": "/assets/cards/french/inspiration/card-inspiration-10.webp",
         "shortDescription": "La peau referme ses plaies en mobilisant ses propres ressources internes.",
         "alt": "Cicatrisation de la peau"
       },
       "innovation": {
         "title": "Le béton cicatrisant",
         "subtitle": "Innovation",
-        "image": "/assets/cards/innovation/card-innovation-10.webp",
+        "image": "/assets/cards/french/innovation/card-innovation-10.webp",
         "shortDescription": "Un matériau de construction qui colmate ses fissures sans intervention humaine.",
         "alt": "Béton auto-réparant"
       },
       "explanation": {
-        "title": "Le lien biomimétique",
+        "title": "Bravo vous avez trouvé le lien biomimétique",
         "body": "Quand de l'eau s'infiltre dans une fissure, des bactéries encapsulées dans le béton se réactivent. Elles consomment des nutriments stockés à leur côté et produisent un minéral qui rebouche naturellement la fissure.",
         "source": ""
+      },
+      "translations": {
+        "en": {
+          "theme": "Materials",
+          "inspiration": {
+            "title": "The scar",
+            "subtitle": "Inspiration",
+            "shortDescription": "Skin heals its wounds by mobilizing its own internal resources.",
+            "alt": "Skin healing",
+            "image": "/assets/cards/english/inspiration/card-inspiration-10.webp"
+          },
+          "innovation": {
+            "title": "Self-healing concrete",
+            "subtitle": "Innovation",
+            "shortDescription": "A building material that seals its own cracks without any human intervention.",
+            "alt": "Self-repairing concrete",
+            "image": "/assets/cards/english/innovation/card-innovation-10.webp"
+          },
+          "explanation": {
+            "title": "Well done, you found the biomimetic link",
+            "body": "When water seeps into a crack, bacteria encapsulated in the concrete reactivate. They consume nutrients stored alongside them and produce a mineral that naturally seals the crack."
+          }
+        }
       }
     },
     {
@@ -245,21 +508,44 @@
       "inspiration": {
         "title": "La corbeille de Vénus",
         "subtitle": "Inspiration",
-        "image": "/assets/cards/inspiration/card-inspiration-11.webp",
+        "image": "/assets/cards/french/inspiration/card-inspiration-11.webp",
         "shortDescription": "Cette éponge des fonds marins fabrique une armature fine et pourtant indéformable.",
         "alt": "Éponge corbeille de Vénus"
       },
       "innovation": {
         "title": "Le 30 St Mary Axe",
         "subtitle": "Innovation",
-        "image": "/assets/cards/innovation/card-innovation-11.webp",
+        "image": "/assets/cards/french/innovation/card-innovation-11.webp",
         "shortDescription": "Ce gratte-ciel londonien tire sa solidité d'une géométrie en spirale venue du vivant.",
         "alt": "Gratte-ciel 30 St Mary Axe à Londres"
       },
       "explanation": {
-        "title": "Le lien biomimétique",
+        "title": "Bravo vous avez trouvé le lien biomimétique",
         "body": "L'éponge Euplectella tisse des fibres de verre biologiques en treillis diagonal, ce qui lui donne une rigidité remarquable pour un poids minimal. Les architectes du Gherkin ont transposé cette logique pour concevoir une tour économe en acier et capable d'encaisser les vents urbains.",
         "source": ""
+      },
+      "translations": {
+        "en": {
+          "theme": "Structure",
+          "inspiration": {
+            "title": "Venus' flower basket",
+            "subtitle": "Inspiration",
+            "shortDescription": "This deep-sea sponge builds a frame that is fine yet remarkably rigid.",
+            "alt": "Venus' flower basket sponge",
+            "image": "/assets/cards/english/inspiration/card-inspiration-11.webp"
+          },
+          "innovation": {
+            "title": "30 St Mary Axe",
+            "subtitle": "Innovation",
+            "shortDescription": "This London skyscraper draws its strength from a spiral geometry borrowed from nature.",
+            "alt": "30 St Mary Axe skyscraper in London",
+            "image": "/assets/cards/english/innovation/card-innovation-11.webp"
+          },
+          "explanation": {
+            "title": "Well done, you found the biomimetic link",
+            "body": "The Euplectella sponge weaves biological glass fibers into a diagonal lattice, giving it remarkable rigidity for minimal weight. The Gherkin's architects applied this same logic to design a tower that uses less steel while withstanding urban winds."
+          }
+        }
       }
     },
     {
@@ -268,21 +554,44 @@
       "inspiration": {
         "title": "L'effet lotus",
         "subtitle": "Inspiration",
-        "image": "/assets/cards/inspiration/card-inspiration-12.webp",
+        "image": "/assets/cards/french/inspiration/card-inspiration-12.webp",
         "shortDescription": "La feuille de cette plante reste impeccable par tous les temps sans aucun entretien.",
         "alt": "Goutte d'eau sur une feuille de lotus"
       },
       "innovation": {
         "title": "Les surfaces hydrophobes",
         "subtitle": "Innovation",
-        "image": "/assets/cards/innovation/card-innovation-12.webp",
+        "image": "/assets/cards/french/innovation/card-innovation-12.webp",
         "shortDescription": "Des revêtements architecturaux qui repoussent les salissures sans produit chimique.",
         "alt": "Surface hydrophobe"
       },
       "explanation": {
-        "title": "Le lien biomimétique",
+        "title": "Bravo vous avez trouvé le lien biomimétique",
         "body": "La surface de la feuille de lotus est couverte de reliefs invisibles à l'œil nu qui empêchent l'eau d'adhérer. Les gouttes roulent en emportant poussières et dépôts. En reproduisant cette texture sur des peintures ou des tuiles, on obtient des façades qui se nettoient sous la pluie.",
         "source": ""
+      },
+      "translations": {
+        "en": {
+          "theme": "Surfaces",
+          "inspiration": {
+            "title": "The lotus effect",
+            "subtitle": "Inspiration",
+            "shortDescription": "This plant's leaf stays spotless in any weather, with no maintenance at all.",
+            "alt": "Water droplet on a lotus leaf",
+            "image": "/assets/cards/english/inspiration/card-inspiration-12.webp"
+          },
+          "innovation": {
+            "title": "Hydrophobic surfaces",
+            "subtitle": "Innovation",
+            "shortDescription": "Architectural coatings that repel dirt without any chemical products.",
+            "alt": "Hydrophobic surface",
+            "image": "/assets/cards/english/innovation/card-innovation-12.webp"
+          },
+          "explanation": {
+            "title": "Well done, you found the biomimetic link",
+            "body": "The lotus leaf's surface is covered in bumps invisible to the naked eye that prevent water from sticking. Droplets roll off, carrying away dust and grime. By reproducing this texture on paints or tiles, facades are created that clean themselves in the rain."
+          }
+        }
       }
     },
     {
@@ -291,21 +600,44 @@
       "inspiration": {
         "title": "Le corail",
         "subtitle": "Inspiration",
-        "image": "/assets/cards/inspiration/card-inspiration-13.webp",
+        "image": "/assets/cards/french/inspiration/card-inspiration-13.webp",
         "shortDescription": "Ces organismes marins bâtissent leur squelette en transformant le CO₂ dissous.",
         "alt": "Récif corallien"
       },
       "innovation": {
         "title": "Le ciment neutre en carbone",
         "subtitle": "Innovation",
-        "image": "/assets/cards/innovation/card-innovation-13.webp",
+        "image": "/assets/cards/french/innovation/card-innovation-13.webp",
         "shortDescription": "Un liant minéral dont la production absorbe autant de CO₂ qu'elle n'en rejette.",
         "alt": "Ciment neutre en carbone"
       },
       "explanation": {
-        "title": "Le lien biomimétique",
+        "title": "Bravo vous avez trouvé le lien biomimétique",
         "body": "Les polypes de corail puisent le carbone présent dans l'eau pour sécréter leur structure solide. En reproduisant ce mécanisme à échelle industrielle, on dissout du CO₂ dans l'eau de mer pour fabriquer un matériau de construction qui capte plus qu'il n'en émet.",
         "source": ""
+      },
+      "translations": {
+        "en": {
+          "theme": "Materials",
+          "inspiration": {
+            "title": "Coral",
+            "subtitle": "Inspiration",
+            "shortDescription": "These marine organisms build their skeleton by transforming dissolved CO₂.",
+            "alt": "Coral reef",
+            "image": "/assets/cards/english/inspiration/card-inspiration-13.webp"
+          },
+          "innovation": {
+            "title": "Carbon-neutral cement",
+            "subtitle": "Innovation",
+            "shortDescription": "A mineral binder whose production absorbs as much CO₂ as it releases.",
+            "alt": "Carbon-neutral cement",
+            "image": "/assets/cards/english/innovation/card-innovation-13.webp"
+          },
+          "explanation": {
+            "title": "Well done, you found the biomimetic link",
+            "body": "Coral polyps draw carbon from the water to secrete their solid structure. By reproducing this mechanism at industrial scale, CO₂ is dissolved in seawater to make a building material that captures more than it emits."
+          }
+        }
       }
     },
     {
@@ -314,21 +646,44 @@
       "inspiration": {
         "title": "Les lucioles",
         "subtitle": "Inspiration",
-        "image": "/assets/cards/inspiration/card-inspiration-14.webp",
+        "image": "/assets/cards/french/inspiration/card-inspiration-14.webp",
         "shortDescription": "Son signal d'amour doit percer la nuit noire pour attirer un partenaire lointain.",
         "alt": "Luciole émettant sa bioluminescence"
       },
       "innovation": {
         "title": "Les lampes LED",
         "subtitle": "Innovation",
-        "image": "/assets/cards/innovation/card-innovation-14.webp",
+        "image": "/assets/cards/french/innovation/card-innovation-14.webp",
         "shortDescription": "Une technologie idéale pour concevoir des écrans et des balises ultra-lumineux.",
         "alt": "Lampe LED"
       },
       "explanation": {
-        "title": "Le lien biomimétique",
-        "body": "Les écailles en dents de scie de la luciole empêchent sa lumière de refléter vers l'intérieur. En copiant ces micro-pentes sur les puces LED, on libère les rayons piégés pour briller 55% plus fort.",
+        "title": "Bravo vous avez trouvé le lien biomimétique",
+        "body": "Les écailles en dents de scie de la luciole empêchent sa lumière de refléter vers l'intérieur. En copiant ces micro-pentes sur les puces LED, on libère les rayons piégés pour briller 55 % plus fort.",
         "source": ""
+      },
+      "translations": {
+        "en": {
+          "theme": "Optics",
+          "inspiration": {
+            "title": "Fireflies",
+            "subtitle": "Inspiration",
+            "shortDescription": "Its love signal must pierce the pitch-black night to attract a distant mate.",
+            "alt": "Firefly emitting bioluminescent light",
+            "image": "/assets/cards/english/inspiration/card-inspiration-14.webp"
+          },
+          "innovation": {
+            "title": "LED lamps",
+            "subtitle": "Innovation",
+            "shortDescription": "A technology ideal for designing ultra-bright screens and beacons.",
+            "alt": "LED lamp",
+            "image": "/assets/cards/english/innovation/card-innovation-14.webp"
+          },
+          "explanation": {
+            "title": "Well done, you found the biomimetic link",
+            "body": "The firefly's jagged, saw-toothed scales stop its light from reflecting back inward. By copying these micro-slopes on LED chips, trapped light rays are released, shining 55% brighter."
+          }
+        }
       }
     },
     {
@@ -337,21 +692,44 @@
       "inspiration": {
         "title": "La trompe du moustique",
         "subtitle": "Inspiration",
-        "image": "/assets/cards/inspiration/card-inspiration-15.webp",
+        "image": "/assets/cards/french/inspiration/card-inspiration-15.webp",
         "shortDescription": "Cet insecte pénètre la barrière cutanée sans que sa cible ne s'en rende compte.",
         "alt": "Trompe d'un moustique"
       },
       "innovation": {
         "title": "L'aiguille médicale indolore",
         "subtitle": "Innovation",
-        "image": "/assets/cards/innovation/card-innovation-15.webp",
+        "image": "/assets/cards/french/innovation/card-innovation-15.webp",
         "shortDescription": "Un dispositif de soin si fin que le système nerveux ne détecte pas sa présence.",
         "alt": "Aiguille médicale indolore"
       },
       "explanation": {
-        "title": "Le lien biomimétique",
+        "title": "Bravo vous avez trouvé le lien biomimétique",
         "body": "La trompe du moustique est conique et dentelée, réduisant au minimum le contact avec les nerfs. Cette aiguille médicale copie ce relief microscopique pour glisser dans la peau sans douleur.",
         "source": ""
+      },
+      "translations": {
+        "en": {
+          "theme": "Medicine",
+          "inspiration": {
+            "title": "The mosquito's proboscis",
+            "subtitle": "Inspiration",
+            "shortDescription": "This insect pierces the skin barrier without its target ever noticing.",
+            "alt": "Mosquito proboscis",
+            "image": "/assets/cards/english/inspiration/card-inspiration-15.webp"
+          },
+          "innovation": {
+            "title": "The painless medical needle",
+            "subtitle": "Innovation",
+            "shortDescription": "A medical device so fine that the nervous system doesn't detect its presence.",
+            "alt": "Painless medical needle",
+            "image": "/assets/cards/english/innovation/card-innovation-15.webp"
+          },
+          "explanation": {
+            "title": "Well done, you found the biomimetic link",
+            "body": "The mosquito's proboscis is conical and serrated, minimizing contact with nerve endings. This medical needle copies that microscopic texture to slide into skin painlessly."
+          }
+        }
       }
     },
     {
@@ -360,21 +738,44 @@
       "inspiration": {
         "title": "Le manchot",
         "subtitle": "Inspiration",
-        "image": "/assets/cards/inspiration/card-inspiration-16.webp",
+        "image": "/assets/cards/french/inspiration/card-inspiration-16.webp",
         "shortDescription": "Face au froid polaire, ces oiseaux se serrent pour garder la chaleur collective.",
         "alt": "Colonie de manchots empereurs"
       },
       "innovation": {
         "title": "Le District 11",
         "subtitle": "Innovation",
-        "image": "/assets/cards/innovation/card-innovation-16.webp",
+        "image": "/assets/cards/french/innovation/card-innovation-16.webp",
         "shortDescription": "Un quartier russe dont la disposition compacte réduit les pertes de chaleur.",
         "alt": "Quartier compact District 11 à Skolkovo"
       },
       "explanation": {
-        "title": "Le lien biomimétique",
+        "title": "Bravo vous avez trouvé le lien biomimétique",
         "body": "Les manchots empereurs se serrent en colonie dense, exposant le minimum de surface au vent. Le projet District 11 à Skolkovo reprend cette logique : des villas regroupées par blocs de dix forment un ensemble compact qui maintient des températures intérieures supérieures de 5°C.",
         "source": ""
+      },
+      "translations": {
+        "en": {
+          "theme": "Thermoregulation",
+          "inspiration": {
+            "title": "The emperor penguin",
+            "subtitle": "Inspiration",
+            "shortDescription": "Facing polar cold, these birds huddle together to preserve their collective warmth.",
+            "alt": "Colony of emperor penguins",
+            "image": "/assets/cards/english/inspiration/card-inspiration-16.webp"
+          },
+          "innovation": {
+            "title": "District 11",
+            "subtitle": "Innovation",
+            "shortDescription": "A Russian district whose compact layout reduces heat loss.",
+            "alt": "Compact District 11 neighborhood in Skolkovo",
+            "image": "/assets/cards/english/innovation/card-innovation-16.webp"
+          },
+          "explanation": {
+            "title": "Well done, you found the biomimetic link",
+            "body": "Emperor penguins huddle into a dense colony, exposing the least possible surface to the wind. The District 11 project in Skolkovo follows the same logic: villas grouped in blocks of ten form a compact ensemble that keeps indoor temperatures 5°C higher."
+          }
+        }
       }
     },
     {
@@ -383,21 +784,44 @@
       "inspiration": {
         "title": "La termitière",
         "subtitle": "Inspiration",
-        "image": "/assets/cards/inspiration/card-inspiration-17.webp",
+        "image": "/assets/cards/french/inspiration/card-inspiration-17.webp",
         "shortDescription": "Ce monticule survit aux journées brûlantes et aux nuits glaciales du désert.",
         "alt": "Termitière africaine"
       },
       "innovation": {
-        "title": "Le Eastgate Building",
+        "title": "L'Eastgate Building",
         "subtitle": "Innovation",
-        "image": "/assets/cards/innovation/card-innovation-17.webp",
+        "image": "/assets/cards/french/innovation/card-innovation-17.webp",
         "shortDescription": "Une solution constructive idéale pour les pays chauds qui manquent d'électricité.",
         "alt": "Eastgate Building à Harare"
       },
       "explanation": {
-        "title": "Le lien biomimétique",
+        "title": "Bravo vous avez trouvé le lien biomimétique",
         "body": "La termitière aspire l'air frais par le bas et évacue le chaud par ses cheminées. Ce bâtiment imite ce poumon de terre pour s'auto-ventiler naturellement, réduisant sa climatisation de 90 %.",
         "source": ""
+      },
+      "translations": {
+        "en": {
+          "theme": "Thermoregulation",
+          "inspiration": {
+            "title": "The termite mound",
+            "subtitle": "Inspiration",
+            "shortDescription": "This mound survives scorching desert days and freezing desert nights.",
+            "alt": "African termite mound",
+            "image": "/assets/cards/english/inspiration/card-inspiration-17.webp"
+          },
+          "innovation": {
+            "title": "The Eastgate Building",
+            "subtitle": "Innovation",
+            "shortDescription": "A building solution ideal for hot countries lacking reliable electricity.",
+            "alt": "Eastgate Building in Harare",
+            "image": "/assets/cards/english/innovation/card-innovation-17.webp"
+          },
+          "explanation": {
+            "title": "Well done, you found the biomimetic link",
+            "body": "The termite mound draws cool air in from below and vents hot air out through its chimneys. This building mimics that earthen lung to ventilate itself naturally, cutting its air conditioning needs by 90%."
+          }
+        }
       }
     },
     {
@@ -406,21 +830,44 @@
       "inspiration": {
         "title": "La moule",
         "subtitle": "Inspiration",
-        "image": "/assets/cards/inspiration/card-inspiration-18.webp",
+        "image": "/assets/cards/french/inspiration/card-inspiration-18.webp",
         "shortDescription": "Ce mollusque s'accroche à n'importe quelle surface immergée grâce à ses filaments.",
         "alt": "Moule accrochée à un rocher"
       },
       "innovation": {
         "title": "La colle forte",
         "subtitle": "Innovation",
-        "image": "/assets/cards/innovation/card-innovation-18.webp",
+        "image": "/assets/cards/french/innovation/card-innovation-18.webp",
         "shortDescription": "Un adhésif capable de lier des molécules actives sur du métal, même en présence d'eau.",
         "alt": "Colle forte adhésive"
       },
       "explanation": {
-        "title": "Le lien biomimétique",
+        "title": "Bravo vous avez trouvé le lien biomimétique",
         "body": "La moule sécrète une protéine contenant une molécule qui se fixe à presque tout, même sous l'eau. Des chercheurs ont reproduit cette chimie pour créer une colle permettant de fixer des enzymes sur des surfaces métalliques, ouvrant des applications en médecine et en capteurs biologiques.",
         "source": ""
+      },
+      "translations": {
+        "en": {
+          "theme": "Adhesion",
+          "inspiration": {
+            "title": "The mussel",
+            "subtitle": "Inspiration",
+            "shortDescription": "This mollusk clings to any submerged surface thanks to its byssal threads.",
+            "alt": "Mussel clinging to a rock",
+            "image": "/assets/cards/english/inspiration/card-inspiration-18.webp"
+          },
+          "innovation": {
+            "title": "Strong adhesive",
+            "subtitle": "Innovation",
+            "shortDescription": "An adhesive able to bind active molecules to metal, even underwater.",
+            "alt": "Strong adhesive glue",
+            "image": "/assets/cards/english/innovation/card-innovation-18.webp"
+          },
+          "explanation": {
+            "title": "Well done, you found the biomimetic link",
+            "body": "The mussel secretes a protein containing a molecule that bonds to almost anything, even underwater. Researchers reproduced this chemistry to create an adhesive that fixes enzymes onto metal surfaces, opening applications in medicine and biological sensors."
+          }
+        }
       }
     },
     {
@@ -429,21 +876,44 @@
       "inspiration": {
         "title": "Le zèbre",
         "subtitle": "Inspiration",
-        "image": "/assets/cards/inspiration/card-inspiration-19.webp",
+        "image": "/assets/cards/french/inspiration/card-inspiration-19.webp",
         "shortDescription": "Ses rayures brouillent la perception du mouvement chez celui qui l'observe.",
         "alt": "Zèbre aux rayures contrastées"
       },
       "innovation": {
         "title": "Le camouflage dazzle",
         "subtitle": "Innovation",
-        "image": "/assets/cards/innovation/card-innovation-19.webp",
+        "image": "/assets/cards/french/innovation/card-innovation-19.webp",
         "shortDescription": "En 1917, des motifs géométriques sur des coques rendaient leur cap illisible.",
         "alt": "Navire au camouflage dazzle"
       },
       "explanation": {
-        "title": "Le lien biomimétique",
+        "title": "Bravo vous avez trouvé le lien biomimétique",
         "body": "Le contraste fort des rayures du zèbre perturbe la lecture du déplacement par les prédateurs. Le peintre Norman Wilkinson s'en est inspiré pour couvrir les navires britanniques de formes angulaires, rendant leur cap et leur vitesse difficiles à évaluer pour les torpilleurs ennemis.",
         "source": ""
+      },
+      "translations": {
+        "en": {
+          "theme": "Camouflage",
+          "inspiration": {
+            "title": "The zebra",
+            "subtitle": "Inspiration",
+            "shortDescription": "Its stripes scramble a viewer's perception of its movement.",
+            "alt": "Zebra with high-contrast stripes",
+            "image": "/assets/cards/english/inspiration/card-inspiration-19.webp"
+          },
+          "innovation": {
+            "title": "Dazzle camouflage",
+            "subtitle": "Innovation",
+            "shortDescription": "In 1917, geometric patterns painted on hulls made a ship's heading unreadable.",
+            "alt": "Ship painted with dazzle camouflage",
+            "image": "/assets/cards/english/innovation/card-innovation-19.webp"
+          },
+          "explanation": {
+            "title": "Well done, you found the biomimetic link",
+            "body": "The zebra's high-contrast stripes disrupt predators' ability to read its movement. Painter Norman Wilkinson drew on this to cover British ships in angular shapes, making their heading and speed hard for enemy torpedo boats to judge."
+          }
+        }
       }
     },
     {
@@ -452,21 +922,44 @@
       "inspiration": {
         "title": "L'orchidée",
         "subtitle": "Inspiration",
-        "image": "/assets/cards/inspiration/card-inspiration-20.webp",
+        "image": "/assets/cards/french/inspiration/card-inspiration-20.webp",
         "shortDescription": "Cette fleur unit une forme aérienne complexe à une gestion efficace de ses ressources.",
         "alt": "Orchidée en fleur"
       },
       "innovation": {
         "title": "Les Gardens by the Bay",
         "subtitle": "Innovation",
-        "image": "/assets/cards/innovation/card-innovation-20.webp",
+        "image": "/assets/cards/french/innovation/card-innovation-20.webp",
         "shortDescription": "Ce parc de Singapour intègre dans ses arbres géants des fonctions énergétiques.",
         "alt": "Supertrees des Gardens by the Bay à Singapour"
       },
       "explanation": {
-        "title": "Le lien biomimétique",
+        "title": "Bravo vous avez trouvé le lien biomimétique",
         "body": "Les Supertrees de Gardens by the Bay s'inspirent de la forme de l'orchidée pour créer des tours végétales qui captent l'eau de pluie, accueillent des panneaux solaires et ventilent les serres environnantes. Comme la fleur, chaque structure unit esthétique et efficacité dans un seul organisme.",
         "source": ""
+      },
+      "translations": {
+        "en": {
+          "theme": "Architecture",
+          "inspiration": {
+            "title": "The orchid",
+            "subtitle": "Inspiration",
+            "shortDescription": "This flower combines an intricate airborne form with the efficient management of its resources.",
+            "alt": "Blooming orchid",
+            "image": "/assets/cards/english/inspiration/card-inspiration-20.webp"
+          },
+          "innovation": {
+            "title": "Gardens by the Bay",
+            "subtitle": "Innovation",
+            "shortDescription": "This Singapore park builds energy-generating functions into its giant tree-like structures.",
+            "alt": "Supertrees at Gardens by the Bay in Singapore",
+            "image": "/assets/cards/english/innovation/card-innovation-20.webp"
+          },
+          "explanation": {
+            "title": "Well done, you found the biomimetic link",
+            "body": "The Supertrees at Gardens by the Bay draw on the orchid's form to create vertical gardens that collect rainwater, host solar panels, and ventilate the surrounding conservatories. Like the flower, each structure unites beauty and efficiency in a single organism."
+          }
+        }
       }
     },
     {
@@ -475,21 +968,44 @@
       "inspiration": {
         "title": "L'os humain",
         "subtitle": "Inspiration",
-        "image": "/assets/cards/inspiration/card-inspiration-21.webp",
+        "image": "/assets/cards/french/inspiration/card-inspiration-21.webp",
         "shortDescription": "Notre squelette densifie la matière là où les efforts sont forts, sans superflu.",
         "alt": "Os humain (fémur)"
       },
       "innovation": {
         "title": "La Tour Eiffel",
         "subtitle": "Innovation",
-        "image": "/assets/cards/innovation/card-innovation-21.webp",
+        "image": "/assets/cards/french/innovation/card-innovation-21.webp",
         "shortDescription": "Cette structure parisienne place son fer là où les forces l'exigent exactement.",
         "alt": "La Tour Eiffel à Paris"
       },
       "explanation": {
-        "title": "Le lien biomimétique",
+        "title": "Bravo vous avez trouvé le lien biomimétique",
         "body": "L'intérieur d'un os n'est pas homogène : la matière se densifie là où les contraintes mécaniques sont fortes. Eiffel a suivi cette même logique en ne plaçant le métal qu'aux endroits soumis à compression ou traction, ce qui rend sa tour plus légère que le volume d'air qu'elle occupe.",
         "source": ""
+      },
+      "translations": {
+        "en": {
+          "theme": "Structure",
+          "inspiration": {
+            "title": "Human bone",
+            "subtitle": "Inspiration",
+            "shortDescription": "Our skeleton concentrates material only where stress is greatest, with no excess.",
+            "alt": "Human bone (femur)",
+            "image": "/assets/cards/english/inspiration/card-inspiration-21.webp"
+          },
+          "innovation": {
+            "title": "The Eiffel Tower",
+            "subtitle": "Innovation",
+            "shortDescription": "This Parisian structure places its iron exactly where the forces demand it.",
+            "alt": "The Eiffel Tower in Paris",
+            "image": "/assets/cards/english/innovation/card-innovation-21.webp"
+          },
+          "explanation": {
+            "title": "Well done, you found the biomimetic link",
+            "body": "The inside of a bone isn't uniform: material becomes denser wherever mechanical stress is greatest. Eiffel followed this very same logic, placing metal only where it faced compression or tension — making his tower lighter than the volume of air it occupies."
+          }
+        }
       }
     }
   ]

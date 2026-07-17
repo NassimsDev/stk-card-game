@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import Button from "../../components/Button/Button.jsx";
 import { soundManager } from "../../utils/soundManager";
+import { useLang } from "../../i18n/useLang";
 import styles from "./LandingScreen.module.css";
 
 function shuffle(arr) {
@@ -12,18 +13,20 @@ function shuffle(arr) {
     return a;
 }
 
+// Toujours "french" : les cartes sont trop petites dans cette mosaïque pour
+// que le texte dessus soit lisible, pas besoin de suivre la langue ici.
 const _inspirations = shuffle(
     Array.from(
         { length: 21 },
         (_, i) =>
-            `/assets/cards/inspiration/card-inspiration-${String(i + 1).padStart(2, "0")}.webp`,
+            `/assets/cards/french/inspiration/card-inspiration-${String(i + 1).padStart(2, "0")}.webp`,
     ),
 );
 const _innovations = shuffle(
     Array.from(
         { length: 21 },
         (_, i) =>
-            `/assets/cards/innovation/card-innovation-${String(i + 1).padStart(2, "0")}.webp`,
+            `/assets/cards/french/innovation/card-innovation-${String(i + 1).padStart(2, "0")}.webp`,
     ),
 );
 const CARD_IMAGES = _inspirations.flatMap((insp, i) => [insp, _innovations[i]]);
@@ -92,6 +95,7 @@ const CARDS = [
 ];
 
 function LandingScreen({ onStart }) {
+    const { t } = useLang();
     const vpW = typeof window !== "undefined" ? window.innerWidth : CANVAS_W;
     const vpH = typeof window !== "undefined" ? window.innerHeight : CANVAS_H;
 
@@ -146,10 +150,7 @@ function LandingScreen({ onStart }) {
                 />
                 <h1>Bloom</h1>
                 <p className={styles.subtitle}>
-                    Explorez les liens invisibles entre le vivant et
-                    l'innovation. Chaque carte révèle comment la nature inspire nos inventions.
-                    {/* <br /> <br /> */}
-                    {/* Découvrez comment le vivant façonne les idées de demain. */}
+                    {t('landing.subtitle')}
                 </p>
                 <div className={styles.cta}>
                     <Button
@@ -158,7 +159,7 @@ function LandingScreen({ onStart }) {
                             onStart();
                         }}
                     >
-                        Commencer l'exploration
+                        {t('landing.cta')}
                     </Button>
                 </div>
             </div>

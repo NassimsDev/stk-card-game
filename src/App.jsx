@@ -1,26 +1,48 @@
 import '@fontsource/playfair-display';
 import './index.css';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import './App.css';
 import pairsData from './data/pairs.json';
 import { soundManager } from './utils/soundManager';
 import { useBackgroundAudio } from './hooks/useBackgroundAudio';
+import { LangProvider } from './i18n/LangContext';
+import { useLang } from './i18n/useLang';
+import { localizePair } from './pages/GameRound/gameRound.constants';
 import GameRound from './pages/GameRound/GameRound';
 import LandingScreen from './pages/LandingScreen/LandingScreen';
 import OnboardingScreen from './pages/OnboardingScreen/OnboardingScreen';
 
-const SEQUENCES = pairsData.metadata.sequences.map(seq =>
-  seq.pairIds.map(id => pairsData.pairs.find(p => p.id === id))
-);
-const TOTAL_SEQUENCES = SEQUENCES.length;
+const TOTAL_SEQUENCES = pairsData.metadata.sequences.length;
 
 function App() {
+  return (
+    <LangProvider>
+      <AppContent />
+    </LangProvider>
+  );
+}
+
+function AppContent() {
+  const { lang, toggleLang, t } = useLang();
   const [started, setStarted] = useState(false);
   const [onboarded, setOnboarded] = useState(false);
   const [seqIndex, setSeqIndex] = useState(0);
   const [appView, setAppView] = useState('game');
   const [isMuted, setIsMuted] = useState(() => soundManager.getMuteState());
+  // Revoir l'onboarding depuis le jeu ("?" dans GameRound) : rendu en overlay
+  // par-dessus GameRound (jamais démonté), donc la progression de la
+  // séquence en cours (paires trouvées...) reste intacte au retour.
+  const [showHelp, setShowHelp] = useState(false);
+
+  // Recalculée uniquement quand la langue change — le contenu (pairs.json)
+  // reste la seule source de vérité, on ne fait que fusionner ses traductions.
+  const SEQUENCES = useMemo(
+    () => pairsData.metadata.sequences.map(seq =>
+      seq.pairIds.map(id => localizePair(pairsData.pairs.find(p => p.id === id), lang))
+    ),
+    [lang]
+  );
 
   useEffect(() => {
     soundManager.init();
@@ -100,7 +122,7 @@ function App() {
       {!started ? (
         <LandingScreen onStart={() => setStarted(true)} />
       ) : !onboarded ? (
-        <OnboardingScreen onComplete={() => setOnboarded(true)} />
+        <OnboardingScreen onComplete={() => setOnboarded(true)} onHome={handleGoHome} />
       ) : (
         <div className="container">
           <AnimatePresence mode="wait">
@@ -113,6 +135,7 @@ function App() {
                 previousPairs={SEQUENCES.slice(0, seqIndex).flat()}
                 onComplete={handleSequenceComplete}
                 onHome={handleGoHome}
+                onShowHelp={() => setShowHelp(true)}
               />
             )}
 
@@ -126,7 +149,7 @@ function App() {
                 transition={{ duration: 0.8 }}
               >
                 <h2 className="transition-title">
-                  S<span style={{ fontStyle: 'italic' }}>é</span>quence{' '}
+                  S<span style={{ fontStyle: 'italic' }}>{lang === 'fr' ? 'é' : 'e'}</span>quence{' '}
                   <span style={{ fontFamily: '"DM Serif Display", serif', fontWeight: 400 }}>
                     {seqIndex + 2}/{TOTAL_SEQUENCES}
                   </span>
@@ -139,7 +162,7 @@ function App() {
                     handleStart();
                   }}
                 >
-                  Commencer
+                  {t('transition.start')}
                 </button>
               </motion.main>
             )}
@@ -155,18 +178,18 @@ function App() {
               >
                 <img src="/assets/images/STK-logo.svg" alt="STK Architecture" className="header-logo end-screen-logo" />
                 <h2 className="transition-title">
-                  Parcours<br />
-                  <span style={{ fontStyle: 'italic' }}>terminé</span>
+                  {t('end.titleLine1')}<br />
+                  <span style={{ fontStyle: 'italic' }}>{t('end.titleItalic')}</span>
                 </h2>
                 <p className="end-description">
-                  Vous avez exploré{' '}
+                  {t('end.descriptionBefore')}{' '}
                   <span style={{ fontFamily: '"DM Serif Display", serif', fontWeight: 400, color: '#1a1a1a' }}>
                     {pairsData.metadata.totalPairs}
                   </span>
-                  {' '}liens entre le vivant et l'innovation.
+                  {' '}{t('end.descriptionAfter')}
                 </p>
                 <p className="end-accroche">
-                  Le biomimétisme inspire chaque projet que nous concevons.
+                  {t('end.accroche')}
                 </p>
                 <a
                   href="https://stk-architecture.com/projets"
@@ -176,7 +199,7 @@ function App() {
                   style={{ textDecoration: 'none', marginTop: '12px' }}
                   onClick={() => soundManager.play('button')}
                 >
-                  Découvrir les projets STK
+                  {t('end.discoverCta')}
                 </a>
                 <button
                   className="end-replay"
@@ -186,7 +209,7 @@ function App() {
                     setAppView('game');
                   }}
                 >
-                  Rejouer le parcours
+                  {t('end.replay')}
                 </button>
               </motion.main>
             )}
@@ -194,11 +217,24 @@ function App() {
         </div>
       )}
 
+      {/* Overlay de révision : GameRound reste monté en dessous, donc sa
+          progression (paires trouvées de la séquence en cours...) survit. */}
+      <AnimatePresence>
+        {showHelp && (
+          <OnboardingScreen
+            key="help-overlay"
+            onComplete={() => setShowHelp(false)}
+            onClose={() => setShowHelp(false)}
+            onHome={handleGoHome}
+          />
+        )}
+      </AnimatePresence>
+
       {started && (
         <button
           className="sound-toggle-btn"
           onClick={handleToggleMute}
-          aria-label={isMuted ? "Activer le son" : "Couper le son"}
+          aria-label={isMuted ? t('common.soundOn') : t('common.soundOff')}
         >
           {isMuted ? (
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -215,6 +251,19 @@ function App() {
           )}
         </button>
       )}
+
+      {/* Toujours visible (même avant "started") : la langue doit pouvoir être
+          choisie dès l'écran d'accueil, avant que le son n'entre en jeu. */}
+      <button
+        className="lang-toggle-btn"
+        onClick={() => {
+          soundManager.play('button');
+          toggleLang();
+        }}
+        aria-label={t('common.langToggleAria')}
+      >
+        {lang === 'fr' ? 'EN' : 'FR'}
+      </button>
     </>
   );
 }

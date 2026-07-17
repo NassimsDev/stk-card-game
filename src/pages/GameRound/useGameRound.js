@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef, useReducer } from 'react';
 import { soundManager } from '../../utils/soundManager';
-import { shuffleArray, AMBIENT_TRACKS, buildCarouselDeck } from './gameRound.constants';
+import { shuffleArray, buildCarouselDeck } from './gameRound.constants';
 
 // ── Reducer ───────────────────────────────────────────────────────────────────
 
@@ -111,14 +111,9 @@ export function useGameRound({ pairs }) {
   // built to guarantee a pair's two cards are never adjacent (see buildCarouselDeck).
   const [carouselCards]       = useState(() => buildCarouselDeck(pairs));
 
-  // Ambient UI state (unrelated to game flow — no grouped resets needed).
-  const [ambientTrack,  setAmbientTrack]  = useState(AMBIENT_TRACKS[0].id);
-  const [isAmbientOpen, setIsAmbientOpen] = useState(false);
-
   // Drag-over highlight (purely local UI, no game-state coupling).
   const [dragOverSide, setDragOverSide] = useState(null);
 
-  const ambientRef       = useRef(null);
   const swiperInstanceRef = useRef(null);
 
   // ── Derived state ──────────────────────────────────────────────────────────
@@ -148,25 +143,7 @@ export function useGameRound({ pairs }) {
     return () => clearTimeout(t);
   }, [matchedPairIds.length]);
 
-  // Close ambient dropdown on outside click.
-  useEffect(() => {
-    if (!isAmbientOpen) return;
-    const handler = (e) => {
-      if (ambientRef.current && !ambientRef.current.contains(e.target)) {
-        setIsAmbientOpen(false);
-      }
-    };
-    document.addEventListener('mousedown', handler);
-    return () => document.removeEventListener('mousedown', handler);
-  }, [isAmbientOpen]);
-
   // ── Handlers ───────────────────────────────────────────────────────────────
-
-  const handleAmbientSelect = (trackId) => {
-    setAmbientTrack(trackId);
-    soundManager.switchBgMusic(trackId);
-    setIsAmbientOpen(false);
-  };
 
   // carouselIdx is the absolute index in the repeated deck (optional — desktop has none).
   const handleSelectLeft = (id, carouselIdx = null) => {
@@ -193,7 +170,15 @@ export function useGameRound({ pairs }) {
 
   const handleAnimationComplete = (definition) => {
     if (definition === 'linking')       soundManager.play('correct');
-    if (definition === 'linking-wrong') soundManager.play('wrong');
+    if (definition === 'linking-wrong') {
+      soundManager.play('wrong');
+      // Vibration API : pas de support iOS Safari, d'où la vérification —
+      // sur les navigateurs compatibles (Chrome/Android...), un double buzz
+      // court renforce le signal d'erreur en complément du son.
+      if (typeof navigator !== 'undefined' && navigator.vibrate) {
+        navigator.vibrate([60, 40, 60]);
+      }
+    }
     dispatch({ type: 'ANIMATION_COMPLETE', definition });
   };
 
@@ -233,7 +218,6 @@ export function useGameRound({ pairs }) {
 
   return {
     // Refs
-    ambientRef,
     swiperInstanceRef,
     // Game state (flattened from reducer)
     selectedLeft,
@@ -251,10 +235,7 @@ export function useGameRound({ pairs }) {
     // Computed-once
     shuffledInspiration,
     shuffledInnovation,
-    // Ambient UI
     dragOverSide,
-    ambientTrack,
-    isAmbientOpen, setIsAmbientOpen,
     // Derived
     isAnimating,
     allFound,
@@ -265,7 +246,6 @@ export function useGameRound({ pairs }) {
     canShowHintToggle,
     visibleCarouselCards,
     // Handlers
-    handleAmbientSelect,
     handleLierClick,
     handleAnimationComplete,
     handleSuivant,
