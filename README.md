@@ -9,7 +9,7 @@ Application web sans backend, jouable depuis n'importe quel navigateur.
 
 Bloom est un jeu d'association de cartes pédagogique : le joueur doit relier un élément naturel (*Inspiration*) à l'innovation humaine qui s'en inspire (*Innovation*). Le jeu couvre 21 paires biomimétiques réparties en 3 séquences, des nageoires de baleine aux éoliennes, en passant par la termitière et le Eastgate Building.
 
-Adapté d'un jeu physique existant pour le cabinet STK Architecture, la version digitale ajoute animations, feedback sonore, système d'indices et déploiement continu.
+Adapté d'un jeu physique existant pour le cabinet STK Architecture, la version digitale ajoute animations, feedback sonore, système d'indices, traduction en 3 langues et déploiement continu.
 
 ---
 
@@ -35,6 +35,9 @@ Adapté d'un jeu physique existant pour le cabinet STK Architecture, la version 
 | **Ma collection** — overlay listant les paires déjà trouvées (relecture des explications), CTA en haut à droite du header sur desktop, swipe depuis le bord droit sur mobile | Terminé |
 | Coupure/reprise automatique du son en arrière-plan (écran verrouillé, changement d'onglet/d'appli, via l'API Page Visibility) | Terminé |
 | Mélange du carrousel mobile garanti sans jamais placer les 2 cartes d'une même paire côte à côte | Terminé |
+| Vibration mobile (`navigator.vibrate`) en complément du son sur une mauvaise réponse — non supporté par Safari/iOS (limitation WebKit, tous navigateurs confondus) | Terminé |
+| **Traduction FR / EN / TR** — bouton de cycle en bas à gauche, textes d'interface + contenu des 21 paires + visuels de cartes par langue, préchargement en arrière-plan des langues non actives | Terminé |
+| **Revoir les explications** — bouton `?` dans le header de GameRound, réaffiche l'onboarding en overlay sans perdre la progression de la séquence en cours | Terminé |
 
 ### À nettoyer avant livraison
 
@@ -70,6 +73,53 @@ Adapté d'un jeu physique existant pour le cabinet STK Architecture, la version 
 | 20 | Orchidée | Gardens by the Bay | Architecture |
 | 21 | Os humain | Tour Eiffel | Structure |
 
+Titres, descriptions et visuels ci-dessus en français — voir [Internationalisation](#internationalisation-fr--en--tr) pour l'anglais et le turc.
+
+---
+
+## Internationalisation (FR / EN / TR)
+
+Le jeu est jouable en français, anglais et turc. Pas de librairie i18n : un système maison léger, pensé pour ne jamais dupliquer `pairs.json` en entier par langue.
+
+### Le bouton de langue
+
+En bas à gauche de l'écran, un bouton unique fait défiler les langues en boucle :
+
+```
+FR → EN → TR → FR → ...
+```
+
+Il affiche toujours la **prochaine** langue du cycle (`NEXT_LANG_LABEL` dans `App.jsx`). La langue choisie est mémorisée dans `localStorage` (`stk-lang`) et restaurée à la prochaine visite.
+
+### Deux sources de texte différentes
+
+| Contenu | Fichier | Mécanisme |
+|---|---|---|
+| Interface (boutons, onboarding, écrans de transition/fin, indices...) | `src/i18n/strings.js` | Un objet `{ fr: {...}, en: {...}, tr: {...} }`, une entrée par clé ; `t('gameRound.link')` lit la clé dans la langue active |
+| Contenu des 21 paires (titres, descriptions, explications, thème) | `src/data/pairs.json` | Le français reste les champs de base (`title`, `shortDescription`...) ; chaque paire porte en plus un bloc additif `translations.en` et `translations.tr` avec les mêmes clés. `localizePair(pair, lang)` (dans `gameRound.constants.js`) fusionne les overrides par-dessus le français à la volée — jamais de duplication du fichier |
+
+### Visuels des cartes
+
+Les cartes anglaises et turques ont le texte intégré à l'image (pas de calque de texte séparé), donc chaque langue a son propre jeu d'images :
+
+```
+public/assets/cards/{french|english|turkish}/{inspiration|innovation|glow}/card-xxx-01.webp
+```
+
+Le champ `image` de chaque paire pointe vers la version française ; les blocs `translations.en.*.image` / `translations.tr.*.image` pointent vers les dossiers `english`/`turkish` correspondants. `getGlowPath(type, id, lang)` fait la même bascule pour les halos lumineux.
+
+### Préchargement en arrière-plan
+
+Au montage de l'app, `LangProvider` précharge (via `requestIdleCallback`, donc sans ralentir le chargement initial) les visuels des **langues non actives**. Résultat : la première bascule de langue est instantanée, sans attendre le téléchargement des images.
+
+### Ajouter une langue
+
+1. Ajouter un bloc dans `strings.js` (copier `en`, tout traduire).
+2. Ajouter un bloc `translations.<code>` par paire dans `pairs.json` (copier `translations.en`, tout traduire, adapter les chemins d'image).
+3. Créer `public/assets/cards/<dossier>/{inspiration,innovation,glow}/` avec les visuels (au minimum des copies du français en attendant les vrais visuels).
+4. Ajouter le code langue à `LANG_CYCLE` (`LangContext.jsx`) et à `LANG_FOLDERS` (`gameRound.constants.js` + `preloadCardImages.js`).
+5. Ajouter le libellé du bouton à `NEXT_LANG_LABEL` (`App.jsx`).
+
 ---
 
 ## Parcours de jeu
@@ -104,25 +154,35 @@ stk/
 ├── public/
 │   └── assets/
 │       ├── cards/
-│       │   ├── inspiration/     # 21 images WebP
-│       │   ├── innovation/      # 21 images WebP
-│       │   └── glow/            # 42 overlays lumineux
+│       │   ├── french/
+│       │   │   ├── inspiration/ # 21 images WebP
+│       │   │   ├── innovation/  # 21 images WebP
+│       │   │   └── glow/        # 42 overlays lumineux
+│       │   ├── english/         # même structure, visuels anglais (texte intégré aux images)
+│       │   └── turkish/         # même structure, visuels turcs
 │       ├── sounds/              # 6 effets + 3 pistes de fond (ambiance)
 │       └── videos/              # intro, réussite, échec
 ├── src/
 │   ├── components/
+│   │   ├── AmbientSelector/     # Sélecteur de piste de fond (Oiseaux/Pluie/Fleuve)
 │   │   ├── Button/
 │   │   ├── CardGrid/            # Grilles desktop (colonnes Inspiration / Innovation)
 │   │   ├── CardSlot/            # Emplacements centraux (carte sélectionnée + indice)
 │   │   ├── CarouselSection/     # Carrousel mobile (Swiper, arc radial)
-│   │   └── CollectionOverlay/   # "Ma collection" — relecture des paires trouvées
+│   │   ├── CollectionOverlay/   # "Ma collection" — relecture des paires trouvées
+│   │   └── Logo/                # Logo STK cliquable (retour à l'accueil)
 │   ├── data/
-│   │   └── pairs.json           # Source de vérité — 21 paires
+│   │   └── pairs.json           # Source de vérité — 21 paires + traductions EN/TR par paire
 │   ├── hooks/
 │   │   └── useBackgroundAudio.js # Coupe/reprend le son selon la visibilité de l'onglet
+│   ├── i18n/
+│   │   ├── strings.js           # Textes d'interface FR/EN/TR (hors contenu des paires)
+│   │   ├── LangContext.jsx      # Provider : langue active, cycle FR→EN→TR, préchargement
+│   │   ├── useLang.js           # Hook de lecture (lang, t(), toggleLang, setLang)
+│   │   └── preloadCardImages.js # Warm-up des visuels des langues non actives
 │   ├── pages/
 │   │   ├── LandingScreen/       # Écran d'accueil
-│   │   ├── OnboardingScreen/    # Onboarding 3 slides
+│   │   ├── OnboardingScreen/    # Onboarding 3 slides (aussi réutilisé en overlay de révision)
 │   │   └── GameRound/           # Écran de jeu principal (+ useGameRound.js, le reducer de jeu)
 │   ├── utils/
 │   │   └── soundManager.js      # Singleton audio
@@ -142,6 +202,7 @@ stk/
 | Swiper | Carrousel tactile mobile (arc radial de cartes) |
 | CSS Modules | Styles par composant |
 | useReducer + useState | Gestion d'état, locale à chaque écran (pas de state global) |
+| Context API (`LangContext`) | Langue active + fonction `t()`, système i18n maison FR/EN/TR |
 | pairs.json | Données du jeu — jamais hardcodées dans le code |
 | Netlify | Hébergement avec déploiement continu depuis GitHub |
 
@@ -163,14 +224,18 @@ npm run preview   # prévisualiser le build
 Toutes les données du jeu sont dans [src/data/pairs.json](src/data/pairs.json).  
 Modifier une paire, corriger un texte ou ajouter une carte ne nécessite aucune modification du code.
 
-Les images des cartes sont dans `public/assets/cards/` au format WebP.  
-Le chemin dans le JSON doit correspondre exactement au nom du fichier.
+
+
+Les images des cartes sont dans `public/assets/cards/{french|english|turkish}/` au format WebP.  
+Le chemin dans le JSON doit correspondre exactement au nom du fichier, pour la bonne langue.
+
+Les textes d'interface (hors contenu des paires) sont dans [src/i18n/strings.js](src/i18n/strings.js),dans les 3 langues.
 
 ---
 
 ## Déploiement
 
-Chaque push sur la branche `main` déclenche automatiquement un nouveau build sur Vercel.  
+Chaque push sur la branche `main` déclenche automatiquement un nouveau build sur Netlify.  
 Le jeu est servi en HTTPS sans configuration supplémentaire.
 
 ---
