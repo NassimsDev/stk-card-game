@@ -55,9 +55,11 @@ export function localizePair(pair, lang) {
 }
 
 // ── Utilities ─────────────────────────────────────────────────────────────────
+const LANG_FOLDERS = { fr: 'french', en: 'english', tr: 'turkish' };
+
 export function getGlowPath(type, id, lang = 'fr') {
   const num = String(id).padStart(2, '0');
-  const folder = lang === 'en' ? 'english' : 'french';
+  const folder = LANG_FOLDERS[lang] ?? 'french';
   return `/assets/cards/${folder}/glow/card-${type}-glow-${num}.webp`;
 }
 

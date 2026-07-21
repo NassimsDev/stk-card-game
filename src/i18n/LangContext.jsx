@@ -3,26 +3,29 @@ import { strings } from './strings';
 import { preloadCardImages } from './preloadCardImages';
 import { LangContext } from './langContextObject';
 
+// Ordre de cycle du bouton unique : fr -> en -> tr -> fr ...
+const LANG_CYCLE = ['fr', 'en', 'tr'];
+
 function getInitialLang() {
   if (typeof window === 'undefined') return 'fr';
   const saved = localStorage.getItem('stk-lang');
-  return saved === 'en' ? 'en' : 'fr';
+  return LANG_CYCLE.includes(saved) ? saved : 'fr';
 }
 
 export function LangProvider({ children }) {
   const [lang, setLangState] = useState(getInitialLang);
 
   // Une fois la langue affichée au démarrage bien chargée, on précharge en
-  // tâche de fond les images de l'AUTRE langue (pendant un temps mort du
+  // tâche de fond les images des AUTRES langues (pendant un temps mort du
   // navigateur, pour ne pas ralentir le chargement initial) — comme ça, le
-  // toggle FR/EN est instantané la première fois qu'on l'utilise, sans
-  // attendre le téléchargement des images.
+  // bouton de cycle FR/EN/TR est instantané dès la première utilisation,
+  // sans attendre le téléchargement des images.
   useEffect(() => {
-    const otherLang = lang === 'en' ? 'fr' : 'en';
+    const otherLangs = LANG_CYCLE.filter(l => l !== lang);
     const schedule = window.requestIdleCallback ?? ((cb) => setTimeout(cb, 2000));
     const cancel = window.cancelIdleCallback ?? clearTimeout;
-    const id = schedule(() => preloadCardImages(otherLang));
-    return () => cancel(id);
+    const ids = otherLangs.map(l => schedule(() => preloadCardImages(l)));
+    return () => ids.forEach(cancel);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []); // volontairement une seule fois — la langue "de départ" ne change pas
 
@@ -32,7 +35,8 @@ export function LangProvider({ children }) {
   }, []);
 
   const toggleLang = useCallback(() => {
-    setLang(lang === 'fr' ? 'en' : 'fr');
+    const next = LANG_CYCLE[(LANG_CYCLE.indexOf(lang) + 1) % LANG_CYCLE.length];
+    setLang(next);
   }, [lang, setLang]);
 
   // t() : lit une clé imbriquée ("gameRound.ambiance") dans strings.js pour la langue active.

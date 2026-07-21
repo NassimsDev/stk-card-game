@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useReducer } from 'react';
+import { useState, useEffect, useMemo, useRef, useReducer } from 'react';
 import { soundManager } from '../../utils/soundManager';
 import { shuffleArray, buildCarouselDeck } from './gameRound.constants';
 
@@ -104,12 +104,34 @@ function gameReducer(state, action) {
 export function useGameRound({ pairs }) {
   const [state, dispatch] = useReducer(gameReducer, INITIAL_STATE);
 
-  // Computed once on mount — never mutated, so useState is appropriate here.
-  const [shuffledInspiration] = useState(() => shuffleArray(pairs));
-  const [shuffledInnovation]  = useState(() => shuffleArray(pairs));
-  // Mobile carousel deck: independent shuffle from the desktop grids above,
-  // built to guarantee a pair's two cards are never adjacent (see buildCarouselDeck).
-  const [carouselCards]       = useState(() => buildCarouselDeck(pairs));
+  // On ne mémorise que l'ORDRE (ids) une seule fois au montage — jamais les
+  // objets pair eux-mêmes, qui changent de référence à chaque changement de
+  // langue (localizePair renvoie une nouvelle fusion FR/EN). Si on figeait
+  // les objets ici, un switch de langue restait bloqué sur les anciennes
+  // images/textes tant que GameRound ne démonte pas (seul un F5 forçait le
+  // recalcul). L'ordre reste stable, le contenu suit `pairs` à chaque rendu.
+  const [inspirationOrder] = useState(() => shuffleArray(pairs).map(p => p.id));
+  const [innovationOrder]  = useState(() => shuffleArray(pairs).map(p => p.id));
+  // Mobile carousel deck: indépendant des grilles desktop ci-dessus, garanti
+  // sans paire adjacente (voir buildCarouselDeck) — même principe, on ne
+  // fige que la séquence (pairId + type), pas l'image/alt localisés.
+  const [carouselOrder] = useState(() => buildCarouselDeck(pairs).map(({ pairId, type }) => ({ pairId, type })));
+
+  const shuffledInspiration = useMemo(
+    () => inspirationOrder.map(id => pairs.find(p => p.id === id)),
+    [inspirationOrder, pairs]
+  );
+  const shuffledInnovation = useMemo(
+    () => innovationOrder.map(id => pairs.find(p => p.id === id)),
+    [innovationOrder, pairs]
+  );
+  const carouselCards = useMemo(
+    () => carouselOrder.map(({ pairId, type }) => {
+      const pair = pairs.find(p => p.id === pairId);
+      return { pairId, type, image: pair[type].image, alt: pair[type].alt };
+    }),
+    [carouselOrder, pairs]
+  );
 
   // Drag-over highlight (purely local UI, no game-state coupling).
   const [dragOverSide, setDragOverSide] = useState(null);

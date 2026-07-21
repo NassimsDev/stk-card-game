@@ -103,12 +103,10 @@
     position: fixed;
     bottom: 24px;
     right: 24px;
-    width: 44px;
-    height: 44px;
+    width: 56px;
+    height: 56px;
     border-radius: 50%;
-    background: rgba(255, 255, 255, 0.85);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
+    background: #ffffff;
     border: 1px solid rgba(0, 0, 0, 0.08);
     color: #1a1a1a;
     display: flex;
@@ -145,20 +143,18 @@
     position: fixed;
     bottom: 24px;
     left: 24px;
-    min-width: 44px;
-    height: 44px;
-    padding: 0 14px;
+    min-width: 56px;
+    height: 56px;
+    padding: 0 18px;
     border-radius: 999px;
-    background: rgba(255, 255, 255, 0.85);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
+    background: #ffffff;
     border: 1px solid rgba(0, 0, 0, 0.08);
     color: #1a1a1a;
     display: flex;
     align-items: center;
     justify-content: center;
     font-family: "Geist Sans", sans-serif;
-    font-size: 13px;
+    font-size: 16px;
     font-weight: 600;
     letter-spacing: 0.02em;
     cursor: pointer;
@@ -226,15 +222,17 @@
     .sound-toggle-btn {
         bottom: 16px;
         right: 16px;
-        width: 40px;
-        height: 40px;
+        width: 48px;
+        height: 48px;
     }
 
     .lang-toggle-btn {
         bottom: 16px;
         left: 16px;
-        height: 40px;
-        font-size: 12px;
+        min-width: 48px;
+        height: 48px;
+        padding: 0 16px;
+        font-size: 14px;
     }
 }
 
@@ -249,5 +247,17 @@
 
     .end-replay {
         margin-top: 16px;
+    }
+}
+
+/* Filet de sécurité pour les tout petits écrans (iPhone 5/SE 2016) : même
+   avec le scale appliqué côté GameRound/OnboardingScreen, la hauteur réelle
+   visible sous Safari (barre d'adresse + barre d'outils) est difficile à
+   prédire précisément en CSS pur. Si le contenu déborde malgré tout,
+   autoriser le scroll plutôt que de le laisser coupé par overflow:hidden —
+   rien ne doit jamais être totalement inaccessible. */
+@media (max-width: 380px) and (max-height: 620px) {
+    .container {
+        overflow-y: auto;
     }
 }

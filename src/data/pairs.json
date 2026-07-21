@@ -85,6 +85,27 @@
             "title": "Well done, you found the biomimetic link",
             "body": "This butterfly's wings release heat as waves to avoid overheating. \n By mimicking this thermal regulation, these solar panels stay cool and keep a maximum output."
           }
+        },
+        "tr": {
+          "theme": "Isı Düzenleme",
+          "inspiration": {
+            "title": "Kelebek kanatları",
+            "subtitle": "İlham",
+            "shortDescription": "Soğukkanlı olduğu için uçabilmek için iç sıcaklığını düzenlemesi gerekir.",
+            "alt": "Mavi Morpho kelebeğinin kanadı",
+            "image": "/assets/cards/turkish/inspiration/card-inspiration-01.webp"
+          },
+          "innovation": {
+            "title": "Güneş panelleri",
+            "subtitle": "İnovasyon",
+            "shortDescription": "Verimli kalmak için kendi kendini soğutan bir dış enerji alıcısı.",
+            "alt": "Güneş panelleri",
+            "image": "/assets/cards/turkish/innovation/card-innovation-01.webp"
+          },
+          "explanation": {
+            "title": "Tebrikler, biyomimetik bağlantıyı buldunuz",
+            "body": "Bu kelebeğin kanatları aşırı ısınmayı önlemek için ısıyı dalgalar halinde dışarı atar. \n Bu ısı düzenleme mekanizmasını taklit eden bu güneş panelleri serin kalır ve maksimum verimliliğini korur."
+          }
         }
       }
     },
@@ -130,6 +151,27 @@
           "explanation": {
             "title": "Well done, you found the biomimetic link",
             "body": "The bumps on the whale's fins create micro-vortices that improve its lift. Shaped the same way, these turbine blades capture wind with far less drag."
+          }
+        },
+        "tr": {
+          "theme": "Aerodinamik",
+          "inspiration": {
+            "title": "Balina yüzgeçleri",
+            "subtitle": "İlham",
+            "shortDescription": "Şekli akıntının direncini kırarak minimum çabayla süzülmesini sağlar.",
+            "alt": "Kambur balina yüzgeçleri",
+            "image": "/assets/cards/turkish/inspiration/card-inspiration-02.webp"
+          },
+          "innovation": {
+            "title": "Rüzgar türbinleri",
+            "subtitle": "İnovasyon",
+            "shortDescription": "Bu devasa kanatlar, benzersiz profilleri sayesinde çok hafif rüzgarda bile döner.",
+            "alt": "Rüzgar türbini kanatları",
+            "image": "/assets/cards/turkish/innovation/card-innovation-02.webp"
+          },
+          "explanation": {
+            "title": "Tebrikler, biyomimetik bağlantıyı buldunuz",
+            "body": "Balinanın yüzgeçlerindeki tümsekler, kaldırma kuvvetini artıran mikro girdaplar oluşturur. Aynı şekilde tasarlanan bu türbin kanatları, çok daha az sürtünmeyle rüzgarı yakalar."
           }
         }
       }
@@ -177,6 +219,27 @@
             "title": "Well done, you found the biomimetic link",
             "body": "The kingfisher's beak pierces water without creating a shock wave. By copying its streamlined shape, the bullet train's nose cuts through air silently and removes the jarring \"boom\" when exiting tunnels."
           }
+        },
+        "tr": {
+          "theme": "Aerodinamik",
+          "inspiration": {
+            "title": "Yalıçapkını",
+            "subtitle": "İlham",
+            "shortDescription": "İnce gagası, avını şaşırtmak için havayı ve suyu sessizce yarar.",
+            "alt": "Dalış yapan yalıçapkını",
+            "image": "/assets/cards/turkish/inspiration/card-inspiration-03.webp"
+          },
+          "innovation": {
+            "title": "Japon hızlı treni",
+            "subtitle": "İnovasyon",
+            "shortDescription": "Şehir içinde yüksek hızda gürültüyü azaltan aerodinamik bir form.",
+            "alt": "Shinkansen hızlı trenin akışkan burnu",
+            "image": "/assets/cards/turkish/innovation/card-innovation-03.webp"
+          },
+          "explanation": {
+            "title": "Tebrikler, biyomimetik bağlantıyı buldunuz",
+            "body": "Yalıçapkınının gagası suya şok dalgası oluşturmadan girer. Bu akışkan formu taklit eden hızlı trenin burnu, havayı sessizce yarar ve tünellerden çıkışta oluşan rahatsız edici \"gümbürtüyü\" ortadan kaldırır."
+          }
         }
       }
     },
@@ -222,6 +285,27 @@
           "explanation": {
             "title": "Well done, you found the biomimetic link",
             "body": "The gecko's feet are covered in millions of micro-hairs that bond to surfaces at the molecular scale. This adhesive mimics that dry friction to hold heavy loads without any glue."
+          }
+        },
+        "tr": {
+          "theme": "Yapışma",
+          "inspiration": {
+            "title": "Gekon",
+            "subtitle": "İlham",
+            "shortDescription": "Düşme korkusu olmadan tavanda baş aşağı koşabilir.",
+            "alt": "Bir yüzeye tutunmuş gekon",
+            "image": "/assets/cards/turkish/inspiration/card-inspiration-04.webp"
+          },
+          "innovation": {
+            "title": "Geckskin yapışkanı",
+            "subtitle": "İnovasyon",
+            "shortDescription": "Bu kumaşın tek bir parçası, duvara bir düz ekran televizyonu asabilir.",
+            "alt": "Geckskin kuru yapışkanı",
+            "image": "/assets/cards/turkish/innovation/card-innovation-04.webp"
+          },
+          "explanation": {
+            "title": "Tebrikler, biyomimetik bağlantıyı buldunuz",
+            "body": "Gekonun ayaklarında, moleküler ölçekte yüzeylere tutunan milyonlarca mikro kıl bulunur. Bu yapışkan, ağır yükleri hiç tutkal kullanmadan sabitlemek için bu kuru sürtünmeyi taklit eder."
           }
         }
       }
@@ -269,6 +353,27 @@
             "title": "Well done, you found the biomimetic link",
             "body": "This burr's flexible hooks naturally grip the loops formed by animal fur. Velcro reproduces this mechanical pairing to fasten and unfasten fabric endlessly."
           }
+        },
+        "tr": {
+          "theme": "Tutturma",
+          "inspiration": {
+            "title": "Pıtrak meyveleri",
+            "subtitle": "İlham",
+            "shortDescription": "Bu yabani bitki, tohumlarını yaymak için köpeklerden ve yürüyüşçülerden yararlanır.",
+            "alt": "Kancalarla kaplı pıtrak meyvesi",
+            "image": "/assets/cards/turkish/inspiration/card-inspiration-05.webp"
+          },
+          "innovation": {
+            "title": "Cırt cırt bant",
+            "subtitle": "İnovasyon",
+            "shortDescription": "Bu icat, hiçbir yapışkan kullanmadan iki nesneyi basit mekanik baskıyla birleştirir.",
+            "alt": "Cırt cırt bant şeridi",
+            "image": "/assets/cards/turkish/innovation/card-innovation-05.webp"
+          },
+          "explanation": {
+            "title": "Tebrikler, biyomimetik bağlantıyı buldunuz",
+            "body": "Bu meyvenin esnek kancaları, hayvan tüylerinin oluşturduğu ilmeklere doğal olarak tutunur. Cırt cırt bant, kumaşları sonsuz kez açıp kapatmak için bu mekanik ikiliyi yeniden üretir."
+          }
         }
       }
     },
@@ -314,6 +419,27 @@
           "explanation": {
             "title": "Well done, you found the biomimetic link",
             "body": "The nautilus's spiral shell channels water to propel it by reaction. Turbojet engines copy this curved geometry to compress and guide airflow with maximum efficiency."
+          }
+        },
+        "tr": {
+          "theme": "Aerodinamik",
+          "inspiration": {
+            "title": "Nautilus",
+            "subtitle": "İlham",
+            "shortDescription": "Milyonlarca yılda şekillenmiş hidrodinamik formu sayesinde okyanusta zahmetsizce süzülür.",
+            "alt": "Bir nautilusun sarmal kabuğu",
+            "image": "/assets/cards/turkish/inspiration/card-inspiration-06.webp"
+          },
+          "innovation": {
+            "title": "Turbojet motorları",
+            "subtitle": "İnovasyon",
+            "shortDescription": "Yüksek irtifada ve yüksek hızda atmosferi yarmak için tasarlanmış bir sistem.",
+            "alt": "Uçak turbojet motoru",
+            "image": "/assets/cards/turkish/innovation/card-innovation-06.webp"
+          },
+          "explanation": {
+            "title": "Tebrikler, biyomimetik bağlantıyı buldunuz",
+            "body": "Nautilusun sarmal kabuğu, onu tepki kuvvetiyle ileri itmek için suyu yönlendirir. Turbojet motorları, hava akışını maksimum verimlilikle sıkıştırıp yönlendirmek için bu kavisli geometriyi kopyalar."
           }
         }
       }
@@ -361,6 +487,27 @@
             "title": "Well done, you found the biomimetic link",
             "body": "This predator's skin is covered in micro-ridges that channel water and eliminate turbulence. This swimsuit mimics that rough texture to help swimmers glide much faster."
           }
+        },
+        "tr": {
+          "theme": "Hidrodinamik",
+          "inspiration": {
+            "title": "Köpekbalığı derisi",
+            "subtitle": "İlham",
+            "shortDescription": "Vücudu, akıntıya hizalanmış milyonlarca mikro dişçikle kaplıdır.",
+            "alt": "Köpekbalığı derisinin yakın çekimi",
+            "image": "/assets/cards/turkish/inspiration/card-inspiration-07.webp"
+          },
+          "innovation": {
+            "title": "Mayolar",
+            "subtitle": "İnovasyon",
+            "shortDescription": "Tüm hız dünya rekorlarını sarsan bir tekstil yeniliği.",
+            "alt": "Yüksek performanslı mayo",
+            "image": "/assets/cards/turkish/innovation/card-innovation-07.webp"
+          },
+          "explanation": {
+            "title": "Tebrikler, biyomimetik bağlantıyı buldunuz",
+            "body": "Bu yırtıcının derisi, suyu yönlendiren ve türbülansı ortadan kaldıran mikro çıkıntılarla kaplıdır. Bu mayo, yüzücülerin çok daha hızlı kaymasına yardımcı olmak için bu pürüzlü dokuyu taklit eder."
+          }
         }
       }
     },
@@ -406,6 +553,27 @@
           "explanation": {
             "title": "Well done, you found the biomimetic link",
             "body": "This butterfly's wings have an invisible texture that stops light from bouncing back. By copying this textured surface on screens and glasses, the mirror effect is finally eliminated."
+          }
+        },
+        "tr": {
+          "theme": "Optik",
+          "inspiration": {
+            "title": "Greta oto kelebeği",
+            "subtitle": "İlham",
+            "shortDescription": "Kanat zarları, varlığını ele verebilecek hiçbir parlaklık oluşturmaz.",
+            "alt": "Saydam kanatlı Greta oto kelebeği",
+            "image": "/assets/cards/turkish/inspiration/card-inspiration-08.webp"
+          },
+          "innovation": {
+            "title": "Yansıma önleyici cam",
+            "subtitle": "İnovasyon",
+            "shortDescription": "Parlak güneş ışığında telefonunuzu kendi yansımanız rahatsız etmeden okumanızı sağlar.",
+            "alt": "Yansıma önleyici cam",
+            "image": "/assets/cards/turkish/innovation/card-innovation-08.webp"
+          },
+          "explanation": {
+            "title": "Tebrikler, biyomimetik bağlantıyı buldunuz",
+            "body": "Bu kelebeğin kanatlarında, ışığın geri yansımasını engelleyen görünmez bir doku bulunur. Bu dokulu yüzeyi ekranlara ve gözlüklere uygulayarak, ayna etkisi nihayet ortadan kalkar."
           }
         }
       }
@@ -453,6 +621,27 @@
             "title": "Well done, you found the biomimetic link",
             "body": "The beetle's back alternates zones that attract water with zones that repel it. Droplets grow on the first, then slide toward its mouth via the second. These nets reuse this principle to collect water without consuming any energy."
           }
+        },
+        "tr": {
+          "theme": "Hidroloji",
+          "inspiration": {
+            "title": "Namibya çölü böceği",
+            "subtitle": "İlham",
+            "shortDescription": "Bu çöl böceği, sırtının şekli sayesinde sabah havasından su elde eder.",
+            "alt": "Namibya çölü böceği",
+            "image": "/assets/cards/turkish/inspiration/card-inspiration-09.webp"
+          },
+          "innovation": {
+            "title": "Çiy toplama ağları",
+            "subtitle": "İnovasyon",
+            "shortDescription": "Suyun kıt olduğu bölgelerde atmosferik nemi toplayan ağlar.",
+            "alt": "Çiy toplama ağı",
+            "image": "/assets/cards/turkish/innovation/card-innovation-09.webp"
+          },
+          "explanation": {
+            "title": "Tebrikler, biyomimetik bağlantıyı buldunuz",
+            "body": "Böceğin sırtı, suyu çeken bölgelerle onu iten bölgeler arasında değişir. Damlacıklar önce büyür, sonra ikinci bölgeler aracılığıyla ağzına doğru kayar. Bu ağlar, enerji tüketmeden su toplamak için aynı prensibi yeniden kullanır."
+          }
         }
       }
     },
@@ -498,6 +687,27 @@
           "explanation": {
             "title": "Well done, you found the biomimetic link",
             "body": "When water seeps into a crack, bacteria encapsulated in the concrete reactivate. They consume nutrients stored alongside them and produce a mineral that naturally seals the crack."
+          }
+        },
+        "tr": {
+          "theme": "Malzemeler",
+          "inspiration": {
+            "title": "Yara izi",
+            "subtitle": "İlham",
+            "shortDescription": "Deri, kendi iç kaynaklarını harekete geçirerek yaralarını iyileştirir.",
+            "alt": "Derinin iyileşmesi",
+            "image": "/assets/cards/turkish/inspiration/card-inspiration-10.webp"
+          },
+          "innovation": {
+            "title": "Kendi kendini onaran beton",
+            "subtitle": "İnovasyon",
+            "shortDescription": "İnsan müdahalesi olmadan kendi çatlaklarını kapatan bir yapı malzemesi.",
+            "alt": "Kendi kendini onaran beton",
+            "image": "/assets/cards/turkish/innovation/card-innovation-10.webp"
+          },
+          "explanation": {
+            "title": "Tebrikler, biyomimetik bağlantıyı buldunuz",
+            "body": "Bir çatlağa su sızdığında, betonun içine kapsüllenmiş bakteriler yeniden aktifleşir. Yanlarında depolanan besinleri tüketir ve çatlağı doğal olarak kapatan bir mineral üretirler."
           }
         }
       }
@@ -545,6 +755,27 @@
             "title": "Well done, you found the biomimetic link",
             "body": "The Euplectella sponge weaves biological glass fibers into a diagonal lattice, giving it remarkable rigidity for minimal weight. The Gherkin's architects applied this same logic to design a tower that uses less steel while withstanding urban winds."
           }
+        },
+        "tr": {
+          "theme": "Yapı",
+          "inspiration": {
+            "title": "Venüs'ün çiçek sepeti",
+            "subtitle": "İlham",
+            "shortDescription": "Bu derin deniz süngeri, ince ama olağanüstü sağlam bir iskelet inşa eder.",
+            "alt": "Venüs'ün çiçek sepeti süngeri",
+            "image": "/assets/cards/turkish/inspiration/card-inspiration-11.webp"
+          },
+          "innovation": {
+            "title": "30 St Mary Axe",
+            "subtitle": "İnovasyon",
+            "shortDescription": "Bu Londra gökdeleni, gücünü doğadan ödünç alınan sarmal bir geometriden alır.",
+            "alt": "Londra'daki 30 St Mary Axe gökdeleni",
+            "image": "/assets/cards/turkish/innovation/card-innovation-11.webp"
+          },
+          "explanation": {
+            "title": "Tebrikler, biyomimetik bağlantıyı buldunuz",
+            "body": "Euplectella süngeri, biyolojik cam liflerini çapraz bir kafes şeklinde örer, bu da ona minimum ağırlıkla olağanüstü bir sertlik kazandırır. Gherkin'in mimarları, kentsel rüzgarlara dayanırken daha az çelik kullanan bir kule tasarlamak için aynı mantığı uyguladı."
+          }
         }
       }
     },
@@ -590,6 +821,27 @@
           "explanation": {
             "title": "Well done, you found the biomimetic link",
             "body": "The lotus leaf's surface is covered in bumps invisible to the naked eye that prevent water from sticking. Droplets roll off, carrying away dust and grime. By reproducing this texture on paints or tiles, facades are created that clean themselves in the rain."
+          }
+        },
+        "tr": {
+          "theme": "Yüzeyler",
+          "inspiration": {
+            "title": "Lotus etkisi",
+            "subtitle": "İlham",
+            "shortDescription": "Bu bitkinin yaprağı, hiçbir bakım yapılmadan her hava koşulunda kusursuz kalır.",
+            "alt": "Bir lotus yaprağı üzerindeki su damlası",
+            "image": "/assets/cards/turkish/inspiration/card-inspiration-12.webp"
+          },
+          "innovation": {
+            "title": "Hidrofobik yüzeyler",
+            "subtitle": "İnovasyon",
+            "shortDescription": "Hiçbir kimyasal ürün kullanmadan kiri iten mimari kaplamalar.",
+            "alt": "Hidrofobik yüzey",
+            "image": "/assets/cards/turkish/innovation/card-innovation-12.webp"
+          },
+          "explanation": {
+            "title": "Tebrikler, biyomimetik bağlantıyı buldunuz",
+            "body": "Lotus yaprağının yüzeyi, suyun yapışmasını engelleyen çıplak gözle görünmeyen çıkıntılarla kaplıdır. Damlalar, tozu ve kiri de beraberinde götürerek yuvarlanır. Bu dokuyu boyalara veya kiremitlere uygulayarak, yağmurda kendini temizleyen cepheler elde edilir."
           }
         }
       }
@@ -637,6 +889,27 @@
             "title": "Well done, you found the biomimetic link",
             "body": "Coral polyps draw carbon from the water to secrete their solid structure. By reproducing this mechanism at industrial scale, CO₂ is dissolved in seawater to make a building material that captures more than it emits."
           }
+        },
+        "tr": {
+          "theme": "Malzemeler",
+          "inspiration": {
+            "title": "Mercan",
+            "subtitle": "İlham",
+            "shortDescription": "Bu deniz canlıları, çözünmüş CO₂’yi dönüştürerek iskeletlerini inşa eder.",
+            "alt": "Mercan resifi",
+            "image": "/assets/cards/turkish/inspiration/card-inspiration-13.webp"
+          },
+          "innovation": {
+            "title": "Karbon nötr çimento",
+            "subtitle": "İnovasyon",
+            "shortDescription": "Üretimi, saldığı kadar CO₂ emen mineral bir bağlayıcı.",
+            "alt": "Karbon nötr çimento",
+            "image": "/assets/cards/turkish/innovation/card-innovation-13.webp"
+          },
+          "explanation": {
+            "title": "Tebrikler, biyomimetik bağlantıyı buldunuz",
+            "body": "Mercan polipleri, katı yapılarını salgılamak için sudaki karbonu çeker. Bu mekanizma endüstriyel ölçekte yeniden üretilerek, CO₂ deniz suyunda çözündürülür ve salındığından fazlasını yakalayan bir yapı malzemesi elde edilir."
+          }
         }
       }
     },
@@ -682,6 +955,27 @@
           "explanation": {
             "title": "Well done, you found the biomimetic link",
             "body": "The firefly's jagged, saw-toothed scales stop its light from reflecting back inward. By copying these micro-slopes on LED chips, trapped light rays are released, shining 55% brighter."
+          }
+        },
+        "tr": {
+          "theme": "Optik",
+          "inspiration": {
+            "title": "Ateş böcekleri",
+            "subtitle": "İlham",
+            "shortDescription": "Uzaktaki bir eşi çekmek için aşk sinyali zifiri karanlığı delmelidir.",
+            "alt": "Biyolüminesan ışık yayan ateş böceği",
+            "image": "/assets/cards/turkish/inspiration/card-inspiration-14.webp"
+          },
+          "innovation": {
+            "title": "LED lambalar",
+            "subtitle": "İnovasyon",
+            "shortDescription": "Ultra parlak ekranlar ve işaret fenerleri tasarlamak için ideal bir teknoloji.",
+            "alt": "LED lamba",
+            "image": "/assets/cards/turkish/innovation/card-innovation-14.webp"
+          },
+          "explanation": {
+            "title": "Tebrikler, biyomimetik bağlantıyı buldunuz",
+            "body": "Ateş böceğinin testere dişi şeklindeki pulları, ışığının içeri geri yansımasını engeller. Bu mikro eğimleri LED çiplerine uygulayarak, hapsolmuş ışık ışınları serbest bırakılır ve %55 daha parlak parlar."
           }
         }
       }
@@ -729,6 +1023,27 @@
             "title": "Well done, you found the biomimetic link",
             "body": "The mosquito's proboscis is conical and serrated, minimizing contact with nerve endings. This medical needle copies that microscopic texture to slide into skin painlessly."
           }
+        },
+        "tr": {
+          "theme": "Tıp",
+          "inspiration": {
+            "title": "Sivrisineğin hortumu",
+            "subtitle": "İlham",
+            "shortDescription": "Bu böcek, hedefi hiç fark etmeden cilt bariyerini deler.",
+            "alt": "Sivrisinek hortumu",
+            "image": "/assets/cards/turkish/inspiration/card-inspiration-15.webp"
+          },
+          "innovation": {
+            "title": "Ağrısız tıbbi iğne",
+            "subtitle": "İnovasyon",
+            "shortDescription": "Sinir sisteminin varlığını algılayamayacak kadar ince bir tıbbi cihaz.",
+            "alt": "Ağrısız tıbbi iğne",
+            "image": "/assets/cards/turkish/innovation/card-innovation-15.webp"
+          },
+          "explanation": {
+            "title": "Tebrikler, biyomimetik bağlantıyı buldunuz",
+            "body": "Sivrisineğin hortumu konik ve tırtıklıdır, sinir uçlarıyla temasını en aza indirir. Bu tıbbi iğne, cilde ağrısız girmek için bu mikroskobik dokuyu kopyalar."
+          }
         }
       }
     },
@@ -774,6 +1089,27 @@
           "explanation": {
             "title": "Well done, you found the biomimetic link",
             "body": "Emperor penguins huddle into a dense colony, exposing the least possible surface to the wind. The District 11 project in Skolkovo follows the same logic: villas grouped in blocks of ten form a compact ensemble that keeps indoor temperatures 5°C higher."
+          }
+        },
+        "tr": {
+          "theme": "Isı Düzenleme",
+          "inspiration": {
+            "title": "İmparator penguen",
+            "subtitle": "İlham",
+            "shortDescription": "Kutup soğuğuyla karşı karşıya kalan bu kuşlar, ortak sıcaklıklarını korumak için birbirlerine sokulur.",
+            "alt": "İmparator penguen kolonisi",
+            "image": "/assets/cards/turkish/inspiration/card-inspiration-16.webp"
+          },
+          "innovation": {
+            "title": "District 11",
+            "subtitle": "İnovasyon",
+            "shortDescription": "Kompakt yerleşimi ısı kaybını azaltan bir Rus mahallesi.",
+            "alt": "Skolkovo'daki kompakt District 11 mahallesi",
+            "image": "/assets/cards/turkish/innovation/card-innovation-16.webp"
+          },
+          "explanation": {
+            "title": "Tebrikler, biyomimetik bağlantıyı buldunuz",
+            "body": "İmparator penguenler, rüzgara mümkün olduğunca az yüzey maruz bırakarak yoğun bir koloni halinde birbirine sokulur. Skolkovo'daki District 11 projesi aynı mantığı izler: onarlı bloklar halinde gruplanan villalar, iç mekan sıcaklıklarını 5°C daha yüksek tutan kompakt bir bütün oluşturur."
           }
         }
       }
@@ -821,6 +1157,27 @@
             "title": "Well done, you found the biomimetic link",
             "body": "The termite mound draws cool air in from below and vents hot air out through its chimneys. This building mimics that earthen lung to ventilate itself naturally, cutting its air conditioning needs by 90%."
           }
+        },
+        "tr": {
+          "theme": "Isı Düzenleme",
+          "inspiration": {
+            "title": "Termit yuvası",
+            "subtitle": "İlham",
+            "shortDescription": "Bu tümsek, çölün kavurucu günlerine ve dondurucu gecelerine dayanır.",
+            "alt": "Afrika termit yuvası",
+            "image": "/assets/cards/turkish/inspiration/card-inspiration-17.webp"
+          },
+          "innovation": {
+            "title": "Eastgate Binası",
+            "subtitle": "İnovasyon",
+            "shortDescription": "Güvenilir elektriği olmayan sıcak ülkeler için ideal bir yapı çözümü.",
+            "alt": "Harare'deki Eastgate Binası",
+            "image": "/assets/cards/turkish/innovation/card-innovation-17.webp"
+          },
+          "explanation": {
+            "title": "Tebrikler, biyomimetik bağlantıyı buldunuz",
+            "body": "Termit yuvası, aşağıdan serin havayı çeker ve sıcak havayı bacalarından dışarı atar. Bu bina, kendini doğal olarak havalandırmak için bu toprak akciğeri taklit eder ve klima ihtiyacını %90 azaltır."
+          }
         }
       }
     },
@@ -866,6 +1223,27 @@
           "explanation": {
             "title": "Well done, you found the biomimetic link",
             "body": "The mussel secretes a protein containing a molecule that bonds to almost anything, even underwater. Researchers reproduced this chemistry to create an adhesive that fixes enzymes onto metal surfaces, opening applications in medicine and biological sensors."
+          }
+        },
+        "tr": {
+          "theme": "Yapışma",
+          "inspiration": {
+            "title": "Midye",
+            "subtitle": "İlham",
+            "shortDescription": "Bu yumuşakça, byssus iplikleri sayesinde suya batmış herhangi bir yüzeye tutunur.",
+            "alt": "Bir kayaya tutunmuş midye",
+            "image": "/assets/cards/turkish/inspiration/card-inspiration-18.webp"
+          },
+          "innovation": {
+            "title": "Güçlü yapışkan",
+            "subtitle": "İnovasyon",
+            "shortDescription": "Su altında bile aktif molekülleri metale bağlayabilen bir yapışkan.",
+            "alt": "Güçlü yapışkan tutkal",
+            "image": "/assets/cards/turkish/innovation/card-innovation-18.webp"
+          },
+          "explanation": {
+            "title": "Tebrikler, biyomimetik bağlantıyı buldunuz",
+            "body": "Midye, su altında bile hemen hemen her şeye yapışan bir molekül içeren bir protein salgılar. Araştırmacılar, enzimleri metal yüzeylere sabitleyen bir yapışkan oluşturmak için bu kimyayı yeniden üretti, bu da tıp ve biyolojik sensörler alanında uygulamaların önünü açtı."
           }
         }
       }
@@ -913,6 +1291,27 @@
             "title": "Well done, you found the biomimetic link",
             "body": "The zebra's high-contrast stripes disrupt predators' ability to read its movement. Painter Norman Wilkinson drew on this to cover British ships in angular shapes, making their heading and speed hard for enemy torpedo boats to judge."
           }
+        },
+        "tr": {
+          "theme": "Kamuflaj",
+          "inspiration": {
+            "title": "Zebra",
+            "subtitle": "İlham",
+            "shortDescription": "Çizgileri, izleyenin hareket algısını bulanıklaştırır.",
+            "alt": "Yüksek kontrastlı çizgili zebra",
+            "image": "/assets/cards/turkish/inspiration/card-inspiration-19.webp"
+          },
+          "innovation": {
+            "title": "Dazzle kamuflajı",
+            "subtitle": "İnovasyon",
+            "shortDescription": "1917'de, gövdelere boyanan geometrik desenler bir geminin rotasını okunamaz hale getirdi.",
+            "alt": "Dazzle kamuflajıyla boyanmış gemi",
+            "image": "/assets/cards/turkish/innovation/card-innovation-19.webp"
+          },
+          "explanation": {
+            "title": "Tebrikler, biyomimetik bağlantıyı buldunuz",
+            "body": "Zebranın yüksek kontrastlı çizgileri, avcıların hareketini okuma yeteneğini bozar. Ressam Norman Wilkinson buradan ilham alarak İngiliz gemilerini köşeli şekillerle kapladı ve düşman torpido botlarının rotalarını ve hızlarını değerlendirmesini zorlaştırdı."
+          }
         }
       }
     },
@@ -959,6 +1358,27 @@
             "title": "Well done, you found the biomimetic link",
             "body": "The Supertrees at Gardens by the Bay draw on the orchid's form to create vertical gardens that collect rainwater, host solar panels, and ventilate the surrounding conservatories. Like the flower, each structure unites beauty and efficiency in a single organism."
           }
+        },
+        "tr": {
+          "theme": "Mimari",
+          "inspiration": {
+            "title": "Orkide",
+            "subtitle": "İlham",
+            "shortDescription": "Bu çiçek, karmaşık bir havadar formu kaynaklarının verimli yönetimiyle birleştirir.",
+            "alt": "Çiçek açmış orkide",
+            "image": "/assets/cards/turkish/inspiration/card-inspiration-20.webp"
+          },
+          "innovation": {
+            "title": "Gardens by the Bay",
+            "subtitle": "İnovasyon",
+            "shortDescription": "Bu Singapur parkı, dev ağaç benzeri yapılarına enerji üreten işlevler entegre eder.",
+            "alt": "Singapur'daki Gardens by the Bay'deki Supertrees",
+            "image": "/assets/cards/turkish/innovation/card-innovation-20.webp"
+          },
+          "explanation": {
+            "title": "Tebrikler, biyomimetik bağlantıyı buldunuz",
+            "body": "Gardens by the Bay'deki Supertrees, yağmur suyunu toplayan, güneş panellerine ev sahipliği yapan ve çevredeki serleri havalandıran dikey bahçeler oluşturmak için orkidenin formundan ilham alır. Çiçek gibi, her yapı güzelliği ve verimliliği tek bir organizmada birleştirir."
+          }
         }
       }
     },
@@ -1004,6 +1424,27 @@
           "explanation": {
             "title": "Well done, you found the biomimetic link",
             "body": "The inside of a bone isn't uniform: material becomes denser wherever mechanical stress is greatest. Eiffel followed this very same logic, placing metal only where it faced compression or tension — making his tower lighter than the volume of air it occupies."
+          }
+        },
+        "tr": {
+          "theme": "Yapı",
+          "inspiration": {
+            "title": "İnsan kemiği",
+            "subtitle": "İlham",
+            "shortDescription": "İskeletimiz, gereksiz hiçbir şey olmadan malzemeyi yalnızca gerilimin en yüksek olduğu yerde yoğunlaştırır.",
+            "alt": "İnsan kemiği (femur)",
+            "image": "/assets/cards/turkish/inspiration/card-inspiration-21.webp"
+          },
+          "innovation": {
+            "title": "Eyfel Kulesi",
+            "subtitle": "İnovasyon",
+            "shortDescription": "Bu Parisli yapı, demirini tam olarak kuvvetlerin gerektirdiği yerlere yerleştirir.",
+            "alt": "Paris'teki Eyfel Kulesi",
+            "image": "/assets/cards/turkish/innovation/card-innovation-21.webp"
+          },
+          "explanation": {
+            "title": "Tebrikler, biyomimetik bağlantıyı buldunuz",
+            "body": "Bir kemiğin içi homojen değildir: malzeme, mekanik gerilimin en yüksek olduğu yerlerde yoğunlaşır. Eiffel de aynı mantığı izleyerek metali yalnızca basınç veya gerilime maruz kalan yerlere yerleştirdi, bu da kulesini kapladığı hava hacminden daha hafif hale getirdi."
           }
         }
       }
