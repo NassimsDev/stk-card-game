@@ -90,7 +90,7 @@ export const strings = {
       logoAlt: 'Back to the home screen',
       soundOn: 'Turn sound on',
       soundOff: 'Turn sound off',
-      langToggleAria: 'Switch the game to French',
+      langToggleAria: 'Switch the game to Turkish',
     },
     landing: {
       subtitle: 'Explore the hidden links between nature and innovation. Every card reveals how the living world inspires our inventions.',
@@ -165,6 +165,89 @@ export const strings = {
       emptyLine2: 'Link cards to grow your collection.',
       closeAria: 'Close the collection',
       openAria: 'Open my collection',
+    },
+  },
+
+  tr: {
+    common: {
+      logoAlt: 'Ana sayfaya dön',
+      soundOn: 'Sesi aç',
+      soundOff: 'Sesi kapat',
+      langToggleAria: 'Oyunu Fransızcaya çevir',
+    },
+    landing: {
+      subtitle: 'Doğa ve inovasyon arasındaki görünmez bağları keşfedin. Her kart, doğanın icatlarımıza nasıl ilham verdiğini ortaya çıkarır.',
+      cta: 'Keşfe başla',
+    },
+    onboarding: {
+      slides: [
+        {
+          eyebrow: 'Biyomimetizm',
+          body: 'Doğanın stratejilerinin tasarlama, inşa etme ve yenilik yapma biçimimize nasıl ilham verdiğini keşfedin, eşleştirin ve ortaya çıkarın',
+        },
+        {
+          eyebrow: 'Eşleştirme nasıl çalışır',
+          body: 'Doğa, devasa bir araştırma laboratuvarıdır. Aralarındaki bağlantıyı ortaya çıkarmak için her doğa kartını kendi inovasyonuyla eşleştirin',
+        },
+        {
+          eyebrow: 'Yardıma mı ihtiyacınız var?',
+          body: 'İpuçları, size rehberlik etmek için her an kullanılabilir',
+        },
+      ],
+      next: 'İleri',
+      play: 'Oyna',
+      slideAria: (n) => `Slayt ${n}`,
+      closeAria: 'Kapat',
+    },
+    transition: {
+      sequenceWord: 'Bölüm',
+      start: 'Başla',
+    },
+    end: {
+      titleLine1: 'Yolculuk',
+      titleItalic: 'tamamlandı',
+      descriptionBefore: 'Doğa ve inovasyon arasında',
+      descriptionAfter: 'bağlantı keşfettiniz',
+      accroche: 'Biyomimetizm tasarladığımız her projeye ilham verir',
+      discoverCta: 'STK projelerini keşfedin',
+      replay: 'Yolculuğu tekrar oyna',
+    },
+    gameRound: {
+      ambiance: 'Ortam Sesi',
+      collection: 'Koleksiyonum',
+      sequence: (n, total) => `Bölüm ${n}/${total}`,
+      pairsFound: (found, total) => `${found}/${total} çift bulundu`,
+      wrongTitle: 'Yazık! Tekrar gözlemleyin',
+      wrongBody: 'Bir şeklin bir hareketin çabasını nasıl azaltabileceğini fark edin.',
+      continueHint: 'Doğa ve inovasyon arasındaki diğer bağlantıları keşfetmeye devam edin.',
+      nextSequence: 'Sonraki bölüm',
+      finish: 'Bitir',
+      link: 'Bağla',
+      next: 'İleri',
+      help: 'Açıklamaları tekrar gör',
+    },
+    ambientTracks: {
+      oiseaux: 'Kuşlar',
+      pluie: 'Yağmur',
+      fleuve: 'Nehir',
+    },
+    cardSlot: {
+      selectInspiration: 'Bir ilham kartı seçmek için tıklayın',
+      selectInnovation: 'Bir inovasyon kartı seçmek için tıklayın',
+      hintShow: 'İpucunu göster',
+      hintHide: 'İpucunu gizle',
+    },
+    cardGrid: {
+      selectInspirationAria: (title) => `${title} ilham kartını seç`,
+      selectInnovationAria: (title) => `${title} inovasyon kartını seç`,
+    },
+    collection: {
+      title: 'Koleksiyonum',
+      count: (n) => `${n} çift bulundu`,
+      emptyLine1: 'Henüz hiç çift keşfedilmedi.',
+      emptyLine2: 'Koleksiyonunuzu zenginleştirmek için kartları bağlayın.',
+      closeAria: 'Koleksiyonu kapat',
+      openAria: 'Koleksiyonumu aç',
     },
   },
 };

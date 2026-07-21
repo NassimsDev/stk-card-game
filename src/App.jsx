@@ -15,6 +15,10 @@ import OnboardingScreen from './pages/OnboardingScreen/OnboardingScreen';
 
 const TOTAL_SEQUENCES = pairsData.metadata.sequences.length;
 
+// Libellé affiché sur le bouton de langue = la PROCHAINE langue du cycle
+// fr -> en -> tr -> fr (voir LANG_CYCLE dans LangContext.jsx).
+const NEXT_LANG_LABEL = { fr: 'EN', en: 'TR', tr: 'FR' };
+
 function App() {
   return (
     <LangProvider>
@@ -149,7 +153,13 @@ function AppContent() {
                 transition={{ duration: 0.8 }}
               >
                 <h2 className="transition-title">
-                  S<span style={{ fontStyle: 'italic' }}>{lang === 'fr' ? 'é' : 'e'}</span>quence{' '}
+                  {/* Fioriture typographique (lettre accentuée en italique) pensée pour
+                      "Séquence"/"Sequence" — pas de sens en turc ("Bölüm"), donc on
+                      retombe simplement sur le mot traduit pour cette langue. */}
+                  {lang === 'tr'
+                    ? t('transition.sequenceWord')
+                    : <>S<span style={{ fontStyle: 'italic' }}>{lang === 'fr' ? 'é' : 'e'}</span>quence</>
+                  }{' '}
                   <span style={{ fontFamily: '"DM Serif Display", serif', fontWeight: 400 }}>
                     {seqIndex + 2}/{TOTAL_SEQUENCES}
                   </span>
@@ -262,7 +272,7 @@ function AppContent() {
         }}
         aria-label={t('common.langToggleAria')}
       >
-        {lang === 'fr' ? 'EN' : 'FR'}
+        {NEXT_LANG_LABEL[lang]}
       </button>
     </>
   );

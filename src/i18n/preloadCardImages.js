@@ -1,17 +1,19 @@
 import pairsData from '../data/pairs.json';
 
+const LANG_FOLDERS = { fr: 'french', en: 'english', tr: 'turkish' };
+
 // Construit la liste des URLs de cartes (inspiration/innovation/glow) pour
 // une langue donnée, à partir de pairs.json — seule source de vérité.
 function collectImageUrls(lang) {
   const urls = [];
   pairsData.pairs.forEach(pair => {
-    const t = lang === 'en' ? pair.translations?.en : null;
+    const t = lang === 'fr' ? null : pair.translations?.[lang];
     const inspiration = t?.inspiration?.image ?? pair.inspiration.image;
     const innovation  = t?.innovation?.image  ?? pair.innovation.image;
     urls.push(inspiration, innovation);
 
     const num = String(pair.id).padStart(2, '0');
-    const folder = lang === 'en' ? 'english' : 'french';
+    const folder = LANG_FOLDERS[lang] ?? 'french';
     urls.push(
       `/assets/cards/${folder}/glow/card-inspiration-glow-${num}.webp`,
       `/assets/cards/${folder}/glow/card-innovation-glow-${num}.webp`,
