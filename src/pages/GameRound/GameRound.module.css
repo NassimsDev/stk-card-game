@@ -30,6 +30,23 @@
     }
 }
 
+/* iPhone 5 / iPhone SE (2016) — viewport 320×568 CSS px, le plus petit
+   viewport iOS courant. Le layout mobile empilé (header + cartes + carousel)
+   dépasse cette hauteur, et .container garde overflow:hidden en dur (App.css)
+   : les cartes sortaient du cadre visible, invisibles sans scroller. Même
+   principe que le scale desktop ci-dessus, réduction fixe faute de pouvoir
+   viser un point d'équilibre continu comme sur desktop.
+   Seuils volontairement plus larges que 320×568 : Safari iOS affiche une
+   barre d'adresse + une barre d'outils qui rognent la hauteur réellement
+   visible sous la nominale (100vh y reste "grand", non réduit), donc la
+   hauteur effective peut tomber sous 568px même sur cet appareil. */
+@media (max-width: 380px) and (max-height: 620px) {
+    .scale-wrapper {
+        transform: scale(0.72);
+        transform-origin: top center;
+    }
+}
+
 /* ── Header ──────────────────────────────────────────────────────────────── */
 .header {
     display: flex;

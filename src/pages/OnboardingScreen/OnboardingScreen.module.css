@@ -31,30 +31,46 @@
    largeur (left:0/right:0) bien que son contenu soit centré — sans priorité
    de z-index, sa zone invisible passait par-dessus le bouton et absorbait
    les taps au lieu de les laisser atteindre ✕. */
+/* Même style que .sound-toggle-btn / .lang-toggle-btn (App.css) — pilule
+   blanche translucide avec flou, cohérente avec les autres boutons flottants
+   du jeu plutôt qu'un style propre à cet écran. */
 .closeBtn {
     position: absolute;
     top: clamp(12px, 3vh, 24px);
     right: clamp(16px, 3vw, 32px);
     z-index: 11;
-    width: 34px;
-    height: 34px;
+    width: 44px;
+    height: 44px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    background: transparent;
-    border: 1px solid rgba(26, 26, 26, 0.2);
-    border-radius: 999px;
-    color: var(--color-text);
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 50%;
+    color: #1a1a1a;
     font-size: 14px;
+    font-weight: 700;
     cursor: pointer;
-    transition:
-        background-color 0.2s ease,
-        border-color 0.2s ease;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+    transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 .closeBtn:hover {
-    background-color: rgba(26, 26, 26, 0.06);
-    border-color: #1a1a1a;
+    transform: translateY(-2px) scale(1.05);
+    background: #ffffff;
+    border-color: rgba(0, 0, 0, 0.15);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+}
+
+.closeBtn:active {
+    transform: translateY(0) scale(0.95);
+}
+
+.closeBtn:focus-visible {
+    outline: 2px solid #1a1a1a;
+    outline-offset: 3px;
 }
 
 /* Dans le flux, au-dessus de la vidéo, centré horizontalement — le flexbox
@@ -266,5 +282,33 @@
         left: 0;
         right: 0;
         z-index: 10;
+    }
+
+    .closeBtn {
+        width: 40px;
+        height: 40px;
+    }
+}
+
+/* iPhone 5 / iPhone SE (2016) — viewport 320×568 CSS px, le plus petit
+   viewport iOS courant. À cette hauteur, la vidéo (dimensionnée via vh) et
+   .ambientRow (logo + Ambiance, épinglés en haut) se chevauchent — pas assez
+   de place pour les deux, la vidéo passe visuellement derrière puisque
+   .ambientRow a un z-index supérieur. On réduit tout le contenu via un scale
+   plutôt que de retoucher chaque taille manuellement. Le panneau est agrandi
+   à 139% (100/0.72) puis ramené à 0.72 depuis le coin haut-gauche : la mise
+   à l'échelle se compense exactement, donc le fond reste plein écran sans
+   bande visible, seul le contenu à l'intérieur rétrécit.
+   Seuils volontairement plus larges que 320×568 : Safari iOS affiche une
+   barre d'adresse + une barre d'outils qui rognent la hauteur réellement
+   visible sous la nominale (100vh y reste "grand", non réduit), donc la
+   hauteur effective peut tomber sous 568px même sur cet appareil. */
+@media (max-width: 380px) and (max-height: 620px) {
+    .pageOnboarding {
+        inset: 0 auto auto 0;
+        width: 139%;
+        height: 139%;
+        transform: scale(0.72);
+        transform-origin: top left;
     }
 }
