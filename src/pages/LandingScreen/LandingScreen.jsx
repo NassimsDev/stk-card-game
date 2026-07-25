@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import Button from "../../components/Button/Button.jsx";
 import { soundManager } from "../../utils/soundManager";
@@ -111,6 +112,24 @@ function LandingScreen({ onStart }) {
         ([, top]) => (top - canvasH / 2) * scale + cy < vpH * 0.62,
     );
 
+    // L'entrée en fondu de la mosaïque n'est déclenchée qu'une fois toutes les
+    // images chargées (ou en erreur — pour ne jamais bloquer indéfiniment sur
+    // un visuel manquant) : sinon les cartes "pop" visuellement avant même
+    // d'avoir fini de charger leur image. `imagesReady` est dérivé directement
+    // au rendu plutôt que recalculé dans un effect (évite un aller-retour de
+    // render inutile).
+    const [loadedCount, setLoadedCount] = useState(0);
+    const [forceReady, setForceReady] = useState(false);
+    const handleImageResolved = () => setLoadedCount((c) => c + 1);
+    const imagesReady = forceReady || (activeCards.length > 0 && loadedCount >= activeCards.length);
+
+    // Filet de sécurité : si une image reste bloquée sans jamais déclencher
+    // load/error (connexion instable...), on ne laisse pas l'accueil vide.
+    useEffect(() => {
+        const timeout = setTimeout(() => setForceReady(true), 4000);
+        return () => clearTimeout(timeout);
+    }, []);
+
     return (
         <div className={styles.page}>
             <div className={styles.maskWrapper}>
@@ -129,8 +148,14 @@ function LandingScreen({ onStart }) {
                                     width: `${width * scale}px`,
                                     height: `${height * scale}px`,
                                 }}
+                                onLoad={handleImageResolved}
+                                onError={handleImageResolved}
                                 initial={{ opacity: 0, scale: 0.85 }}
-                                animate={{ opacity: opacity ?? 1, scale: 1 }}
+                                animate={
+                                    imagesReady
+                                        ? { opacity: opacity ?? 1, scale: 1 }
+                                        : { opacity: 0, scale: 0.85 }
+                                }
                                 transition={{
                                     delay: i * 0.1,
                                     duration: 0.95,
