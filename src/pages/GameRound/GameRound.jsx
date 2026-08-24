@@ -12,7 +12,7 @@ import CardSlot from '../../components/CardSlot/CardSlot';
 import CarouselSection from '../../components/CarouselSection/CarouselSection';
 import CollectionOverlay from '../../components/CollectionOverlay/CollectionOverlay';
 
-export default function GameRound({ pairs, sequenceNumber, totalSequences, previousPairs = [], onComplete, onHome, onShowHelp }) {
+export default function GameRound({ pairs, sequenceNumber, totalSequences, previousPairs = [], onComplete, onShowHelp, onRestart }) {
   const {
     swiperInstanceRef,
     selectedLeft,
@@ -84,7 +84,7 @@ export default function GameRound({ pairs, sequenceNumber, totalSequences, previ
           ne doit pas s'appliquer à l'overlay, dont le fond doit rester plein écran. */}
       <div className={styles['scale-wrapper']}>
       <header className={styles.header}>
-        <Logo onClick={onHome} />
+        <Logo />
 
         <div className={styles['header-actions']}>
           <AmbientSelector />
@@ -313,6 +313,7 @@ export default function GameRound({ pairs, sequenceNumber, totalSequences, previ
         isOpen={isCollectionOpen}
         onOpen={() => setIsCollectionOpen(true)}
         onClose={() => setIsCollectionOpen(false)}
+        onRestart={onRestart}
       />
     </motion.div>
   );

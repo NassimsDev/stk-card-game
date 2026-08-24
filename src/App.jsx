@@ -108,7 +108,15 @@ function AppContent() {
     setAppView('game');
   };
 
-  const handleGoHome = () => {
+  const handleToggleMute = () => {
+    const muted = soundManager.toggleMute();
+    setIsMuted(muted);
+  };
+
+  // Repasse par l'écran d'accueil (contrairement au "Rejouer" de l'écran de
+  // fin, qui saute direct en jeu) : action volontaire depuis la collection,
+  // pas une simple envie de relancer une partie qui vient de se terminer.
+  const handleRestart = () => {
     soundManager.play('button');
     setStarted(false);
     setOnboarded(false);
@@ -116,17 +124,12 @@ function AppContent() {
     setAppView('game');
   };
 
-  const handleToggleMute = () => {
-    const muted = soundManager.toggleMute();
-    setIsMuted(muted);
-  };
-
   return (
     <>
       {!started ? (
         <LandingScreen onStart={() => setStarted(true)} />
       ) : !onboarded ? (
-        <OnboardingScreen onComplete={() => setOnboarded(true)} onHome={handleGoHome} />
+        <OnboardingScreen onComplete={() => setOnboarded(true)} />
       ) : (
         <div className="container">
           <AnimatePresence mode="wait">
@@ -138,8 +141,8 @@ function AppContent() {
                 totalSequences={TOTAL_SEQUENCES}
                 previousPairs={SEQUENCES.slice(0, seqIndex).flat()}
                 onComplete={handleSequenceComplete}
-                onHome={handleGoHome}
                 onShowHelp={() => setShowHelp(true)}
+                onRestart={handleRestart}
               />
             )}
 
@@ -235,7 +238,6 @@ function AppContent() {
             key="help-overlay"
             onComplete={() => setShowHelp(false)}
             onClose={() => setShowHelp(false)}
-            onHome={handleGoHome}
           />
         )}
       </AnimatePresence>

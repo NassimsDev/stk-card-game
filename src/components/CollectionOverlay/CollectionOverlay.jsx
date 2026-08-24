@@ -1,15 +1,17 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useLang } from '../../i18n/useLang';
+import ConfirmDialog from '../ConfirmDialog/ConfirmDialog';
 import styles from './CollectionOverlay.module.css';
 
 const EDGE_ZONE = 32;      // px from the right edge where the open-swipe can start
 const SWIPE_THRESHOLD = 50; // px of horizontal travel needed to trigger open/close
 const SWIPE_BAND = 48;      // px above/below the indicator where the swipe is accepted
 
-export default function CollectionOverlay({ pairs, unlocked, isOpen, onOpen, onClose }) {
+export default function CollectionOverlay({ pairs, unlocked, isOpen, onOpen, onClose, onRestart }) {
   const { t } = useLang();
   const indicatorRef = useRef(null);
+  const [isRestartConfirmOpen, setIsRestartConfirmOpen] = useState(false);
 
   // Swipe from the right edge to open — only within the indicator's vertical
   // band, so the gesture zone matches what the languette shows on screen.
@@ -171,10 +173,36 @@ export default function CollectionOverlay({ pairs, unlocked, isOpen, onOpen, onC
                 ))
               )}
             </div>
+
+            {/* Discret volontairement : ce n'est pas l'action principale de ce
+                panneau, juste une porte de sortie pour qui veut repartir de zéro. */}
+            <div className={styles['panel-footer']}>
+              <button
+                type="button"
+                className={styles['restart-btn']}
+                onClick={() => setIsRestartConfirmOpen(true)}
+              >
+                {t('collection.restartLabel')}
+              </button>
+            </div>
           </motion.aside>
         </motion.div>
       )}
     </AnimatePresence>
+
+    <ConfirmDialog
+      isOpen={isRestartConfirmOpen}
+      title={t('collection.restartConfirmTitle')}
+      message={t('collection.restartConfirm')}
+      cancelLabel={t('collection.restartConfirmCancel')}
+      confirmLabel={t('collection.restartConfirmYes')}
+      onCancel={() => setIsRestartConfirmOpen(false)}
+      onConfirm={() => {
+        setIsRestartConfirmOpen(false);
+        onClose();
+        onRestart();
+      }}
+    />
     </>
   );
 }

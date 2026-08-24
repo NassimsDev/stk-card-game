@@ -152,6 +152,44 @@
     white-space: pre-line;
 }
 
+/* ── Footer (discret, hors du scroll) ───────────────────────────────────── */
+.panel-footer {
+    padding: 14px 24px;
+    border-top: 1px solid rgba(26, 26, 26, 0.08);
+    text-align: center;
+}
+
+.restart-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    /* background: transparent; */
+    background: white;
+    border: 1px solid rgba(26, 26, 26, 0.25);
+    border-radius: var(--radius-pill);
+    padding: 10px 26px;
+    font-family: var(--font-sans);
+    font-size: 13px;
+    font-weight: 500;
+    color: #1a1a1a;
+    cursor: pointer;
+    transition:
+        background-color 0.2s ease,
+        color 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.restart-btn:hover {
+    background-color: #1a1a1a;
+    border-color: #1a1a1a;
+    color: #faf7f4;
+}
+
+.restart-btn:active {
+    transform: scale(0.97);
+}
+
 /* ── Swipe indicator (mobile only) ───────────────────────────────────────── */
 .swipe-indicator {
     display: none;

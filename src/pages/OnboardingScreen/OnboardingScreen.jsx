@@ -14,7 +14,7 @@ const SLIDE_MEDIA = [
     { showLogo: false, video: "/assets/videos/video_echec.mp4" },
 ];
 
-function OnboardingScreen({ onComplete, onHome, onClose }) {
+function OnboardingScreen({ onComplete, onClose }) {
     const { lang, t } = useLang();
     // Mode révision (depuis le "?" de GameRound) : les vidéos ont déjà été vues
     // et sont normalement en cache navigateur — pas de spinner de chargement.
@@ -88,13 +88,13 @@ function OnboardingScreen({ onComplete, onHome, onClose }) {
             )}
 
             {/* Desktop : logo épinglé en haut à gauche, indépendant de la vidéo. */}
-            <Logo onClick={onHome} className={styles.logoSlot} />
+            <Logo className={styles.logoSlot} />
 
             <div className={styles.inner}>
                 {/* Mobile : logo + ambiance côte à côte, centrés ensemble (voir CSS) —
                     le logo du dessus se masque, celui-ci prend le relais. */}
                 <div className={styles.ambientRow}>
-                    <Logo onClick={onHome} className={styles.logoInline} />
+                    <Logo className={styles.logoInline} />
                     <AmbientSelector />
                 </div>
 

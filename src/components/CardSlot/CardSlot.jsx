@@ -2,6 +2,7 @@ import { useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { getGlowPath } from '../../pages/GameRound/gameRound.constants';
 import { useLang } from '../../i18n/useLang';
+import { retryImageOnError } from '../../utils/retryImageOnError';
 import styles from './CardSlot.module.css';
 
 export default function CardSlot({
@@ -54,6 +55,7 @@ export default function CardSlot({
               src={card.image}
               alt={card.alt}
               className={styles['card-img']}
+              onError={retryImageOnError}
               initial={{ rotateY: 90 }}
               animate={{ rotateY: 0 }}
               exit={{ rotateY: -90 }}
@@ -86,6 +88,7 @@ export default function CardSlot({
             alt=""
             className={styles['card-img']}
             style={{ zIndex: 1 }}
+            onError={retryImageOnError}
             initial={{ opacity: 0, scale: 1 }}
             animate={
               linkStatus === 'linked'
