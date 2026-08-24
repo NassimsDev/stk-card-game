@@ -108,14 +108,6 @@ function AppContent() {
     setAppView('game');
   };
 
-  const handleGoHome = () => {
-    soundManager.play('button');
-    setStarted(false);
-    setOnboarded(false);
-    setSeqIndex(0);
-    setAppView('game');
-  };
-
   const handleToggleMute = () => {
     const muted = soundManager.toggleMute();
     setIsMuted(muted);
@@ -126,7 +118,7 @@ function AppContent() {
       {!started ? (
         <LandingScreen onStart={() => setStarted(true)} />
       ) : !onboarded ? (
-        <OnboardingScreen onComplete={() => setOnboarded(true)} onHome={handleGoHome} />
+        <OnboardingScreen onComplete={() => setOnboarded(true)} />
       ) : (
         <div className="container">
           <AnimatePresence mode="wait">
@@ -138,7 +130,6 @@ function AppContent() {
                 totalSequences={TOTAL_SEQUENCES}
                 previousPairs={SEQUENCES.slice(0, seqIndex).flat()}
                 onComplete={handleSequenceComplete}
-                onHome={handleGoHome}
                 onShowHelp={() => setShowHelp(true)}
               />
             )}
@@ -235,7 +226,6 @@ function AppContent() {
             key="help-overlay"
             onComplete={() => setShowHelp(false)}
             onClose={() => setShowHelp(false)}
-            onHome={handleGoHome}
           />
         )}
       </AnimatePresence>
