@@ -1,4 +1,5 @@
 import { useLang } from '../../i18n/useLang';
+import { retryImageOnError } from '../../utils/retryImageOnError';
 import styles from './CardGrid.module.css';
 
 export default function CardGrid({ pairs, side, selectedId, matchedPairIds, isAnimating, onSelect }) {
@@ -36,7 +37,7 @@ export default function CardGrid({ pairs, side, selectedId, matchedPairIds, isAn
               }
             }}
           >
-            <img src={card.image} alt={card.alt} className={styles['grid-img']} />
+            <img src={card.image} alt={card.alt} className={styles['grid-img']} onError={retryImageOnError} />
           </div>
         );
       })}
