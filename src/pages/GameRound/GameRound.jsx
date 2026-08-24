@@ -12,7 +12,7 @@ import CardSlot from '../../components/CardSlot/CardSlot';
 import CarouselSection from '../../components/CarouselSection/CarouselSection';
 import CollectionOverlay from '../../components/CollectionOverlay/CollectionOverlay';
 
-export default function GameRound({ pairs, sequenceNumber, totalSequences, previousPairs = [], onComplete, onShowHelp }) {
+export default function GameRound({ pairs, sequenceNumber, totalSequences, previousPairs = [], onComplete, onShowHelp, onRestart }) {
   const {
     swiperInstanceRef,
     selectedLeft,
@@ -313,6 +313,7 @@ export default function GameRound({ pairs, sequenceNumber, totalSequences, previ
         isOpen={isCollectionOpen}
         onOpen={() => setIsCollectionOpen(true)}
         onClose={() => setIsCollectionOpen(false)}
+        onRestart={onRestart}
       />
     </motion.div>
   );

@@ -113,6 +113,17 @@ function AppContent() {
     setIsMuted(muted);
   };
 
+  // Repasse par l'écran d'accueil (contrairement au "Rejouer" de l'écran de
+  // fin, qui saute direct en jeu) : action volontaire depuis la collection,
+  // pas une simple envie de relancer une partie qui vient de se terminer.
+  const handleRestart = () => {
+    soundManager.play('button');
+    setStarted(false);
+    setOnboarded(false);
+    setSeqIndex(0);
+    setAppView('game');
+  };
+
   return (
     <>
       {!started ? (
@@ -131,6 +142,7 @@ function AppContent() {
                 previousPairs={SEQUENCES.slice(0, seqIndex).flat()}
                 onComplete={handleSequenceComplete}
                 onShowHelp={() => setShowHelp(true)}
+                onRestart={handleRestart}
               />
             )}
 
