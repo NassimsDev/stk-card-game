@@ -12,6 +12,11 @@ dist
 dist-ssr
 *.local
 
+# Env files
+.env
+.env.local
+.env.*.local
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
@@ -22,3 +27,12 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# OS junk (Windows)
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Claude Code — settings.local.json est propre à la machine (permissions
+# locales), settings.json (partagé) reste suivi.
+.claude/settings.local.json
